@@ -37,10 +37,10 @@ class Handler extends ExceptionHandler {
      */
     public function render($request, Exception $e)
     {
-        return view('app');
-        if($e instanceof NotFoundHttpException){
-            return view('home');
+        if ($e instanceof CustomException) {
+            return response()->view('app', [], 404);
         }
+
         return parent::render($request, $e);
     }
 
