@@ -14,15 +14,15 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "frontoffice/app/"
         },
         "classmap": [
-            "database/"
+            "frontoffice/database/"
         ]
     },
     "autoload-dev": {
         "classmap": [
-            "tests/"
+            "frontoffice/tests/"
         ]
     },
     "config": {
