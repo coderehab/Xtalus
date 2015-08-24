@@ -14,7 +14,3 @@
 $app->get('/', function() use ($app) {
     return view('app');
 });
-
-if($e instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException) {
-    return view('app');
-}
