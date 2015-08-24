@@ -37,7 +37,7 @@ class Handler extends ExceptionHandler {
      */
     public function render($request, Exception $e)
     {
-        return view('home');
+        return view('app');
         if($e instanceof NotFoundHttpException){
             return view('home');
         }
