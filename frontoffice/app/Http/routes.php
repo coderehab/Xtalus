@@ -15,7 +15,7 @@ $app->get('/', function() use ($app) {
     return view('app');
 });
 
-App::missing(function($exception){
+$app->missing(function($exception){
 
     // shows an error page (app/views/error.blade.php)
     // returns a page not found error
