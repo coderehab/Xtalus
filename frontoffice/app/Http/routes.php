@@ -15,8 +15,10 @@ $app->get('/', function() use ($app) {
     return view('app');
 });
 
-Route::filter('admin', function(){
+$app->get('/me', function() use ($app) {
     return view('app');
 });
 
-Route::when('me/*', 'me');
+$app->group(['prefix' => 'me'], function ($app) {
+    return view('app');
+});
