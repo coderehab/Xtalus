@@ -1,0 +1,35 @@
+
+.columns{
+
+	@for $i from 2 to 3 {
+		$margin: 1.5%;
+		$width: (100%-($margin*($i+2)))/$i;
+
+
+		.cols-#{$i}-small {
+			float:left;
+			width:$width;
+			margin:$margin;
+		}
+}
+
+@include clearfix();
+}
+
+@media screen and (min-width: 600px) {
+
+	.columns{
+
+		@for $i from 2 to 12 {
+			$margin: 1.5%;
+			$width: (100%-($margin*($i+2)))/$i;
+
+			.cols-#{$i} {
+				float:left;
+				width:$width;
+				margin:$margin;
+			}
+		}
+
+	}
+}

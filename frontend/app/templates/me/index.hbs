@@ -1,0 +1,82 @@
+<aside id='page-left' class='viewslider' >
+	<section class='slideContainer'>
+
+		<section id='index' class='slide-0'>
+			<i id="edit-btn" {{action 'changeView' 'page-left' 1 }} class="fa fa-cog"></i>
+
+			<section id="location">
+				<i class="fa fa-location-arrow"></i> <h6>Locatiegegevens</h6>
+				<p>
+				{{	model.address }} <br>
+				{{ model.postalCode }} {{ model.town }}
+				 </p>
+			</section>
+			<hr>
+			<section id="age">
+				<i class="fa fa-male"></i> <h6>Geboortdedatum</h6>
+				<p>{{ model.birthday }}</p>
+			</section>
+			<hr>
+			<section id="availability">
+				<i class="fa fa-calendar"></i> <h6>Beschikbaarheid</h6>
+				<p><br>
+				</p>
+			</section>
+		</section>
+
+		<section id='edit' class='slide-1'>
+			<i id="back-btn" {{action 'changeView' 'page-left' 0 }} class="fa fa-chevron-circle-left"></i>
+			<h4>Instellingen</h4>
+
+			<form method="post" {{action "updatePerson" on="submit"}}>
+
+				Voornaam
+				{{input value=model.firstName type="text" placeholder="Voornaam" class="txt-field"}}<br>
+				Tussenvoegsel
+				{{input value=model.middleName type="text" placeholder="Tussenvoegsel" class="txt-field"}}<br>
+				Achternaam
+				{{input value=model.lastName type="text" placeholder="Achternaam" class="txt-field"}}<br>
+				Geboortedatum
+                {{date-picker value=model.birthDay valueFormat='YYYY-MM-DD' format='YYYY-MM-DD'}}<br>
+
+				<h4>Locatiegegevens</h4>
+				Adres:
+				{{input value=model.address type="text" placeholder="adres" class="txt-field"}}<br>
+				Postcode:
+				{{input value=model.postalCode type="text" placeholder="postcode" class="txt-field"}}<br>
+				Plaats
+				{{input value=model.town type="text" placeholder="plaats" class="txt-field"}}<br>
+
+				<h4>Beschikbaarheid</h4>
+				Van:
+				{{date-picker value=model.date date=mydate valueFormat='YYYY-MM-DD' format='DD-MM-YYYY' yearRange="-70,0"}}<br>
+				tot:
+				{{date-picker value=model.date date=mydate valueFormat='YYYY-MM-DD' format='DD-MM-YYYY' yearRange="-70,0"}}<br>
+
+				<button type="submit" class="btn add-project-btn">Wijzigen <i class="fa fa-pencil"></i></button>
+			</form>
+		</section>
+	</section>
+</aside>
+
+<section id='page-content'>
+	<section id='passion'>
+		<i id="edit-btn" {{action 'editSection' 'user-info'}} class="fa fa-cog"></i>
+		<h3>Verhaal</h3>
+		<p>{{model.passion}}</p>
+	</section>
+
+	<section id='qualities'>
+		<h3>Kwaliteiten</h3>
+
+		<ul>
+			{{#each quality in qualities}}
+			<li>{{ quality }} <i class="fa fa-times"></i></li>
+			{{/each}}
+		</ul>
+		Kwaliteit toevoegen<br>
+		{{input value=quality type="text" placeholder="Type hier een nieuwe kwaliteit"}}<br>
+		<span class="add-quality-btn">Toevoegen</span>
+	</section>
+</section>
+

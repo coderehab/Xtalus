@@ -1,0 +1,53 @@
+<section id="page-content">
+    <header id="" class="overview absolute">
+        <span class="count">{{ model.demands.length }} projecten</span>
+        <ul class='options'>
+            <li><button><i class="fa fa-sort-alpha-asc"></i></button></li>
+            <li><button class="active"><i class="fa fa-info"></i></button></li>
+        </ul>
+    </header>
+
+    <section id="" class='overview tiles'>
+        {{#each demand in model.demands}}
+
+        <section class="demand tile" {{action "showDetails" demand.id }}>
+            <img src="http://mindbodyspiritualawareness.com/wp-content/uploads/2014/09/Is-Marilyn-a-Good-Artist-ftr.jpg"/>
+            <div class="info">
+                <h4>{{demand.description}}</h4>
+                <span class='owner'>{{demand.demandOwner.title}}</span>
+                <span class="status"><img src="assets/images/status_orange.png"/> Uitgenodigd</span>
+            </div>
+        </section>
+
+        {{/each}}
+    </section>
+</section>
+
+<aside id="page-right">
+    <header class='picture' style="background-image: url('http://mindbodyspiritualawareness.com/wp-content/uploads/2014/09/Is-Marilyn-a-Good-Artist-ftr.jpg') "></header>
+
+    <h4>{{selectedDemand.description}}</h4>
+    <span class='owner'>{{selectedDemand.demandOwner.title}}</span>
+    <span class="status"><img src="assets/images/status_orange.png"/> Uitgenodigd</span>
+    <hr>
+    <span class="expertise">
+        <i class="fa fa-rocket"></i> <h5>Mijn expertise</h5>
+        Leergierig persoon<br>
+        {{
+        view Ember.Select
+        contentBinding="form.entities"
+        selectionBinding="formdata.entity"
+        optionLabelPath="content.label"
+        optionValuePath="content.value"
+        }}
+    </span>
+    <hr>
+
+    <p>{{selectedDemand.demandSummary}}</p>
+    <h5>verhaal</h5>
+    <p>{{selectedDemand.demandStory}}</p>
+
+    <button {{action 'hideDetails'}}>Sluiten</button><br><br>
+    <button {{action 'getProject' selectedDemand.id }}>Bekijk project</button>
+</aside>
+

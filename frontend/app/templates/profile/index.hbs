@@ -1,0 +1,47 @@
+
+    <aside id='page-left'>
+        <section id='index' class='slide-0'>
+            <i id="edit-btn" {{action 'changeView' 'page-left' 1 }} class="fa fa-cog"></i>
+            <h4>{{ model.fullName }}</h4>
+            <h5>{{ model.roles }}</h5>
+            <hr>
+
+            <section id="location">
+                <i class="fa fa-location-arrow"></i> <h6>Locatiegegevens</h6>
+                <p>
+                    {{	model.address }} <br>
+                    {{ model.postalCode }} {{ model.town }}
+                </p>
+            </section>
+            <hr>
+            <section id="age">
+                <i class="fa fa-male"></i> <h6>Geboortdedatum</h6>
+                <p>{{ model.birthday }}</p>
+            </section>
+            <hr>
+            <section id="availability">
+                <i class="fa fa-calendar"></i> <h6>Beschikbaarheid</h6>
+                <p>1 april t/m 30 maart<br>
+                    15 uur per week</p>
+            </section>
+        </section>
+    </aside>
+
+    <section id='page-content'>
+
+        <section id='passion'>
+            <h3>Passie</h3>
+            <p>{{passion}}</p>
+        </section>
+
+        <section id='qualities'>
+            <h3>Kwaliteiten</h3>
+
+            <ul>
+                {{#each quality in qualities}}
+                    <li>{{ quality }}</li>
+                {{/each}}
+            </ul>
+        </section>
+
+    </section>

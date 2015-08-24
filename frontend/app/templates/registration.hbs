@@ -1,0 +1,120 @@
+<section id="page" class='registration'>
+
+    <header>
+        <h1>Xtalus</h1>
+        <h3>Together the perfect 'match-maker' for finding and growing talent</h3>
+    </header>
+
+    <section>
+        <h2>Registreer jezelf</h2>
+        <form method="post" {{action "submitRegistration" on="submit"}} class="columns">
+            <!-- Left column -->
+            <p class="message">{{message}}</p>
+            <h4>Account gegevens</h4>
+            <div {{bind-attr class="errors.username:error :cols-2"}}>
+                <label><i class="fa fa-user"></i> Gebruikersnaam <span class="required">*</span><br>
+                    {{input value=formdata.username type="text" placeholder="Kies een gebruikersnaam"}}
+                </label>
+				<span>{{errors.username}}</span>
+            </div>
+
+            <div {{bind-attr class="errors.email:error :cols-2"}}>
+                <label><i class="fa fa-envelope"></i> Emailadres <span class="required">*</span><br>
+                    {{input value=formdata.email type="text" placeholder="Uw e-mailadres"}}
+                </label>
+				<span>{{errors.email}}</span>
+            </div>
+
+            <div {{bind-attr class="errors.password:error :cols-2"}}>
+                <label><i class="fa fa-lock"></i> Wachtwoord <span class="required">*</span><br>
+                    {{input value=formdata.password type="password" placeholder="Kies een wachtwoord"}}
+                </label>
+				 <span>{{errors.password}}</span>
+            </div>
+
+            <div {{bind-attr class="errors.passwordConfirm:error :cols-2"}}>
+                <label><i class="fa fa-lock"></i> Wachtwoord herhalen <span class="required">*</span><br>
+                    {{input value=formdata.passwordConfirm type="password" placeholder="Herhaal het wachtwoord"}}
+                </label>
+				<span>{{errors.passwordConfirm}}</span>
+            </div>
+
+            <h4>Persoonlijke gegevens</h4>
+
+            <div {{bind-attr class="errors.firstname:error :cols-2"}}>
+                <label><i class="fa fa-user"></i> Voornaam <span class="required">*</span><br>
+                    {{input value=formdata.firstname type="text" placeholder="Uw voornaam"}}
+                </label>
+				<span>{{errors.firstname}}</span>
+            </div>
+
+            <div {{bind-attr class="errors.middlename:error :cols-2"}}>
+                <label><i class="fa fa-user"></i> Tussenvoegsel <span class="required">*</span><br>
+                    {{input value=formdata.middlename type="text" placeholder="tussenvoegsel"}}
+                </label>
+				<span>{{errors.middlename}}</span>
+            </div>
+
+            <div {{bind-attr class="errors.lastname:error :cols-2"}}>
+                <label><i class="fa fa-user"></i> Achternaam <span class="required">*</span><br>
+                    {{input value=formdata.lastname type="text" placeholder="Uw achternaam"}}
+                </label>
+				<span>{{errors.lastname}}</span>
+            </div>
+
+            <div {{bind-attr class="errors.birthday:error :cols-2"}}>
+                <label><i class="fa fa-birthday-cake"></i> Geboortedatum <span class="required">*</span><br>
+					{{date-picker value=formdata.birthday date=mydate valueFormat='YYYY-MM-DD' yearRange="-70,0"}}
+                </label>
+				 <span>{{errors.birthday}}</span>
+            </div>
+
+            <div {{bind-attr class="errors.phone:error :cols-2"}}>
+                <label><i class="fa fa-phone"></i> Telefoonnummer <span class="required">*</span><br>
+                    {{input value=formdata.phone type="text" placeholder="Uw telefoonnummer"}}
+                </label>
+				<span>{{errors.phone}}</span>
+            </div>
+
+            <div {{bind-attr class="errors.address:error :cols-2"}}>
+                <label><i class="fa fa-home"></i> Adres <span class="required">*</span><br>
+                    {{input value=formdata.address type="text" placeholder="Uw adres"}}
+                </label>
+				<span>{{errors.address}}</span>
+            </div>
+
+            <div {{bind-attr class="errors.postal:error :cols-2"}}>
+                <label><i class="fa fa-home"></i> Postcode <span class="required">*</span><br>
+                    {{input value=formdata.postal type="text" placeholder="Uw postcode"}}
+                </label>
+				<span>{{errors.postal}}</span>
+            </div>
+
+            <div {{bind-attr class="errors.city:error :cols-2"}}>
+                <label><i class="fa fa-home"></i> Woonplaats <span class="required">*</span><br>
+                    {{input value=formdata.city type="text" placeholder="Uw woonplaats"}}
+                </label>
+				<span>{{errors.city}}</span>
+            </div>
+
+            <div {{bind-attr class="errors.entity:error :cols-2"}}>
+                <label><i class="fa fa-persons"></i> Entiteit <span class="required">*</span><br>
+                    {{
+                    view Ember.Select
+                    contentBinding="form.entities"
+                    selectionBinding="formdata.entity"
+                    optionLabelPath="content.label"
+                    optionValuePath="content.value"
+                    }}
+                </label>
+				<span>{{errors.entity}}</span>
+            </div>
+
+
+			<button type="submit" class="btn">Registreren <i class="fa fa-sign-in"></i></button>
+			<!-- {{#link-to 'login'}}Annuleren{{/link-to}} -->
+        </form>
+
+    </section>
+    {{log this}}
+</section>

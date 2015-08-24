@@ -1,0 +1,30 @@
+    <section id='page-content'>
+
+        <header id="" class="overview absolute">
+			<span class="count">{{ model.assessments.length }} referenties</span>
+			<ul class='options'>
+				<li><button><i class="fa fa-sort-alpha-asc"></i></button></li>
+				<li><button class="active"><i class="fa fa-info"></i></button></li>
+			</ul>
+		</header>
+
+
+		{{#each reference in model.assessments}}
+
+		<section class="reference">
+			<span class="configs">
+				<i class="fa fa-pencil"></i>
+				<i class="fa fa-trash"></i>
+			</span>
+
+			<img src="https://pbs.twimg.com/profile_images/477014477729042432/ncT2ukoh.jpeg" width="100" height="100" class="referencePersonImage"/>
+			<h2>{{reference.assessmentOwnerFullName}}</h2>
+			<h3>{{reference.assessmentOwnerRoles}}</h3>
+			<p>{{reference.feedback}}</p>
+		</section>
+
+			{{/each}}
+
+
+    </section>
+

@@ -1,0 +1,54 @@
+<section id='page-content' >
+
+	<header id="" class="overview absolute">
+		<span class="count">{{ model.connections.length }} connecties</span>
+		<ul class='options'>
+			<li><button><i class="fa fa-sort-alpha-asc"></i></button></li>
+			<li><button class="active"><i class="fa fa-info"></i></button></li>
+		</ul>
+	</header>
+
+	<section id='' class='overview list'>
+		<table>
+			<tr>
+				<th width="250">Naam</th>
+				<th>circle</th>
+				<th></th>
+			</tr>
+
+			{{#each connection in model.connections}}
+			<tr>
+                <td {{action 'showConnectionDetails' connection }}>
+					<div class='profilePicture' style="background-image: url({{ connection.picture }}) "></div>
+					{{ connection.contactName }}
+				</td>
+                <td {{action 'showConnectionDetails' connection }}>{{connection.trustlevel}}</td>
+                {{log connection}}
+                <td><button {{action "createPersonalContact" connection.contactId}} id="addProjectBtn">connect <i class="fa fa-plus"></i></button></td>
+            </tr>
+			{{/each}}
+		</table>
+	</section>
+</section>
+
+<aside id='page-right'>
+    {{#if selectedPerson }}
+	<header class='picture' style="background-image: url({{ selectedPerson.profilePicture }}) "></header>
+    <h4>{{selectedPerson.fullName}}, <small>{{selectedPerson.birthDay}}</small></h4>
+	<h5>{{selectedPerson.roles}}</h5>
+    <p>
+        <strong>Contactgegevens:</strong>
+        {{selectedPerson.phone }}<br />
+        {{selectedPerson.email}}
+    </p>
+    <p>
+        <strong>Adresgegevens:</strong><br />
+        {{selectedPerson.address}} <br />
+        {{selectedPerson.postalCode}} {{selectedPerson.town}}
+    </p>
+	<button {{action 'getProfile' selectedPerson.id }}>Bekijk profiel</button>
+	<button {{action 'hideConnectionDetails'}}>sluiten</button>
+    {{else}}
+        <img class='preloader' src='assets/images/preloader.gif' width="64"/>
+    {{/if}}
+</aside>

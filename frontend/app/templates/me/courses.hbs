@@ -1,0 +1,92 @@
+<section id="add-course-popup">
+
+	<section>
+		<header>
+			<h2>Nieuw project</h2>
+		</header>
+		<form method="post" {{action "createProject" on="submit"}}>
+			{{input value=title type="text" placeholder="Beschrijving" class="txt-field"}}<br>
+			{{textarea value=summary placeholder="Samenvatting" class="txt-area"}}<br>
+			<button type="submit" class="btn add-project-btn">Opleiding toevoegen</button>
+			<button class="btn close" {{action "closePopup" 'new-project'}}>Annuleren</button>
+		</form>
+
+	</section>
+
+</section>
+
+<header id="page-header">
+
+	<button {{action "showPopup" 'new-project' id="addProjectBtn"}}>Nieuwe opleiding<i class="fa fa-plus"></i></button>
+
+	<h4>Opleidingen</h4>
+
+	<nav id="submenu">
+		<ul>
+			<li>{{#link-to 'me.projects' class="active"}}Alle{{/link-to}}</li>
+			<li>{{#link-to 'me.connections'}}MBO{{/link-to}}</li>
+			<li>{{#link-to 'me.connections'}}MHBO{{/link-to}}</li>
+			<li>{{#link-to 'me.connections'}}HBO{{/link-to}}</li>
+			<li>{{#link-to 'me.connections'}}Master{{/link-to}}</li>
+			<li>{{#link-to 'me.connections'}}Trainingen{{/link-to}}</li>
+		</ul>
+	</nav>
+
+</header>
+
+<section id="page-content">
+	<header id="" class="overview absolute">
+		<span class="count">{{ projectCount }} opleidingen</span>
+		<ul class='options'>
+			<!-- <li><button><i class="fa fa-sort-alpha-asc"></i></button></li> -->
+			<li><button class="active"><i class="fa fa-info"></i></button></li>
+		</ul>
+	</header>
+
+    <section id="" class='overview tiles'>
+		{{#each demand in demands}}
+
+		<section class="demand tile" {{action "showDetails" demand.uniqueItemId }}>
+			<img src="http://mindbodyspiritualawareness.com/wp-content/uploads/2014/09/Is-Marilyn-a-Good-Artist-ftr.jpg"/>
+			<div class="info">
+				<h4>{{demand.demandDescription}}</h4>
+				<span class='owner'>{{demand.demandOwner.title}}</span>
+				<span class="status"><img src="assets/images/status_orange.png"/> Uitgenodigd</span>
+			</div>
+		</section>
+
+		{{/each}}
+	</section>
+</section>
+
+<aside id="page-right">
+	<header class='picture' style="background-image: url('http://mindbodyspiritualawareness.com/wp-content/uploads/2014/09/Is-Marilyn-a-Good-Artist-ftr.jpg') "></header>
+
+	<h4>{{selectedDemand.demandDescription}}</h4>
+	<span class='owner'>{{selectedDemand.demandOwner.title}}</span>
+	<span class="status"><img src="assets/images/status_orange.png"/> Uitgenodigd</span>
+	<hr>
+	<span class="expertise">
+		<i class="fa fa-rocket"></i> <h5>Mijn expertise</h5>
+		Leergierig persoon<br>
+		{{
+		view Ember.Select
+		contentBinding="form.entities"
+		selectionBinding="formdata.entity"
+		optionLabelPath="content.label"
+		optionValuePath="content.value"
+		}}
+	</span>
+	<hr>
+
+	<p>{{selectedDemand.demandSummary}}</p>
+	<h5>verhaal</h5>
+	<p>{{selectedDemand.demandStory}}</p>
+
+	<button {{action 'hideDetails'}}>Sluiten</button><br><br>
+	<button {{action 'getProject' selectedDemand.uniqueItemId }}>Bekijk project</button>
+
+</aside>
+
+
+

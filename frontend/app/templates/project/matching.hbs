@@ -1,0 +1,164 @@
+<aside id='page-left' class='viewslider' >
+    <section class='slideContainer'>
+        <section id='index' class='slide-0'>
+            {{#if selectedProfile}}
+            {{#if selectedProfile.match}}
+            {{#if selectedProfile.match.profilePicture}}
+            <div class='profilePicture' style="background-image: url({{ selectedProfile.match.profilePicture }});"></div>
+            <h4>{{ selectedProfile.description }}</h4>
+            <h5>{{selectedProfile.match.fullName}}</h5>
+            {{else}}
+                <div class='profilePicture'></div>
+            <h4>{{ selectedProfile.description }}</h4>
+            <h5>{{selectedProfile.match.fullName}}</h5>
+            {{/if}}
+
+            {{else}}
+            <div class='profilePicture'></div>
+            <h4>{{ selectedProfile.description }}</h4>
+            <h5>Geen match</h5>
+            {{/if}}
+
+            <hr>
+
+            <section class='widgetContainer'>
+                {{log selectedProfile.widgets}}
+                {{#collection "ivy-sortable" axis="y" content=selectedProfile.widgets moved="updateWidgetWeights"}}
+                {{matching-widget data=this isNew=false onupdate='updateWidget' onremove="removeWidget"}}
+                {{/collection}}
+
+            </section>
+
+            <button {{action 'changeView' 'page-left' 1 }} >Element toevoegen <i class="fa fa-plus"></i></button>
+
+            <hr>
+            <button {{action 'calculateMatches' }} >Matches berekenen <i class="fa fa-calculator"></i></button>
+            {{#unless selectedProfile.orderedProfileComparisons }}
+            <img class='' src='assets/images/preloader.gif' width="16"/>
+            {{/unless }}
+            <hr>
+            <button {{action 'deleteDemandProfile' }} >Verwijder profiel <i class="fa fa-trash"></i></button>
+            {{/if}}
+        </section>
+
+        <section id="add" class='slide-1'>
+            <i id="back-btn" {{action 'changeView' 'page-left' 0 }} class="fa fa-chevron-circle-left"></i>
+            <h3>Selecteer een filter</h3>
+            <section class='widgetContainer'>
+                {{log selectedProfile.availableWidgets.length}}
+                {{#each element in selectedProfile.availableWidgets}}
+                {{matching-widget data=element onsave='saveWidget'}}
+                {{/each}}
+
+            </section>
+
+        </section>
+    </section>
+</aside>
+
+<section id='page-content'>
+    <header id="profile-select">
+        <button {{action "showPopup" 'new-demand-profile'}} class='add'>+<span class="info"><strong>Zoekprofiel aanmaken</strong><br />Klik hier om een nieuw zoekprofiel aan te maken.</span></button>
+        {{#each profile in model.profiles}}
+        <span {{action 'selectMatchingProfile' profile.id}} class="profile">
+            {{#if profile.match}}
+            {{#if profile.match.profilePicture}}
+            <span class='profilePicture' style="background-image: url({{ profile.match.profilePicture }});">
+                <span class="info"><strong>{{ profile.description }}</strong><br />{{profile.match.fullName}}</span>
+            </span>
+            {{else}}
+            <span class='profilePicture'>
+                <span class="info"><strong>{{ profile.description }}</strong><br />{{profile.match.fullName}}</span>
+            </span>
+            {{/if}}
+            {{else}}
+            <span class='profilePicture'>
+                <span class="info"><strong>{{ profile.description }}</strong><br />Geen match</span>
+            </span>
+            {{/if}}
+        </span>
+        {{/each}}
+        <!--<h5>matches 0/{{ model.matchingProfiles.length }}</h5>-->
+
+    </header>
+
+    {{#if selectedProfile.candidates}}
+    <section id='candidates' class='overview list'>
+        <h3>Kandidaten</h3>
+        <h5>{{ selectedProfile.candidates.length }} kandidaten</h5>
+        <table>
+            <tr>
+                <th>Naam</th>
+                <th></th>
+            </tr>
+
+            {{#each candidate in selectedProfile.candidates}}
+            <tr>
+
+                <td>
+                    {{#if candidate.profilePicture }}
+                    <div class='profilePicture' style="background-image: url({{ candidate.profilePicture }}) "></div>
+                    {{else}}
+                    <div class='profilePicture'></div>
+                    {{/if}}
+                    {{ candidate.contactName }}
+                </td>
+                <td>
+                    <button {{action "selectMatch" candidate}} >Kies persoon</button>
+                    <button {{action "removeCandidate" candidate}} >Verwijderen</button>
+                </td>
+            </tr>
+            {{/each}}
+        </table>
+    </section>
+    {{/if}}
+
+
+    <section id='proposedMatches' class='overview list'>
+        <h3>Voorgestelde matches</h3>
+        <h5>{{ selectedProfile.profileComparisons.length }} personen</h5>
+        {{#if selectedProfile.orderedProfileComparisons}}
+        <table>
+            <tr>
+                <th width="80">Matching score</th>
+                <th>Naam</th>
+                <th></th>
+            </tr>
+
+            {{#each proposedMatch in selectedProfile.orderedProfileComparisons}}
+            <tr>
+                <td>{{proposedMatch.calculatedMatchingValue}}</td>
+                <td>
+                    {{#if proposedMatch.profilePicture }}
+                    <div class='profilePicture' style="background-image: url({{ proposedMatch.profilePicture }}) "></div>
+                    {{else}}
+                    <div class='profilePicture'></div>
+                    {{/if}}
+                    {{ proposedMatch.proposedPersonName }}
+                </td>
+                <td><button {{action "saveCandidate" proposedMatch}} >Uitnodigen</button></td>
+            </tr>
+            {{/each}}
+        </table>
+        {{else}}
+        <img class='' src='assets/images/preloader.gif' width="32"/>
+        {{/if}}
+    </section>
+
+</section>
+
+<section id="new-demand-profile" class='popup'>
+
+    <section class='inner'>
+        <header>
+            <h2>Nieuw Zoekprofiel</h2>
+        </header>
+        <form method="post" {{action "createDemandProfile" on="submit"}}>
+            {{input value=newProfileParams.name type="text" placeholder="Profielnaam" class="txt-field"}}<br>
+            <button type="submit" class="btn_sumbit">Profiel toevoegen</button>
+            <button class="btn close" {{action "closePopup" 'new-demand-profile'}}>Annuleren</button>
+        </form>
+
+    </section>
+
+</section>

@@ -1,0 +1,30 @@
+@mixin ignoreGlobalPadding($top:0, $left:1, $bottom:0, $right:1, $isContent:0, $customPadding:0){
+    position: relative;
+    $padding: $globalPadding !default;
+
+    @if $customPadding != 0 {
+        $padding: $customPadding;
+    }
+
+    @if $left == 1 {
+        margin-left:-$padding;
+    }
+
+    @if $right == 1 {
+        margin-right:-$padding;
+    }
+
+    @if $top == 1 {
+        margin-top:-$padding/2;
+        @if $isContent == 1 {
+            margin-top:0;
+        }
+    }
+
+    @if $bottom == 1 {
+        margin-bottom:-$padding/2;
+        @if $isContent == 1 {
+            margin-bottom:0;
+        }
+    }
+}

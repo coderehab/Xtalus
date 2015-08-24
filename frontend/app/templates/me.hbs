@@ -1,0 +1,15 @@
+<header id="page-header">
+
+	<h4>Profiel: {{model.fullName}}</h4>
+
+	<nav id="submenu">
+		<ul>
+			<li>{{#link-to 'me.index'}}Algemeen{{/link-to}}</li>
+			<li>{{#link-to 'me.references'}}Referenties{{/link-to}}</li>
+			<li>{{#link-to 'me.connections'}}Netwerk{{/link-to}}</li>
+		</ul>
+	</nav>
+
+</header>
+
+{{outlet}}

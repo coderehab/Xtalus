@@ -1,0 +1,107 @@
+
+{{#if isPostal}}<label {{action "toggleStatus"}}>Postcode</label>{{/if}}
+{{#if isAge}}<label {{action "toggleStatus"}}>Leeftijd</label>{{/if}}
+{{#if isHourlyRate}}<label {{action "toggleStatus"}}>Uurloon</label>{{/if}}
+{{#if isEducation}}<label {{action "toggleStatus"}}>Opleiding</label>{{/if}}
+{{#if isRole}}<label {{action "toggleStatus"}}>Rol</label>{{/if}}
+{{#if isTimePeriod}}<label {{action "toggleStatus"}}>Periode</label>{{/if}}
+
+{{#if isPassion}}<label {{action "toggleStatus"}}>Passie</label>{{/if}}
+{{#if isBranch}}<label {{action "toggleStatus"}}>Branches</label>{{/if}}
+{{#if isQuality}}<label {{action "toggleStatus"}}>Kwaliteiten</label>{{/if}}
+{{#if isWeekdays}}<label {{action "toggleStatus"}}>Beschikbare dagen</label>{{/if}}
+
+
+
+
+<div class="inner">
+    <form>
+        {{#if isPostal}}
+        <p>Vul onderstaand de postcode in om mensen in de buurt voorkeur te geven.</p>
+        {{input type=text value=data.postcode class="cols-2"}}
+        {{/if}}
+
+        {{#if isAge}}
+        <p>Vul onderstaand de gewenste leeftijd in:</p>
+        {{input type="number" min="1" max="100" step="1" value=data.numericValue}}
+        {{/if}}
+
+        {{#if isHourlyRate}}
+        <p>Vul onderstaand het maximale uurloon in:</p>
+        {{input type="number" min="1" max="100" step="1" value=data.numericValue}}
+        {{/if}}
+
+        {{#if isEducation}}
+        <span class='alert'>Werkt nog niet!</span>
+        <p>Kies uit een van de onderstaande opleidingen</p>
+        {{view Ember.Select
+        contentBinding="data.study"
+        selectionBinding="data.studyValue"
+        optionLabelPath="content.name"
+        optionValuePath="content.value"
+        prompt="Kies een studie"}}
+        {{/if}}
+
+        {{#if isRole}}
+        <span class='alert'>Werkt nog niet!</span>
+        <p>Kies uit een of meer van de onderstaande rollen </p>
+        {{multiselect-checkboxes options=data.roles labelProperty='name' selection=data.roleValues}}
+        {{/if}}
+
+        {{#if isWeekdays}}
+        <span class='alert'>Werkt nog niet!</span>
+        <p>Kies uit een of meer van de onderstaande dagen</p>
+        {{multiselect-checkboxes options=data.weekdays labelProperty='name' selection=data.weekdaysValues}}
+        {{/if}}
+
+
+        {{#if isTimePeriod}}
+        Start:
+        {{date-picker value=data.startDate date=mydate valueFormat='YYYY-MM-DD' yearRange="-70,0"}}
+        Eind:
+        {{date-picker value=data.endDate date=mydate valueFormat='YYYY-MM-DD' yearRange="-70,0"}}
+        {{/if}}
+
+
+
+
+        {{#if isPassion}}
+        <span class='alert'>Werkt nog niet!</span>
+        <p>Betrek de passie van een persoon bij de zoekresultaten</p>
+        {{textarea value=params.value  class="cols-2"}}
+        {{/if}}
+
+        {{#if isBranch}}
+        <ul class="tags">
+            <li>Tag 1 <i class="fa fa-trash-o"></i></li>
+            <li>Tag 2 <i class="fa fa-trash-o"></i></li>
+        </ul>
+
+        {{input type=type value=params.postcode class="cols-2"}}
+        <button class='addItem' {{action "addTag" data=data}}>Toevoegen <i class="fa fa-plus"></i></button>
+        {{/if}}
+
+
+
+
+        {{#if isQuality}}
+        <ul class="tags">
+            <li>Tag 1 <i class="fa fa-trash-o"></i></li>
+            <li>Tag 2 <i class="fa fa-trash-o"></i></li>
+        </ul>
+
+        {{input type=type value=params.postcode class="cols-2"}}
+        <button class='addItem' {{action "addTag" data=data}}>Toevoegen <i class="fa fa-plus"></i></button>
+        {{/if}}
+
+        {{#if isNew}}
+        <button {{action "saveWidget" data=data}}>Toevoegen <i class="fa fa-plus"></i></button>
+
+        {{else}}
+        <button {{action "updateWidget" data=data}}>Update</button>
+        <button {{action "removeWidget" data=data}}>Delete</button>
+        {{/if}}
+
+
+    </form>
+</div>

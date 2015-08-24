@@ -1,0 +1,15 @@
+[2015-08-24 13:47:44] lumen.ERROR: exception 'ErrorException' with message 'chdir(): No such file or directory (errno 2)' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Console/Commands/ServeCommand.php:29
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(2, 'chdir(): No suc...', '/Users/edgarrav...', 29, Array)
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Console/Commands/ServeCommand.php(29): chdir('/Users/edgarrav...')
+#2 [internal function]: Laravel\Lumen\Console\Commands\ServeCommand->fire()
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Array, Array)
+#4 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/console/Command.php(149): Illuminate\Container\Container->call(Array)
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/symfony/console/Command/Command.php(259): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/console/Command.php(135): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/symfony/console/Application.php(878): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#8 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/symfony/console/Application.php(195): Symfony\Component\Console\Application->doRunCommand(Object(Laravel\Lumen\Console\Commands\ServeCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/symfony/console/Application.php(126): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#10 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Console/Kernel.php(75): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#11 /Users/edgarravenhorst/git/xtalus/artisan(35): Laravel\Lumen\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#12 {main}  

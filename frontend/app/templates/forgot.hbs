@@ -1,0 +1,25 @@
+<section id="page" class='forgot'>
+
+    <header>
+        <h1>Xtalus</h1>
+        <h3>Together the perfect 'match-maker' for finding and growing talent</h3>
+    </header>
+
+    <section>
+		<h4>Wachtwoord vergeten?</h4>
+        <img src="assets/images/login-header-bg.jpg"/>
+        <p class="message">{{message}}</p>
+        <form method="post" {{action "login" on="submit"}}>
+            {{input value=username type="text" placeholder="gebruikersnaam"}}
+            {{input value=password type="password" placeholder="wachtwoord"}}
+            <button type="submit" class="btn">Login <i class="fa fa-chevron-right"></i></button>
+        </form>
+
+    </section>
+
+	<footer>
+		{{#link-to 'registration'}}Nog geen account?{{/link-to}}
+		{{#link-to 'forgot'}}wachtwoord vergeten?{{/link-to}}
+	</footer>
+
+</section>
