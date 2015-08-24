@@ -11,6 +11,12 @@
 |
 */
 
-$app->get('/*', function() use ($app) {
+$app->get('/', function() use ($app) {
     return view('app');
 });
+
+Route::filter('admin', function(){
+    return view('app');
+});
+
+Route::when('me/*', 'me');
