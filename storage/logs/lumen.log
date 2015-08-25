@@ -151,3 +151,773 @@ Stack trace:
 #12 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
 #13 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
 #14 {main}  
+[2015-08-25 13:36:00] lumen.ERROR: exception 'InvalidArgumentException' with message 'View [app] not found.' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php:137
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php(79): Illuminate\View\FileViewFinder->findInPaths('app', Array)
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php(151): Illuminate\View\FileViewFinder->find('app')
+#2 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/helpers.php(421): Illuminate\View\Factory->make('app', Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php(23): view('app')
+#4 [internal function]: {closure}(Object(Laravel\Lumen\Application))
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(881): call_user_func(Object(Closure), Object(Laravel\Lumen\Application))
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php(24): Laravel\Lumen\Application->group(Array, Object(Closure))
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/bootstrap/app.php(96): require('/Users/edgarrav...')
+#8 [internal function]: {closure}(Object(Laravel\Lumen\Application))
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(881): call_user_func(Object(Closure), Object(Laravel\Lumen\Application))
+#10 /Users/edgarravenhorst/git/xtalus/frontoffice/bootstrap/app.php(97): Laravel\Lumen\Application->group(Array, Object(Closure))
+#11 /Users/edgarravenhorst/git/xtalus/artisan(18): require('/Users/edgarrav...')
+#12 {main}  
+[2015-08-25 13:37:29] lumen.ERROR: exception 'InvalidArgumentException' with message 'View [app] not found.' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php:137
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php(79): Illuminate\View\FileViewFinder->findInPaths('app', Array)
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php(151): Illuminate\View\FileViewFinder->find('app')
+#2 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/helpers.php(421): Illuminate\View\Factory->make('app', Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php(23): view('app')
+#4 [internal function]: {closure}(Object(Laravel\Lumen\Application))
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(881): call_user_func(Object(Closure), Object(Laravel\Lumen\Application))
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php(24): Laravel\Lumen\Application->group(Array, Object(Closure))
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/bootstrap/app.php(96): require('/Users/edgarrav...')
+#8 [internal function]: {closure}(Object(Laravel\Lumen\Application))
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(881): call_user_func(Object(Closure), Object(Laravel\Lumen\Application))
+#10 /Users/edgarravenhorst/git/xtalus/frontoffice/bootstrap/app.php(97): Laravel\Lumen\Application->group(Array, Object(Closure))
+#11 /Users/edgarravenhorst/git/xtalus/artisan(18): require('/Users/edgarrav...')
+#12 {main}  
+[2015-08-25 13:37:53] lumen.ERROR: exception 'InvalidArgumentException' with message 'View [app] not found.' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php:137
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php(79): Illuminate\View\FileViewFinder->findInPaths('app', Array)
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php(151): Illuminate\View\FileViewFinder->find('app')
+#2 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/helpers.php(421): Illuminate\View\Factory->make('app', Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php(23): view('app')
+#4 [internal function]: {closure}(Object(Laravel\Lumen\Application))
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(881): call_user_func(Object(Closure), Object(Laravel\Lumen\Application))
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php(24): Laravel\Lumen\Application->group(Array, Object(Closure))
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/bootstrap/app.php(96): require('/Users/edgarrav...')
+#8 [internal function]: {closure}(Object(Laravel\Lumen\Application))
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(881): call_user_func(Object(Closure), Object(Laravel\Lumen\Application))
+#10 /Users/edgarravenhorst/git/xtalus/frontoffice/bootstrap/app.php(97): Laravel\Lumen\Application->group(Array, Object(Closure))
+#11 /Users/edgarravenhorst/git/xtalus/artisan(18): require('/Users/edgarrav...')
+#12 {main}  
+[2015-08-25 13:42:53] lumen.ERROR: exception 'InvalidArgumentException' with message 'View [app] not found.' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php:137
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php(79): Illuminate\View\FileViewFinder->findInPaths('app', Array)
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php(151): Illuminate\View\FileViewFinder->find('app')
+#2 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/helpers.php(421): Illuminate\View\Factory->make('app', Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php(15): view('app')
+#4 [internal function]: Closure->{closure}()
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Object(Closure), Array)
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1263): Illuminate\Container\Container->call(Object(Closure), Array)
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#10 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#11 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#12 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#13 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#14 {main}  
+[2015-08-25 13:42:59] lumen.ERROR: exception 'InvalidArgumentException' with message 'View [app] not found.' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php:137
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php(79): Illuminate\View\FileViewFinder->findInPaths('app', Array)
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php(151): Illuminate\View\FileViewFinder->find('app')
+#2 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/helpers.php(421): Illuminate\View\Factory->make('app', Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php(15): view('app')
+#4 [internal function]: Closure->{closure}()
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Object(Closure), Array)
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1263): Illuminate\Container\Container->call(Object(Closure), Array)
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#10 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#11 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#12 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#13 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#14 {main}  
+[2015-08-25 13:44:07] lumen.ERROR: exception 'InvalidArgumentException' with message 'View [app] not found.' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php:137
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php(79): Illuminate\View\FileViewFinder->findInPaths('app', Array)
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php(151): Illuminate\View\FileViewFinder->find('app')
+#2 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/helpers.php(421): Illuminate\View\Factory->make('app', Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php(15): view('app')
+#4 [internal function]: Closure->{closure}()
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Object(Closure), Array)
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1263): Illuminate\Container\Container->call(Object(Closure), Array)
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#10 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#11 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#12 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#13 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#14 {main}  
+[2015-08-25 13:44:13] lumen.ERROR: exception 'InvalidArgumentException' with message 'View [app] not found.' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php:137
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php(79): Illuminate\View\FileViewFinder->findInPaths('app', Array)
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php(151): Illuminate\View\FileViewFinder->find('app')
+#2 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/helpers.php(421): Illuminate\View\Factory->make('app', Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php(15): view('app')
+#4 [internal function]: Closure->{closure}()
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Object(Closure), Array)
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1263): Illuminate\Container\Container->call(Object(Closure), Array)
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#10 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#11 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#12 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#13 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#14 {main}  
+[2015-08-25 13:44:57] lumen.ERROR: exception 'InvalidArgumentException' with message 'View [app] not found.' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php:137
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php(79): Illuminate\View\FileViewFinder->findInPaths('app', Array)
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php(151): Illuminate\View\FileViewFinder->find('app')
+#2 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/helpers.php(421): Illuminate\View\Factory->make('app', Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php(17): view('app')
+#4 [internal function]: Closure->{closure}()
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Object(Closure), Array)
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1263): Illuminate\Container\Container->call(Object(Closure), Array)
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#10 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#11 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#12 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#13 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#14 {main}  
+[2015-08-25 13:45:42] lumen.ERROR: exception 'InvalidArgumentException' with message 'View [app] not found.' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php:137
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php(79): Illuminate\View\FileViewFinder->findInPaths('app', Array)
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php(151): Illuminate\View\FileViewFinder->find('app')
+#2 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/helpers.php(421): Illuminate\View\Factory->make('app', Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php(17): view('app')
+#4 [internal function]: Closure->{closure}()
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Object(Closure), Array)
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1263): Illuminate\Container\Container->call(Object(Closure), Array)
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#10 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#11 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#12 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#13 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#14 {main}  
+[2015-08-25 13:45:43] lumen.ERROR: exception 'InvalidArgumentException' with message 'View [app] not found.' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php:137
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php(79): Illuminate\View\FileViewFinder->findInPaths('app', Array)
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php(151): Illuminate\View\FileViewFinder->find('app')
+#2 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/helpers.php(421): Illuminate\View\Factory->make('app', Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php(17): view('app')
+#4 [internal function]: Closure->{closure}()
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Object(Closure), Array)
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1263): Illuminate\Container\Container->call(Object(Closure), Array)
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#10 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#11 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#12 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#13 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#14 {main}  
+[2015-08-25 13:45:44] lumen.ERROR: exception 'InvalidArgumentException' with message 'View [app] not found.' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php:137
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php(79): Illuminate\View\FileViewFinder->findInPaths('app', Array)
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php(151): Illuminate\View\FileViewFinder->find('app')
+#2 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/helpers.php(421): Illuminate\View\Factory->make('app', Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php(17): view('app')
+#4 [internal function]: Closure->{closure}()
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Object(Closure), Array)
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1263): Illuminate\Container\Container->call(Object(Closure), Array)
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#10 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#11 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#12 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#13 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#14 {main}  
+[2015-08-25 13:45:45] lumen.ERROR: exception 'InvalidArgumentException' with message 'View [app] not found.' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php:137
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php(79): Illuminate\View\FileViewFinder->findInPaths('app', Array)
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php(151): Illuminate\View\FileViewFinder->find('app')
+#2 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/helpers.php(421): Illuminate\View\Factory->make('app', Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php(17): view('app')
+#4 [internal function]: Closure->{closure}()
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Object(Closure), Array)
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1263): Illuminate\Container\Container->call(Object(Closure), Array)
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#10 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#11 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#12 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#13 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#14 {main}  
+[2015-08-25 13:46:46] lumen.ERROR: exception 'InvalidArgumentException' with message 'View [app] not found.' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php:137
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php(79): Illuminate\View\FileViewFinder->findInPaths('app', Array)
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php(151): Illuminate\View\FileViewFinder->find('app')
+#2 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/helpers.php(421): Illuminate\View\Factory->make('app', Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php(17): view('app')
+#4 [internal function]: Closure->{closure}()
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Object(Closure), Array)
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1263): Illuminate\Container\Container->call(Object(Closure), Array)
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#10 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#11 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#12 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#13 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#14 {main}  
+[2015-08-25 13:46:50] lumen.ERROR: exception 'InvalidArgumentException' with message 'View [app] not found.' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php:137
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php(79): Illuminate\View\FileViewFinder->findInPaths('app', Array)
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php(151): Illuminate\View\FileViewFinder->find('app')
+#2 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/helpers.php(421): Illuminate\View\Factory->make('app', Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php(17): view('app')
+#4 [internal function]: Closure->{closure}()
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Object(Closure), Array)
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1263): Illuminate\Container\Container->call(Object(Closure), Array)
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#10 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#11 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#12 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#13 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#14 {main}  
+[2015-08-25 13:48:44] lumen.ERROR: exception 'InvalidArgumentException' with message 'View [app] not found.' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php:137
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php(79): Illuminate\View\FileViewFinder->findInPaths('app', Array)
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php(151): Illuminate\View\FileViewFinder->find('app')
+#2 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/helpers.php(421): Illuminate\View\Factory->make('app', Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php(17): view('app')
+#4 [internal function]: Closure->{closure}()
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Object(Closure), Array)
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1263): Illuminate\Container\Container->call(Object(Closure), Array)
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#10 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#11 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#12 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#13 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#14 {main}  
+[2015-08-25 13:49:04] lumen.ERROR: exception 'InvalidArgumentException' with message 'View [app] not found.' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php:137
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php(79): Illuminate\View\FileViewFinder->findInPaths('app', Array)
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php(151): Illuminate\View\FileViewFinder->find('app')
+#2 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/helpers.php(421): Illuminate\View\Factory->make('app', Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php(17): view('app')
+#4 [internal function]: Closure->{closure}()
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Object(Closure), Array)
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1263): Illuminate\Container\Container->call(Object(Closure), Array)
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#10 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#11 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#12 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#13 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#14 {main}  
+[2015-08-25 13:50:18] lumen.ERROR: exception 'InvalidArgumentException' with message 'View [app] not found.' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php:137
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php(79): Illuminate\View\FileViewFinder->findInPaths('app', Array)
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php(151): Illuminate\View\FileViewFinder->find('app')
+#2 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/helpers.php(421): Illuminate\View\Factory->make('app', Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php(17): view('app')
+#4 [internal function]: Closure->{closure}()
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Object(Closure), Array)
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1263): Illuminate\Container\Container->call(Object(Closure), Array)
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#10 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#11 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#12 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#13 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#14 {main}  
+[2015-08-25 13:50:19] lumen.ERROR: exception 'InvalidArgumentException' with message 'View [app] not found.' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php:137
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php(79): Illuminate\View\FileViewFinder->findInPaths('app', Array)
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php(151): Illuminate\View\FileViewFinder->find('app')
+#2 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/helpers.php(421): Illuminate\View\Factory->make('app', Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php(17): view('app')
+#4 [internal function]: Closure->{closure}()
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Object(Closure), Array)
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1263): Illuminate\Container\Container->call(Object(Closure), Array)
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#10 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#11 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#12 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#13 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#14 {main}  
+[2015-08-25 13:50:20] lumen.ERROR: exception 'InvalidArgumentException' with message 'View [app] not found.' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php:137
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php(79): Illuminate\View\FileViewFinder->findInPaths('app', Array)
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php(151): Illuminate\View\FileViewFinder->find('app')
+#2 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/helpers.php(421): Illuminate\View\Factory->make('app', Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php(17): view('app')
+#4 [internal function]: Closure->{closure}()
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Object(Closure), Array)
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1263): Illuminate\Container\Container->call(Object(Closure), Array)
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#10 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#11 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#12 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#13 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#14 {main}  
+[2015-08-25 13:50:21] lumen.ERROR: exception 'InvalidArgumentException' with message 'View [app] not found.' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php:137
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php(79): Illuminate\View\FileViewFinder->findInPaths('app', Array)
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php(151): Illuminate\View\FileViewFinder->find('app')
+#2 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/helpers.php(421): Illuminate\View\Factory->make('app', Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php(17): view('app')
+#4 [internal function]: Closure->{closure}()
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Object(Closure), Array)
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1263): Illuminate\Container\Container->call(Object(Closure), Array)
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#10 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#11 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#12 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#13 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#14 {main}  
+[2015-08-25 13:50:22] lumen.ERROR: exception 'InvalidArgumentException' with message 'View [app] not found.' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php:137
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php(79): Illuminate\View\FileViewFinder->findInPaths('app', Array)
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php(151): Illuminate\View\FileViewFinder->find('app')
+#2 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/helpers.php(421): Illuminate\View\Factory->make('app', Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php(17): view('app')
+#4 [internal function]: Closure->{closure}()
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Object(Closure), Array)
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1263): Illuminate\Container\Container->call(Object(Closure), Array)
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#10 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#11 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#12 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#13 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#14 {main}  
+[2015-08-25 13:50:39] lumen.ERROR: exception 'InvalidArgumentException' with message 'View [app] not found.' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php:137
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php(79): Illuminate\View\FileViewFinder->findInPaths('app', Array)
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php(151): Illuminate\View\FileViewFinder->find('app')
+#2 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/helpers.php(421): Illuminate\View\Factory->make('app', Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php(17): view('app')
+#4 [internal function]: Closure->{closure}()
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Object(Closure), Array)
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1263): Illuminate\Container\Container->call(Object(Closure), Array)
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#10 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#11 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#12 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#13 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#14 {main}  
+[2015-08-25 13:50:41] lumen.ERROR: exception 'InvalidArgumentException' with message 'View [app] not found.' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php:137
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php(79): Illuminate\View\FileViewFinder->findInPaths('app', Array)
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php(151): Illuminate\View\FileViewFinder->find('app')
+#2 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/helpers.php(421): Illuminate\View\Factory->make('app', Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php(17): view('app')
+#4 [internal function]: Closure->{closure}()
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Object(Closure), Array)
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1263): Illuminate\Container\Container->call(Object(Closure), Array)
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#10 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#11 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#12 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#13 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#14 {main}  
+[2015-08-25 13:50:54] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'parse error' in /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php:18
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-08-25 13:50:56] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'parse error' in /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php:18
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-08-25 13:58:12] lumen.ERROR: exception 'InvalidArgumentException' with message 'View [app] not found.' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php:137
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php(79): Illuminate\View\FileViewFinder->findInPaths('app', Array)
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php(151): Illuminate\View\FileViewFinder->find('app')
+#2 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/helpers.php(421): Illuminate\View\Factory->make('app', Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php(17): view('app')
+#4 [internal function]: Closure->{closure}()
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Object(Closure), Array)
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1263): Illuminate\Container\Container->call(Object(Closure), Array)
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#10 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#11 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#12 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#13 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#14 {main}  
+[2015-08-25 13:59:44] lumen.ERROR: exception 'InvalidArgumentException' with message 'View [app] not found.' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php:137
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php(79): Illuminate\View\FileViewFinder->findInPaths('app', Array)
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php(151): Illuminate\View\FileViewFinder->find('app')
+#2 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/helpers.php(421): Illuminate\View\Factory->make('app', Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php(17): view('app')
+#4 [internal function]: Closure->{closure}()
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Object(Closure), Array)
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1263): Illuminate\Container\Container->call(Object(Closure), Array)
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#10 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#11 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#12 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#13 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#14 {main}  
+[2015-08-25 14:00:03] lumen.ERROR: exception 'Illuminate\Contracts\Filesystem\FileNotFoundException' with message 'File does not exist at path ..\resources\views\app.blade.php' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/filesystem/Filesystem.php:40
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Compilers/BladeCompiler.php(99): Illuminate\Filesystem\Filesystem->get('..\\resources\\vi...')
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Engines/CompilerEngine.php(50): Illuminate\View\Compilers\BladeCompiler->compile('..\\resources\\vi...')
+#2 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/View.php(138): Illuminate\View\Engines\CompilerEngine->get('..\\resources\\vi...', Array)
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/View.php(107): Illuminate\View\View->getContents()
+#4 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/View.php(81): Illuminate\View\View->renderContents()
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/http/Response.php(51): Illuminate\View\View->render()
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/symfony/http-foundation/Response.php(202): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1402): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#8 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1263): Laravel\Lumen\Application->prepareResponse(Object(Illuminate\View\View))
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#10 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#11 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#12 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#13 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#14 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#15 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#16 {main}  
+[2015-08-25 14:00:13] lumen.ERROR: exception 'Illuminate\Contracts\Filesystem\FileNotFoundException' with message 'File does not exist at path resources\views\app.blade.php' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/filesystem/Filesystem.php:40
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Compilers/BladeCompiler.php(99): Illuminate\Filesystem\Filesystem->get('resources\\views...')
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Engines/CompilerEngine.php(50): Illuminate\View\Compilers\BladeCompiler->compile('resources\\views...')
+#2 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/View.php(138): Illuminate\View\Engines\CompilerEngine->get('resources\\views...', Array)
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/View.php(107): Illuminate\View\View->getContents()
+#4 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/View.php(81): Illuminate\View\View->renderContents()
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/http/Response.php(51): Illuminate\View\View->render()
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/symfony/http-foundation/Response.php(202): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1402): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#8 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1263): Laravel\Lumen\Application->prepareResponse(Object(Illuminate\View\View))
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#10 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#11 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#12 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#13 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#14 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#15 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#16 {main}  
+[2015-08-25 14:00:31] lumen.ERROR: exception 'Illuminate\Contracts\Filesystem\FileNotFoundException' with message 'File does not exist at path frontoffice\resources\views\app.blade.php' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/filesystem/Filesystem.php:40
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Compilers/BladeCompiler.php(99): Illuminate\Filesystem\Filesystem->get('frontoffice\\res...')
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Engines/CompilerEngine.php(50): Illuminate\View\Compilers\BladeCompiler->compile('frontoffice\\res...')
+#2 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/View.php(138): Illuminate\View\Engines\CompilerEngine->get('frontoffice\\res...', Array)
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/View.php(107): Illuminate\View\View->getContents()
+#4 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/View.php(81): Illuminate\View\View->renderContents()
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/http/Response.php(51): Illuminate\View\View->render()
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/symfony/http-foundation/Response.php(202): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1402): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#8 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1263): Laravel\Lumen\Application->prepareResponse(Object(Illuminate\View\View))
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#10 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#11 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#12 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#13 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#14 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#15 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#16 {main}  
+[2015-08-25 14:00:44] lumen.ERROR: exception 'Illuminate\Contracts\Filesystem\FileNotFoundException' with message 'File does not exist at path frontoffice/resources/views/app.blade.php' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/filesystem/Filesystem.php:40
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Compilers/BladeCompiler.php(99): Illuminate\Filesystem\Filesystem->get('frontoffice/res...')
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Engines/CompilerEngine.php(50): Illuminate\View\Compilers\BladeCompiler->compile('frontoffice/res...')
+#2 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/View.php(138): Illuminate\View\Engines\CompilerEngine->get('frontoffice/res...', Array)
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/View.php(107): Illuminate\View\View->getContents()
+#4 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/View.php(81): Illuminate\View\View->renderContents()
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/http/Response.php(51): Illuminate\View\View->render()
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/symfony/http-foundation/Response.php(202): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1402): Symfony\Component\HttpFoundation\Response->__construct(Object(Illuminate\View\View))
+#8 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1263): Laravel\Lumen\Application->prepareResponse(Object(Illuminate\View\View))
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#10 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#11 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#12 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#13 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#14 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#15 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#16 {main}  
+[2015-08-25 14:01:10] lumen.ERROR: exception 'InvalidArgumentException' with message 'Unrecognized extension in file: ' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php:292
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php(130): Illuminate\View\Factory->getEngineFromPath('')
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php(17): Illuminate\View\Factory->file('')
+#2 [internal function]: Closure->{closure}()
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Object(Closure), Array)
+#4 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1263): Illuminate\Container\Container->call(Object(Closure), Array)
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#8 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#10 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#11 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#12 {main}  
+[2015-08-25 14:01:21] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to undefined function base_url()' in /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php:17
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-08-25 14:01:28] lumen.ERROR: exception 'InvalidArgumentException' with message 'Unrecognized extension in file: ' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php:292
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php(130): Illuminate\View\Factory->getEngineFromPath('')
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php(18): Illuminate\View\Factory->file('')
+#2 [internal function]: Closure->{closure}()
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Object(Closure), Array)
+#4 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1263): Illuminate\Container\Container->call(Object(Closure), Array)
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#8 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#10 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#11 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#12 {main}  
+[2015-08-25 14:03:03] lumen.ERROR: exception 'InvalidArgumentException' with message 'Unrecognized extension in file: ' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php:292
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php(130): Illuminate\View\Factory->getEngineFromPath('')
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php(18): Illuminate\View\Factory->file('')
+#2 [internal function]: Closure->{closure}()
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Object(Closure), Array)
+#4 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1263): Illuminate\Container\Container->call(Object(Closure), Array)
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#8 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#10 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#11 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#12 {main}  
+[2015-08-25 14:03:35] lumen.ERROR: exception 'InvalidArgumentException' with message 'Unrecognized extension in file: ' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php:292
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php(130): Illuminate\View\Factory->getEngineFromPath('')
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php(18): Illuminate\View\Factory->file('')
+#2 [internal function]: Closure->{closure}()
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Object(Closure), Array)
+#4 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1263): Illuminate\Container\Container->call(Object(Closure), Array)
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#8 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#10 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#11 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#12 {main}  
+[2015-08-25 14:04:08] lumen.ERROR: exception 'InvalidArgumentException' with message 'View [app] not found.' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php:137
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php(79): Illuminate\View\FileViewFinder->findInPaths('app', Array)
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php(151): Illuminate\View\FileViewFinder->find('app')
+#2 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/helpers.php(421): Illuminate\View\Factory->make('app', Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php(17): view('app')
+#4 [internal function]: Closure->{closure}()
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Object(Closure), Array)
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1263): Illuminate\Container\Container->call(Object(Closure), Array)
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#10 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#11 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#12 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#13 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#14 {main}  
+[2015-08-25 14:07:38] lumen.ERROR: exception 'InvalidArgumentException' with message 'View [app] not found.' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php:137
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php(79): Illuminate\View\FileViewFinder->findInPaths('app', Array)
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php(151): Illuminate\View\FileViewFinder->find('app')
+#2 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/helpers.php(421): Illuminate\View\Factory->make('app', Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php(17): view('app')
+#4 [internal function]: Closure->{closure}()
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Object(Closure), Array)
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1263): Illuminate\Container\Container->call(Object(Closure), Array)
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#10 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#11 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#12 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#13 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#14 {main}  
+[2015-08-25 14:08:46] lumen.ERROR: exception 'InvalidArgumentException' with message 'View [app] not found.' in /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php:137
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/FileViewFinder.php(79): Illuminate\View\FileViewFinder->findInPaths('app', Array)
+#1 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/view/Factory.php(151): Illuminate\View\FileViewFinder->find('app')
+#2 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/helpers.php(421): Illuminate\View\Factory->make('app', Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/frontoffice/app/Http/routes.php(17): view('app')
+#4 [internal function]: Closure->{closure}()
+#5 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Object(Closure), Array)
+#6 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1263): Illuminate\Container\Container->call(Object(Closure), Array)
+#7 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#10 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#11 /Users/edgarravenhorst/git/xtalus/frontoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#12 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#13 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#14 {main}  
+[2015-08-25 14:13:27] lumen.ERROR: exception 'InvalidArgumentException' with message 'View [app] not found.' in /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/view/FileViewFinder.php:137
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/view/FileViewFinder.php(79): Illuminate\View\FileViewFinder->findInPaths('app', Array)
+#1 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/view/Factory.php(151): Illuminate\View\FileViewFinder->find('app')
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/helpers.php(421): Illuminate\View\Factory->make('app', Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/routes.php(17): view('app')
+#4 [internal function]: Closure->{closure}()
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Object(Closure), Array)
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1263): Illuminate\Container\Container->call(Object(Closure), Array)
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#10 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#11 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#12 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#13 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#14 {main}  
+[2015-08-25 14:13:29] lumen.ERROR: exception 'InvalidArgumentException' with message 'View [app] not found.' in /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/view/FileViewFinder.php:137
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/view/FileViewFinder.php(79): Illuminate\View\FileViewFinder->findInPaths('app', Array)
+#1 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/view/Factory.php(151): Illuminate\View\FileViewFinder->find('app')
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/helpers.php(421): Illuminate\View\Factory->make('app', Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/routes.php(17): view('app')
+#4 [internal function]: Closure->{closure}()
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Object(Closure), Array)
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1263): Illuminate\Container\Container->call(Object(Closure), Array)
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#10 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#11 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#12 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#13 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#14 {main}  
+[2015-08-25 14:27:26] lumen.ERROR: exception 'FastRoute\BadRouteException' with message 'Static route "/image" is shadowed by previously defined variable route "/([^/]+)" for method "GET"' in /Users/edgarravenhorst/git/xtalus/midoffice/vendor/nikic/fast-route/src/DataGenerator/RegexBasedAbstract.php:64
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/nikic/fast-route/src/DataGenerator/RegexBasedAbstract.php(18): FastRoute\DataGenerator\RegexBasedAbstract->addStaticRoute('GET', Array, Array)
+#1 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/nikic/fast-route/src/RouteCollector.php(32): FastRoute\DataGenerator\RegexBasedAbstract->addRoute('GET', Array, Array)
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1179): FastRoute\RouteCollector->addRoute('GET', '/image', Array)
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/nikic/fast-route/src/functions.php(21): Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(FastRoute\RouteCollector))
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1181): FastRoute\simpleDispatcher(Object(Closure))
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1162): Laravel\Lumen\Application->createDispatcher()
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#8 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#9 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#10 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#11 {main}  
+[2015-08-25 14:27:42] lumen.ERROR: exception 'FastRoute\BadRouteException' with message 'Static route "/image" is shadowed by previously defined variable route "/([^/]+)" for method "GET"' in /Users/edgarravenhorst/git/xtalus/midoffice/vendor/nikic/fast-route/src/DataGenerator/RegexBasedAbstract.php:64
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/nikic/fast-route/src/DataGenerator/RegexBasedAbstract.php(18): FastRoute\DataGenerator\RegexBasedAbstract->addStaticRoute('GET', Array, Array)
+#1 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/nikic/fast-route/src/RouteCollector.php(32): FastRoute\DataGenerator\RegexBasedAbstract->addRoute('GET', Array, Array)
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1179): FastRoute\RouteCollector->addRoute('GET', '/image', Array)
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/nikic/fast-route/src/functions.php(21): Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(FastRoute\RouteCollector))
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1181): FastRoute\simpleDispatcher(Object(Closure))
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1162): Laravel\Lumen\Application->createDispatcher()
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#8 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#9 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#10 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#11 {main}  
+[2015-08-25 14:27:50] lumen.ERROR: exception 'FastRoute\BadRouteException' with message 'Static route "/image" is shadowed by previously defined variable route "/([^/]+)" for method "GET"' in /Users/edgarravenhorst/git/xtalus/midoffice/vendor/nikic/fast-route/src/DataGenerator/RegexBasedAbstract.php:64
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/nikic/fast-route/src/DataGenerator/RegexBasedAbstract.php(18): FastRoute\DataGenerator\RegexBasedAbstract->addStaticRoute('GET', Array, Array)
+#1 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/nikic/fast-route/src/RouteCollector.php(32): FastRoute\DataGenerator\RegexBasedAbstract->addRoute('GET', Array, Array)
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1179): FastRoute\RouteCollector->addRoute('GET', '/image', Array)
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/nikic/fast-route/src/functions.php(21): Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(FastRoute\RouteCollector))
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1181): FastRoute\simpleDispatcher(Object(Closure))
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1162): Laravel\Lumen\Application->createDispatcher()
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#8 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#9 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#10 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#11 {main}  
+[2015-08-25 14:28:02] lumen.ERROR: exception 'FastRoute\BadRouteException' with message 'Static route "/image" is shadowed by previously defined variable route "/([^/]+)" for method "GET"' in /Users/edgarravenhorst/git/xtalus/midoffice/vendor/nikic/fast-route/src/DataGenerator/RegexBasedAbstract.php:64
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/nikic/fast-route/src/DataGenerator/RegexBasedAbstract.php(18): FastRoute\DataGenerator\RegexBasedAbstract->addStaticRoute('GET', Array, Array)
+#1 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/nikic/fast-route/src/RouteCollector.php(32): FastRoute\DataGenerator\RegexBasedAbstract->addRoute('GET', Array, Array)
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1179): FastRoute\RouteCollector->addRoute('GET', '/image', Array)
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/nikic/fast-route/src/functions.php(21): Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(FastRoute\RouteCollector))
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1181): FastRoute\simpleDispatcher(Object(Closure))
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1162): Laravel\Lumen\Application->createDispatcher()
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#8 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#9 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#10 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#11 {main}  
+[2015-08-25 14:28:26] lumen.ERROR: exception 'FastRoute\BadRouteException' with message 'Static route "/image" is shadowed by previously defined variable route "/([^/]+)" for method "GET"' in /Users/edgarravenhorst/git/xtalus/midoffice/vendor/nikic/fast-route/src/DataGenerator/RegexBasedAbstract.php:64
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/nikic/fast-route/src/DataGenerator/RegexBasedAbstract.php(18): FastRoute\DataGenerator\RegexBasedAbstract->addStaticRoute('GET', Array, Array)
+#1 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/nikic/fast-route/src/RouteCollector.php(32): FastRoute\DataGenerator\RegexBasedAbstract->addRoute('GET', Array, Array)
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1179): FastRoute\RouteCollector->addRoute('GET', '/image', Array)
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/nikic/fast-route/src/functions.php(21): Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(FastRoute\RouteCollector))
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1181): FastRoute\simpleDispatcher(Object(Closure))
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1162): Laravel\Lumen\Application->createDispatcher()
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#8 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#9 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#10 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#11 {main}  
+[2015-08-25 14:33:30] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to undefined method Laravel\Lumen\Http\ResponseFactory::view()' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Exceptions/Handler.php:43
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-08-25 14:33:31] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to undefined method Laravel\Lumen\Http\ResponseFactory::view()' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Exceptions/Handler.php:43
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-08-25 14:33:42] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to undefined method Laravel\Lumen\Http\ResponseFactory::view()' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Exceptions/Handler.php:43
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-08-25 14:35:01] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to undefined method Laravel\Lumen\Http\ResponseFactory::view()' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Exceptions/Handler.php:43
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-08-25 14:35:10] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to undefined method Laravel\Lumen\Http\ResponseFactory::view()' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Exceptions/Handler.php:43
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-08-25 14:35:35] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to undefined method Laravel\Lumen\Http\ResponseFactory::view()' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Exceptions/Handler.php:43
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-08-25 14:35:54] lumen.ERROR: exception 'InvalidArgumentException' with message 'View [missing] not found.' in /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/view/FileViewFinder.php:137
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/view/FileViewFinder.php(79): Illuminate\View\FileViewFinder->findInPaths('missing', Array)
+#1 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/view/Factory.php(151): Illuminate\View\FileViewFinder->find('missing')
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/helpers.php(421): Illuminate\View\Factory->make('missing', Array, 404)
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/app/Exceptions/Handler.php(43): view('missing', Array, 404)
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(356): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1166): Laravel\Lumen\Application->sendExceptionToHandler(Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#7 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#8 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#9 {main}  
+[2015-08-25 14:36:06] lumen.ERROR: exception 'ErrorException' with message 'array_merge(): Argument #1 is not an array' in /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/view/Factory.php:153
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(2, 'array_merge(): ...', '/Users/edgarrav...', 153, Array)
+#1 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/view/Factory.php(153): array_merge(404, Array)
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/helpers.php(421): Illuminate\View\Factory->make('app', Array, 404)
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/app/Exceptions/Handler.php(43): view('app', Array, 404)
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(356): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1166): Laravel\Lumen\Application->sendExceptionToHandler(Object(Symfony\Component\HttpKernel\Exception\NotFoundHttpException))
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#7 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#8 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#9 {main}  

@@ -14,19 +14,19 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "frontoffice/app/"
+            "App\\": "midoffice/app/"
         },
         "classmap": [
-            "frontoffice/database/"
+            "midoffice/database/"
         ]
     },
     "autoload-dev": {
         "classmap": [
-            "frontoffice/tests/"
+            "midoffice/tests/"
         ]
     },
     "config": {
         "preferred-install": "dist",
-        "vendor-dir": "frontoffice/vendor"
+        "vendor-dir": "midoffice/vendor"
     }
 }

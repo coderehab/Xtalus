@@ -11,14 +11,3 @@
 |
 */
 
-$app->get('/', function() use ($app) {
-    return view('app');
-});
-
-$app->get('/me', function() use ($app) {
-    return view('app');
-});
-
-$app->group(['prefix' => 'me'], function ($app) {
-    return view('app');
-});
