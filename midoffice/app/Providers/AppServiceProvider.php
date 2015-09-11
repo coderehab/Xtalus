@@ -11,6 +11,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+
+        $this->app->bind('\Folklore\Image\ImageManager', function($app) {
+            return $app['image'];
+        });
+
     }
 }

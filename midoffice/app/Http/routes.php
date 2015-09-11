@@ -11,3 +11,12 @@
 |
 */
 
+$app->group(['prefix' => 'api'], function ($app) {
+
+    $app->get('image/{imagename}', array('uses' => 'App\Http\Controllers\ImageController@get_image'));
+    $app->get('image/{w}/{h}/{imagename}', array('uses' => 'App\Http\Controllers\ImageController@get_image'));
+    $app->post('image', array('uses' => 'App\Http\Controllers\ImageController@post_image'));
+    $app->put('image', array('uses' => 'App\Http\Controllers\ImageController@update_image'));
+    $app->delete('image', array('uses' => 'App\Http\Controllers\ImageController@delete_image'));
+
+});

@@ -23,6 +23,9 @@ $app->withFacades();
 $app->withEloquent();
 
 $app->configure('view');
+$app->configure('image');
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -81,6 +84,7 @@ $app->singleton(
 
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
+$app->register('Folklore\Image\ImageServiceProvider');
 
 /*
 |--------------------------------------------------------------------------
@@ -92,6 +96,8 @@ $app->singleton(
 | can respond to, as well as the controllers that may handle them.
 |
 */
+
+class_alias('Folklore\Image\Facades\Image','Image');
 
 $app->group(['namespace' => 'App\Http\Controllers'], function ($app) {
 	require __DIR__.'/../midoffice/app/Http/routes.php';
