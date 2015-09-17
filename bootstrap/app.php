@@ -24,6 +24,7 @@ $app->withEloquent();
 
 $app->configure('view');
 $app->configure('image');
+$app->configure('cors');
 
 
 
@@ -59,17 +60,18 @@ $app->singleton(
 |
 */
 
-// $app->middleware([
+$app->middleware([
+    'Barryvdh\Cors\HandleCors',
 //     // Illuminate\Cookie\Middleware\EncryptCookies::class,
 //     // Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
 //     // Illuminate\Session\Middleware\StartSession::class,
 //     // Illuminate\View\Middleware\ShareErrorsFromSession::class,
 //     // Laravel\Lumen\Http\Middleware\VerifyCsrfToken::class,
-// ]);
+]);
 
-// $app->routeMiddleware([
+/*$app->routeMiddleware([
 
-// ]);
+]);*/
 
 /*
 |--------------------------------------------------------------------------
@@ -85,6 +87,7 @@ $app->singleton(
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 $app->register('Folklore\Image\ImageServiceProvider');
+$app->register('Barryvdh\Cors\LumenServiceProvider');
 
 /*
 |--------------------------------------------------------------------------

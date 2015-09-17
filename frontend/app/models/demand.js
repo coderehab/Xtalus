@@ -9,7 +9,7 @@ export default DS.Model.extend({
 	summary: DS.attr(),
 	profiles: DS.attr(),
 	owner:DS.belongsTo('person'),
-
+    imageUrl:DS.attr(),
 
 
 	updateParams: function(){

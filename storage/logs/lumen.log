@@ -1833,3 +1833,1088 @@ Stack trace:
 Stack trace:
 #0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
 #1 {main}  
+[2015-09-17 08:57:55] lumen.ERROR: exception 'Folklore\Image\Exception\FileMissingException' with message 'Image file missing' in /Users/edgarravenhorst/git/xtalus/midoffice/vendor/ktquez/lumen-image/src/Folklore/Image/ImageManager.php:132
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/support/Facades/Facade.php(213): Folklore\Image\ImageManager->make('uploads/test', Array)
+#1 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(19): Illuminate\Support\Facades\Facade::__callStatic('make', Array)
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(19): Folklore\Image\Facades\Image::make('uploads/test', Array)
+#3 [internal function]: App\Http\Controllers\ImageController->get_image('test', '200', '200')
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Array, Array)
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1348): Illuminate\Container\Container->call(Array, Array)
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1313): Laravel\Lumen\Application->callControllerCallable(Array, Array)
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1284): Laravel\Lumen\Application->callLumenController(Object(App\Http\Controllers\ImageController), 'get_image', Array)
+#8 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1252): Laravel\Lumen\Application->callControllerAction(Array)
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#10 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1211): Laravel\Lumen\Application->handleFoundRoute(Array)
+#11 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1163): Laravel\Lumen\Application->handleDispatcherResponse(Array)
+#12 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#13 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#14 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#15 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#16 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#17 {main}  
+[2015-09-17 08:58:27] lumen.ERROR: exception 'Folklore\Image\Exception\FileMissingException' with message 'Image file missing' in /Users/edgarravenhorst/git/xtalus/midoffice/vendor/ktquez/lumen-image/src/Folklore/Image/ImageManager.php:132
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/support/Facades/Facade.php(213): Folklore\Image\ImageManager->make('uploads/test', Array)
+#1 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(19): Illuminate\Support\Facades\Facade::__callStatic('make', Array)
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(19): Folklore\Image\Facades\Image::make('uploads/test', Array)
+#3 [internal function]: App\Http\Controllers\ImageController->get_image('test', '200', '200')
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Array, Array)
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1348): Illuminate\Container\Container->call(Array, Array)
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1313): Laravel\Lumen\Application->callControllerCallable(Array, Array)
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1284): Laravel\Lumen\Application->callLumenController(Object(App\Http\Controllers\ImageController), 'get_image', Array)
+#8 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1252): Laravel\Lumen\Application->callControllerAction(Array)
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#10 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1211): Laravel\Lumen\Application->handleFoundRoute(Array)
+#11 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1163): Laravel\Lumen\Application->handleDispatcherResponse(Array)
+#12 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#13 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#14 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#15 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#16 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#17 {main}  
+[2015-09-17 08:58:29] lumen.ERROR: exception 'Folklore\Image\Exception\FileMissingException' with message 'Image file missing' in /Users/edgarravenhorst/git/xtalus/midoffice/vendor/ktquez/lumen-image/src/Folklore/Image/ImageManager.php:132
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/support/Facades/Facade.php(213): Folklore\Image\ImageManager->make('uploads/test', Array)
+#1 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(19): Illuminate\Support\Facades\Facade::__callStatic('make', Array)
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(19): Folklore\Image\Facades\Image::make('uploads/test', Array)
+#3 [internal function]: App\Http\Controllers\ImageController->get_image('test', '200', '200')
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Array, Array)
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1348): Illuminate\Container\Container->call(Array, Array)
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1313): Laravel\Lumen\Application->callControllerCallable(Array, Array)
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1284): Laravel\Lumen\Application->callLumenController(Object(App\Http\Controllers\ImageController), 'get_image', Array)
+#8 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1252): Laravel\Lumen\Application->callControllerAction(Array)
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#10 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1211): Laravel\Lumen\Application->handleFoundRoute(Array)
+#11 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1163): Laravel\Lumen\Application->handleDispatcherResponse(Array)
+#12 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#13 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#14 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#15 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#16 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#17 {main}  
+[2015-09-17 08:58:58] lumen.ERROR: exception 'Folklore\Image\Exception\FileMissingException' with message 'Image file missing' in /Users/edgarravenhorst/git/xtalus/midoffice/vendor/ktquez/lumen-image/src/Folklore/Image/ImageManager.php:132
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/support/Facades/Facade.php(213): Folklore\Image\ImageManager->make('uploads/test', Array)
+#1 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(19): Illuminate\Support\Facades\Facade::__callStatic('make', Array)
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(19): Folklore\Image\Facades\Image::make('uploads/test', Array)
+#3 [internal function]: App\Http\Controllers\ImageController->get_image('test', '200', '200')
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Array, Array)
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1348): Illuminate\Container\Container->call(Array, Array)
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1313): Laravel\Lumen\Application->callControllerCallable(Array, Array)
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1284): Laravel\Lumen\Application->callLumenController(Object(App\Http\Controllers\ImageController), 'get_image', Array)
+#8 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1252): Laravel\Lumen\Application->callControllerAction(Array)
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#10 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1211): Laravel\Lumen\Application->handleFoundRoute(Array)
+#11 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1163): Laravel\Lumen\Application->handleDispatcherResponse(Array)
+#12 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#13 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#14 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#15 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#16 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#17 {main}  
+[2015-09-17 08:59:39] lumen.ERROR: exception 'Imagine\Exception\InvalidArgumentException' with message 'Length of either side cannot be 0 or negative, current size is 200xcropped' in /Users/edgarravenhorst/git/xtalus/midoffice/vendor/imagine/imagine/lib/Imagine/Image/Box.php:42
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/ktquez/lumen-image/src/Folklore/Image/ImageManager.php(313): Imagine\Image\Box->__construct('200', 'cropped')
+#1 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/ktquez/lumen-image/src/Folklore/Image/ImageManager.php(186): Folklore\Image\ImageManager->thumbnail(Object(Imagine\Gd\Image), '200', 'cropped', false)
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/support/Facades/Facade.php(213): Folklore\Image\ImageManager->make('uploads/test.jp...', Array)
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(19): Illuminate\Support\Facades\Facade::__callStatic('make', Array)
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(19): Folklore\Image\Facades\Image::make('uploads/test.jp...', Array)
+#5 [internal function]: App\Http\Controllers\ImageController->get_image('test.jpg', '200', 'cropped', '200')
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Array, Array)
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1348): Illuminate\Container\Container->call(Array, Array)
+#8 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1313): Laravel\Lumen\Application->callControllerCallable(Array, Array)
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1284): Laravel\Lumen\Application->callLumenController(Object(App\Http\Controllers\ImageController), 'get_image', Array)
+#10 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1252): Laravel\Lumen\Application->callControllerAction(Array)
+#11 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#12 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1211): Laravel\Lumen\Application->handleFoundRoute(Array)
+#13 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1163): Laravel\Lumen\Application->handleDispatcherResponse(Array)
+#14 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#15 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#16 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#17 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#18 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#19 {main}  
+[2015-09-17 09:26:10] lumen.ERROR: exception 'ErrorException' with message 'Undefined variable: imagine' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:17
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(17): Laravel\Lumen\Application->Laravel\Lumen\{closure}(8, 'Undefined varia...', '/Users/edgarrav...', 17, Array)
+#1 [internal function]: App\Http\Controllers\ImageController->get_image('test.jpg', '200', '200', 'cropped')
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1348): Illuminate\Container\Container->call(Array, Array)
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1313): Laravel\Lumen\Application->callControllerCallable(Array, Array)
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1284): Laravel\Lumen\Application->callLumenController(Object(App\Http\Controllers\ImageController), 'get_image', Array)
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1252): Laravel\Lumen\Application->callControllerAction(Array)
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1211): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1163): Laravel\Lumen\Application->handleDispatcherResponse(Array)
+#10 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#11 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#12 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#13 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#14 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#15 {main}  
+[2015-09-17 09:26:17] lumen.ERROR: exception 'ErrorException' with message 'Undefined variable: imagine' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:17
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(17): Laravel\Lumen\Application->Laravel\Lumen\{closure}(8, 'Undefined varia...', '/Users/edgarrav...', 17, Array)
+#1 [internal function]: App\Http\Controllers\ImageController->get_image('test.jpg', '200', '200', 'cropped')
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1348): Illuminate\Container\Container->call(Array, Array)
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1313): Laravel\Lumen\Application->callControllerCallable(Array, Array)
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1284): Laravel\Lumen\Application->callLumenController(Object(App\Http\Controllers\ImageController), 'get_image', Array)
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1252): Laravel\Lumen\Application->callControllerAction(Array)
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1211): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1163): Laravel\Lumen\Application->handleDispatcherResponse(Array)
+#10 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#11 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#12 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#13 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#14 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#15 {main}  
+[2015-09-17 09:26:29] lumen.ERROR: exception 'ErrorException' with message 'Undefined variable: imagine' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:17
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(17): Laravel\Lumen\Application->Laravel\Lumen\{closure}(8, 'Undefined varia...', '/Users/edgarrav...', 17, Array)
+#1 [internal function]: App\Http\Controllers\ImageController->get_image('test.jpg', '200', '200', 'cropped')
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1348): Illuminate\Container\Container->call(Array, Array)
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1313): Laravel\Lumen\Application->callControllerCallable(Array, Array)
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1284): Laravel\Lumen\Application->callLumenController(Object(App\Http\Controllers\ImageController), 'get_image', Array)
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1252): Laravel\Lumen\Application->callControllerAction(Array)
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1211): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1163): Laravel\Lumen\Application->handleDispatcherResponse(Array)
+#10 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#11 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#12 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#13 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#14 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#15 {main}  
+[2015-09-17 09:26:37] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'App\Http\Controllers\Point' not found' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:33
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 09:26:48] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Point' not found' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:34
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 09:41:27] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'parse error' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:28
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 09:41:55] lumen.ERROR: exception 'ErrorException' with message 'Undefined variable: imagine' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:19
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(19): Laravel\Lumen\Application->Laravel\Lumen\{closure}(8, 'Undefined varia...', '/Users/edgarrav...', 19, Array)
+#1 [internal function]: App\Http\Controllers\ImageController->get_image('test.jpg', '50', '50', 'cropped')
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1348): Illuminate\Container\Container->call(Array, Array)
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1313): Laravel\Lumen\Application->callControllerCallable(Array, Array)
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1284): Laravel\Lumen\Application->callLumenController(Object(App\Http\Controllers\ImageController), 'get_image', Array)
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1252): Laravel\Lumen\Application->callControllerAction(Array)
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1211): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1163): Laravel\Lumen\Application->handleDispatcherResponse(Array)
+#10 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#11 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#12 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#13 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#14 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#15 {main}  
+[2015-09-17 09:42:14] lumen.ERROR: exception 'ErrorException' with message 'Undefined variable: imagine' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:19
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(19): Laravel\Lumen\Application->Laravel\Lumen\{closure}(8, 'Undefined varia...', '/Users/edgarrav...', 19, Array)
+#1 [internal function]: App\Http\Controllers\ImageController->get_image('test.jpg', '50', '50', 'cropped')
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1348): Illuminate\Container\Container->call(Array, Array)
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1313): Laravel\Lumen\Application->callControllerCallable(Array, Array)
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1284): Laravel\Lumen\Application->callLumenController(Object(App\Http\Controllers\ImageController), 'get_image', Array)
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1252): Laravel\Lumen\Application->callControllerAction(Array)
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1211): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1163): Laravel\Lumen\Application->handleDispatcherResponse(Array)
+#10 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#11 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#12 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#13 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#14 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#15 {main}  
+[2015-09-17 09:42:23] lumen.ERROR: exception 'ErrorException' with message 'Undefined variable: submission' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:22
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(22): Laravel\Lumen\Application->Laravel\Lumen\{closure}(8, 'Undefined varia...', '/Users/edgarrav...', 22, Array)
+#1 [internal function]: App\Http\Controllers\ImageController->get_image('test.jpg', '50', '50', 'cropped')
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1348): Illuminate\Container\Container->call(Array, Array)
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1313): Laravel\Lumen\Application->callControllerCallable(Array, Array)
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1284): Laravel\Lumen\Application->callLumenController(Object(App\Http\Controllers\ImageController), 'get_image', Array)
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1252): Laravel\Lumen\Application->callControllerAction(Array)
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1211): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1163): Laravel\Lumen\Application->handleDispatcherResponse(Array)
+#10 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#11 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#12 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#13 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#14 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#15 {main}  
+[2015-09-17 09:42:36] lumen.ERROR: exception 'ErrorException' with message 'Undefined variable: crop_coords' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:22
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(22): Laravel\Lumen\Application->Laravel\Lumen\{closure}(8, 'Undefined varia...', '/Users/edgarrav...', 22, Array)
+#1 [internal function]: App\Http\Controllers\ImageController->get_image('test.jpg', '50', '50', 'cropped')
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1348): Illuminate\Container\Container->call(Array, Array)
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1313): Laravel\Lumen\Application->callControllerCallable(Array, Array)
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1284): Laravel\Lumen\Application->callLumenController(Object(App\Http\Controllers\ImageController), 'get_image', Array)
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1252): Laravel\Lumen\Application->callControllerAction(Array)
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1211): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1163): Laravel\Lumen\Application->handleDispatcherResponse(Array)
+#10 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#11 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#12 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#13 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#14 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#15 {main}  
+[2015-09-17 09:42:38] lumen.ERROR: exception 'ErrorException' with message 'Undefined variable: crop_coords' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:22
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(22): Laravel\Lumen\Application->Laravel\Lumen\{closure}(8, 'Undefined varia...', '/Users/edgarrav...', 22, Array)
+#1 [internal function]: App\Http\Controllers\ImageController->get_image('test.jpg', '50', '50', 'cropped')
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1348): Illuminate\Container\Container->call(Array, Array)
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1313): Laravel\Lumen\Application->callControllerCallable(Array, Array)
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1284): Laravel\Lumen\Application->callLumenController(Object(App\Http\Controllers\ImageController), 'get_image', Array)
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1252): Laravel\Lumen\Application->callControllerAction(Array)
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1211): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1163): Laravel\Lumen\Application->handleDispatcherResponse(Array)
+#10 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#11 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#12 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#13 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#14 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#15 {main}  
+[2015-09-17 09:49:57] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'parse error, expecting `"function (T_FUNCTION)"'' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:38
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 09:50:08] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'parse error, expecting `"function (T_FUNCTION)"'' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:38
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 09:51:04] lumen.ERROR: exception 'Imagine\Exception\OutOfBoundsException' with message 'Crop coordinates must start at minimum 0, 0 position from top  left corner, crop height and width must be positive integers and must not exceed the current image borders' in /Users/edgarravenhorst/git/xtalus/midoffice/vendor/imagine/imagine/lib/Imagine/Gd/Image.php:110
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(34): Imagine\Gd\Image->crop(Object(Imagine\Image\Point), Object(Imagine\Image\Box))
+#1 [internal function]: App\Http\Controllers\ImageController->get_cropped_image('test.jpg', '100', '100', '200', '100')
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1348): Illuminate\Container\Container->call(Array, Array)
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1313): Laravel\Lumen\Application->callControllerCallable(Array, Array)
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1284): Laravel\Lumen\Application->callLumenController(Object(App\Http\Controllers\ImageController), 'get_cropped_ima...', Array)
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1252): Laravel\Lumen\Application->callControllerAction(Array)
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1211): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1163): Laravel\Lumen\Application->handleDispatcherResponse(Array)
+#10 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#11 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#12 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#13 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#14 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#15 {main}  
+[2015-09-17 12:16:01] lumen.ERROR: exception 'ReflectionException' with message 'Class cors does not exist' in /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php:736
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(736): ReflectionClass->__construct('cors')
+#1 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(626): Illuminate\Container\Container->build('cors', Array)
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(413): Illuminate\Container\Container->make('cors', Array)
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(123): Laravel\Lumen\Application->make('cors')
+#4 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1387): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1233): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#8 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#10 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#11 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#12 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#13 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#14 {main}  
+[2015-09-17 12:29:01] lumen.ERROR: exception 'ReflectionException' with message 'Class palanik\lumen\Middleware\LumenCors does not exist' in /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php:736
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(736): ReflectionClass->__construct('palanik\\lumen\\M...')
+#1 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(626): Illuminate\Container\Container->build('palanik\\lumen\\M...', Array)
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(413): Illuminate\Container\Container->make('palanik\\lumen\\M...', Array)
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(123): Laravel\Lumen\Application->make('palanik\\lumen\\M...')
+#4 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1387): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1233): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#8 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1390): Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#10 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#11 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#12 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#13 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#14 {main}  
+[2015-09-17 12:33:44] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'parse error' in /Users/edgarravenhorst/git/xtalus/config/cors.php:11
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 12:35:06] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function getExtention() on a non-object' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:49
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 12:36:54] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function getExtention() on a non-object' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:49
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 12:37:20] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function getExtention() on a non-object' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:50
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 12:37:22] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function getExtention() on a non-object' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:50
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 12:38:03] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function getExtention() on a non-object' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:50
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 12:38:03] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function getExtention() on a non-object' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:50
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 12:45:06] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to undefined method Symfony\Component\HttpFoundation\File\UploadedFile::getExtention()' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:50
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 12:46:13] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to undefined method Symfony\Component\HttpFoundation\File\UploadedFile::getExtention()' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:49
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 12:46:19] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to undefined method Symfony\Component\HttpFoundation\File\UploadedFile::getExtention()' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:49
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 12:46:47] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to undefined method Symfony\Component\HttpFoundation\File\UploadedFile::getExtention()' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:50
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 12:47:16] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function getExtention() on a non-object' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:50
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 12:47:32] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to undefined method Symfony\Component\HttpFoundation\File\UploadedFile::getExtention()' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:50
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 12:47:46] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to undefined method Symfony\Component\HttpFoundation\File\UploadedFile::getExtention()' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:50
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 12:48:26] lumen.ERROR: exception 'Symfony\Component\HttpFoundation\File\Exception\FileException' with message 'Unable to create the "uploads/test.jpg" directory' in /Users/edgarravenhorst/git/xtalus/midoffice/vendor/symfony/http-foundation/File/File.php:120
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/symfony/http-foundation/File/UploadedFile.php(239): Symfony\Component\HttpFoundation\File\File->getTargetFile('uploads/test.jp...', NULL)
+#1 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(56): Symfony\Component\HttpFoundation\File\UploadedFile->move('uploads/test.jp...')
+#2 [internal function]: App\Http\Controllers\ImageController->post_image(Object(Illuminate\Http\Request))
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Array, Array)
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1348): Illuminate\Container\Container->call(Array, Array)
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1313): Laravel\Lumen\Application->callControllerCallable(Array, Array)
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1284): Laravel\Lumen\Application->callLumenController(Object(App\Http\Controllers\ImageController), 'post_image', Array)
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1252): Laravel\Lumen\Application->callControllerAction(Array)
+#8 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#10 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(Illuminate\Http\Request))
+#11 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#12 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/barryvdh/laravel-cors/src/HandleCors.php(52): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#13 [internal function]: Barryvdh\Cors\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#14 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(124): call_user_func_array(Array, Array)
+#15 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#16 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#17 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1387): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#18 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#19 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#20 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#21 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#22 {main}  
+[2015-09-17 12:49:01] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Memcached' not found' in /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/cache/MemcachedConnector.php:51
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 12:49:58] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'parse error' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:59
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 12:50:10] lumen.ERROR: exception 'Symfony\Component\HttpFoundation\File\Exception\FileException' with message 'Unable to create the "uploads/test.jpg" directory' in /Users/edgarravenhorst/git/xtalus/midoffice/vendor/symfony/http-foundation/File/File.php:120
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/symfony/http-foundation/File/UploadedFile.php(239): Symfony\Component\HttpFoundation\File\File->getTargetFile('uploads/test.jp...', NULL)
+#1 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(56): Symfony\Component\HttpFoundation\File\UploadedFile->move('uploads/test.jp...')
+#2 [internal function]: App\Http\Controllers\ImageController->post_image(Object(Illuminate\Http\Request))
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Array, Array)
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1348): Illuminate\Container\Container->call(Array, Array)
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1313): Laravel\Lumen\Application->callControllerCallable(Array, Array)
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1284): Laravel\Lumen\Application->callLumenController(Object(App\Http\Controllers\ImageController), 'post_image', Array)
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1252): Laravel\Lumen\Application->callControllerAction(Array)
+#8 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#10 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(Illuminate\Http\Request))
+#11 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#12 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/barryvdh/laravel-cors/src/HandleCors.php(52): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#13 [internal function]: Barryvdh\Cors\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#14 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(124): call_user_func_array(Array, Array)
+#15 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#16 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#17 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1387): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#18 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#19 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#20 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#21 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#22 {main}  
+[2015-09-17 12:50:16] lumen.ERROR: exception 'Symfony\Component\HttpFoundation\File\Exception\FileException' with message 'Unable to create the "uploads/test.jpg" directory' in /Users/edgarravenhorst/git/xtalus/midoffice/vendor/symfony/http-foundation/File/File.php:120
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/symfony/http-foundation/File/UploadedFile.php(239): Symfony\Component\HttpFoundation\File\File->getTargetFile('uploads/test.jp...', NULL)
+#1 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(56): Symfony\Component\HttpFoundation\File\UploadedFile->move('uploads/test.jp...')
+#2 [internal function]: App\Http\Controllers\ImageController->post_image(Object(Illuminate\Http\Request))
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Array, Array)
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1348): Illuminate\Container\Container->call(Array, Array)
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1313): Laravel\Lumen\Application->callControllerCallable(Array, Array)
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1284): Laravel\Lumen\Application->callLumenController(Object(App\Http\Controllers\ImageController), 'post_image', Array)
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1252): Laravel\Lumen\Application->callControllerAction(Array)
+#8 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#10 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(Illuminate\Http\Request))
+#11 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#12 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/barryvdh/laravel-cors/src/HandleCors.php(52): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#13 [internal function]: Barryvdh\Cors\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#14 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(124): call_user_func_array(Array, Array)
+#15 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#16 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#17 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1387): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#18 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#19 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#20 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#21 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#22 {main}  
+[2015-09-17 12:50:17] lumen.ERROR: exception 'Symfony\Component\HttpFoundation\File\Exception\FileException' with message 'Unable to create the "uploads/test.jpg" directory' in /Users/edgarravenhorst/git/xtalus/midoffice/vendor/symfony/http-foundation/File/File.php:120
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/symfony/http-foundation/File/UploadedFile.php(239): Symfony\Component\HttpFoundation\File\File->getTargetFile('uploads/test.jp...', NULL)
+#1 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(56): Symfony\Component\HttpFoundation\File\UploadedFile->move('uploads/test.jp...')
+#2 [internal function]: App\Http\Controllers\ImageController->post_image(Object(Illuminate\Http\Request))
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Array, Array)
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1348): Illuminate\Container\Container->call(Array, Array)
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1313): Laravel\Lumen\Application->callControllerCallable(Array, Array)
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1284): Laravel\Lumen\Application->callLumenController(Object(App\Http\Controllers\ImageController), 'post_image', Array)
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1252): Laravel\Lumen\Application->callControllerAction(Array)
+#8 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#10 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(Illuminate\Http\Request))
+#11 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#12 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/barryvdh/laravel-cors/src/HandleCors.php(52): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#13 [internal function]: Barryvdh\Cors\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#14 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(124): call_user_func_array(Array, Array)
+#15 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#16 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#17 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1387): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#18 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#19 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#20 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#21 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#22 {main}  
+[2015-09-17 12:50:21] lumen.ERROR: exception 'Symfony\Component\HttpFoundation\File\Exception\FileException' with message 'Unable to create the "uploads/test.jpg" directory' in /Users/edgarravenhorst/git/xtalus/midoffice/vendor/symfony/http-foundation/File/File.php:120
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/symfony/http-foundation/File/UploadedFile.php(239): Symfony\Component\HttpFoundation\File\File->getTargetFile('uploads/test.jp...', NULL)
+#1 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(56): Symfony\Component\HttpFoundation\File\UploadedFile->move('uploads/test.jp...')
+#2 [internal function]: App\Http\Controllers\ImageController->post_image(Object(Illuminate\Http\Request))
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Array, Array)
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1348): Illuminate\Container\Container->call(Array, Array)
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1313): Laravel\Lumen\Application->callControllerCallable(Array, Array)
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1284): Laravel\Lumen\Application->callLumenController(Object(App\Http\Controllers\ImageController), 'post_image', Array)
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1252): Laravel\Lumen\Application->callControllerAction(Array)
+#8 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#10 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(Illuminate\Http\Request))
+#11 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#12 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/barryvdh/laravel-cors/src/HandleCors.php(52): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#13 [internal function]: Barryvdh\Cors\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#14 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(124): call_user_func_array(Array, Array)
+#15 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#16 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#17 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1387): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#18 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#19 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#20 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#21 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#22 {main}  
+[2015-09-17 12:50:22] lumen.ERROR: exception 'Symfony\Component\HttpFoundation\File\Exception\FileException' with message 'Unable to create the "uploads/test.jpg" directory' in /Users/edgarravenhorst/git/xtalus/midoffice/vendor/symfony/http-foundation/File/File.php:120
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/symfony/http-foundation/File/UploadedFile.php(239): Symfony\Component\HttpFoundation\File\File->getTargetFile('uploads/test.jp...', NULL)
+#1 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(56): Symfony\Component\HttpFoundation\File\UploadedFile->move('uploads/test.jp...')
+#2 [internal function]: App\Http\Controllers\ImageController->post_image(Object(Illuminate\Http\Request))
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Array, Array)
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1348): Illuminate\Container\Container->call(Array, Array)
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1313): Laravel\Lumen\Application->callControllerCallable(Array, Array)
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1284): Laravel\Lumen\Application->callLumenController(Object(App\Http\Controllers\ImageController), 'post_image', Array)
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1252): Laravel\Lumen\Application->callControllerAction(Array)
+#8 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#10 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(Illuminate\Http\Request))
+#11 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#12 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/barryvdh/laravel-cors/src/HandleCors.php(52): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#13 [internal function]: Barryvdh\Cors\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#14 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(124): call_user_func_array(Array, Array)
+#15 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#16 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#17 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1387): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#18 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#19 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#20 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#21 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#22 {main}  
+[2015-09-17 12:50:23] lumen.ERROR: exception 'Symfony\Component\HttpFoundation\File\Exception\FileException' with message 'Unable to create the "uploads/test.jpg" directory' in /Users/edgarravenhorst/git/xtalus/midoffice/vendor/symfony/http-foundation/File/File.php:120
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/symfony/http-foundation/File/UploadedFile.php(239): Symfony\Component\HttpFoundation\File\File->getTargetFile('uploads/test.jp...', NULL)
+#1 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(56): Symfony\Component\HttpFoundation\File\UploadedFile->move('uploads/test.jp...')
+#2 [internal function]: App\Http\Controllers\ImageController->post_image(Object(Illuminate\Http\Request))
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Array, Array)
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1348): Illuminate\Container\Container->call(Array, Array)
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1313): Laravel\Lumen\Application->callControllerCallable(Array, Array)
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1284): Laravel\Lumen\Application->callLumenController(Object(App\Http\Controllers\ImageController), 'post_image', Array)
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1252): Laravel\Lumen\Application->callControllerAction(Array)
+#8 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1237): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#10 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(Illuminate\Http\Request))
+#11 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#12 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/barryvdh/laravel-cors/src/HandleCors.php(52): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#13 [internal function]: Barryvdh\Cors\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#14 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(124): call_user_func_array(Array, Array)
+#15 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#16 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#17 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1387): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#18 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#19 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#20 /Users/edgarravenhorst/git/xtalus/public/index.php(28): Laravel\Lumen\Application->run()
+#21 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#22 {main}  
+[2015-09-17 12:52:28] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'parse error' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:58
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 12:52:51] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'App\Http\Controllers\stdClass' not found' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:58
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 12:54:13] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'parse error' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:61
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 12:54:31] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to undefined method Symfony\Component\HttpFoundation\File\UploadedFile::getExtention()' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:51
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 13:10:11] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function isValid() on a non-object' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:56
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 13:16:58] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function isValid() on a non-object' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:56
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 13:18:08] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function isValid() on a non-object' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:56
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 13:19:12] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function isValid() on a non-object' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:56
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 13:20:09] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function isValid() on a non-object' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:56
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 13:22:01] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function isValid() on a non-object' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:56
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 13:22:30] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function isValid() on a non-object' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:56
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 13:33:46] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function isValid() on a non-object' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:56
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 13:34:19] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function isValid() on a non-object' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:56
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 13:35:28] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function isValid() on a non-object' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:56
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 14:01:50] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function isValid() on a non-object' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:56
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 14:21:18] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function isValid() on a non-object' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:61
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 14:28:11] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function isValid() on a non-object' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:61
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 14:31:21] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function isValid() on a non-object' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:61
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 14:32:00] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function isValid() on a non-object' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:61
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 14:35:00] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function isValid() on a non-object' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:61
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 14:38:03] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'parse error, expecting `"identifier (T_STRING)"' or `"variable (T_VARIABLE)"' or `'{'' or `'$''' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:54
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  
+[2015-09-17 14:40:53] lumen.ERROR: exception 'ErrorException' with message 'Trying to get property of non-object' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:54
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(54): Laravel\Lumen\Application->Laravel\Lumen\{closure}(8, 'Trying to get p...', '/Users/edgarrav...', 54, Array)
+#1 [internal function]: App\Http\Controllers\ImageController->post_image(Object(Illuminate\Http\Request))
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1348): Illuminate\Container\Container->call(Array, Array)
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1313): Laravel\Lumen\Application->callControllerCallable(Array, Array)
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1284): Laravel\Lumen\Application->callLumenController(Object(App\Http\Controllers\ImageController), 'post_image', Array)
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1252): Laravel\Lumen\Application->callControllerAction(Array)
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1232): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(Illuminate\Http\Request))
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#10 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/barryvdh/laravel-cors/src/HandleCors.php(43): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#11 [internal function]: Barryvdh\Cors\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#12 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(124): call_user_func_array(Array, Array)
+#13 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#14 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#15 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1387): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#16 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1233): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#17 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#18 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(Illuminate\Http\Request))
+#19 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#20 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/barryvdh/laravel-cors/src/HandleCors.php(43): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#21 [internal function]: Barryvdh\Cors\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#22 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(124): call_user_func_array(Array, Array)
+#23 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#24 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#25 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1387): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#26 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#27 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#28 /Users/edgarravenhorst/git/xtalus/public/index.php(30): Laravel\Lumen\Application->run()
+#29 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#30 {main}  
+[2015-09-17 14:41:56] lumen.ERROR: exception 'ErrorException' with message 'Trying to get property of non-object' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:54
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(54): Laravel\Lumen\Application->Laravel\Lumen\{closure}(8, 'Trying to get p...', '/Users/edgarrav...', 54, Array)
+#1 [internal function]: App\Http\Controllers\ImageController->post_image(Object(Illuminate\Http\Request))
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1348): Illuminate\Container\Container->call(Array, Array)
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1313): Laravel\Lumen\Application->callControllerCallable(Array, Array)
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1284): Laravel\Lumen\Application->callLumenController(Object(App\Http\Controllers\ImageController), 'post_image', Array)
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1252): Laravel\Lumen\Application->callControllerAction(Array)
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1232): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(Illuminate\Http\Request))
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#10 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/barryvdh/laravel-cors/src/HandleCors.php(43): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#11 [internal function]: Barryvdh\Cors\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#12 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(124): call_user_func_array(Array, Array)
+#13 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#14 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#15 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1387): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#16 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1233): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#17 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#18 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(Illuminate\Http\Request))
+#19 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#20 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/barryvdh/laravel-cors/src/HandleCors.php(43): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#21 [internal function]: Barryvdh\Cors\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#22 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(124): call_user_func_array(Array, Array)
+#23 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#24 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#25 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1387): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#26 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#27 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#28 /Users/edgarravenhorst/git/xtalus/public/index.php(30): Laravel\Lumen\Application->run()
+#29 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#30 {main}  
+[2015-09-17 14:43:57] lumen.ERROR: exception 'ErrorException' with message 'Trying to get property of non-object' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:54
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(54): Laravel\Lumen\Application->Laravel\Lumen\{closure}(8, 'Trying to get p...', '/Users/edgarrav...', 54, Array)
+#1 [internal function]: App\Http\Controllers\ImageController->post_image(Object(Illuminate\Http\Request))
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1348): Illuminate\Container\Container->call(Array, Array)
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1313): Laravel\Lumen\Application->callControllerCallable(Array, Array)
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1284): Laravel\Lumen\Application->callLumenController(Object(App\Http\Controllers\ImageController), 'post_image', Array)
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1252): Laravel\Lumen\Application->callControllerAction(Array)
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1232): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(Illuminate\Http\Request))
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#10 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/barryvdh/laravel-cors/src/HandleCors.php(43): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#11 [internal function]: Barryvdh\Cors\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#12 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(124): call_user_func_array(Array, Array)
+#13 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#14 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#15 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1387): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#16 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1233): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#17 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#18 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(Illuminate\Http\Request))
+#19 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#20 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/barryvdh/laravel-cors/src/HandleCors.php(43): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#21 [internal function]: Barryvdh\Cors\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#22 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(124): call_user_func_array(Array, Array)
+#23 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#24 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#25 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1387): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#26 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#27 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#28 /Users/edgarravenhorst/git/xtalus/public/index.php(30): Laravel\Lumen\Application->run()
+#29 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#30 {main}  
+[2015-09-17 14:44:36] lumen.ERROR: exception 'ErrorException' with message 'Trying to get property of non-object' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:54
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(54): Laravel\Lumen\Application->Laravel\Lumen\{closure}(8, 'Trying to get p...', '/Users/edgarrav...', 54, Array)
+#1 [internal function]: App\Http\Controllers\ImageController->post_image(Object(Illuminate\Http\Request))
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1348): Illuminate\Container\Container->call(Array, Array)
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1313): Laravel\Lumen\Application->callControllerCallable(Array, Array)
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1284): Laravel\Lumen\Application->callLumenController(Object(App\Http\Controllers\ImageController), 'post_image', Array)
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1252): Laravel\Lumen\Application->callControllerAction(Array)
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1232): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(Illuminate\Http\Request))
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#10 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/barryvdh/laravel-cors/src/HandleCors.php(43): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#11 [internal function]: Barryvdh\Cors\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#12 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(124): call_user_func_array(Array, Array)
+#13 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#14 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#15 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1387): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#16 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1233): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#17 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#18 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(Illuminate\Http\Request))
+#19 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#20 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/barryvdh/laravel-cors/src/HandleCors.php(43): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#21 [internal function]: Barryvdh\Cors\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#22 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(124): call_user_func_array(Array, Array)
+#23 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#24 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#25 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1387): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#26 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#27 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#28 /Users/edgarravenhorst/git/xtalus/public/index.php(30): Laravel\Lumen\Application->run()
+#29 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#30 {main}  
+[2015-09-17 14:45:17] lumen.ERROR: exception 'ErrorException' with message 'Trying to get property of non-object' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:54
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(54): Laravel\Lumen\Application->Laravel\Lumen\{closure}(8, 'Trying to get p...', '/Users/edgarrav...', 54, Array)
+#1 [internal function]: App\Http\Controllers\ImageController->post_image(Object(Illuminate\Http\Request))
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1348): Illuminate\Container\Container->call(Array, Array)
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1313): Laravel\Lumen\Application->callControllerCallable(Array, Array)
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1284): Laravel\Lumen\Application->callLumenController(Object(App\Http\Controllers\ImageController), 'post_image', Array)
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1252): Laravel\Lumen\Application->callControllerAction(Array)
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1232): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(Illuminate\Http\Request))
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#10 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/barryvdh/laravel-cors/src/HandleCors.php(43): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#11 [internal function]: Barryvdh\Cors\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#12 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(124): call_user_func_array(Array, Array)
+#13 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#14 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#15 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1387): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#16 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1233): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#17 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#18 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(Illuminate\Http\Request))
+#19 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#20 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/barryvdh/laravel-cors/src/HandleCors.php(43): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#21 [internal function]: Barryvdh\Cors\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#22 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(124): call_user_func_array(Array, Array)
+#23 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#24 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#25 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1387): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#26 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#27 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#28 /Users/edgarravenhorst/git/xtalus/public/index.php(30): Laravel\Lumen\Application->run()
+#29 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#30 {main}  
+[2015-09-17 14:46:35] lumen.ERROR: exception 'ErrorException' with message 'Trying to get property of non-object' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:54
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(54): Laravel\Lumen\Application->Laravel\Lumen\{closure}(8, 'Trying to get p...', '/Users/edgarrav...', 54, Array)
+#1 [internal function]: App\Http\Controllers\ImageController->post_image(Object(Illuminate\Http\Request))
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1348): Illuminate\Container\Container->call(Array, Array)
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1313): Laravel\Lumen\Application->callControllerCallable(Array, Array)
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1284): Laravel\Lumen\Application->callLumenController(Object(App\Http\Controllers\ImageController), 'post_image', Array)
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1252): Laravel\Lumen\Application->callControllerAction(Array)
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1232): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(Illuminate\Http\Request))
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#10 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/barryvdh/laravel-cors/src/HandleCors.php(43): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#11 [internal function]: Barryvdh\Cors\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#12 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(124): call_user_func_array(Array, Array)
+#13 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#14 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#15 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1387): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#16 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1233): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#17 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#18 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(Illuminate\Http\Request))
+#19 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#20 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/barryvdh/laravel-cors/src/HandleCors.php(43): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#21 [internal function]: Barryvdh\Cors\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#22 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(124): call_user_func_array(Array, Array)
+#23 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#24 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#25 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1387): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#26 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#27 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#28 /Users/edgarravenhorst/git/xtalus/public/index.php(30): Laravel\Lumen\Application->run()
+#29 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#30 {main}  
+[2015-09-17 14:47:59] lumen.ERROR: exception 'ErrorException' with message 'Undefined index: data' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:54
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(54): Laravel\Lumen\Application->Laravel\Lumen\{closure}(8, 'Undefined index...', '/Users/edgarrav...', 54, Array)
+#1 [internal function]: App\Http\Controllers\ImageController->post_image(Object(Illuminate\Http\Request))
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1348): Illuminate\Container\Container->call(Array, Array)
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1313): Laravel\Lumen\Application->callControllerCallable(Array, Array)
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1284): Laravel\Lumen\Application->callLumenController(Object(App\Http\Controllers\ImageController), 'post_image', Array)
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1252): Laravel\Lumen\Application->callControllerAction(Array)
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1232): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(Illuminate\Http\Request))
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#10 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/barryvdh/laravel-cors/src/HandleCors.php(43): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#11 [internal function]: Barryvdh\Cors\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#12 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(124): call_user_func_array(Array, Array)
+#13 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#14 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#15 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1387): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#16 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1233): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#17 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#18 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(Illuminate\Http\Request))
+#19 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#20 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/barryvdh/laravel-cors/src/HandleCors.php(43): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#21 [internal function]: Barryvdh\Cors\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#22 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(124): call_user_func_array(Array, Array)
+#23 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#24 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#25 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1387): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#26 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#27 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#28 /Users/edgarravenhorst/git/xtalus/public/index.php(30): Laravel\Lumen\Application->run()
+#29 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#30 {main}  
+[2015-09-17 14:48:32] lumen.ERROR: exception 'Folklore\Image\Exception\FileMissingException' with message 'Image file missing' in /Users/edgarravenhorst/git/xtalus/midoffice/vendor/ktquez/lumen-image/src/Folklore/Image/ImageManager.php:132
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/support/Facades/Facade.php(210): Folklore\Image\ImageManager->make('data:image/jpeg...')
+#1 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(54): Illuminate\Support\Facades\Facade::__callStatic('make', Array)
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(54): Folklore\Image\Facades\Image::make('data:image/jpeg...')
+#3 [internal function]: App\Http\Controllers\ImageController->post_image(Object(Illuminate\Http\Request))
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Array, Array)
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1348): Illuminate\Container\Container->call(Array, Array)
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1313): Laravel\Lumen\Application->callControllerCallable(Array, Array)
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1284): Laravel\Lumen\Application->callLumenController(Object(App\Http\Controllers\ImageController), 'post_image', Array)
+#8 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1252): Laravel\Lumen\Application->callControllerAction(Array)
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1232): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#10 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(Illuminate\Http\Request))
+#11 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#12 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/barryvdh/laravel-cors/src/HandleCors.php(43): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#13 [internal function]: Barryvdh\Cors\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#14 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(124): call_user_func_array(Array, Array)
+#15 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#16 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#17 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1387): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#18 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1233): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#19 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#20 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(Illuminate\Http\Request))
+#21 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#22 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/barryvdh/laravel-cors/src/HandleCors.php(43): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#23 [internal function]: Barryvdh\Cors\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#24 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(124): call_user_func_array(Array, Array)
+#25 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#26 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#27 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1387): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#28 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#29 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#30 /Users/edgarravenhorst/git/xtalus/public/index.php(30): Laravel\Lumen\Application->run()
+#31 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#32 {main}  
+[2015-09-17 14:52:13] lumen.ERROR: exception 'Folklore\Image\Exception\FileMissingException' with message 'Image file missing' in /Users/edgarravenhorst/git/xtalus/midoffice/vendor/ktquez/lumen-image/src/Folklore/Image/ImageManager.php:132
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/support/Facades/Facade.php(210): Folklore\Image\ImageManager->make('data:image/jpeg...')
+#1 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(54): Illuminate\Support\Facades\Facade::__callStatic('make', Array)
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(54): Folklore\Image\Facades\Image::make('data:image/jpeg...')
+#3 [internal function]: App\Http\Controllers\ImageController->post_image(Object(Illuminate\Http\Request))
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Array, Array)
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1348): Illuminate\Container\Container->call(Array, Array)
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1313): Laravel\Lumen\Application->callControllerCallable(Array, Array)
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1284): Laravel\Lumen\Application->callLumenController(Object(App\Http\Controllers\ImageController), 'post_image', Array)
+#8 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1252): Laravel\Lumen\Application->callControllerAction(Array)
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1232): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#10 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(Illuminate\Http\Request))
+#11 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#12 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/barryvdh/laravel-cors/src/HandleCors.php(43): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#13 [internal function]: Barryvdh\Cors\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#14 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(124): call_user_func_array(Array, Array)
+#15 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#16 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#17 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1387): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#18 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1233): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#19 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#20 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(Illuminate\Http\Request))
+#21 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#22 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/barryvdh/laravel-cors/src/HandleCors.php(43): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#23 [internal function]: Barryvdh\Cors\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#24 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(124): call_user_func_array(Array, Array)
+#25 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#26 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#27 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1387): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#28 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#29 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#30 /Users/edgarravenhorst/git/xtalus/public/index.php(30): Laravel\Lumen\Application->run()
+#31 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#32 {main}  
+[2015-09-17 14:52:59] lumen.ERROR: exception 'Folklore\Image\Exception\FileMissingException' with message 'Image file missing' in /Users/edgarravenhorst/git/xtalus/midoffice/vendor/ktquez/lumen-image/src/Folklore/Image/ImageManager.php:132
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/support/Facades/Facade.php(210): Folklore\Image\ImageManager->make('data:image/jpeg...')
+#1 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(54): Illuminate\Support\Facades\Facade::__callStatic('make', Array)
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(54): Folklore\Image\Facades\Image::make('data:image/jpeg...')
+#3 [internal function]: App\Http\Controllers\ImageController->post_image(Object(Illuminate\Http\Request))
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Array, Array)
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1348): Illuminate\Container\Container->call(Array, Array)
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1313): Laravel\Lumen\Application->callControllerCallable(Array, Array)
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1284): Laravel\Lumen\Application->callLumenController(Object(App\Http\Controllers\ImageController), 'post_image', Array)
+#8 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1252): Laravel\Lumen\Application->callControllerAction(Array)
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1232): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#10 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(Illuminate\Http\Request))
+#11 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#12 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/barryvdh/laravel-cors/src/HandleCors.php(43): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#13 [internal function]: Barryvdh\Cors\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#14 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(124): call_user_func_array(Array, Array)
+#15 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#16 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#17 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1387): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#18 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1233): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#19 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#20 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(Illuminate\Http\Request))
+#21 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#22 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/barryvdh/laravel-cors/src/HandleCors.php(43): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#23 [internal function]: Barryvdh\Cors\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#24 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(124): call_user_func_array(Array, Array)
+#25 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#26 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#27 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1387): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#28 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#29 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#30 /Users/edgarravenhorst/git/xtalus/public/index.php(30): Laravel\Lumen\Application->run()
+#31 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#32 {main}  
+[2015-09-17 14:53:34] lumen.ERROR: exception 'ErrorException' with message 'Undefined variable: img' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:55
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(55): Laravel\Lumen\Application->Laravel\Lumen\{closure}(8, 'Undefined varia...', '/Users/edgarrav...', 55, Array)
+#1 [internal function]: App\Http\Controllers\ImageController->post_image(Object(Illuminate\Http\Request))
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1348): Illuminate\Container\Container->call(Array, Array)
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1313): Laravel\Lumen\Application->callControllerCallable(Array, Array)
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1284): Laravel\Lumen\Application->callLumenController(Object(App\Http\Controllers\ImageController), 'post_image', Array)
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1252): Laravel\Lumen\Application->callControllerAction(Array)
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1232): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(Illuminate\Http\Request))
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#10 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/barryvdh/laravel-cors/src/HandleCors.php(43): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#11 [internal function]: Barryvdh\Cors\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#12 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(124): call_user_func_array(Array, Array)
+#13 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#14 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#15 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1387): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#16 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1233): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#17 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#18 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(Illuminate\Http\Request))
+#19 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#20 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/barryvdh/laravel-cors/src/HandleCors.php(43): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#21 [internal function]: Barryvdh\Cors\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#22 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(124): call_user_func_array(Array, Array)
+#23 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#24 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#25 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1387): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#26 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#27 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#28 /Users/edgarravenhorst/git/xtalus/public/index.php(30): Laravel\Lumen\Application->run()
+#29 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#30 {main}  
+[2015-09-17 14:54:02] lumen.ERROR: exception 'ErrorException' with message 'is_file() expects parameter 1 to be a valid path, string given' in /Users/edgarravenhorst/git/xtalus/midoffice/vendor/ktquez/lumen-image/src/Folklore/Image/ImageManager.php:586
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(2, 'is_file() expec...', '/Users/edgarrav...', 586, Array)
+#1 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/ktquez/lumen-image/src/Folklore/Image/ImageManager.php(586): is_file('\xFF\xD8\xFF\xE0\x00\x10JFIF\x00\x01\x01\x00\x00...')
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/ktquez/lumen-image/src/Folklore/Image/ImageManager.php(130): Folklore\Image\ImageManager->checkForFile('\xFF\xD8\xFF\xE0\x00\x10JFIF\x00\x01\x01\x00\x00...')
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/support/Facades/Facade.php(210): Folklore\Image\ImageManager->make('\xFF\xD8\xFF\xE0\x00\x10JFIF\x00\x01\x01\x00\x00...')
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(60): Illuminate\Support\Facades\Facade::__callStatic('make', Array)
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(60): Folklore\Image\Facades\Image::make('\xFF\xD8\xFF\xE0\x00\x10JFIF\x00\x01\x01\x00\x00...')
+#6 [internal function]: App\Http\Controllers\ImageController->post_image(Object(Illuminate\Http\Request))
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Array, Array)
+#8 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1348): Illuminate\Container\Container->call(Array, Array)
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1313): Laravel\Lumen\Application->callControllerCallable(Array, Array)
+#10 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1284): Laravel\Lumen\Application->callLumenController(Object(App\Http\Controllers\ImageController), 'post_image', Array)
+#11 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1252): Laravel\Lumen\Application->callControllerAction(Array)
+#12 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1232): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#13 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(Illuminate\Http\Request))
+#14 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#15 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/barryvdh/laravel-cors/src/HandleCors.php(43): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#16 [internal function]: Barryvdh\Cors\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#17 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(124): call_user_func_array(Array, Array)
+#18 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#19 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#20 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1387): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#21 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1233): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#22 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#23 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(Illuminate\Http\Request))
+#24 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#25 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/barryvdh/laravel-cors/src/HandleCors.php(43): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#26 [internal function]: Barryvdh\Cors\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#27 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(124): call_user_func_array(Array, Array)
+#28 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#29 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#30 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1387): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#31 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#32 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#33 /Users/edgarravenhorst/git/xtalus/public/index.php(30): Laravel\Lumen\Application->run()
+#34 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#35 {main}  
+[2015-09-17 14:56:07] lumen.ERROR: exception 'ErrorException' with message 'Undefined variable: data' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:57
+Stack trace:
+#0 /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php(57): Laravel\Lumen\Application->Laravel\Lumen\{closure}(8, 'Undefined varia...', '/Users/edgarrav...', 57, Array)
+#1 [internal function]: App\Http\Controllers\ImageController->post_image(Object(Illuminate\Http\Request))
+#2 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/container/Container.php(502): call_user_func_array(Array, Array)
+#3 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1348): Illuminate\Container\Container->call(Array, Array)
+#4 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1313): Laravel\Lumen\Application->callControllerCallable(Array, Array)
+#5 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1284): Laravel\Lumen\Application->callLumenController(Object(App\Http\Controllers\ImageController), 'post_image', Array)
+#6 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1252): Laravel\Lumen\Application->callControllerAction(Array)
+#7 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1232): Laravel\Lumen\Application->callActionOnArrayBasedRoute(Array)
+#8 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(Illuminate\Http\Request))
+#9 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#10 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/barryvdh/laravel-cors/src/HandleCors.php(43): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#11 [internal function]: Barryvdh\Cors\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#12 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(124): call_user_func_array(Array, Array)
+#13 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#14 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#15 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1387): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#16 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1233): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#17 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1158): Laravel\Lumen\Application->handleFoundRoute(Array)
+#18 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}(Object(Illuminate\Http\Request))
+#19 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#20 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/barryvdh/laravel-cors/src/HandleCors.php(43): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#21 [internal function]: Barryvdh\Cors\HandleCors->handle(Object(Illuminate\Http\Request), Object(Closure))
+#22 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(124): call_user_func_array(Array, Array)
+#23 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#24 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/illuminate/pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#25 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1387): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#26 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1164): Laravel\Lumen\Application->sendThroughPipeline(Array, Object(Closure))
+#27 /Users/edgarravenhorst/git/xtalus/midoffice/vendor/laravel/lumen-framework/src/Application.php(1104): Laravel\Lumen\Application->dispatch(NULL)
+#28 /Users/edgarravenhorst/git/xtalus/public/index.php(30): Laravel\Lumen\Application->run()
+#29 /Users/edgarravenhorst/git/xtalus/server.php(12): require_once('/Users/edgarrav...')
+#30 {main}  
+[2015-09-17 14:56:23] lumen.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function isValid() on a non-object' in /Users/edgarravenhorst/git/xtalus/midoffice/app/Http/Controllers/ImageController.php:69
+Stack trace:
+#0 [internal function]: Laravel\Lumen\Application->Laravel\Lumen\{closure}()
+#1 {main}  

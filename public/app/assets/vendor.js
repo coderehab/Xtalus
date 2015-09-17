@@ -59985,12 +59985,13 @@ define("ember/resolver",
     };
   }
 
-  if (!(Object.create && !Object.create(null).hasOwnProperty)) {
+  var create = (Object.create || Ember.create);
+  if (!(create && !create(null).hasOwnProperty)) {
     throw new Error("This browser does not support Object.create(null), please polyfil with es5-sham: http://git.io/yBU2rg");
   }
 
   function makeDictionary() {
-    var cache = Object.create(null);
+    var cache = create(null);
     cache['_dict'] = null;
     delete cache['_dict'];
     return cache;
@@ -60005,21 +60006,34 @@ define("ember/resolver",
 
     if (fullName.parsedName === true) { return fullName; }
 
-    var prefixParts = fullName.split('@');
-    var prefix;
+    var prefix, type, name;
+    var fullNameParts = fullName.split('@');
 
-    if (prefixParts.length === 2) {
-      if (prefixParts[0].split(':')[0] === 'view') {
-        prefixParts[0] = prefixParts[0].split(':')[1];
-        prefixParts[1] = 'view:' + prefixParts[1];
+    // Htmlbars uses helper:@content-helper which collides
+    // with ember-cli namespace detection.
+    // This will be removed in a future release of Htmlbars.
+    if (fullName !== 'helper:@content-helper' &&
+        fullNameParts.length === 2) {
+      var prefixParts = fullNameParts[0].split(':');
+
+      if (prefixParts.length === 2) {
+        prefix = prefixParts[1];
+        type = prefixParts[0];
+        name = fullNameParts[1];
+      } else {
+        var nameParts = fullNameParts[1].split(':');
+
+        prefix = fullNameParts[0];
+        type = nameParts[0];
+        name = nameParts[1];
       }
-
-      prefix = prefixParts[0];
+    } else {
+      fullNameParts = fullName.split(':');
+      type = fullNameParts[0];
+      name = fullNameParts[1];
     }
 
-    var nameParts = prefixParts[prefixParts.length - 1].split(":");
-    var type = nameParts[0], fullNameWithoutType = nameParts[1];
-    var name = fullNameWithoutType;
+    var fullNameWithoutType = name;
     var namespace = get(this, 'namespace');
     var root = namespace;
 
@@ -60037,7 +60051,7 @@ define("ember/resolver",
 
   function resolveOther(parsedName) {
     /*jshint validthis:true */
-    
+
     // Temporarily disabling podModulePrefix deprecation
     /*
     if (!this._deprecatedPodModulePrefix) {
@@ -60056,23 +60070,22 @@ define("ember/resolver",
     var normalizedModuleName = this.findModuleName(parsedName);
 
     if (normalizedModuleName) {
-      var module = require(normalizedModuleName, null, null, true /* force sync */);
+      var defaultExport = this._extractDefaultExport(normalizedModuleName, parsedName);
 
-      if (module && module['default']) { module = module['default']; }
-
-      if (module === undefined) {
+      if (defaultExport === undefined) {
         throw new Error(" Expected to find: '" + parsedName.fullName + "' within '" + normalizedModuleName + "' but got 'undefined'. Did you forget to `export default` within '" + normalizedModuleName + "'?");
       }
 
-      if (this.shouldWrapInClassFactory(module, parsedName)) {
-        module = classFactory(module);
+      if (this.shouldWrapInClassFactory(defaultExport, parsedName)) {
+        defaultExport = classFactory(defaultExport);
       }
 
-      return module;
+      return defaultExport;
     } else {
       return this._super(parsedName);
     }
   }
+
   // Ember.DefaultResolver docs:
   //   https://github.com/emberjs/ember.js/blob/master/packages/ember-application/lib/system/resolver.js
   var Resolver = Ember.DefaultResolver.extend({
@@ -60278,6 +60291,60 @@ define("ember/resolver",
       }
 
       Ember.Logger.info(symbol, parsedName.fullName, padding, description);
+    },
+
+    knownForType: function(type) {
+      var moduleEntries = requirejs.entries;
+      var moduleKeys = (Object.keys || Ember.keys)(moduleEntries);
+
+      var items = makeDictionary();
+      for (var index = 0, length = moduleKeys.length; index < length; index++) {
+        var moduleName = moduleKeys[index];
+        var fullname = this.translateToContainerFullname(type, moduleName);
+
+        if (fullname) {
+          items[fullname] = true;
+        }
+      }
+
+      return items;
+    },
+
+    translateToContainerFullname: function(type, moduleName) {
+      var prefix = this.prefix({ type: type });
+
+      // Note: using string manipulation here rather than regexes for better performance.
+      // pod modules
+      // '^' + prefix + '/(.+)/' + type + '$'
+      var podPrefix = prefix + '/';
+      var podSuffix = '/' + type;
+      var start = moduleName.indexOf(podPrefix);
+      var end = moduleName.indexOf(podSuffix);
+
+      if (start === 0 && end === (moduleName.length - podSuffix.length) &&
+          moduleName.length > (podPrefix.length + podSuffix.length)) {
+        return type + ':' + moduleName.slice(start + podPrefix.length, end);
+      }
+
+      // non-pod modules
+      // '^' + prefix + '/' + pluralizedType + '/(.+)$'
+      var pluralizedType = this.pluralize(type);
+      var nonPodPrefix = prefix + '/' + pluralizedType + '/';
+
+      if (moduleName.indexOf(nonPodPrefix) === 0 && moduleName.length > nonPodPrefix.length) {
+        return type + ':' + moduleName.slice(nonPodPrefix.length);
+      }
+
+    },
+
+    _extractDefaultExport: function(normalizedModuleName) {
+      var module = require(normalizedModuleName, null, null, true /* force sync */);
+
+      if (module && module['default']) {
+        module = module['default'];
+      }
+
+      return module;
     }
   });
 
@@ -60426,11 +60493,12 @@ define("ember/container-debug-adapter",
   Ember.Application.initializer({
     name: 'container-debug-adapter',
 
-    initialize: function(container, app) {
+    initialize: function() {
+      var app = arguments[1] || arguments[0];
       var ContainerDebugAdapter = require('ember/container-debug-adapter');
       var Resolver = require('ember/resolver');
 
-      container.register('container-debug-adapter:main', ContainerDebugAdapter);
+      app.register('container-debug-adapter:main', ContainerDebugAdapter);
       app.inject('container-debug-adapter:main', 'namespace', 'application:main');
     }
   });
@@ -60486,7 +60554,7 @@ define("ember/load-initializers",
 })();
 
 ;//! moment.js
-//! version : 2.10.3
+//! version : 2.10.6
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
 //! license : MIT
 //! momentjs.com
@@ -60581,6 +60649,7 @@ define("ember/load-initializers",
                 flags.overflow < 0 &&
                 !flags.empty &&
                 !flags.invalidMonth &&
+                !flags.invalidWeekday &&
                 !flags.nullInput &&
                 !flags.invalidFormat &&
                 !flags.userInvalidated;
@@ -60661,7 +60730,7 @@ define("ember/load-initializers",
     // Moment prototype object
     function Moment(config) {
         copyConfig(this, config);
-        this._d = new Date(+config._d);
+        this._d = new Date(config._d != null ? config._d.getTime() : NaN);
         // Prevent infinite loop in case updateOffset creates new moment
         // objects.
         if (updateInProgress === false) {
@@ -60675,16 +60744,20 @@ define("ember/load-initializers",
         return obj instanceof Moment || (obj != null && obj._isAMomentObject != null);
     }
 
+    function absFloor (number) {
+        if (number < 0) {
+            return Math.ceil(number);
+        } else {
+            return Math.floor(number);
+        }
+    }
+
     function toInt(argumentForCoercion) {
         var coercedNumber = +argumentForCoercion,
             value = 0;
 
         if (coercedNumber !== 0 && isFinite(coercedNumber)) {
-            if (coercedNumber >= 0) {
-                value = Math.floor(coercedNumber);
-            } else {
-                value = Math.ceil(coercedNumber);
-            }
+            value = absFloor(coercedNumber);
         }
 
         return value;
@@ -60782,9 +60855,7 @@ define("ember/load-initializers",
     function defineLocale (name, values) {
         if (values !== null) {
             values.abbr = name;
-            if (!locales[name]) {
-                locales[name] = new Locale();
-            }
+            locales[name] = locales[name] || new Locale();
             locales[name].set(values);
 
             // backwards compat for now: also set the locale
@@ -60888,16 +60959,14 @@ define("ember/load-initializers",
     }
 
     function zeroFill(number, targetLength, forceSign) {
-        var output = '' + Math.abs(number),
+        var absNumber = '' + Math.abs(number),
+            zerosToFill = targetLength - absNumber.length,
             sign = number >= 0;
-
-        while (output.length < targetLength) {
-            output = '0' + output;
-        }
-        return (sign ? (forceSign ? '+' : '') : '-') + output;
+        return (sign ? (forceSign ? '+' : '') : '-') +
+            Math.pow(10, Math.max(0, zerosToFill)).toString().substr(1) + absNumber;
     }
 
-    var formattingTokens = /(\[[^\[]*\])|(\\)?(Mo|MM?M?M?|Do|DDDo|DD?D?D?|ddd?d?|do?|w[o|w]?|W[o|W]?|Q|YYYYYY|YYYYY|YYYY|YY|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|mm?|ss?|S{1,4}|x|X|zz?|ZZ?|.)/g;
+    var formattingTokens = /(\[[^\[]*\])|(\\)?(Mo|MM?M?M?|Do|DDDo|DD?D?D?|ddd?d?|do?|w[o|w]?|W[o|W]?|Q|YYYYYY|YYYYY|YYYY|YY|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|mm?|ss?|S{1,9}|x|X|zz?|ZZ?|.)/g;
 
     var localFormattingTokens = /(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g;
 
@@ -60965,10 +61034,7 @@ define("ember/load-initializers",
         }
 
         format = expandFormat(format, m.localeData());
-
-        if (!formatFunctions[format]) {
-            formatFunctions[format] = makeFormatFunction(format);
-        }
+        formatFunctions[format] = formatFunctions[format] || makeFormatFunction(format);
 
         return formatFunctions[format](m);
     }
@@ -61012,8 +61078,15 @@ define("ember/load-initializers",
 
     var regexes = {};
 
+    function isFunction (sth) {
+        // https://github.com/moment/moment/issues/2325
+        return typeof sth === 'function' &&
+            Object.prototype.toString.call(sth) === '[object Function]';
+    }
+
+
     function addRegexToken (token, regex, strictRegex) {
-        regexes[token] = typeof regex === 'function' ? regex : function (isStrict) {
+        regexes[token] = isFunction(regex) ? regex : function (isStrict) {
             return (isStrict && strictRegex) ? strictRegex : regex;
         };
     }
@@ -61221,12 +61294,11 @@ define("ember/load-initializers",
     }
 
     function deprecate(msg, fn) {
-        var firstTime = true,
-            msgWithStack = msg + '\n' + (new Error()).stack;
+        var firstTime = true;
 
         return extend(function () {
             if (firstTime) {
-                warn(msgWithStack);
+                warn(msg + '\n' + (new Error()).stack);
                 firstTime = false;
             }
             return fn.apply(this, arguments);
@@ -61274,14 +61346,14 @@ define("ember/load-initializers",
             getParsingFlags(config).iso = true;
             for (i = 0, l = isoDates.length; i < l; i++) {
                 if (isoDates[i][1].exec(string)) {
-                    // match[5] should be 'T' or undefined
-                    config._f = isoDates[i][0] + (match[6] || ' ');
+                    config._f = isoDates[i][0];
                     break;
                 }
             }
             for (i = 0, l = isoTimes.length; i < l; i++) {
                 if (isoTimes[i][1].exec(string)) {
-                    config._f += isoTimes[i][0];
+                    // match[6] should be 'T' or space
+                    config._f += (match[6] || ' ') + isoTimes[i][0];
                     break;
                 }
             }
@@ -61360,7 +61432,10 @@ define("ember/load-initializers",
     addRegexToken('YYYYY',  match1to6, match6);
     addRegexToken('YYYYYY', match1to6, match6);
 
-    addParseToken(['YYYY', 'YYYYY', 'YYYYYY'], YEAR);
+    addParseToken(['YYYYY', 'YYYYYY'], YEAR);
+    addParseToken('YYYY', function (input, array) {
+        array[YEAR] = input.length === 2 ? utils_hooks__hooks.parseTwoDigitYear(input) : toInt(input);
+    });
     addParseToken('YY', function (input, array) {
         array[YEAR] = utils_hooks__hooks.parseTwoDigitYear(input);
     });
@@ -61487,18 +61562,18 @@ define("ember/load-initializers",
 
     //http://en.wikipedia.org/wiki/ISO_week_date#Calculating_a_date_given_the_year.2C_week_number_and_weekday
     function dayOfYearFromWeeks(year, week, weekday, firstDayOfWeekOfYear, firstDayOfWeek) {
-        var d = createUTCDate(year, 0, 1).getUTCDay();
-        var daysToAdd;
-        var dayOfYear;
+        var week1Jan = 6 + firstDayOfWeek - firstDayOfWeekOfYear, janX = createUTCDate(year, 0, 1 + week1Jan), d = janX.getUTCDay(), dayOfYear;
+        if (d < firstDayOfWeek) {
+            d += 7;
+        }
 
-        d = d === 0 ? 7 : d;
-        weekday = weekday != null ? weekday : firstDayOfWeek;
-        daysToAdd = firstDayOfWeek - d + (d > firstDayOfWeekOfYear ? 7 : 0) - (d < firstDayOfWeek ? 7 : 0);
-        dayOfYear = 7 * (week - 1) + (weekday - firstDayOfWeek) + daysToAdd + 1;
+        weekday = weekday != null ? 1 * weekday : firstDayOfWeek;
+
+        dayOfYear = 1 + week1Jan + 7 * (week - 1) - d + weekday;
 
         return {
-            year      : dayOfYear > 0 ? year      : year - 1,
-            dayOfYear : dayOfYear > 0 ? dayOfYear : daysInYear(year - 1) + dayOfYear
+            year: dayOfYear > 0 ? year : year - 1,
+            dayOfYear: dayOfYear > 0 ?  dayOfYear : daysInYear(year - 1) + dayOfYear
         };
     }
 
@@ -61784,9 +61859,19 @@ define("ember/load-initializers",
     }
 
     function createFromConfig (config) {
+        var res = new Moment(checkOverflow(prepareConfig(config)));
+        if (res._nextDay) {
+            // Adding is smart enough around DST
+            res.add(1, 'd');
+            res._nextDay = undefined;
+        }
+
+        return res;
+    }
+
+    function prepareConfig (config) {
         var input = config._i,
-            format = config._f,
-            res;
+            format = config._f;
 
         config._locale = config._locale || locale_locales__getLocale(config._l);
 
@@ -61810,14 +61895,7 @@ define("ember/load-initializers",
             configFromInput(config);
         }
 
-        res = new Moment(checkOverflow(config));
-        if (res._nextDay) {
-            // Adding is smart enough around DST
-            res.add(1, 'd');
-            res._nextDay = undefined;
-        }
-
-        return res;
+        return config;
     }
 
     function configFromInput(config) {
@@ -61897,7 +61975,7 @@ define("ember/load-initializers",
         }
         res = moments[0];
         for (i = 1; i < moments.length; ++i) {
-            if (moments[i][fn](res)) {
+            if (!moments[i].isValid() || moments[i][fn](res)) {
                 res = moments[i];
             }
         }
@@ -62009,7 +62087,6 @@ define("ember/load-initializers",
         } else {
             return local__createLocal(input).local();
         }
-        return model._isUTC ? local__createLocal(input).zone(model._offset || 0) : local__createLocal(input).local();
     }
 
     function getDateOffset (m) {
@@ -62109,12 +62186,7 @@ define("ember/load-initializers",
     }
 
     function hasAlignedHourOffset (input) {
-        if (!input) {
-            input = 0;
-        }
-        else {
-            input = local__createLocal(input).utcOffset();
-        }
+        input = input ? local__createLocal(input).utcOffset() : 0;
 
         return (this.utcOffset() - input) % 60 === 0;
     }
@@ -62127,12 +62199,24 @@ define("ember/load-initializers",
     }
 
     function isDaylightSavingTimeShifted () {
-        if (this._a) {
-            var other = this._isUTC ? create_utc__createUTC(this._a) : local__createLocal(this._a);
-            return this.isValid() && compareArrays(this._a, other.toArray()) > 0;
+        if (typeof this._isDSTShifted !== 'undefined') {
+            return this._isDSTShifted;
         }
 
-        return false;
+        var c = {};
+
+        copyConfig(c, this);
+        c = prepareConfig(c);
+
+        if (c._a) {
+            var other = c._isUTC ? create_utc__createUTC(c._a) : local__createLocal(c._a);
+            this._isDSTShifted = this.isValid() &&
+                compareArrays(c._a, other.toArray()) > 0;
+        } else {
+            this._isDSTShifted = false;
+        }
+
+        return this._isDSTShifted;
     }
 
     function isLocal () {
@@ -62292,7 +62376,7 @@ define("ember/load-initializers",
     var add_subtract__add      = createAdder(1, 'add');
     var add_subtract__subtract = createAdder(-1, 'subtract');
 
-    function moment_calendar__calendar (time) {
+    function moment_calendar__calendar (time, formats) {
         // We want to compare the start of today, vs this.
         // Getting start-of-today depends on whether we're local/utc/offset or not.
         var now = time || local__createLocal(),
@@ -62304,7 +62388,7 @@ define("ember/load-initializers",
                 diff < 1 ? 'sameDay' :
                 diff < 2 ? 'nextDay' :
                 diff < 7 ? 'nextWeek' : 'sameElse';
-        return this.format(this.localeData().calendar(format, this, local__createLocal(now)));
+        return this.format(formats && formats[format] || this.localeData().calendar(format, this, local__createLocal(now)));
     }
 
     function clone () {
@@ -62348,14 +62432,6 @@ define("ember/load-initializers",
         } else {
             inputMs = +local__createLocal(input);
             return +(this.clone().startOf(units)) <= inputMs && inputMs <= +(this.clone().endOf(units));
-        }
-    }
-
-    function absFloor (number) {
-        if (number < 0) {
-            return Math.ceil(number);
-        } else {
-            return Math.floor(number);
         }
     }
 
@@ -62549,6 +62625,19 @@ define("ember/load-initializers",
         return [m.year(), m.month(), m.date(), m.hour(), m.minute(), m.second(), m.millisecond()];
     }
 
+    function toObject () {
+        var m = this;
+        return {
+            years: m.year(),
+            months: m.month(),
+            date: m.date(),
+            hours: m.hours(),
+            minutes: m.minutes(),
+            seconds: m.seconds(),
+            milliseconds: m.milliseconds()
+        };
+    }
+
     function moment_valid__isValid () {
         return valid__isValid(this);
     }
@@ -62720,18 +62809,20 @@ define("ember/load-initializers",
     // HELPERS
 
     function parseWeekday(input, locale) {
-        if (typeof input === 'string') {
-            if (!isNaN(input)) {
-                input = parseInt(input, 10);
-            }
-            else {
-                input = locale.weekdaysParse(input);
-                if (typeof input !== 'number') {
-                    return null;
-                }
-            }
+        if (typeof input !== 'string') {
+            return input;
         }
-        return input;
+
+        if (!isNaN(input)) {
+            return parseInt(input, 10);
+        }
+
+        input = locale.weekdaysParse(input);
+        if (typeof input === 'number') {
+            return input;
+        }
+
+        return null;
     }
 
     // LOCALES
@@ -62754,9 +62845,7 @@ define("ember/load-initializers",
     function localeWeekdaysParse (weekdayName) {
         var i, mom, regex;
 
-        if (!this._weekdaysParse) {
-            this._weekdaysParse = [];
-        }
+        this._weekdaysParse = this._weekdaysParse || [];
 
         for (i = 0; i < 7; i++) {
             // make the regex if we don't have it already
@@ -62903,12 +62992,26 @@ define("ember/load-initializers",
         return ~~(this.millisecond() / 10);
     });
 
-    function millisecond__milliseconds (token) {
-        addFormatToken(0, [token, 3], 0, 'millisecond');
-    }
+    addFormatToken(0, ['SSS', 3], 0, 'millisecond');
+    addFormatToken(0, ['SSSS', 4], 0, function () {
+        return this.millisecond() * 10;
+    });
+    addFormatToken(0, ['SSSSS', 5], 0, function () {
+        return this.millisecond() * 100;
+    });
+    addFormatToken(0, ['SSSSSS', 6], 0, function () {
+        return this.millisecond() * 1000;
+    });
+    addFormatToken(0, ['SSSSSSS', 7], 0, function () {
+        return this.millisecond() * 10000;
+    });
+    addFormatToken(0, ['SSSSSSSS', 8], 0, function () {
+        return this.millisecond() * 100000;
+    });
+    addFormatToken(0, ['SSSSSSSSS', 9], 0, function () {
+        return this.millisecond() * 1000000;
+    });
 
-    millisecond__milliseconds('SSS');
-    millisecond__milliseconds('SSSS');
 
     // ALIASES
 
@@ -62919,11 +63022,19 @@ define("ember/load-initializers",
     addRegexToken('S',    match1to3, match1);
     addRegexToken('SS',   match1to3, match2);
     addRegexToken('SSS',  match1to3, match3);
-    addRegexToken('SSSS', matchUnsigned);
-    addParseToken(['S', 'SS', 'SSS', 'SSSS'], function (input, array) {
-        array[MILLISECOND] = toInt(('0.' + input) * 1000);
-    });
 
+    var token;
+    for (token = 'SSSS'; token.length <= 9; token += 'S') {
+        addRegexToken(token, matchUnsigned);
+    }
+
+    function parseMs(input, array) {
+        array[MILLISECOND] = toInt(('0.' + input) * 1000);
+    }
+
+    for (token = 'S'; token.length <= 9; token += 'S') {
+        addParseToken(token, parseMs);
+    }
     // MOMENTS
 
     var getSetMillisecond = makeGetSet('Milliseconds', false);
@@ -62970,6 +63081,7 @@ define("ember/load-initializers",
     momentPrototype__proto.startOf      = startOf;
     momentPrototype__proto.subtract     = add_subtract__subtract;
     momentPrototype__proto.toArray      = toArray;
+    momentPrototype__proto.toObject     = toObject;
     momentPrototype__proto.toDate       = toDate;
     momentPrototype__proto.toISOString  = moment_format__toISOString;
     momentPrototype__proto.toJSON       = moment_format__toISOString;
@@ -63069,19 +63181,23 @@ define("ember/load-initializers",
         LT   : 'h:mm A',
         L    : 'MM/DD/YYYY',
         LL   : 'MMMM D, YYYY',
-        LLL  : 'MMMM D, YYYY LT',
-        LLLL : 'dddd, MMMM D, YYYY LT'
+        LLL  : 'MMMM D, YYYY h:mm A',
+        LLLL : 'dddd, MMMM D, YYYY h:mm A'
     };
 
     function longDateFormat (key) {
-        var output = this._longDateFormat[key];
-        if (!output && this._longDateFormat[key.toUpperCase()]) {
-            output = this._longDateFormat[key.toUpperCase()].replace(/MMMM|MM|DD|dddd/g, function (val) {
-                return val.slice(1);
-            });
-            this._longDateFormat[key] = output;
+        var format = this._longDateFormat[key],
+            formatUpper = this._longDateFormat[key.toUpperCase()];
+
+        if (format || !formatUpper) {
+            return format;
         }
-        return output;
+
+        this._longDateFormat[key] = formatUpper.replace(/MMMM|MM|DD|dddd/g, function (val) {
+            return val.slice(1);
+        });
+
+        return this._longDateFormat[key];
     }
 
     var defaultInvalidDate = 'Invalid date';
@@ -63290,12 +63406,29 @@ define("ember/load-initializers",
         return duration_add_subtract__addSubtract(this, input, value, -1);
     }
 
+    function absCeil (number) {
+        if (number < 0) {
+            return Math.floor(number);
+        } else {
+            return Math.ceil(number);
+        }
+    }
+
     function bubble () {
         var milliseconds = this._milliseconds;
         var days         = this._days;
         var months       = this._months;
         var data         = this._data;
-        var seconds, minutes, hours, years = 0;
+        var seconds, minutes, hours, years, monthsFromDays;
+
+        // if we have a mix of positive and negative values, bubble down first
+        // check: https://github.com/moment/moment/issues/2166
+        if (!((milliseconds >= 0 && days >= 0 && months >= 0) ||
+                (milliseconds <= 0 && days <= 0 && months <= 0))) {
+            milliseconds += absCeil(monthsToDays(months) + days) * 864e5;
+            days = 0;
+            months = 0;
+        }
 
         // The following code bubbles up values, see the tests for
         // examples of what that means.
@@ -63312,17 +63445,13 @@ define("ember/load-initializers",
 
         days += absFloor(hours / 24);
 
-        // Accurately convert days to years, assume start from year 0.
-        years = absFloor(daysToYears(days));
-        days -= absFloor(yearsToDays(years));
-
-        // 30 days to a month
-        // TODO (iskren): Use anchor date (like 1st Jan) to compute this.
-        months += absFloor(days / 30);
-        days   %= 30;
+        // convert days to months
+        monthsFromDays = absFloor(daysToMonths(days));
+        months += monthsFromDays;
+        days -= absCeil(monthsToDays(monthsFromDays));
 
         // 12 months -> 1 year
-        years  += absFloor(months / 12);
+        years = absFloor(months / 12);
         months %= 12;
 
         data.days   = days;
@@ -63332,15 +63461,15 @@ define("ember/load-initializers",
         return this;
     }
 
-    function daysToYears (days) {
+    function daysToMonths (days) {
         // 400 years have 146097 days (taking into account leap year rules)
-        return days * 400 / 146097;
+        // 400 years have 12 months === 4800
+        return days * 4800 / 146097;
     }
 
-    function yearsToDays (years) {
-        // years * 365 + absFloor(years / 4) -
-        //     absFloor(years / 100) + absFloor(years / 400);
-        return years * 146097 / 400;
+    function monthsToDays (months) {
+        // the reverse of daysToMonths
+        return months * 146097 / 4800;
     }
 
     function as (units) {
@@ -63352,11 +63481,11 @@ define("ember/load-initializers",
 
         if (units === 'month' || units === 'year') {
             days   = this._days   + milliseconds / 864e5;
-            months = this._months + daysToYears(days) * 12;
+            months = this._months + daysToMonths(days);
             return units === 'month' ? months : months / 12;
         } else {
             // handle milliseconds separately because of floating point math errors (issue #1867)
-            days = this._days + Math.round(yearsToDays(this._months / 12));
+            days = this._days + Math.round(monthsToDays(this._months));
             switch (units) {
                 case 'week'   : return days / 7     + milliseconds / 6048e5;
                 case 'day'    : return days         + milliseconds / 864e5;
@@ -63406,7 +63535,7 @@ define("ember/load-initializers",
         };
     }
 
-    var duration_get__milliseconds = makeGetter('milliseconds');
+    var milliseconds = makeGetter('milliseconds');
     var seconds      = makeGetter('seconds');
     var minutes      = makeGetter('minutes');
     var hours        = makeGetter('hours');
@@ -63484,13 +63613,36 @@ define("ember/load-initializers",
     var iso_string__abs = Math.abs;
 
     function iso_string__toISOString() {
+        // for ISO strings we do not use the normal bubbling rules:
+        //  * milliseconds bubble up until they become hours
+        //  * days do not bubble at all
+        //  * months bubble up until they become years
+        // This is because there is no context-free conversion between hours and days
+        // (think of clock changes)
+        // and also not between days and months (28-31 days per month)
+        var seconds = iso_string__abs(this._milliseconds) / 1000;
+        var days         = iso_string__abs(this._days);
+        var months       = iso_string__abs(this._months);
+        var minutes, hours, years;
+
+        // 3600 seconds -> 60 minutes -> 1 hour
+        minutes           = absFloor(seconds / 60);
+        hours             = absFloor(minutes / 60);
+        seconds %= 60;
+        minutes %= 60;
+
+        // 12 months -> 1 year
+        years  = absFloor(months / 12);
+        months %= 12;
+
+
         // inspired by https://github.com/dordille/moment-isoduration/blob/master/moment.isoduration.js
-        var Y = iso_string__abs(this.years());
-        var M = iso_string__abs(this.months());
-        var D = iso_string__abs(this.days());
-        var h = iso_string__abs(this.hours());
-        var m = iso_string__abs(this.minutes());
-        var s = iso_string__abs(this.seconds() + this.milliseconds() / 1000);
+        var Y = years;
+        var M = months;
+        var D = days;
+        var h = hours;
+        var m = minutes;
+        var s = seconds;
         var total = this.asSeconds();
 
         if (!total) {
@@ -63527,7 +63679,7 @@ define("ember/load-initializers",
     duration_prototype__proto.valueOf        = duration_as__valueOf;
     duration_prototype__proto._bubble        = bubble;
     duration_prototype__proto.get            = duration_get__get;
-    duration_prototype__proto.milliseconds   = duration_get__milliseconds;
+    duration_prototype__proto.milliseconds   = milliseconds;
     duration_prototype__proto.seconds        = seconds;
     duration_prototype__proto.minutes        = minutes;
     duration_prototype__proto.hours          = hours;
@@ -63565,7 +63717,7 @@ define("ember/load-initializers",
     // Side effect imports
 
 
-    utils_hooks__hooks.version = '2.10.3';
+    utils_hooks__hooks.version = '2.10.6';
 
     setHookCallback(local__createLocal);
 
@@ -63817,6 +63969,9 @@ define("ember/load-initializers",
         minMonth: undefined,
         maxMonth: undefined,
 
+        startRange: null,
+        endRange: null,
+
         isRTL: false,
 
         // Additional text to append to the year in the calendar title
@@ -63844,6 +63999,9 @@ define("ember/load-initializers",
             weekdaysShort : ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']
         },
 
+        // Theme Classname
+        theme: null,
+
         // callback function
         onSelect: null,
         onOpen: null,
@@ -63864,25 +64022,34 @@ define("ember/load-initializers",
         return abbr ? opts.i18n.weekdaysShort[day] : opts.i18n.weekdays[day];
     },
 
-    renderDay = function(d, m, y, isSelected, isToday, isDisabled, isEmpty)
+    renderDay = function(opts)
     {
-        if (isEmpty) {
+        if (opts.isEmpty) {
             return '<td class="is-empty"></td>';
         }
         var arr = [];
-        if (isDisabled) {
+        if (opts.isDisabled) {
             arr.push('is-disabled');
         }
-        if (isToday) {
+        if (opts.isToday) {
             arr.push('is-today');
         }
-        if (isSelected) {
+        if (opts.isSelected) {
             arr.push('is-selected');
         }
-        return '<td data-day="' + d + '" class="' + arr.join(' ') + '">' +
+        if (opts.isInRange) {
+            arr.push('is-inrange');
+        }
+        if (opts.isStartRange) {
+            arr.push('is-startrange');
+        }
+        if (opts.isEndRange) {
+            arr.push('is-endrange');
+        }
+        return '<td data-day="' + opts.day + '" class="' + arr.join(' ') + '">' +
                  '<button class="pika-button pika-day" type="button" ' +
-                    'data-pika-year="' + y + '" data-pika-month="' + m + '" data-pika-day="' + d + '">' +
-                        d +
+                    'data-pika-year="' + opts.year + '" data-pika-month="' + opts.month + '" data-pika-day="' + opts.day + '">' +
+                        opts.day +
                  '</button>' +
                '</td>';
     },
@@ -63934,7 +64101,7 @@ define("ember/load-initializers",
                 ((isMinYear && i < opts.minMonth) || (isMaxYear && i > opts.maxMonth) ? 'disabled' : '') + '>' +
                 opts.i18n.months[i] + '</option>');
         }
-        monthHtml = '<div class="pika-label">' + opts.i18n.months[month] + '<select class="pika-select pika-select-month">' + arr.join('') + '</select></div>';
+        monthHtml = '<div class="pika-label">' + opts.i18n.months[month] + '<select class="pika-select pika-select-month" tabindex="-1">' + arr.join('') + '</select></div>';
 
         if (isArray(opts.yearRange)) {
             i = opts.yearRange[0];
@@ -63949,7 +64116,7 @@ define("ember/load-initializers",
                 arr.push('<option value="' + i + '"' + (i === year ? ' selected': '') + '>' + (i) + '</option>');
             }
         }
-        yearHtml = '<div class="pika-label">' + year + opts.yearSuffix + '<select class="pika-select pika-select-year">' + arr.join('') + '</select></div>';
+        yearHtml = '<div class="pika-label">' + year + opts.yearSuffix + '<select class="pika-select pika-select-year" tabindex="-1">' + arr.join('') + '</select></div>';
 
         if (opts.showMonthAfterYear) {
             html += yearHtml + monthHtml;
@@ -64000,7 +64167,7 @@ define("ember/load-initializers",
                 return;
             }
 
-            if (!hasClass(target, 'is-disabled')) {
+            if (!hasClass(target.parentNode, 'is-disabled')) {
                 if (hasClass(target, 'pika-button') && !hasClass(target, 'is-empty')) {
                     self.setDate(new Date(target.getAttribute('data-pika-year'), target.getAttribute('data-pika-month'), target.getAttribute('data-pika-day')));
                     if (opts.bound) {
@@ -64061,7 +64228,9 @@ define("ember/load-initializers",
             else {
                 date = new Date(Date.parse(opts.field.value));
             }
-            self.setDate(isDate(date) ? date : null);
+            if (isDate(date)) {
+              self.setDate(date);
+            }
             if (!self._v) {
                 self.show();
             }
@@ -64087,7 +64256,7 @@ define("ember/load-initializers",
                 }
             }
             while ((pEl = pEl.parentNode));
-            
+
             if (!self._c) {
                 self._b = sto(function() {
                     self.hide();
@@ -64122,9 +64291,9 @@ define("ember/load-initializers",
         };
 
         self.el = document.createElement('div');
-        self.el.className = 'pika-single' + (opts.isRTL ? ' is-rtl' : '');
+        self.el.className = 'pika-single' + (opts.isRTL ? ' is-rtl' : '') + (opts.theme ? ' ' + opts.theme : '');
 
-        addEvent(self.el, 'mousedown', self._onMouseDown, true);
+        addEvent(self.el, 'ontouchend' in document ? 'touchend' : 'mousedown', self._onMouseDown, true);
         addEvent(self.el, 'change', self._onChange);
 
         if (opts.field) {
@@ -64192,13 +64361,15 @@ define("ember/load-initializers",
 
             opts.field = (opts.field && opts.field.nodeName) ? opts.field : null;
 
+            opts.theme = (typeof opts.theme) === 'string' && opts.theme ? opts.theme : null;
+
             opts.bound = !!(opts.bound !== undefined ? opts.field && opts.bound : opts.field);
 
             opts.trigger = (opts.trigger && opts.trigger.nodeName) ? opts.trigger : opts.field;
 
             opts.disableWeekends = !!opts.disableWeekends;
 
-            opts.disableDayFn = (typeof opts.disableDayFn) == "function" ? opts.disableDayFn : null;
+            opts.disableDayFn = (typeof opts.disableDayFn) === 'function' ? opts.disableDayFn : null;
 
             var nom = parseInt(opts.numberOfMonths, 10) || 1;
             opts.numberOfMonths = nom > 4 ? 4 : nom;
@@ -64213,9 +64384,7 @@ define("ember/load-initializers",
                 opts.maxDate = opts.minDate = false;
             }
             if (opts.minDate) {
-                setToStartOfDay(opts.minDate);
-                opts.minYear  = opts.minDate.getFullYear();
-                opts.minMonth = opts.minDate.getMonth();
+                this.setMinDate(opts.minDate);
             }
             if (opts.maxDate) {
                 setToStartOfDay(opts.maxDate);
@@ -64404,7 +64573,10 @@ define("ember/load-initializers",
          */
         setMinDate: function(value)
         {
+            setToStartOfDay(value);
             this._o.minDate = value;
+            this._o.minYear  = value.getFullYear();
+            this._o.minMonth = value.getMonth();
         },
 
         /**
@@ -64413,6 +64585,16 @@ define("ember/load-initializers",
         setMaxDate: function(value)
         {
             this._o.maxDate = value;
+        },
+
+        setStartRange: function(value)
+        {
+            this._o.startRange = value;
+        },
+
+        setEndRange: function(value)
+        {
+            this._o.endRange = value;
         },
 
         /**
@@ -64467,13 +64649,19 @@ define("ember/load-initializers",
 
         adjustPosition: function()
         {
+            var field, pEl, width, height, viewportWidth, viewportHeight, scrollTop, left, top, clientRect;
+
             if (this._o.container) return;
-            var field = this._o.trigger, pEl = field,
-            width = this.el.offsetWidth, height = this.el.offsetHeight,
-            viewportWidth = window.innerWidth || document.documentElement.clientWidth,
-            viewportHeight = window.innerHeight || document.documentElement.clientHeight,
-            scrollTop = window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop,
-            left, top, clientRect;
+
+            this.el.style.position = 'absolute';
+
+            field = this._o.trigger;
+            pEl = field;
+            width = this.el.offsetWidth;
+            height = this.el.offsetHeight;
+            viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+            viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+            scrollTop = window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop;
 
             if (typeof field.getBoundingClientRect === 'function') {
                 clientRect = field.getBoundingClientRect();
@@ -64506,11 +64694,8 @@ define("ember/load-initializers",
                 top = top - height - field.offsetHeight;
             }
 
-            this.el.style.cssText = [
-                'position: absolute',
-                'left: ' + left + 'px',
-                'top: ' + top + 'px'
-            ].join(';');
+            this.el.style.left = left + 'px';
+            this.el.style.top = top + 'px';
         },
 
         /**
@@ -64539,16 +64724,32 @@ define("ember/load-initializers",
             cells += 7 - after;
             for (var i = 0, r = 0; i < cells; i++)
             {
-                var day = new Date(year, month, 1 + (i - before)),
+                var dayConfig,
+                    day = new Date(year, month, 1 + (i - before)),
                     isSelected = isDate(this._d) ? compareDates(day, this._d) : false,
                     isToday = compareDates(day, now),
                     isEmpty = i < before || i >= (days + before),
+                    isStartRange = opts.startRange && compareDates(opts.startRange, day),
+                    isEndRange = opts.endRange && compareDates(opts.endRange, day),
+                    isInRange = opts.startRange && opts.endRange && opts.startRange < day && day < opts.endRange,
                     isDisabled = (opts.minDate && day < opts.minDate) ||
                                  (opts.maxDate && day > opts.maxDate) ||
                                  (opts.disableWeekends && isWeekend(day)) ||
-                                 (opts.disableDayFn && opts.disableDayFn(day));
+                                 (opts.disableDayFn && opts.disableDayFn(day)),
+                    dayConfig = {
+                        day: 1 + (i - before),
+                        month: month,
+                        year: year,
+                        isSelected: isSelected,
+                        isToday: isToday,
+                        isDisabled: isDisabled,
+                        isEmpty: isEmpty,
+                        isStartRange: isStartRange,
+                        isEndRange: isEndRange,
+                        isInRange: isInRange
+                    };
 
-                row.push(renderDay(1 + (i - before), month, year, isSelected, isToday, isDisabled, isEmpty));
+                row.push(renderDay(dayConfig));
 
                 if (++r === 7) {
                     if (opts.showWeekNumber) {
@@ -64590,7 +64791,9 @@ define("ember/load-initializers",
                 if (this._o.bound) {
                     removeEvent(document, 'click', this._onClick);
                 }
-                this.el.style.cssText = '';
+                this.el.style.position = 'static'; // reset
+                this.el.style.left = 'auto';
+                this.el.style.top = 'auto';
                 addClass(this.el, 'is-hidden');
                 this._v = false;
                 if (v !== undefined && typeof this._o.onClose === 'function') {
@@ -80453,6 +80656,252 @@ define('ember-cli-datepicker/components/date-picker', ['exports', 'ember'], func
       }
       this.get('_picker').setDate(d.format());
     }.observes('date')
+  });
+
+});
+define('ember-cli-file-picker', ['ember-cli-file-picker/index', 'ember', 'exports'], function(__index__, __Ember__, __exports__) {
+  'use strict';
+  var keys = Object.keys || __Ember__['default'].keys;
+  var forEach = Array.prototype.forEach && function(array, cb) {
+    array.forEach(cb);
+  } || __Ember__['default'].EnumerableUtils.forEach;
+
+  forEach(keys(__index__), (function(key) {
+    __exports__[key] = __index__[key];
+  }));
+});
+
+define('ember-cli-file-picker/components/file-picker', ['exports', 'ember'], function (exports, Ember) {
+
+  'use strict';
+
+  var Component = Ember['default'].Component;
+  var computed = Ember['default'].computed;
+  var observer = Ember['default'].observer;
+  var bind = Ember['default'].run.bind;
+  var htmlSafe = Ember['default'].String.htmlSafe;
+  var assert = Ember['default'].assert;
+  var $ = Ember['default'].$;
+
+  exports['default'] = Component.extend({
+    classNames: ['file-picker'],
+    classNameBindings: ['multiple:multiple:single'],
+    accept: '*',
+    multiple: false,
+    preview: true,
+    dropzone: true,
+    progress: true,
+    hideFileInput: true,
+    readAs: 'readAsFile',
+    selectOnClick: true,
+    count: 0,
+    errors: [],
+
+    progressStyle: computed('progressValue', function () {
+      var width = this.get('progressValue') || 0;
+
+      return htmlSafe('width: ' + width + '%;');
+    }),
+
+    /**
+     * When the component got inserted
+     */
+    didInsertElement: function didInsertElement() {
+      if (this.get('hideFileInput')) {
+        this.hideInput();
+      }
+      this.hidePreview();
+      this.hideProgress();
+
+      this.$('.file-picker__input').on('change', bind(this, 'filesSelected'));
+    },
+
+    willDestroyElement: function willDestroyElement() {
+      this.$('.file-picker__input').off('change', bind(this, 'filesSelected'));
+    },
+
+    /**
+     * When the file input changed (a file got selected)
+     * @param  {Event} event The file change event
+     */
+    filesSelected: function filesSelected(event) {
+      this.handleFiles(event.target.files);
+    },
+
+    handleFiles: function handleFiles(files) {
+      var _this = this;
+
+      if (typeof this.filesAreValid === 'function') {
+        if (!this.filesAreValid(files)) {
+          return;
+        }
+      }
+
+      if (this.get('preview')) {
+        this.updatePreview(files);
+      }
+
+      if (this.get('multiple')) {
+        this.sendAction('filesLoaded', files);
+      } else {
+        if (this.get('readAs') === 'readAsFile') {
+          this.sendAction('fileLoaded', files[0]);
+        } else {
+          this.readFile(files[0], this.get('readAs')).then(function (file) {
+            _this.sendAction('fileLoaded', file);
+          });
+        }
+      }
+    },
+
+    /**
+     * Update preview
+     * @param  {Array} files The selected files
+     */
+    updatePreview: function updatePreview(files) {
+      if (this.get('multiple')) {
+        // TODO
+      } else {
+          this.clearPreview();
+          this.$('.file-picker__progress').show();
+
+          this.readFile(files[0], 'readAsDataURL').then(bind(this, 'addPreviewImage'));
+
+          this.$('.file-picker__dropzone').hide();
+        }
+
+      this.$('.file-picker__preview').show();
+    },
+
+    addPreviewImage: function addPreviewImage(file) {
+      var image = this.$('<img src="' + file.data + '" class="file-picker__preview__image ' + (this.get('multiple') ? 'multiple' : 'single') + '">');
+
+      this.hideProgress();
+      this.$('.file-picker__preview').append(image);
+    },
+
+    /**
+     * Reads a file
+     * @param {File} file A file
+     * @param {String} readAs One of
+     *  - readAsArrayBuffer
+     *  - readAsBinaryString
+     *  - readAsDataURL
+     *  - readAsText
+     * @return {Promise}
+     */
+    readFile: function readFile(file, readAs) {
+      var _this2 = this;
+
+      var reader = new FileReader();
+
+      assert('readAs method "' + readAs + '" not implemented', reader[readAs] && readAs !== 'abort');
+
+      return new Ember['default'].RSVP.Promise(function (resolve, reject) {
+        reader.onload = function (event) {
+          resolve({
+            // TODO rename to file / breaking change
+            filename: file.name,
+            type: file.type,
+            data: event.target.result,
+            size: file.size
+          });
+        };
+
+        reader.onabort = function () {
+          reject({
+            event: 'onabort'
+          });
+        };
+
+        reader.onerror = function (error) {
+          reject({
+            event: 'onerror',
+            error: error
+          });
+        };
+
+        reader.onprogress = function (event) {
+          _this2.set('progressValue', event.loaded / event.total * 100);
+        };
+
+        reader[readAs](file);
+      });
+    },
+
+    hideInput: function hideInput() {
+      this.$('.file-picker__input').hide();
+    },
+
+    hidePreview: function hidePreview() {
+      this.$('.file-picker__preview').hide();
+    },
+
+    hideProgress: function hideProgress() {
+      this.$('.file-picker__progress').hide();
+    },
+
+    clearPreview: function clearPreview() {
+      this.$('.file-picker__preview').html('');
+      this.hidePreview();
+      this.$('.file-picker__dropzone').show();
+
+      // reset
+      this.set('removePreview', false);
+    },
+
+    removePreviewDidChange: observer('removePreview', function () {
+      if (this.get('removePreview')) {
+        this.clearPreview();
+      }
+    }),
+
+    // handles DOM events
+    // Trigger a input click to open file dialog
+    click: function click(event) {
+      if (this.get('selectOnClick') === true) {
+        if (!$(event.target).hasClass('file-picker__input')) {
+          this.$('.file-picker__input').trigger('click');
+        }
+      }
+    },
+    /* Drag'n'Drop events */
+    dragOver: function dragOver(event) {
+      if (event.preventDefault) {
+        event.preventDefault();
+      }
+      event.dataTransfer.dropEffect = 'copy';
+    },
+    drop: function drop(event) {
+      if (event.preventDefault) {
+        event.preventDefault();
+      }
+
+      this.handleFiles(event.dataTransfer.files);
+      this.set('count', 0);
+      this.$().removeClass('over');
+    },
+    dragEnter: function dragEnter(event) {
+      if (event.preventDefault) {
+        event.preventDefault();
+      }
+      if (!this.get('multiple')) {
+        this.clearPreview();
+      }
+      var count = this.incrementProperty('count');
+      if (count === 1) {
+        this.$().addClass('over');
+      }
+    },
+    dragLeave: function dragLeave(event) {
+      if (event.preventDefault) {
+        event.preventDefault();
+      }
+      var count = this.decrementProperty('count');
+      if (count === 0) {
+        this.$().removeClass('over');
+      }
+    }
   });
 
 });

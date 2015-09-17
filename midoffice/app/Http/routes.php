@@ -11,12 +11,13 @@
 |
 */
 
-$app->group(['prefix' => 'api'], function ($app) {
-
-    $app->get('image/{imagename}', array('uses' => 'App\Http\Controllers\ImageController@get_image'));
-    $app->get('image/{w}/{h}/{imagename}', array('uses' => 'App\Http\Controllers\ImageController@get_image'));
-    $app->post('image', array('uses' => 'App\Http\Controllers\ImageController@post_image'));
-    $app->put('image', array('uses' => 'App\Http\Controllers\ImageController@update_image'));
-    $app->delete('image', array('uses' => 'App\Http\Controllers\ImageController@delete_image'));
-
+$app->group(['prefix' => 'api','middleware' => 'cors'], function ($app) {
+    $app->get('images/{imagename}', array('uses' => 'App\Http\Controllers\ImageController@get_image'));
+    $app->get('images/{w}/{h}/{imagename}', array('uses' => 'App\Http\Controllers\ImageController@get_image'));
+    $app->get('images/cropped/{cx}/{cy}/{w}/{h}/{imagename}', array('uses' => 'App\Http\Controllers\ImageController@get_cropped_image'));
+    $app->get('images', array('uses' => 'App\Http\Controllers\ImageController@index'));
+    $app->get('images', array('uses' => 'App\Http\Controllers\ImageController@index'));
+    $app->post('images', array('uses' => 'App\Http\Controllers\ImageController@post_image'));
+    $app->put('images', array('uses' => 'App\Http\Controllers\ImageController@update_image'));
+    $app->delete('images', array('uses' => 'App\Http\Controllers\ImageController@delete_image'));
 });

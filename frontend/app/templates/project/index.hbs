@@ -2,7 +2,7 @@
 
 	<section class='slideContainer'>
 		<section id='index' class='slide-0'>
-			<header class='picture' style="background-image: url('http://lorempixel.com/500/375/?{{model.id}}') "></header>
+			<header class='picture' style="background-image: url('{{model.imageUrl}}') "></header>
 			<i id="edit-btn" {{action 'changeView' 'page-left' 1 }} class="fa fa-cog"></i>
 			<h5>Project: {{ model.description }}</h5>
 			<p>Eigenaar: {{ model.owner.firstName }}</p>
@@ -19,7 +19,7 @@
 				{{/if}}
 
 				{{#if profile.match}}
-				<span><strong>{{ profile.description }}</strong><br />{{profile.match.fullName}}</span>
+				<span><strong>{{ profilwe.description }}</strong><br />{{profile.match.fullName}}</span>
 				{{else}}
 				<span><strong>{{ profile.description }}</strong><br />Geen match</span>
 				{{/if}}
@@ -37,10 +37,17 @@
 
 		<section id='edit' class='slide-1'>
 			<i id="edit-btn" {{action 'changeView' 'page-left' 0 }} class="fa fa-cog"></i>
-			<form method="post" {{action "updateDemand" on="submit"}}>
+            <form method="post" {{action "updateDemand" on="submit"}} enctype="multipart/form-data">
 				Afbeelding:
 
-				[image upload hier]
+                {{#file-picker
+                accept=".jpg,.jpeg,.gif,.png"
+                fileLoaded="fileLoaded"
+                readAs="readAsDataURL"
+                }}
+                Klik hier of sleep een afbeelding
+                {{/file-picker}}
+
 				<br><br>
 				Beschrijving:
 				{{textarea value=model.description placeholder="Beschrijving" rows="6" class="txt-field"}}<br>

@@ -3,6 +3,18 @@
 
 /* jshint ignore:end */
 
+define('xtalus/adapters/application', ['exports', 'ember-data', 'xtalus/config/environment'], function (exports, DS, ENV) {
+
+    'use strict';
+
+    var adapterSettings = {};
+
+    exports['default'] = DS['default'].RESTAdapter.extend({
+        host: ENV['default'].APP.API_HOST,
+        namespace: 'api'
+    });
+
+});
 define('xtalus/adapters/demand', ['exports', 'ember-data'], function (exports, DS) {
 
     'use strict';
@@ -17,9 +29,9 @@ define('xtalus/adapters/demand', ['exports', 'ember-data'], function (exports, D
 
             var user_cookie = $ISIS.getCookie('auth');
             return {
-                'Authorization': $ISIS.authHeader
+                "Authorization": $ISIS.authHeader
             };
-        }).property('session.authToken')
+        }).property("session.authToken")
     });
 
 });
@@ -37,9 +49,9 @@ define('xtalus/adapters/demandprofile', ['exports', 'ember-data'], function (exp
 
             var user_cookie = $ISIS.getCookie('auth');
             return {
-                'Authorization': $ISIS.authHeader
+                "Authorization": $ISIS.authHeader
             };
-        }).property('session.authToken')
+        }).property("session.authToken")
     });
 
 });
@@ -66,9 +78,9 @@ define('xtalus/adapters/person', ['exports', 'ember-data'], function (exports, D
 
             var user_cookie = $ISIS.getCookie('auth');
             return {
-                'Authorization': $ISIS.authHeader
+                "Authorization": $ISIS.authHeader
             };
-        }).property('session.authToken')
+        }).property("session.authToken")
     });
 
 });
@@ -86,9 +98,9 @@ define('xtalus/adapters/supplyprofile', ['exports', 'ember-data'], function (exp
 
             var user_cookie = $ISIS.getCookie('auth');
             return {
-                'Authorization': $ISIS.authHeader
+                "Authorization": $ISIS.authHeader
             };
-        }).property('session.authToken')
+        }).property("session.authToken")
     });
 
 });
@@ -104,11 +116,13 @@ define('xtalus/app', ['exports', 'ember', 'ember/resolver', 'ember/load-initiali
     App = Ember['default'].Application.extend({
         modulePrefix: config['default'].modulePrefix,
         podModulePrefix: config['default'].podModulePrefix,
-        Resolver: Resolver['default'] });
+        Resolver: Resolver['default']
+    });
 
     $ISIS.settings = {
-        baseurl: 'http://acc.xtalus.gedge.nl/simple/restful/services/info.matchingservice.dom.Api.Api/',
-        method: 'GET' };
+        baseurl: "http://acc.xtalus.gedge.nl/simple/restful/services/info.matchingservice.dom.Api.Api/",
+        method: 'GET'
+    };
 
     loadInitializers['default'](App, config['default'].modulePrefix);
 
@@ -120,6 +134,15 @@ define('xtalus/components/date-picker', ['exports', 'ember', 'ember-cli-datepick
 	'use strict';
 
 	exports['default'] = Datepicker['default'];
+
+});
+define('xtalus/components/file-picker', ['exports', 'ember-cli-file-picker/components/file-picker'], function (exports, file_picker) {
+
+	'use strict';
+
+
+
+	exports['default'] = file_picker['default'];
 
 });
 define('xtalus/components/matching-widget', ['exports', 'ember', 'ember-data'], function (exports, Ember, DS) {
@@ -222,7 +245,8 @@ define('xtalus/components/matching-widget', ['exports', 'ember', 'ember-data'], 
                 this.data.deleteProfileElement.invoke({ confirmDelete: true }).then(function () {
                     _this.sendAction('onremove', _this.get('data'));
                 });
-            } },
+            }
+        },
 
         isPostal: (function () {
             return this.get('data.description') === 'LOCATION_ELEMENT';
@@ -278,12 +302,14 @@ define('xtalus/components/matching-widget', ['exports', 'ember', 'ember-data'], 
         isEducation: (function () {
             if (this.get('data.description') === 'EDUCATION_LEVEL') {
                 this.role_chkbox = { values: [] };
-                this.data.study = [{ name: 'MBO', value: 'mbo' }, { name: 'HBO', value: 'hbo' }, { name: 'WO', value: 'wo' }];
+                this.data.study = [{ name: 'MBO', value: "mbo" }, { name: 'HBO', value: "hbo" }, { name: 'WO', value: "wo" }];
 
                 return true;
             }
             return false;
-        }).property('data.description') });
+        }).property('data.description')
+
+    });
 
 });
 define('xtalus/components/md-5', ['exports', 'ember'], function (exports, Ember) {
@@ -294,7 +320,7 @@ define('xtalus/components/md-5', ['exports', 'ember'], function (exports, Ember)
     value: null,
     md5: (function () {
       if (Ember['default'].isEmpty(this.get('value'))) {
-        return '';
+        return "";
       }
       return md5(this.get('value'));
     }).property('value')
@@ -318,7 +344,7 @@ define('xtalus/controllers/application', ['exports', 'ember'], function (exports
             this.set('globalSearchResults', null);
             var searchQuery = this.get('globalSearchQuery');
             if (!searchQuery || searchQuery == ' ') {
-                searchQuery = '-';
+                searchQuery = "-";
             }
             var _this = this;
             $ISIS.get('http://acc.xtalus.gedge.nl/simple/restful/v1/find/' + searchQuery).then(function (response) {
@@ -345,7 +371,10 @@ define('xtalus/controllers/application', ['exports', 'ember'], function (exports
                         console.error('type not available, not able to handle "handleSearchResultClick"');
                         break;
                 }
-            } } });
+            }
+        }
+
+    });
     exports['default'] = ApplicationController;
 
 });
@@ -360,15 +389,18 @@ define('xtalus/controllers/login', ['exports', 'ember'], function (exports, Embe
                 $ISIS.auth.login(this.get("username"), this.get("password")).then((function (data) {
                     console.log(data);
                     if (data.message) {
-                        this.set("message", data.message);
+                        this.set('message', data.message);
                         return;
                     } else {
-                        this.get("target.router").refresh();
+                        this.get('target.router').refresh();
                     }
                 }).bind(this));
 
                 return false;
-            } } });
+            }
+        }
+
+    });
     exports['default'] = LoginController;
 
 });
@@ -389,7 +421,7 @@ define('xtalus/controllers/me/connections', ['exports', 'ember'], function (expo
 
         actions: {
             showConnectionDetails: function showConnectionDetails(personData) {
-                this.set('selectedPerson', this.store.find('person', personData.contactId));
+                this.set("selectedPerson", this.store.find('person', personData.contactId));
                 $('section#page').addClass('aside-right');
                 return false;
             },
@@ -397,7 +429,9 @@ define('xtalus/controllers/me/connections', ['exports', 'ember'], function (expo
             hideConnectionDetails: function hideConnectionDetails() {
                 $('section#page').removeClass('aside-right');
                 return false;
-            } } });
+            }
+        }
+    });
 
     exports['default'] = MeConnectionController;
 
@@ -417,11 +451,13 @@ define('xtalus/controllers/me/index', ['exports', 'ember'], function (exports, E
                         firstName: this.model.get('firstName'),
                         middleName: this.model.get('middleName'),
                         lastName: this.model.get('lastName'),
-                        dateOfBirth: this.model.get('birthDay') }).then(function (result) {
+                        dateOfBirth: this.model.get('birthDay')
+                    }).then(function (result) {
                         app.send('changeView', 'page-left', 0);
                     });
                 }).bind(this));
-            } }
+            }
+        }
 
     });
 
@@ -493,7 +529,7 @@ define('xtalus/controllers/profile/connections', ['exports', 'ember'], function 
 
         actions: {
             showConnectionDetails: function showConnectionDetails(personData) {
-                this.set('selectedPerson', this.store.find('person', personData.contactId));
+                this.set("selectedPerson", this.store.find('person', personData.contactId));
                 $('section#page').addClass('aside-right');
                 return false;
             },
@@ -501,7 +537,10 @@ define('xtalus/controllers/profile/connections', ['exports', 'ember'], function 
             hideConnectionDetails: function hideConnectionDetails() {
                 $('section#page').removeClass('aside-right');
                 return false;
-            } } });
+            }
+        }
+
+    });
 
     exports['default'] = ProfileNetworkController;
 
@@ -521,7 +560,8 @@ define('xtalus/controllers/profile/projects', ['exports', 'ember'], function (ex
             hideDetails: function hideDetails() {
                 $('section#page').removeClass('aside-right');
                 return false;
-            } }
+            }
+        }
     });
 
     exports['default'] = ProjectenController;
@@ -543,10 +583,24 @@ define('xtalus/controllers/project/index', ['exports', 'ember'], function (expor
 	var ProjectIndexController = Ember['default'].Controller.extend({
 
 		actions: {
+
+			fileLoaded: function fileLoaded(file) {
+				var _this = this;
+				console.log(file);
+				var post = this.get('store').createRecord('image', {
+					image: file
+				});
+				post.save().then(function (response) {
+					console.log(response);
+					_this.model.set('updateParams.imageUrl', response.get('url'));
+				});
+			},
+
 			updateDemand: function updateDemand() {
 				var app = this.controllerFor('application');
-
 				var _this = this;
+
+				this.store.createRecord('image', {});
 
 				this.model.get('isisObj').then((function (isisObj) {
 					console.log(isisObj);
@@ -558,20 +612,22 @@ define('xtalus/controllers/project/index', ['exports', 'ember'], function (expor
 							console.log('---------OLEE DFDSF----', result);
 						});
 					});
+
+					/*isisObj.updateDemand.invoke({
+	    	firstName:this.model.get('firstName'),
+	    	middleName:this.model.get('middleName'),
+	    	lastName:this.model.get('lastName'),
+	    	dateOfBirth:this.model.get('birthDay'),
+	    }).then(function(result){
+	    	app.send('changeView', 'page-left', 0)
+	    });*/
 				}).bind(this));
-			} }
+			}
+		}
 
 	});
 
 	exports['default'] = ProjectIndexController;
-	/*isisObj.updateDemand.invoke({
-		firstName:this.model.get('firstName'),
-		middleName:this.model.get('middleName'),
-		lastName:this.model.get('lastName'),
-		dateOfBirth:this.model.get('birthDay'),
-	}).then(function(result){
-		app.send('changeView', 'page-left', 0)
-	});*/
 
 });
 define('xtalus/controllers/project/matching', ['exports', 'ember'], function (exports, Ember) {
@@ -695,7 +751,7 @@ define('xtalus/controllers/project/matching', ['exports', 'ember'], function (ex
             selectMatch: function selectMatch(candidate) {
                 var profile = this.get('selectedProfile');
                 var demand = this.get('model');
-                candidate.updateCandidateStatus.invoke({ candidateStatus: 'Chosen' }).then(function () {
+                candidate.updateCandidateStatus.invoke({ candidateStatus: "Chosen" }).then(function () {
                     demand.reload();
                     profile.reload();
                 });
@@ -720,7 +776,8 @@ define('xtalus/controllers/project/matching', ['exports', 'ember'], function (ex
                 return Ember['default'].RSVP.all(a_promises).then(function (widgets) {
                     _this.send('calculateMatches');
                 });
-            } },
+            }
+        },
 
         initMatchInfo: function initMatchInfo(match) {
             $ISIS.init(match.proposedPerson.href).then(function (person) {
@@ -728,94 +785,95 @@ define('xtalus/controllers/project/matching', ['exports', 'ember'], function (ex
                 if (picture[2]) Ember['default'].set(match, 'profilePicture', 'data:image/png;base64,' + picture[2]);
                 Ember['default'].set(match, 'roles', person.roles);
             });
-        } });
+        }
+    });
 
     exports['default'] = ProjectMatchingController;
 
 });
 define('xtalus/controllers/registration', ['exports', 'ember', 'xtalus/mixins/validator'], function (exports, Ember, Validator) {
 
-  'use strict';
+    'use strict';
 
-  var RegistrationController = Ember['default'].Controller.extend(Validator['default'], {
+    var RegistrationController = Ember['default'].Controller.extend(Validator['default'], {
 
-      formdata: {},
-      form: {
-          entities: [{ label: 'maak een keuze', value: '' }, { label: 'Student', value: 'student' }, { label: 'Zzper', value: 'zzp' }, { label: 'Mkber', value: 'mkb' }]
-      },
+        formdata: {
+            /*  username:'edgar',
+              password:'pass',
+              passwordConfirm:'pass',
+              email:'edgar@code.rehab',
+              firstname: 'Edgar',
+              middlename: '',
+              lastname: 'Ravenhorst',
+              birthdate: '1991-02-20',
+              entity: {label:'Student', value:'student'}*/
+        },
+        form: {
+            entities: [{ label: 'maak een keuze', value: '' }, { label: 'Student', value: 'student' }, { label: 'Zzper', value: 'zzp' }, { label: 'Mkber', value: 'mkb' }]
+        },
 
-      actions: {
-          submitRegistration: function submitRegistration() {
-              var validated = true;
-              var formdata = this.get('formdata');
-              var errors = {};
+        actions: {
+            submitRegistration: function submitRegistration() {
+                var validated = true;
+                var formdata = this.get('formdata');
+                var errors = {};
 
-              //username
-              validated = this.validateRequired(formdata.username) ? false : true;
-              if (!validated) errors.username = 'Gebruikersnaam is verplicht';
+                //username
+                validated = this.validateRequired(formdata.username) ? false : true;
+                if (!validated) errors.username = 'Gebruikersnaam is verplicht';
 
-              //email
-              validated = this.validateEmail(formdata.email) ? false : true;
-              if (!validated) errors.email = this.validateEmail(formdata.email);
+                //email
+                validated = this.validateEmail(formdata.email) ? false : true;
+                if (!validated) errors.email = this.validateEmail(formdata.email);
 
-              //password
-              validated = this.validateRequired(formdata.password) ? false : true;
-              if (!validated) errors.password = 'wachtwoord is verplicht';
+                //password
+                validated = this.validateRequired(formdata.password) ? false : true;
+                if (!validated) errors.password = 'wachtwoord is verplicht';
 
-              //passwordConfirm
-              validated = this.validateMatch(formdata.password, formdata.passwordConfirm) ? false : true;
-              if (!validated) errors.passwordConfirm = 'Wachtwoorden komen niet overeen';
+                //passwordConfirm
+                validated = this.validateMatch(formdata.password, formdata.passwordConfirm) ? false : true;
+                if (!validated) errors.passwordConfirm = 'Wachtwoorden komen niet overeen';
 
-              //firstname
-              validated = this.validateRequired(formdata.firstname) ? false : true;
-              if (!validated) errors.firstname = 'Voornaam is verplicht';
+                //firstname
+                validated = this.validateRequired(formdata.firstname) ? false : true;
+                if (!validated) errors.firstname = 'Voornaam is verplicht';
 
-              //lastname
-              validated = this.validateRequired(formdata.lastname) ? false : true;
-              if (!validated) errors.lastname = 'Achternaam is verplicht';
+                //lastname
+                validated = this.validateRequired(formdata.lastname) ? false : true;
+                if (!validated) errors.lastname = 'Achternaam is verplicht';
 
-              //address
-              validated = this.validateRequired(formdata.address) ? false : true;
-              if (!validated) errors.address = 'Het adres is verplicht';
+                //address
+                validated = this.validateRequired(formdata.address) ? false : true;
+                if (!validated) errors.address = 'Het adres is verplicht';
 
-              //city
-              validated = this.validateRequired(formdata.city) ? false : true;
-              if (!validated) errors.city = 'Uw woonplaats is verplicht';
+                //city
+                validated = this.validateRequired(formdata.city) ? false : true;
+                if (!validated) errors.city = 'Uw woonplaats is verplicht';
 
-              //birthdate
-              validated = this.validateRequired(formdata.birthday) ? false : true;
-              if (!validated) errors.birthday = 'Uw birthdate is verplicht';
+                //birthdate
+                validated = this.validateRequired(formdata.birthday) ? false : true;
+                if (!validated) errors.birthday = 'Uw birthdate is verplicht';
 
-              //phone
-              validated = this.validatePhone(formdata.phone) ? false : true;
-              if (!validated) errors.phone = this.validatePhone(formdata.phone);
+                //phone
+                validated = this.validatePhone(formdata.phone) ? false : true;
+                if (!validated) errors.phone = this.validatePhone(formdata.phone);
 
-              //postal
-              validated = this.validatePostal(formdata.postal) ? false : true;
-              if (!validated) errors.postal = this.validatePostal(formdata.postal);
+                //postal
+                validated = this.validatePostal(formdata.postal) ? false : true;
+                if (!validated) errors.postal = this.validatePostal(formdata.postal);
 
-              //entity
-              validated = this.validateRequired(formdata.entity) ? false : true;
-              if (!validated) errors.entity = 'Uw entiteit is verplicht';
+                //entity
+                validated = this.validateRequired(formdata.entity) ? false : true;
+                if (!validated) errors.entity = 'Uw entiteit is verplicht';
 
-              this.set('errors', errors);
-              console.log(Object.keys(errors).length);
-              return Object.keys(errors).length === 0;
-          }
-      }
-  });
+                this.set('errors', errors);
+                console.log(Object.keys(errors).length);
+                return Object.keys(errors).length === 0;
+            }
+        }
+    });
 
-  exports['default'] = RegistrationController;
-
-  /*  username:'edgar',
-    password:'pass',
-    passwordConfirm:'pass',
-    email:'edgar@code.rehab',
-    firstname: 'Edgar',
-    middlename: '',
-    lastname: 'Ravenhorst',
-    birthdate: '1991-02-20',
-    entity: {label:'Student', value:'student'}*/
+    exports['default'] = RegistrationController;
 
 });
 define('xtalus/helpers/ivy-sortable', ['exports', 'ivy-sortable/helpers/ivy-sortable'], function (exports, ivy_sortable) {
@@ -852,11 +910,28 @@ define('xtalus/initializers/export-application-global', ['exports', 'ember', 'xt
 
   exports.initialize = initialize;
 
-  function initialize(container, application) {
-    var classifiedName = Ember['default'].String.classify(config['default'].modulePrefix);
+  function initialize() {
+    var application = arguments[1] || arguments[0];
+    if (config['default'].exportApplicationGlobal !== false) {
+      var value = config['default'].exportApplicationGlobal;
+      var globalName;
 
-    if (config['default'].exportApplicationGlobal && !window[classifiedName]) {
-      window[classifiedName] = application;
+      if (typeof value === 'string') {
+        globalName = value;
+      } else {
+        globalName = Ember['default'].String.classify(config['default'].modulePrefix);
+      }
+
+      if (!window[globalName]) {
+        window[globalName] = application;
+
+        application.reopen({
+          willDestroy: function willDestroy() {
+            this._super.apply(this, arguments);
+            delete window[globalName];
+          }
+        });
+      }
     }
   }
 
@@ -901,12 +976,12 @@ define('xtalus/mixins/validator', ['exports', 'ember'], function (exports, Ember
             var error = false;
             var stripped = value.replace(/[\(\)\.\-\ ]/g, '');
 
-            if (value == '') {
-                error = 'Uw telefoonnummer is verplicht';
+            if (value == "") {
+                error = "Uw telefoonnummer is verplicht";
             } else if (isNaN(stripped)) {
-                error = 'Het telefoonnummer heeft niet het juiste format';
+                error = "Het telefoonnummer heeft niet het juiste format";
             } else if (!(stripped.length == 10)) {
-                error = 'Het telefoonnummer heeft niet de juiste lengte';
+                error = "Het telefoonnummer heeft niet de juiste lengte";
             }
 
             return error;
@@ -919,12 +994,12 @@ define('xtalus/mixins/validator', ['exports', 'ember'], function (exports, Ember
             var emailFilter = /^[^@]+@[^@.]+\.[^@]*\w\w$/;
             var illegalChars = /[\(\)\<\>\,\;\:\\\"\[\]]/;
 
-            if (value == '') {
-                error = 'Uw emailadres is verplicht';
+            if (value == "") {
+                error = "Uw emailadres is verplicht";
             } else if (!emailFilter.test(trimmedValue)) {
-                error = 'Vul alstubieft een correct emailadres in';
+                error = "Vul alstubieft een correct emailadres in";
             } else if (value.match(illegalChars)) {
-                error = 'Het emailadres bevat verkeerde characters';
+                error = "Het emailadres bevat verkeerde characters";
             }
 
             return error;
@@ -936,14 +1011,15 @@ define('xtalus/mixins/validator', ['exports', 'ember'], function (exports, Ember
             var trimmedValue = value.replace(/\s/g, '');
             var postalFilter = /^[1-9][0-9]{3}[A-Z]{2}$/i;
 
-            if (value == '') {
-                error = 'Uw postcode is verplicht';
+            if (value == "") {
+                error = "Uw postcode is verplicht";
             } else if (!postalFilter.test(trimmedValue)) {
-                error = 'Vul alstubieft een correcte postcode in';
+                error = "Vul alstubieft een correcte postcode in";
             }
 
             return error;
-        } });
+        }
+    });
 
 });
 define('xtalus/models/demand', ['exports', 'ember-data'], function (exports, DS) {
@@ -959,6 +1035,7 @@ define('xtalus/models/demand', ['exports', 'ember-data'], function (exports, DS)
 		summary: DS['default'].attr(),
 		profiles: DS['default'].attr(),
 		owner: DS['default'].belongsTo('person'),
+		imageUrl: DS['default'].attr(),
 
 		updateParams: (function () {
 
@@ -976,7 +1053,7 @@ define('xtalus/models/demand', ['exports', 'ember-data'], function (exports, DS)
 			$.each(profiles, function (i, profile) {
 				$.each(profile.profileMatches, function (i, candidate) {
 
-					if (candidate.candidateStatus === 'CHOSEN') {
+					if (candidate.candidateStatus === "CHOSEN") {
 						$ISIS.init('http://acc.xtalus.gedge.nl/simple/restful/' + candidate.URI).then(function (person) {
 							person.fullName = person.supplyCandidate.title;
 							_this.initMatchInfo(person);
@@ -1022,34 +1099,34 @@ define('xtalus/models/demandprofile', ['exports', 'ember-data'], function (expor
         chosenProfileMatchURI: DS['default'].attr({ defaultValue: "" }),
 
         orderedProfileComparisons: (function () {
-            var profileComparisons = this.get("profileComparisons");
+            var profileComparisons = this.get('profileComparisons');
             return Ember.ArrayController.create({
                 model: profileComparisons,
-                sortProperties: ["calculatedMatchingValue"],
+                sortProperties: ['calculatedMatchingValue'],
                 sortAscending: false
             });
-        }).property("profileComparisons"),
+        }).property('profileComparisons'),
 
         initMatch: (function () {
             var _this = this;
-            if (this.get("chosenProfileMatchURI")) {
-                $ISIS.init("http://acc.xtalus.gedge.nl/simple/restful/" + this.get("chosenProfileMatchURI")).then(function (person) {
+            if (this.get('chosenProfileMatchURI')) {
+                $ISIS.init('http://acc.xtalus.gedge.nl/simple/restful/' + this.get('chosenProfileMatchURI')).then(function (person) {
                     person.fullName = person.supplyCandidate.title;
                     _this.initMatchInfo(person);
-                    _this.set("match", person);
+                    _this.set('match', person);
                 });
             }
-        }).observes("chosenProfileMatchURI"),
+        }).observes('chosenProfileMatchURI'),
 
         initWidgets: (function () {
-            var widgets = this.get("profileElements");
+            var widgets = this.get('profileElements');
             var a_promises = [];
             var _this = this;
 
             console.log(widgets);
 
             $.each(widgets, function (i, widget) {
-                if (widget.URI) a_promises.push($ISIS.init("http://acc.xtalus.gedge.nl/simple/restful/" + widget.URI));
+                if (widget.URI) a_promises.push($ISIS.init('http://acc.xtalus.gedge.nl/simple/restful/' + widget.URI));
             });
 
             if (a_promises.length > 0) {
@@ -1058,7 +1135,7 @@ define('xtalus/models/demandprofile', ['exports', 'ember-data'], function (expor
                         return b.weight - a.weight;
                     });
 
-                    var availableWidgets = _this.get("profileElementChoices");
+                    var availableWidgets = _this.get('profileElementChoices');
                     var itemsRemoved = 0;
                     $.each(availableWidgets, function (i, availableWidget) {
                         availableWidget = availableWidgets[i - itemsRemoved];
@@ -1072,29 +1149,29 @@ define('xtalus/models/demandprofile', ['exports', 'ember-data'], function (expor
                         });
                     });
 
-                    _this.set("widgets", widgets);
-                    _this.set("availableWidgets", availableWidgets);
+                    _this.set('widgets', widgets);
+                    _this.set('availableWidgets', availableWidgets);
                 });
             } else {
-                _this.set("widgets", []);
-                _this.set("availableWidgets", this.get("profileElementChoices"));
+                _this.set('widgets', []);
+                _this.set('availableWidgets', this.get('profileElementChoices'));
             }
 
             return [];
-        }).observes("profileElements"),
+        }).observes('profileElements'),
 
         candidates: (function () {
             var _this = this;
-            var profileMatches = this.get("profileMatches");
+            var profileMatches = this.get('profileMatches');
 
             var filteredMatches = Ember.ArrayController.create({
                 model: [],
-                sortProperties: ["calculatedMatchingValue"],
+                sortProperties: ['calculatedMatchingValue'],
                 sortAscending: false
             });
 
             $.each(profileMatches, function (i, match) {
-                $ISIS.init("http://acc.xtalus.gedge.nl/simple/restful/" + match.URI).then(function (match) {
+                $ISIS.init('http://acc.xtalus.gedge.nl/simple/restful/' + match.URI).then(function (match) {
                     match.contactName = match.supplyCandidate.title;
                     _this.initMatchInfo(match);
                     filteredMatches.pushObject(match);
@@ -1102,25 +1179,36 @@ define('xtalus/models/demandprofile', ['exports', 'ember-data'], function (expor
             });
 
             return filteredMatches;
-        }).property("profileMatches"),
+        }).property('profileMatches'),
 
         isisObj: (function () {
-            return $ISIS.get("http://acc.xtalus.gedge.nl/simple/restful/" + this.get("URI")).then(function (isisObjData) {
+            return $ISIS.get('http://acc.xtalus.gedge.nl/simple/restful/' + this.get('URI')).then(function (isisObjData) {
 
                 return $ISIS.extractMembers(isisObjData);
             });
-        }).property("URI"),
+        }).property('URI'),
 
         initMatchInfo: function initMatchInfo(match) {
             if (match) {
                 $ISIS.init(match.supplyCandidate.href).then(function (person) {
-                    var picture = person.picture ? person.picture.split(":") : "";
-                    if (picture[2]) Ember.set(match, "profilePicture", "data:image/png;base64," + picture[2]);
-                    Ember.set(match, "roles", person.roles);
+                    var picture = person.picture ? person.picture.split(':') : '';
+                    if (picture[2]) Ember.set(match, 'profilePicture', 'data:image/png;base64,' + picture[2]);
+                    Ember.set(match, 'roles', person.roles);
                 });
             }
         }
 
+    });
+
+});
+define('xtalus/models/image', ['exports', 'ember-data'], function (exports, DS) {
+
+    'use strict';
+
+    exports['default'] = DS['default'].Model.extend({
+        image: DS['default'].attr(),
+        url: DS['default'].attr(),
+        name: DS['default'].attr()
     });
 
 });
@@ -1131,7 +1219,8 @@ define('xtalus/models/isis', ['exports', 'ember-data'], function (exports, DS) {
     exports['default'] = DS['default'].Model.extend({
         isis: DS['default'].attr({ defaultValue: {} }),
         activePerson: DS['default'].attr({ defaultValue: {} }),
-        globalSearchQuery: DS['default'].attr() });
+        globalSearchQuery: DS['default'].attr()
+    });
 
 });
 define('xtalus/models/person', ['exports', 'ember-data'], function (exports, DS) {
@@ -1215,7 +1304,8 @@ define('xtalus/models/supplyprofile', ['exports', 'ember-data'], function (expor
         URI: DS['default'].attr(),
         description: DS['default'].attr(),
         profileElements: DS['default'].attr(),
-        matches: DS['default'].attr() });
+        matches: DS['default'].attr()
+    });
 
 });
 define('xtalus/router', ['exports', 'ember', 'xtalus/config/environment'], function (exports, Ember, config) {
@@ -1228,7 +1318,7 @@ define('xtalus/router', ['exports', 'ember', 'xtalus/config/environment'], funct
 
     exports['default'] = Router.map(function () {
         this.route('index');
-        this.route('login', { path: '/' });
+        this.route('login', { path: "/" });
         this.route('registration');
         this.route('forgot');
         this.route('help');
@@ -1241,14 +1331,14 @@ define('xtalus/router', ['exports', 'ember', 'xtalus/config/environment'], funct
             this.route('settings');
         });
 
-        this.resource('profile', { path: 'profile/:user_id' }, function () {
+        this.resource('profile', { path: "profile/:user_id" }, function () {
             this.route('connections');
             this.route('projects');
             this.route('courses');
             this.route('references');
         });
 
-        this.resource('project', { path: 'project/:project_id' }, function () {
+        this.resource('project', { path: "project/:project_id" }, function () {
             this.route('matching');
         });
     });
@@ -1260,16 +1350,16 @@ define('xtalus/routes/application', ['exports', 'ember', 'ember-data'], function
 
     var ApplicationRoute = Ember['default'].Route.extend({
 
-        globalSearchQuery: '',
+        globalSearchQuery: "",
 
         model: function model() {
             var store = this.store;
             if ($ISIS.getCookie('auth')) {
                 return $ISIS.init().then(function (isis) {
-                    console.log('\nAPI referentie:\n', '--------------------------------------------------', isis, '===================================================\n');
+                    console.log("\nAPI referentie:\n", '--------------------------------------------------', isis, "===================================================\n");
 
-                    return $ISIS.get('http://acc.xtalus.gedge.nl/simple/restful/v1').then(function (restData) {
-                        console.log('\nPerson referentie:\n', '--------------------------------------------------', restData, '===================================================\n');
+                    return $ISIS.get("http://acc.xtalus.gedge.nl/simple/restful/v1").then(function (restData) {
+                        console.log("\nPerson referentie:\n", '--------------------------------------------------', restData, "===================================================\n");
 
                         var person = store.find('person', restData.person.id);
                         var isis = store.createRecord('isis');
@@ -1301,10 +1391,10 @@ define('xtalus/routes/application', ['exports', 'ember', 'ember-data'], function
             changeView: function changeView(viewID, slideID, type) {
 
                 for (var i = 0; i < 10; i++) {
-                    $('#' + viewID).removeClass('slide-' + i);
+                    $("#" + viewID).removeClass('slide-' + i);
                 }
 
-                $('#' + viewID).addClass('slide-' + slideID);
+                $("#" + viewID).addClass('slide-' + slideID);
                 console.log('slide-' + slideID);
                 return false;
             },
@@ -1343,7 +1433,9 @@ define('xtalus/routes/application', ['exports', 'ember', 'ember-data'], function
                 });
             },
 
-            deletePersonalContact: function deletePersonalContact() {} }
+            deletePersonalContact: function deletePersonalContact() {}
+
+        }
     });
 
     exports['default'] = ApplicationRoute;
@@ -1364,14 +1456,15 @@ define('xtalus/routes/auth', ['exports', 'ember'], function (exports, Ember) {
         setupController: function setupController(controller, model) {
             controller.set('activePerson', this.modelFor('application').get('activePerson'));
             controller.set('model', model);
-            console.log('\nPage referentie:\n', '--------------------------------------------------', controller, '===================================================\n');
+            console.log("\nPage referentie:\n", '--------------------------------------------------', controller, "===================================================\n");
         },
 
         actions: {
             logout: function logout() {
                 $ISIS.auth.logout();
                 this.transitionTo('login');
-            } }
+            }
+        }
     });
 
     exports['default'] = AuthRoute;
@@ -1387,7 +1480,9 @@ define('xtalus/routes/login', ['exports', 'ember'], function (exports, Ember) {
             if ($ISIS.getCookie('auth')) {
                 this.transitionTo('me');
             }
-        } });
+        }
+
+    });
 
     exports['default'] = LoginRoute;
 
@@ -1409,7 +1504,8 @@ define('xtalus/routes/me', ['exports', 'ember', 'xtalus/routes/auth'], function 
             return this.modelFor('application').get('activePerson');
         },
 
-        actions: {} });
+        actions: {}
+    });
 
     exports['default'] = MeRoute;
 
@@ -1421,7 +1517,8 @@ define('xtalus/routes/me/connections', ['exports', 'ember'], function (exports, 
     var MeConnectionsRoute = Ember['default'].Route.extend({
         model: function model() {
             return this.modelFor('me');
-        } });
+        }
+    });
 
     exports['default'] = MeConnectionsRoute;
 
@@ -1449,7 +1546,9 @@ define('xtalus/routes/me/projects', ['exports', 'ember'], function (exports, Emb
 
         model: function model() {
             return this.modelFor('me');
-        } });
+        }
+
+    });
 
     exports['default'] = MeProjectsRoute;
 
@@ -1462,7 +1561,8 @@ define('xtalus/routes/profile', ['exports', 'ember', 'xtalus/routes/auth'], func
 
         model: function model(params) {
             return this.store.find('person', params.user_id);
-        } });
+        }
+    });
 
     exports['default'] = ProfileRoute;
 
@@ -1475,7 +1575,8 @@ define('xtalus/routes/profile/connections', ['exports', 'ember'], function (expo
 
         model: function model() {
             return this.modelFor('profile');
-        } });
+        }
+    });
 
     exports['default'] = ProfileConnectionsRoute;
 
@@ -1489,7 +1590,8 @@ define('xtalus/routes/profile/index', ['exports', 'ember'], function (exports, E
 			return this.modelFor('profile');
 		},
 
-		actions: {} });
+		actions: {}
+	});
 
 	exports['default'] = ProfileIndexRoute;
 
@@ -1502,7 +1604,8 @@ define('xtalus/routes/profile/projects', ['exports', 'ember'], function (exports
 
         model: function model() {
             return this.modelFor('profile');
-        } });
+        }
+    });
 
     exports['default'] = ProfileProjectsRoute;
 
@@ -1521,7 +1624,10 @@ define('xtalus/routes/project', ['exports', 'ember', 'xtalus/routes/auth'], func
             selectMatchingProfile: function selectMatchingProfile(id) {
                 this.controllerFor('project.matching').send('selectMatchingProfile', id);
                 this.transitionTo('project.matching');
-            } } });
+            }
+        }
+
+    });
 
     exports['default'] = ProjectRoute;
 
@@ -1543,7 +1649,7 @@ define('xtalus/routes/project/index', ['exports', 'ember'], function (exports, E
                 console.log(this);
                 var ISISdemand = this.controller.get('model.isisObj');
 
-                var confirmed = confirm('Weet je het zeker?');
+                var confirmed = confirm("Weet je het zeker?");
 
                 if (confirmed) {
                     ISISdemand.then(function (demandObj) {
@@ -1552,7 +1658,10 @@ define('xtalus/routes/project/index', ['exports', 'ember'], function (exports, E
                         });
                     });
                 }
-            } } });
+            }
+
+        }
+    });
 
     exports['default'] = ProjectIndexRoute;
 
@@ -1602,7 +1711,8 @@ define('xtalus/routes/registration', ['exports', 'ember'], function (exports, Em
                     username: formdata.username,
                     password: formdata.password,
                     passwordConfirm: formdata.passwordConfirm,
-                    email: formdata.email };
+                    email: formdata.email
+                };
 
                 $ISIS.auth.logout();
                 $ISIS.post('http://acc.xtalus.gedge.nl/simple/restful/register', params, false).then(function (result) {
@@ -1617,7 +1727,8 @@ define('xtalus/routes/registration', ['exports', 'ember'], function (exports, Em
                                 firstName: formdata.firstname,
                                 middleName: formdata.middlename,
                                 lastName: formdata.lastname,
-                                dateOfBirth: formdata.birthday };
+                                dateOfBirth: formdata.birthday
+                            };
 
                             if (formdata.entity.value === 'student') {
                                 isis.createStudent.invoke(personData).then(function (personID) {
@@ -1653,7 +1764,8 @@ define('xtalus/routes/registration', ['exports', 'ember'], function (exports, Em
                     });
                 });
             }
-        } });
+        }
+    });
 
     exports['default'] = RegistrationRoute;
 
@@ -1701,6 +1813,258 @@ define('xtalus/templates/application', ['exports'], function (exports) {
         }
         var morph0 = dom.createMorphAt(fragment,1,1,contextualElement);
         content(env, morph0, context, "outlet");
+        return fragment;
+      }
+    };
+  }()));
+
+});
+define('xtalus/templates/components/file-picker', ['exports'], function (exports) {
+
+  'use strict';
+
+  exports['default'] = Ember.HTMLBars.template((function() {
+    var child0 = (function() {
+      return {
+        isHTMLBars: true,
+        revision: "Ember@1.11.1",
+        blockParams: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        build: function build(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("  ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1,"class","file-picker__dropzone");
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createComment("");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n  ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        render: function render(context, env, contextualElement) {
+          var dom = env.dom;
+          var hooks = env.hooks, content = hooks.content;
+          dom.detectNamespace(contextualElement);
+          var fragment;
+          if (env.useFragmentCache && dom.canClone) {
+            if (this.cachedFragment === null) {
+              fragment = this.build(dom);
+              if (this.hasRendered) {
+                this.cachedFragment = fragment;
+              } else {
+                this.hasRendered = true;
+              }
+            }
+            if (this.cachedFragment) {
+              fragment = dom.cloneNode(this.cachedFragment, true);
+            }
+          } else {
+            fragment = this.build(dom);
+          }
+          var morph0 = dom.createMorphAt(dom.childAt(fragment, [1]),1,1);
+          content(env, morph0, context, "yield");
+          return fragment;
+        }
+      };
+    }());
+    var child1 = (function() {
+      return {
+        isHTMLBars: true,
+        revision: "Ember@1.11.1",
+        blockParams: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        build: function build(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("  ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createComment("");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        render: function render(context, env, contextualElement) {
+          var dom = env.dom;
+          var hooks = env.hooks, content = hooks.content;
+          dom.detectNamespace(contextualElement);
+          var fragment;
+          if (env.useFragmentCache && dom.canClone) {
+            if (this.cachedFragment === null) {
+              fragment = this.build(dom);
+              if (this.hasRendered) {
+                this.cachedFragment = fragment;
+              } else {
+                this.hasRendered = true;
+              }
+            }
+            if (this.cachedFragment) {
+              fragment = dom.cloneNode(this.cachedFragment, true);
+            }
+          } else {
+            fragment = this.build(dom);
+          }
+          var morph0 = dom.createMorphAt(fragment,1,1,contextualElement);
+          content(env, morph0, context, "yield");
+          return fragment;
+        }
+      };
+    }());
+    var child2 = (function() {
+      return {
+        isHTMLBars: true,
+        revision: "Ember@1.11.1",
+        blockParams: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        build: function build(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("  ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1,"class","file-picker__preview");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        render: function render(context, env, contextualElement) {
+          var dom = env.dom;
+          dom.detectNamespace(contextualElement);
+          var fragment;
+          if (env.useFragmentCache && dom.canClone) {
+            if (this.cachedFragment === null) {
+              fragment = this.build(dom);
+              if (this.hasRendered) {
+                this.cachedFragment = fragment;
+              } else {
+                this.hasRendered = true;
+              }
+            }
+            if (this.cachedFragment) {
+              fragment = dom.cloneNode(this.cachedFragment, true);
+            }
+          } else {
+            fragment = this.build(dom);
+          }
+          return fragment;
+        }
+      };
+    }());
+    var child3 = (function() {
+      return {
+        isHTMLBars: true,
+        revision: "Ember@1.11.1",
+        blockParams: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        build: function build(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("  ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1,"class","file-picker__progress");
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("span");
+          dom.setAttribute(el2,"class","file-picker__progress__value");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n  ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        render: function render(context, env, contextualElement) {
+          var dom = env.dom;
+          var hooks = env.hooks, get = hooks.get, attribute = hooks.attribute;
+          dom.detectNamespace(contextualElement);
+          var fragment;
+          if (env.useFragmentCache && dom.canClone) {
+            if (this.cachedFragment === null) {
+              fragment = this.build(dom);
+              if (this.hasRendered) {
+                this.cachedFragment = fragment;
+              } else {
+                this.hasRendered = true;
+              }
+            }
+            if (this.cachedFragment) {
+              fragment = dom.cloneNode(this.cachedFragment, true);
+            }
+          } else {
+            fragment = this.build(dom);
+          }
+          var element0 = dom.childAt(fragment, [1, 1]);
+          var attrMorph0 = dom.createAttrMorph(element0, 'style');
+          attribute(env, attrMorph0, element0, "style", get(env, context, "progressStyle"));
+          return fragment;
+        }
+      };
+    }());
+    return {
+      isHTMLBars: true,
+      revision: "Ember@1.11.1",
+      blockParams: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      build: function build(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      render: function render(context, env, contextualElement) {
+        var dom = env.dom;
+        var hooks = env.hooks, get = hooks.get, block = hooks.block, inline = hooks.inline;
+        dom.detectNamespace(contextualElement);
+        var fragment;
+        if (env.useFragmentCache && dom.canClone) {
+          if (this.cachedFragment === null) {
+            fragment = this.build(dom);
+            if (this.hasRendered) {
+              this.cachedFragment = fragment;
+            } else {
+              this.hasRendered = true;
+            }
+          }
+          if (this.cachedFragment) {
+            fragment = dom.cloneNode(this.cachedFragment, true);
+          }
+        } else {
+          fragment = this.build(dom);
+        }
+        var morph0 = dom.createMorphAt(fragment,0,0,contextualElement);
+        var morph1 = dom.createMorphAt(fragment,2,2,contextualElement);
+        var morph2 = dom.createMorphAt(fragment,4,4,contextualElement);
+        var morph3 = dom.createMorphAt(fragment,6,6,contextualElement);
+        dom.insertBoundary(fragment, 0);
+        block(env, morph0, context, "if", [get(env, context, "dropzone")], {}, child0, child1);
+        block(env, morph1, context, "if", [get(env, context, "preview")], {}, child2, null);
+        block(env, morph2, context, "if", [get(env, context, "progress")], {}, child3, null);
+        inline(env, morph3, context, "input", [], {"type": "file", "value": get(env, context, "file"), "accept": get(env, context, "accept"), "multiple": get(env, context, "multiple"), "class": "file-picker__input"});
         return fragment;
       }
     };
@@ -3290,14 +3654,20 @@ define('xtalus/templates/components/multiselect-checkboxes', ['exports'], functi
           var el0 = dom.createDocumentFragment();
           var el1 = dom.createTextNode("  ");
           dom.appendChild(el0, el1);
-          var el1 = dom.createElement("label");
+          var el1 = dom.createElement("li");
           var el2 = dom.createTextNode("\n    ");
           dom.appendChild(el1, el2);
-          var el2 = dom.createComment("");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createTextNode("\n    ");
-          dom.appendChild(el1, el2);
-          var el2 = dom.createComment("");
+          var el2 = dom.createElement("label");
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n    ");
+          dom.appendChild(el2, el3);
           dom.appendChild(el1, el2);
           var el2 = dom.createTextNode("\n  ");
           dom.appendChild(el1, el2);
@@ -3326,7 +3696,7 @@ define('xtalus/templates/components/multiselect-checkboxes', ['exports'], functi
           } else {
             fragment = this.build(dom);
           }
-          var element0 = dom.childAt(fragment, [1]);
+          var element0 = dom.childAt(fragment, [1, 1]);
           var morph0 = dom.createMorphAt(element0,1,1);
           var morph1 = dom.createMorphAt(element0,3,3);
           set(env, context, "checkbox", blockArguments[0]);
@@ -6704,7 +7074,7 @@ define('xtalus/templates/me/projects', ['exports'], function (exports) {
           var morph0 = dom.createMorphAt(dom.childAt(element8, [3]),0,0);
           var morph1 = dom.createMorphAt(dom.childAt(element8, [5]),0,0);
           element(env, element6, context, "action", ["showDetails", get(env, context, "demand.id")], {});
-          attribute(env, attrMorph0, element7, "src", concat(env, ["http://lorempixel.com/500/375/?", get(env, context, "demand.id")]));
+          attribute(env, attrMorph0, element7, "src", concat(env, [get(env, context, "demand.imageUrl")]));
           content(env, morph0, context, "demand.description");
           content(env, morph1, context, "demand.demandOwner.title");
           return fragment;
@@ -7088,7 +7458,7 @@ define('xtalus/templates/me/projects', ['exports'], function (exports) {
           var morph2 = dom.createMorphAt(fragment,15,15,contextualElement);
           var morph3 = dom.createMorphAt(dom.childAt(fragment, [19]),0,0);
           var morph4 = dom.createMorphAt(dom.childAt(fragment, [23]),0,0);
-          attribute(env, attrMorph0, element3, "style", concat(env, ["background-image: url('http://lorempixel.com/500/375/?", get(env, context, "selectedDemand.id"), "') "]));
+          attribute(env, attrMorph0, element3, "style", concat(env, ["background-image: url('", get(env, context, "selectedDemand.imageUrl"), "') "]));
           content(env, morph0, context, "selectedDemand.description");
           content(env, morph1, context, "selectedDemand.demandOwner.title");
           block(env, morph2, context, "each", [get(env, context, "selectedDemand.profiles")], {"keyword": "profile"}, child0, null);
@@ -9174,7 +9544,7 @@ define('xtalus/templates/project/index', ['exports'], function (exports) {
             var element0 = dom.childAt(fragment, [1]);
             var morph0 = dom.createMorphAt(dom.childAt(element0, [0]),0,0);
             var morph1 = dom.createMorphAt(element0,2,2);
-            content(env, morph0, context, "profile.description");
+            content(env, morph0, context, "profilwe.description");
             content(env, morph1, context, "profile.match.fullName");
             return fragment;
           }
@@ -9288,6 +9658,42 @@ define('xtalus/templates/project/index', ['exports'], function (exports) {
         }
       };
     }());
+    var child1 = (function() {
+      return {
+        isHTMLBars: true,
+        revision: "Ember@1.11.1",
+        blockParams: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        build: function build(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("                Klik hier of sleep een afbeelding\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        render: function render(context, env, contextualElement) {
+          var dom = env.dom;
+          dom.detectNamespace(contextualElement);
+          var fragment;
+          if (env.useFragmentCache && dom.canClone) {
+            if (this.cachedFragment === null) {
+              fragment = this.build(dom);
+              if (this.hasRendered) {
+                this.cachedFragment = fragment;
+              } else {
+                this.hasRendered = true;
+              }
+            }
+            if (this.cachedFragment) {
+              fragment = dom.cloneNode(this.cachedFragment, true);
+            }
+          } else {
+            fragment = this.build(dom);
+          }
+          return fragment;
+        }
+      };
+    }());
     return {
       isHTMLBars: true,
       revision: "Ember@1.11.1",
@@ -9395,11 +9801,16 @@ define('xtalus/templates/project/index', ['exports'], function (exports) {
         dom.setAttribute(el4,"id","edit-btn");
         dom.setAttribute(el4,"class","fa fa-cog");
         dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n			");
+        var el4 = dom.createTextNode("\n            ");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("form");
         dom.setAttribute(el4,"method","post");
-        var el5 = dom.createTextNode("\n				Afbeelding:\n\n				[image upload hier]\n				");
+        dom.setAttribute(el4,"enctype","multipart/form-data");
+        var el5 = dom.createTextNode("\n				Afbeelding:\n\n");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createTextNode("\n				");
         dom.appendChild(el4, el5);
         var el5 = dom.createElement("br");
         dom.appendChild(el4, el5);
@@ -9549,15 +9960,16 @@ define('xtalus/templates/project/index', ['exports'], function (exports) {
         var morph2 = dom.createMorphAt(element4,13,13);
         var morph3 = dom.createMorphAt(element7,0,0);
         var morph4 = dom.createMorphAt(element7,2,2);
-        var morph5 = dom.createMorphAt(element11,4,4);
-        var morph6 = dom.createMorphAt(element11,7,7);
-        var morph7 = dom.createMorphAt(element11,10,10);
-        var morph8 = dom.createMorphAt(element11,15,15);
-        var morph9 = dom.createMorphAt(element11,18,18);
-        var morph10 = dom.createMorphAt(dom.childAt(element12, [3]),1,1);
-        var morph11 = dom.createMorphAt(dom.childAt(element12, [5, 3]),0,0);
-        var morph12 = dom.createMorphAt(fragment,4,4,contextualElement);
-        attribute(env, attrMorph0, element5, "style", concat(env, ["background-image: url('http://lorempixel.com/500/375/?", get(env, context, "model.id"), "') "]));
+        var morph5 = dom.createMorphAt(element11,1,1);
+        var morph6 = dom.createMorphAt(element11,6,6);
+        var morph7 = dom.createMorphAt(element11,9,9);
+        var morph8 = dom.createMorphAt(element11,12,12);
+        var morph9 = dom.createMorphAt(element11,17,17);
+        var morph10 = dom.createMorphAt(element11,20,20);
+        var morph11 = dom.createMorphAt(dom.childAt(element12, [3]),1,1);
+        var morph12 = dom.createMorphAt(dom.childAt(element12, [5, 3]),0,0);
+        var morph13 = dom.createMorphAt(fragment,4,4,contextualElement);
+        attribute(env, attrMorph0, element5, "style", concat(env, ["background-image: url('", get(env, context, "model.imageUrl"), "') "]));
         element(env, element6, context, "action", ["changeView", "page-left", 1], {});
         content(env, morph0, context, "model.description");
         content(env, morph1, context, "model.owner.firstName");
@@ -9567,15 +9979,16 @@ define('xtalus/templates/project/index', ['exports'], function (exports) {
         element(env, element8, context, "action", ["delProject"], {});
         element(env, element10, context, "action", ["changeView", "page-left", 0], {});
         element(env, element11, context, "action", ["updateDemand"], {"on": "submit"});
-        inline(env, morph5, context, "textarea", [], {"value": get(env, context, "model.description"), "placeholder": "Beschrijving", "rows": "6", "class": "txt-field"});
-        inline(env, morph6, context, "textarea", [], {"value": get(env, context, "model.summary"), "placeholder": "Samenvatting", "rows": "8", "class": "txt-field"});
-        inline(env, morph7, context, "textarea", [], {"value": get(env, context, "model.story"), "placeholder": "Verhaal", "rows": "8", "class": "txt-field"});
-        inline(env, morph8, context, "date-picker", [], {"value": get(env, context, "model.startDate"), "date": get(env, context, "mydate"), "valueFormat": "YYYY-MM-DD", "format": "DD-MM-YYYY", "yearRange": "-70,0"});
-        inline(env, morph9, context, "date-picker", [], {"value": get(env, context, "model.endDate"), "date": get(env, context, "mydate"), "valueFormat": "YYYY-MM-DD", "format": "DD-MM-YYYY", "yearRange": "-70,0"});
+        block(env, morph5, context, "file-picker", [], {"accept": ".jpg,.jpeg,.gif,.png", "fileLoaded": "fileLoaded", "readAs": "readAsDataURL"}, child1, null);
+        inline(env, morph6, context, "textarea", [], {"value": get(env, context, "model.description"), "placeholder": "Beschrijving", "rows": "6", "class": "txt-field"});
+        inline(env, morph7, context, "textarea", [], {"value": get(env, context, "model.summary"), "placeholder": "Samenvatting", "rows": "8", "class": "txt-field"});
+        inline(env, morph8, context, "textarea", [], {"value": get(env, context, "model.story"), "placeholder": "Verhaal", "rows": "8", "class": "txt-field"});
+        inline(env, morph9, context, "date-picker", [], {"value": get(env, context, "model.startDate"), "date": get(env, context, "mydate"), "valueFormat": "YYYY-MM-DD", "format": "DD-MM-YYYY", "yearRange": "-70,0"});
+        inline(env, morph10, context, "date-picker", [], {"value": get(env, context, "model.endDate"), "date": get(env, context, "mydate"), "valueFormat": "YYYY-MM-DD", "format": "DD-MM-YYYY", "yearRange": "-70,0"});
         element(env, element13, context, "action", ["changeView", "page-left", 1], {});
-        content(env, morph10, context, "model.description");
-        content(env, morph11, context, "model.story");
-        inline(env, morph12, context, "log", [get(env, context, "this")], {});
+        content(env, morph11, context, "model.description");
+        content(env, morph12, context, "model.story");
+        inline(env, morph13, context, "log", [get(env, context, "this")], {});
         return fragment;
       }
     };
@@ -11778,6 +12191,16 @@ define('xtalus/templates/registration', ['exports'], function (exports) {
   }()));
 
 });
+define('xtalus/tests/adapters/application.jshint', function () {
+
+  'use strict';
+
+  module('JSHint - adapters');
+  test('adapters/application.js should pass jshint', function() {
+    ok(false, 'adapters/application.js should pass jshint.\nadapters/application.js: line 4, col 5, \'adapterSettings\' is defined but never used.\n\n1 error');
+  });
+
+});
 define('xtalus/tests/adapters/demand.jshint', function () {
 
   'use strict';
@@ -11954,7 +12377,7 @@ define('xtalus/tests/controllers/project/index.jshint', function () {
 
   module('JSHint - controllers/project');
   test('controllers/project/index.js should pass jshint', function() { 
-    ok(false, 'controllers/project/index.js should pass jshint.\ncontrollers/project/index.js: line 10, col 56, Missing semicolon.\ncontrollers/project/index.js: line 25, col 23, Missing semicolon.\ncontrollers/project/index.js: line 27, col 19, Missing semicolon.\ncontrollers/project/index.js: line 10, col 17, \'app\' is defined but never used.\ncontrollers/project/index.js: line 2, col 1, \'$\' is defined but never used.\n\n5 errors'); 
+    ok(false, 'controllers/project/index.js should pass jshint.\ncontrollers/project/index.js: line 17, col 38, Missing semicolon.\ncontrollers/project/index.js: line 18, col 78, Missing semicolon.\ncontrollers/project/index.js: line 23, col 56, Missing semicolon.\ncontrollers/project/index.js: line 27, col 49, Missing semicolon.\ncontrollers/project/index.js: line 39, col 23, Missing semicolon.\ncontrollers/project/index.js: line 41, col 19, Missing semicolon.\ncontrollers/project/index.js: line 23, col 17, \'app\' is defined but never used.\ncontrollers/project/index.js: line 2, col 1, \'$\' is defined but never used.\n\n8 errors');
   });
 
 });
@@ -12062,6 +12485,16 @@ define('xtalus/tests/models/demandprofile.jshint', function () {
   module('JSHint - models');
   test('models/demandprofile.js should pass jshint', function() { 
     ok(false, 'models/demandprofile.js should pass jshint.\nmodels/demandprofile.js: line 36, col 50, Missing semicolon.\nmodels/demandprofile.js: line 43, col 28, Expected \'{\' and instead saw \'a_promises\'.\nmodels/demandprofile.js: line 43, col 114, Missing semicolon.\nmodels/demandprofile.js: line 44, col 19, Missing semicolon.\nmodels/demandprofile.js: line 50, col 19, Missing semicolon.\nmodels/demandprofile.js: line 52, col 74, Missing semicolon.\nmodels/demandprofile.js: line 55, col 71, Missing semicolon.\nmodels/demandprofile.js: line 58, col 63, Expected \'===\' and instead saw \'==\'.\nmodels/demandprofile.js: line 60, col 50, Missing semicolon.\nmodels/demandprofile.js: line 64, col 23, Missing semicolon.\nmodels/demandprofile.js: line 67, col 46, Missing semicolon.\nmodels/demandprofile.js: line 71, col 37, Missing semicolon.\nmodels/demandprofile.js: line 113, col 32, Expected \'{\' and instead saw \'Ember\'.\nmodels/demandprofile.js: line 16, col 16, \'Ember\' is not defined.\nmodels/demandprofile.js: line 27, col 13, \'$ISIS\' is not defined.\nmodels/demandprofile.js: line 42, col 9, \'$\' is not defined.\nmodels/demandprofile.js: line 43, col 44, \'$ISIS\' is not defined.\nmodels/demandprofile.js: line 47, col 13, \'Ember\' is not defined.\nmodels/demandprofile.js: line 54, col 17, \'$\' is not defined.\nmodels/demandprofile.js: line 56, col 21, \'$\' is not defined.\nmodels/demandprofile.js: line 83, col 31, \'Ember\' is not defined.\nmodels/demandprofile.js: line 89, col 9, \'$\' is not defined.\nmodels/demandprofile.js: line 90, col 13, \'$ISIS\' is not defined.\nmodels/demandprofile.js: line 102, col 16, \'$ISIS\' is not defined.\nmodels/demandprofile.js: line 104, col 21, \'$ISIS\' is not defined.\nmodels/demandprofile.js: line 111, col 13, \'$ISIS\' is not defined.\nmodels/demandprofile.js: line 113, col 32, \'Ember\' is not defined.\nmodels/demandprofile.js: line 114, col 17, \'Ember\' is not defined.\n\n28 errors'); 
+  });
+
+});
+define('xtalus/tests/models/image.jshint', function () {
+
+  'use strict';
+
+  module('JSHint - models');
+  test('models/image.js should pass jshint', function() {
+    ok(true, 'models/image.js should pass jshint.');
   });
 
 });
@@ -12428,7 +12861,9 @@ define('xtalus/views/application', ['exports', 'ember'], function (exports, Embe
 
     var UserView = Ember['default'].View.extend({
         tagName: 'section',
-        elementId: '' });
+        elementId: ''
+
+    });
 
     exports['default'] = UserView;
 
@@ -12449,7 +12884,9 @@ define('xtalus/views/login', ['exports', 'ember'], function (exports, Ember) {
     var UserView = Ember['default'].View.extend({
         layoutName: 'login',
         tagName: 'section',
-        elementId: '' });
+        elementId: ''
+
+    });
 
     exports['default'] = UserView;
 
@@ -12462,7 +12899,9 @@ define('xtalus/views/me', ['exports', 'ember'], function (exports, Ember) {
         layoutName: 'layout/main',
         templateName: 'me',
         tagName: 'section',
-        elementId: '' });
+        elementId: ''
+
+    });
 
     exports['default'] = UserView;
 
@@ -12540,7 +12979,8 @@ define('xtalus/views/profile', ['exports', 'ember'], function (exports, Ember) {
         layoutName: 'layout/main',
         templateName: 'profile',
         tagName: 'section',
-        elementId: '' });
+        elementId: ''
+    });
 
     exports['default'] = ProfileView;
 
@@ -12589,7 +13029,8 @@ define('xtalus/views/project', ['exports', 'ember'], function (exports, Ember) {
     'use strict';
 
     var ProjectView = Ember['default'].View.extend({
-        layoutName: 'layout/main' });
+        layoutName: 'layout/main'
+    });
 
     exports['default'] = ProjectView;
 
@@ -12614,7 +13055,8 @@ define('xtalus/views/project/matching', ['exports', 'ember'], function (exports,
     var UserView = Ember['default'].View.extend({
         tagName: 'section',
         elementId: 'page',
-        classNames: ['project-matching', 'aside-left'] });
+        classNames: ['project-matching', 'aside-left']
+    });
 
     exports['default'] = UserView;
 
@@ -12647,7 +13089,7 @@ catch(err) {
 if (runningTests) {
   require("xtalus/tests/test-helper");
 } else {
-  require("xtalus/app")["default"].create({"name":"xtalus","version":"0.0.0.147ce913"});
+  require("xtalus/app")["default"].create({"API_HOST":"//dev.xtalus.nl","name":"xtalus","version":"0.0.0.a6bd3759"});
 }
 
 /* jshint ignore:end */

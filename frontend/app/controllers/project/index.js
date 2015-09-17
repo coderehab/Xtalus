@@ -6,14 +6,28 @@ var ProjectIndexController = Ember.Controller.extend({
 
 
 	actions: {
+
+        fileLoaded: function(file) {
+            var _this = this;
+            console.log(file);
+            var post = this.get('store').createRecord('image', {
+                image: file,
+            });
+            post.save().then(function(response){
+                console.log(response)
+                _this.model.set('updateParams.imageUrl', response.get('url'))
+            });
+        },
+
 		updateDemand:function() {
 			var app = this.controllerFor('application')
-
 			var _this = this;
+
+
+            this.store.createRecord('image', {})
 
 			this.model.get('isisObj').then(function(isisObj){
 				console.log(isisObj);
-
 
 				$ISIS.get(isisObj.updateDemand.url).then(function(result){
 
