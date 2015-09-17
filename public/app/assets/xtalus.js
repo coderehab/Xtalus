@@ -13089,7 +13089,7 @@ catch(err) {
 if (runningTests) {
   require("xtalus/tests/test-helper");
 } else {
-  require("xtalus/app")["default"].create({"API_HOST":"//dev.xtalus.nl","name":"xtalus","version":"0.0.0.a6bd3759"});
+  require("xtalus/app")["default"].create({"API_HOST":"//dev.xtalus.nl","name":"xtalus","version":"0.0.0.95f22c1b"});
 }
 
 /* jshint ignore:end */
