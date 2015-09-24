@@ -2,7 +2,7 @@
 
 return [
     'supportsCredentials' => false,
-    'allowedOrigins' => ['a'],
+    'allowedOrigins' => ['*'],
     'allowedHeaders' => ['Content-Type', 'Accept'],
     'allowedMethods' => ['GET', 'POST', 'PUT',  'DELETE', 'OPTIONS'],
     'exposedHeaders' => [],

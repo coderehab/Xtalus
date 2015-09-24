@@ -26,12 +26,11 @@ module.exports = function(environment) {
         APP: {
             // Here you can pass flags/options to your application instance
             // when it is created
-            API_HOST: "http://localhost:8000",
+            API_HOST: "http://localhost:8000/api",
         }
     };
 
     if (environment === 'development') {
-        ENV.APP.API_HOST = "//dev.xtalus.nl"
         // ENV.APP.LOG_RESOLVER = true;
         // ENV.APP.LOG_ACTIVE_GENERATION = true;
         // ENV.APP.LOG_TRANSITIONS = true;
@@ -41,14 +40,15 @@ module.exports = function(environment) {
 
     if (environment === 'test') {
         // Testem prefers this...
-        ENV.baseURL = '/';
-        ENV.locationType = 'none';
+        ENV.APP.API_HOST = "//dev.xtalus.nl/api"
+        //ENV.baseURL = '/';
+        //ENV.locationType = 'none';
 
         // keep test console output quieter
-        ENV.APP.LOG_ACTIVE_GENERATION = false;
-        ENV.APP.LOG_VIEW_LOOKUPS = false;
+        //ENV.APP.LOG_ACTIVE_GENERATION = false;
+        //ENV.APP.LOG_VIEW_LOOKUPS = false;
 
-        ENV.APP.rootElement = '#ember-testing';
+        //ENV.APP.rootElement = '#ember-testing';
     }
 
     if (environment === 'production') {

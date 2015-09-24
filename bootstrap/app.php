@@ -84,7 +84,7 @@ $app->middleware([
 |
 */
 
-// $app->register(App\Providers\AppServiceProvider::class);
+$app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 $app->register('Folklore\Image\ImageServiceProvider');
 $app->register('Barryvdh\Cors\LumenServiceProvider');

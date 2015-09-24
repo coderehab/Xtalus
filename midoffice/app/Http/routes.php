@@ -20,4 +20,7 @@ $app->group(['prefix' => 'api','middleware' => 'cors'], function ($app) {
     $app->post('images', array('uses' => 'App\Http\Controllers\ImageController@post_image'));
     $app->put('images', array('uses' => 'App\Http\Controllers\ImageController@update_image'));
     $app->delete('images', array('uses' => 'App\Http\Controllers\ImageController@delete_image'));
+
+    $app->get('testmail', array('uses' => 'App\Http\Controllers\MailController@testmail'));
+    $app->post('mail/{type}/{subject}', array('uses' => 'App\Http\Controllers\MailController@sendmail'));
 });
