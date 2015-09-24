@@ -841,10 +841,10 @@ define('xtalus/controllers/registration', ['exports', 'ember', 'xtalus/mixins/va
     var RegistrationController = Ember['default'].Controller.extend(Validator['default'], {
 
         formdata: {
-            username: 'edgar',
-            password: 'pass',
-            passwordConfirm: 'pass',
-            email: 'edgar@code.rehab',
+            /*username:'edgar',
+            password:'pass',
+            passwordConfirm:'pass',
+            email:'edgar@code.rehab',
             firstname: 'Edgar',
             middlename: '',
             lastname: 'Ravenhorst',
@@ -853,7 +853,7 @@ define('xtalus/controllers/registration', ['exports', 'ember', 'xtalus/mixins/va
             address: 'Haaksbergerstraat 149-119',
             postal: '7513 EL',
             city: 'Enschede',
-            entity: { label: 'Student', value: 'student' }
+            entity: {label:'Student', value:'student'}*/
         },
         form: {
             entities: [{ label: 'Student', value: 'student' }, { label: 'Zper', value: 'zp' }, { label: 'Mkber', value: 'mkb' }]
@@ -12038,7 +12038,7 @@ define('xtalus/templates/registration', ['exports'], function (exports) {
         var el5 = dom.createTextNode("\n            ");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n            \n            ");
+        var el4 = dom.createTextNode("\n\n            ");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("div");
         var el5 = dom.createTextNode("\n                ");
@@ -12097,7 +12097,7 @@ define('xtalus/templates/registration', ['exports'], function (exports) {
         var el6 = dom.createTextNode("\n                ");
         dom.appendChild(el5, el6);
         dom.appendChild(el4, el5);
-        var el5 = dom.createTextNode("\n                \n                ");
+        var el5 = dom.createTextNode("\n\n                ");
         dom.appendChild(el4, el5);
         var el5 = dom.createElement("span");
         var el6 = dom.createComment("");
@@ -13167,7 +13167,7 @@ catch(err) {
 if (runningTests) {
   require("xtalus/tests/test-helper");
 } else {
-  require("xtalus/app")["default"].create({"API_HOST":"//dev.xtalus.nl/api","name":"xtalus","version":"0.0.0.0dc12958"});
+  require("xtalus/app")["default"].create({"API_HOST":"//dev.xtalus.nl/api","name":"xtalus","version":"0.0.0.d52992f6"});
 }
 
 /* jshint ignore:end */
