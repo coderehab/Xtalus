@@ -4,7 +4,7 @@ import Validator from '../mixins/validator';
 var RegistrationController = Ember.Controller.extend(Validator, {
 
     formdata:{
-        username:'edgar',
+        /*username:'edgar',
         password:'pass',
         passwordConfirm:'pass',
         email:'edgar@code.rehab',
@@ -16,7 +16,7 @@ var RegistrationController = Ember.Controller.extend(Validator, {
         address: 'Haaksbergerstraat 149-119',
         postal: '7513 EL',
         city: 'Enschede',
-        entity: {label:'Student', value:'student'}
+        entity: {label:'Student', value:'student'}*/
     },
     form:{
         entities: [
