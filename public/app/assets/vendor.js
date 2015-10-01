@@ -64650,11 +64650,11 @@ define("ember/load-initializers",
         adjustPosition: function()
         {
             var field, pEl, width, height, viewportWidth, viewportHeight, scrollTop, left, top, clientRect;
-
+            
             if (this._o.container) return;
-
+            
             this.el.style.position = 'absolute';
-
+            
             field = this._o.trigger;
             pEl = field;
             width = this.el.offsetWidth;

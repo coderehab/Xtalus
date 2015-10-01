@@ -98,7 +98,32 @@
             <tr>
                 <td>
                     <center>
-        @yield('email_content')
+                        <table width="750" style="text-align:center;">
+                            <tr>
+                                <td style="border:none">
+                                    @yield('email_header')
+                                    </td>
+                            </tr>
+
+                        </table>
+
+                        <table width="750" style="background:#fff; border:2px solid #efefef; ">
+                            <tr>
+                                <td style="border:none; padding:35px 10%">
+
+                                    @yield('email_content')
+                                </td>
+                            </tr>
+                        </table>
+
+                        <table width="750" style="text-align:center;">
+                            <tr>
+                                <td style="border:none">
+                                    @yield('email_footer')
+                                </td>
+                            </tr>
+
+                        </table>
                     </center>
                 </td>
             </tr>

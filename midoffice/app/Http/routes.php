@@ -22,5 +22,6 @@ $app->group(['prefix' => 'api','middleware' => 'cors'], function ($app) {
     $app->delete('images', array('uses' => 'App\Http\Controllers\ImageController@delete_image'));
 
     $app->get('testmail', array('uses' => 'App\Http\Controllers\MailController@testmail'));
+    $app->get('mail/{type}/{subject}', array('uses' => 'App\Http\Controllers\MailController@rendermail'));
     $app->post('mail/{type}/{subject}', array('uses' => 'App\Http\Controllers\MailController@sendmail'));
 });

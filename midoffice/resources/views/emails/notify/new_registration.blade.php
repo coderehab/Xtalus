@@ -34,13 +34,13 @@
 </p>
 
 @include ('emails.partials.button', [
-'width' => '150',
-'height' => '45',
-'bgcolor' => '#a21e5c',
-'border_color' => '#a21e5c',
-'color' => '#fff',
-'text' => 'Dit is een knop',
-'url' => 'http://www.xtalus.nl'
+    'width' => '150',
+    'height' => '45',
+    'bgcolor' => '#a21e5c',
+    'border_color' => '#a21e5c',
+    'color' => '#fff',
+    'text' => 'Dit is een knop',
+    'url' => 'http://www.xtalus.nl'
 ])
 
 @stop

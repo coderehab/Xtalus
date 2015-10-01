@@ -841,10 +841,10 @@ define('xtalus/controllers/registration', ['exports', 'ember', 'xtalus/mixins/va
     var RegistrationController = Ember['default'].Controller.extend(Validator['default'], {
 
         formdata: {
-            /*username:'edgar',
-            password:'pass',
-            passwordConfirm:'pass',
-            email:'edgar@code.rehab',
+            username: 'edgar',
+            password: 'pass',
+            passwordConfirm: 'pass',
+            email: 'edgar@code.rehab',
             firstname: 'Edgar',
             middlename: '',
             lastname: 'Ravenhorst',
@@ -853,7 +853,7 @@ define('xtalus/controllers/registration', ['exports', 'ember', 'xtalus/mixins/va
             address: 'Haaksbergerstraat 149-119',
             postal: '7513 EL',
             city: 'Enschede',
-            entity: {label:'Student', value:'student'}*/
+            entity: { label: 'Student', value: 'student' }
         },
         form: {
             entities: [{ label: 'Student', value: 'student' }, { label: 'Zper', value: 'zp' }, { label: 'Mkber', value: 'mkb' }]
@@ -12254,8 +12254,8 @@ define('xtalus/tests/adapters/application.jshint', function () {
   'use strict';
 
   module('JSHint - adapters');
-  test('adapters/application.js should pass jshint', function() {
-    ok(false, 'adapters/application.js should pass jshint.\nadapters/application.js: line 4, col 5, \'adapterSettings\' is defined but never used.\n\n1 error');
+  test('adapters/application.js should pass jshint', function() { 
+    ok(false, 'adapters/application.js should pass jshint.\nadapters/application.js: line 4, col 5, \'adapterSettings\' is defined but never used.\n\n1 error'); 
   });
 
 });
@@ -12284,8 +12284,8 @@ define('xtalus/tests/adapters/email.jshint', function () {
   'use strict';
 
   module('JSHint - adapters');
-  test('adapters/email.js should pass jshint', function() {
-    ok(false, 'adapters/email.js should pass jshint.\nadapters/email.js: line 15, col 27, Missing semicolon.\nadapters/email.js: line 17, col 20, \'Ember\' is not defined.\nadapters/email.js: line 18, col 13, \'Ember\' is not defined.\nadapters/email.js: line 24, col 17, \'Ember\' is not defined.\nadapters/email.js: line 27, col 17, \'Ember\' is not defined.\nadapters/email.js: line 34, col 27, \'$ISIS\' is not defined.\nadapters/email.js: line 34, col 13, \'user_cookie\' is defined but never used.\n\n7 errors');
+  test('adapters/email.js should pass jshint', function() { 
+    ok(false, 'adapters/email.js should pass jshint.\nadapters/email.js: line 15, col 27, Missing semicolon.\nadapters/email.js: line 17, col 20, \'Ember\' is not defined.\nadapters/email.js: line 18, col 13, \'Ember\' is not defined.\nadapters/email.js: line 24, col 17, \'Ember\' is not defined.\nadapters/email.js: line 27, col 17, \'Ember\' is not defined.\nadapters/email.js: line 34, col 27, \'$ISIS\' is not defined.\nadapters/email.js: line 34, col 13, \'user_cookie\' is defined but never used.\n\n7 errors'); 
   });
 
 });
@@ -12445,7 +12445,7 @@ define('xtalus/tests/controllers/project/index.jshint', function () {
 
   module('JSHint - controllers/project');
   test('controllers/project/index.js should pass jshint', function() { 
-    ok(false, 'controllers/project/index.js should pass jshint.\ncontrollers/project/index.js: line 17, col 38, Missing semicolon.\ncontrollers/project/index.js: line 18, col 78, Missing semicolon.\ncontrollers/project/index.js: line 23, col 56, Missing semicolon.\ncontrollers/project/index.js: line 27, col 49, Missing semicolon.\ncontrollers/project/index.js: line 39, col 23, Missing semicolon.\ncontrollers/project/index.js: line 41, col 19, Missing semicolon.\ncontrollers/project/index.js: line 23, col 17, \'app\' is defined but never used.\ncontrollers/project/index.js: line 2, col 1, \'$\' is defined but never used.\n\n8 errors');
+    ok(false, 'controllers/project/index.js should pass jshint.\ncontrollers/project/index.js: line 17, col 38, Missing semicolon.\ncontrollers/project/index.js: line 18, col 78, Missing semicolon.\ncontrollers/project/index.js: line 23, col 56, Missing semicolon.\ncontrollers/project/index.js: line 27, col 49, Missing semicolon.\ncontrollers/project/index.js: line 39, col 23, Missing semicolon.\ncontrollers/project/index.js: line 41, col 19, Missing semicolon.\ncontrollers/project/index.js: line 23, col 17, \'app\' is defined but never used.\ncontrollers/project/index.js: line 2, col 1, \'$\' is defined but never used.\n\n8 errors'); 
   });
 
 });
@@ -12465,7 +12465,7 @@ define('xtalus/tests/controllers/registration.jshint', function () {
 
   module('JSHint - controllers');
   test('controllers/registration.js should pass jshint', function() { 
-    ok(false, 'controllers/registration.js should pass jshint.\ncontrollers/registration.js: line 37, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 41, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 45, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 49, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 53, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 57, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 61, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 65, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 69, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 73, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 77, col 29, Expected \'{\' and instead saw \'errors\'.\n\n11 errors');
+    ok(false, 'controllers/registration.js should pass jshint.\ncontrollers/registration.js: line 37, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 41, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 45, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 49, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 53, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 57, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 61, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 65, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 69, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 73, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 77, col 29, Expected \'{\' and instead saw \'errors\'.\n\n11 errors'); 
   });
 
 });
@@ -12561,8 +12561,8 @@ define('xtalus/tests/models/email.jshint', function () {
   'use strict';
 
   module('JSHint - models');
-  test('models/email.js should pass jshint', function() {
-    ok(true, 'models/email.js should pass jshint.');
+  test('models/email.js should pass jshint', function() { 
+    ok(true, 'models/email.js should pass jshint.'); 
   });
 
 });
@@ -12571,8 +12571,8 @@ define('xtalus/tests/models/image.jshint', function () {
   'use strict';
 
   module('JSHint - models');
-  test('models/image.js should pass jshint', function() {
-    ok(true, 'models/image.js should pass jshint.');
+  test('models/image.js should pass jshint', function() { 
+    ok(true, 'models/image.js should pass jshint.'); 
   });
 
 });
@@ -12762,7 +12762,7 @@ define('xtalus/tests/routes/registration.jshint', function () {
 
   module('JSHint - routes');
   test('routes/registration.js should pass jshint', function() { 
-    ok(false, 'routes/registration.js should pass jshint.\nroutes/registration.js: line 27, col 14, Missing semicolon.\nroutes/registration.js: line 42, col 35, Missing semicolon.\nroutes/registration.js: line 47, col 37, Expected \'===\' and instead saw \'==\'.\nroutes/registration.js: line 52, col 54, Missing semicolon.\nroutes/registration.js: line 59, col 30, Missing semicolon.\nroutes/registration.js: line 63, col 58, Missing semicolon.\nroutes/registration.js: line 68, col 39, Missing semicolon.\nroutes/registration.js: line 69, col 35, Missing semicolon.\nroutes/registration.js: line 78, col 39, Missing semicolon.\nroutes/registration.js: line 79, col 35, Missing semicolon.\nroutes/registration.js: line 88, col 39, Missing semicolon.\nroutes/registration.js: line 89, col 35, Missing semicolon.\nroutes/registration.js: line 29, col 13, \'$ISIS\' is not defined.\nroutes/registration.js: line 30, col 13, \'$ISIS\' is not defined.\nroutes/registration.js: line 48, col 21, \'$ISIS\' is not defined.\nroutes/registration.js: line 49, col 25, \'$ISIS\' is not defined.\nroutes/registration.js: line 5, col 29, \'transition\' is defined but never used.\nroutes/registration.js: line 5, col 21, \'params\' is defined but never used.\nroutes/registration.js: line 9, col 43, \'model\' is defined but never used.\nroutes/registration.js: line 9, col 31, \'controller\' is defined but never used.\nroutes/registration.js: line 16, col 38, \'e\' is defined but never used.\nroutes/registration.js: line 48, col 90, \'data\' is defined but never used.\nroutes/registration.js: line 65, col 45, \'isis\' is defined but never used.\nroutes/registration.js: line 75, col 45, \'isis\' is defined but never used.\nroutes/registration.js: line 85, col 45, \'isis\' is defined but never used.\n\n25 errors');
+    ok(false, 'routes/registration.js should pass jshint.\nroutes/registration.js: line 27, col 14, Missing semicolon.\nroutes/registration.js: line 42, col 35, Missing semicolon.\nroutes/registration.js: line 47, col 37, Expected \'===\' and instead saw \'==\'.\nroutes/registration.js: line 52, col 54, Missing semicolon.\nroutes/registration.js: line 59, col 30, Missing semicolon.\nroutes/registration.js: line 63, col 58, Missing semicolon.\nroutes/registration.js: line 68, col 39, Missing semicolon.\nroutes/registration.js: line 69, col 35, Missing semicolon.\nroutes/registration.js: line 78, col 39, Missing semicolon.\nroutes/registration.js: line 79, col 35, Missing semicolon.\nroutes/registration.js: line 88, col 39, Missing semicolon.\nroutes/registration.js: line 89, col 35, Missing semicolon.\nroutes/registration.js: line 29, col 13, \'$ISIS\' is not defined.\nroutes/registration.js: line 30, col 13, \'$ISIS\' is not defined.\nroutes/registration.js: line 48, col 21, \'$ISIS\' is not defined.\nroutes/registration.js: line 49, col 25, \'$ISIS\' is not defined.\nroutes/registration.js: line 5, col 29, \'transition\' is defined but never used.\nroutes/registration.js: line 5, col 21, \'params\' is defined but never used.\nroutes/registration.js: line 9, col 43, \'model\' is defined but never used.\nroutes/registration.js: line 9, col 31, \'controller\' is defined but never used.\nroutes/registration.js: line 16, col 38, \'e\' is defined but never used.\nroutes/registration.js: line 48, col 90, \'data\' is defined but never used.\nroutes/registration.js: line 65, col 45, \'isis\' is defined but never used.\nroutes/registration.js: line 75, col 45, \'isis\' is defined but never used.\nroutes/registration.js: line 85, col 45, \'isis\' is defined but never used.\n\n25 errors'); 
   });
 
 });
@@ -13167,7 +13167,7 @@ catch(err) {
 if (runningTests) {
   require("xtalus/tests/test-helper");
 } else {
-  require("xtalus/app")["default"].create({"API_HOST":"//dev.xtalus.nl/api","name":"xtalus","version":"0.0.0.d52992f6"});
+  require("xtalus/app")["default"].create({"API_HOST":"http://localhost:8000/api","name":"xtalus","version":"0.0.0.fbe6d666"});
 }
 
 /* jshint ignore:end */

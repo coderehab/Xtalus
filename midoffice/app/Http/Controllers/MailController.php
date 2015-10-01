@@ -36,11 +36,21 @@ class MailController extends BaseController
             $message->subject("$data->subject");
         });
 
-        return view("emails.$type.$subject", $request->json('data'));
+        //return view("emails.$type.$subject", $request->json('data'));
 
         $response = new StdClass();
         $response->success = $mail;
 
         return response()->json($response);
+    }
+
+    public function rendermail(Request $request, $type, $subject){
+
+        $data = (object) $request->input();
+
+        $data->fullname = $data->firstname . ' ' .$data->lastname;
+        if(isset($data->middlename)) $data->fullname = $data->firstname . ' ' . $data->middlename . ' ' . $data->lastname;
+
+        return view("emails.$type.$subject", $request->input());
     }
 }
