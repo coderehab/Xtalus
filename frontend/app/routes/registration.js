@@ -20,31 +20,39 @@ var RegistrationRoute = Ember.Route.extend({
 
             var formdata = this.controller.get('formdata');
             var params = {
-                username:formdata.email,
+                username:formdata.username,
                 password:formdata.password,
                 passwordConfirm:formdata.passwordConfirm,
                 email:formdata.email,
             }
 
+
             $ISIS.auth.logout();
             $ISIS.post('http://acc.xtalus.gedge.nl/simple/restful/register', params, false)
                 .then(function(result){
 
-                var email = _this.store.createRecord('email', {
-                    email:params.email,
-                    type:"confirm",
-                    subject:"registration",
-                    title:"Xtalus registratie",
-                    firstname:"testnaam",
-                    lastname:"testnaam"
-                });
-
-                console.log(email)
-
-                email.save();
-
-                console.log(result);
                 if(result.success == 1){
+
+                    _this.store.createRecord('email', {
+                        email:params.email,
+                        type:"confirm",
+                        subject:"registration",
+                        title:"Xtalus registratie",
+                        firstname:formdata.firstname,
+                        middlename:formdata.middlename,
+                        lastname:formdata.lastname,
+                    }).save();
+
+                    _this.store.createRecord('email', {
+                        email:'info@xtalus.nl',
+                        type:"notify",
+                        subject:"new_registration",
+                        title:"Nieuwe Aanmelding",
+                        firstname:formdata.firstname,
+                        middlename:formdata.middlename,
+                        lastname:formdata.lastname,
+                    }).save();
+
                     $ISIS.auth.login(formdata.username, formdata.password).then(function(data){
                         $ISIS.init().then(function(isis){
 

@@ -1765,7 +1765,7 @@ define('xtalus/routes/registration', ['exports', 'ember'], function (exports, Em
 
                 var formdata = this.controller.get('formdata');
                 var params = {
-                    username: formdata.email,
+                    username: formdata.username,
                     password: formdata.password,
                     passwordConfirm: formdata.passwordConfirm,
                     email: formdata.email
@@ -1774,21 +1774,28 @@ define('xtalus/routes/registration', ['exports', 'ember'], function (exports, Em
                 $ISIS.auth.logout();
                 $ISIS.post('http://acc.xtalus.gedge.nl/simple/restful/register', params, false).then(function (result) {
 
-                    var email = _this.store.createRecord('email', {
-                        email: params.email,
-                        type: "confirm",
-                        subject: "registration",
-                        title: "Xtalus registratie",
-                        firstname: "testnaam",
-                        lastname: "testnaam"
-                    });
-
-                    console.log(email);
-
-                    email.save();
-
-                    console.log(result);
                     if (result.success == 1) {
+
+                        _this.store.createRecord('email', {
+                            email: params.email,
+                            type: "confirm",
+                            subject: "registration",
+                            title: "Xtalus registratie",
+                            firstname: formdata.firstname,
+                            middlename: formdata.middlename,
+                            lastname: formdata.lastname
+                        }).save();
+
+                        _this.store.createRecord('email', {
+                            email: 'info@xtalus.nl',
+                            type: "notify",
+                            subject: "new_registration",
+                            title: "Nieuwe Aanmelding",
+                            firstname: formdata.firstname,
+                            middlename: formdata.middlename,
+                            lastname: formdata.lastname
+                        }).save();
+
                         $ISIS.auth.login(formdata.username, formdata.password).then(function (data) {
                             $ISIS.init().then(function (isis) {
 
@@ -12762,7 +12769,7 @@ define('xtalus/tests/routes/registration.jshint', function () {
 
   module('JSHint - routes');
   test('routes/registration.js should pass jshint', function() { 
-    ok(false, 'routes/registration.js should pass jshint.\nroutes/registration.js: line 27, col 14, Missing semicolon.\nroutes/registration.js: line 42, col 35, Missing semicolon.\nroutes/registration.js: line 47, col 37, Expected \'===\' and instead saw \'==\'.\nroutes/registration.js: line 52, col 54, Missing semicolon.\nroutes/registration.js: line 59, col 30, Missing semicolon.\nroutes/registration.js: line 63, col 58, Missing semicolon.\nroutes/registration.js: line 68, col 39, Missing semicolon.\nroutes/registration.js: line 69, col 35, Missing semicolon.\nroutes/registration.js: line 78, col 39, Missing semicolon.\nroutes/registration.js: line 79, col 35, Missing semicolon.\nroutes/registration.js: line 88, col 39, Missing semicolon.\nroutes/registration.js: line 89, col 35, Missing semicolon.\nroutes/registration.js: line 29, col 13, \'$ISIS\' is not defined.\nroutes/registration.js: line 30, col 13, \'$ISIS\' is not defined.\nroutes/registration.js: line 48, col 21, \'$ISIS\' is not defined.\nroutes/registration.js: line 49, col 25, \'$ISIS\' is not defined.\nroutes/registration.js: line 5, col 29, \'transition\' is defined but never used.\nroutes/registration.js: line 5, col 21, \'params\' is defined but never used.\nroutes/registration.js: line 9, col 43, \'model\' is defined but never used.\nroutes/registration.js: line 9, col 31, \'controller\' is defined but never used.\nroutes/registration.js: line 16, col 38, \'e\' is defined but never used.\nroutes/registration.js: line 48, col 90, \'data\' is defined but never used.\nroutes/registration.js: line 65, col 45, \'isis\' is defined but never used.\nroutes/registration.js: line 75, col 45, \'isis\' is defined but never used.\nroutes/registration.js: line 85, col 45, \'isis\' is defined but never used.\n\n25 errors'); 
+    ok(false, 'routes/registration.js should pass jshint.\nroutes/registration.js: line 27, col 14, Missing semicolon.\nroutes/registration.js: line 34, col 37, Expected \'===\' and instead saw \'==\'.\nroutes/registration.js: line 60, col 54, Missing semicolon.\nroutes/registration.js: line 67, col 30, Missing semicolon.\nroutes/registration.js: line 71, col 58, Missing semicolon.\nroutes/registration.js: line 76, col 39, Missing semicolon.\nroutes/registration.js: line 77, col 35, Missing semicolon.\nroutes/registration.js: line 86, col 39, Missing semicolon.\nroutes/registration.js: line 87, col 35, Missing semicolon.\nroutes/registration.js: line 96, col 39, Missing semicolon.\nroutes/registration.js: line 97, col 35, Missing semicolon.\nroutes/registration.js: line 30, col 13, \'$ISIS\' is not defined.\nroutes/registration.js: line 31, col 13, \'$ISIS\' is not defined.\nroutes/registration.js: line 56, col 21, \'$ISIS\' is not defined.\nroutes/registration.js: line 57, col 25, \'$ISIS\' is not defined.\nroutes/registration.js: line 5, col 29, \'transition\' is defined but never used.\nroutes/registration.js: line 5, col 21, \'params\' is defined but never used.\nroutes/registration.js: line 9, col 43, \'model\' is defined but never used.\nroutes/registration.js: line 9, col 31, \'controller\' is defined but never used.\nroutes/registration.js: line 16, col 38, \'e\' is defined but never used.\nroutes/registration.js: line 56, col 90, \'data\' is defined but never used.\nroutes/registration.js: line 73, col 45, \'isis\' is defined but never used.\nroutes/registration.js: line 83, col 45, \'isis\' is defined but never used.\nroutes/registration.js: line 93, col 45, \'isis\' is defined but never used.\n\n24 errors'); 
   });
 
 });

@@ -30,7 +30,7 @@ class MailController extends BaseController
         if(isset($data->middlename)) $data->fullname = $data->firstname . ' ' . $data->middlename . ' ' . $data->lastname;
 
 
-        $mail = Mail::send("emails.$type.$subject", $request->json('data'), function ($message) use($data) {
+        $mail = Mail::send("emails.$type.$subject", array('postdata' => $data), function ($message) use($data) {
             $message->from('no-reply@xtalus.nl', 'Xtalus');
             $message->to("$data->email", "$data->fullname");
             $message->subject("$data->subject");
@@ -51,6 +51,6 @@ class MailController extends BaseController
         $data->fullname = $data->firstname . ' ' .$data->lastname;
         if(isset($data->middlename)) $data->fullname = $data->firstname . ' ' . $data->middlename . ' ' . $data->lastname;
 
-        return view("emails.$type.$subject", $request->input());
+        return view("emails.$type.$subject", array('postdata' => $data));
     }
 }
