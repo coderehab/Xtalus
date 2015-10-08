@@ -48,6 +48,7 @@ class MailController extends BaseController
 
         $data = (object) $request->input();
 
+
         $data->fullname = $data->firstname . ' ' .$data->lastname;
         if(isset($data->middlename)) $data->fullname = $data->firstname . ' ' . $data->middlename . ' ' . $data->lastname;
 

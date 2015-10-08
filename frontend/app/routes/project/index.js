@@ -20,6 +20,7 @@ var ProjectIndexRoute = Ember.Route.extend({
                 ISISdemand.then(function(demandObj){
                     demandObj.deleteDemand.invoke({confirmDelete: confirmed}).then(function(){
                         self.transitionTo('me.projects');
+                        self.modelFor('me').reload();
                     });
                 })
             }

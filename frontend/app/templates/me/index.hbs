@@ -4,19 +4,25 @@
 		<section id='index' class='slide-0'>
 			<i id="edit-btn" {{action 'changeView' 'page-left' 1 }} class="fa fa-cog"></i>
 
-			<section id="location">
-				<i class="fa fa-location-arrow"></i> <h6>Locatiegegevens</h6>
+
 				<p>
-				{{	model.address }} <br>
-				{{ model.postalCode }} {{ model.town }}
+                    Woonplaats: {{ model.town }}<br>
+                    Opleiding: <br>
+                    Opleidingsinstituut: <br>
+                    Honoursprogramma:<br>
 				 </p>
-			</section>
+
+            Interesse in:
+
+
 			<hr>
+            <!--
 			<section id="age">
 				<i class="fa fa-male"></i> <h6>Geboortdedatum</h6>
 				<p>{{ model.birthday }}</p>
 			</section>
 			<hr>
+-->
 			<section id="availability">
 				<i class="fa fa-calendar"></i> <h6>Beschikbaarheid</h6>
 				<p><br>
