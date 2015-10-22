@@ -750,7 +750,7 @@ section#page.login {
 	footer{
 		position:absolute;
 		@include centerElement('horizontal');
-		top:612px;
+		bottom:-50px;
 		width:$loginWidth;
 		z-index:9;
 
@@ -771,25 +771,28 @@ section#page.login {
 		@include centerElement('horizontal');
 		top:275px;
 		@include box-sizing();
-        padding:0 $viewSliderPadding;
+        padding:50px;
 		margin-top:-18px;
 		width:$loginWidth;
+        min-height:290px;
 
 		img{ @include ignoreGlobalPadding(1,1,0,1); } //border-bottom:1px solid #ccc; }
 		p.message{ margin-left:20px; font-size:15px; color:$color10;}
 
 		h4{
-			font-weight:bold;
+			font-weight:400;
 			font-size:24px;
-			margin: $globalPadding 0 20px 0;
+			margin:0 0 20px 0;
 		}
 
 		form{
+            margin:0;
 			padding-bottom:40px;
 			input{
 				border:0;
 				border-bottom:1px solid #ccc;
 				padding-left:30px;
+                font-size:15px;
 			}
 
 			input[type=checkbox]{
@@ -825,11 +828,12 @@ section#page.login {
 
 			button{
 				position:absolute;
-				right:$globalPadding;
-				bottom:35px;
+				right:50px;
+				bottom:50px;
 				background-color:$color11;
 				width:auto;
 				font-size:$fontsize2;
+                margin-top:35px;
 
 				i{
 					margin-left:14px;
@@ -846,6 +850,13 @@ section#page.login {
 section#page.registration {
 	@extend .absoluteFill;
 	overflow:auto;
+
+
+    .btn-left{
+        right:inherit;
+        left:3%;
+    }
+
 	header{
 		@include box-sizing();
 		@extend .absoluteFill;

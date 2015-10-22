@@ -19,11 +19,18 @@ var RegistrationRoute = Ember.Route.extend({
             var appModel = this.modelFor('application');
 
             var formdata = this.controller.get('formdata');
+            console.log(formdata);
             var params = {
                 username:formdata.username,
                 password:formdata.password,
                 passwordConfirm:formdata.passwordConfirm,
-                email:formdata.email,
+                email:formdata.email
+                //,
+                //phone:formdata.phone,
+                //address:formdata.adress,
+                //city:formdata.city,
+                //postal:formdata.postal,
+
             }
 
 

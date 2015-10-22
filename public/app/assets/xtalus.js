@@ -1777,7 +1777,7 @@ define('xtalus/routes/registration', ['exports', 'ember'], function (exports, Em
                     if (result.success == 1) {
 
                         _this.store.createRecord('email', {
-                            email: params.email,
+                            email: formdata.email,
                             type: "confirm",
                             subject: "registration",
                             title: "Xtalus registratie",
@@ -13174,7 +13174,7 @@ catch(err) {
 if (runningTests) {
   require("xtalus/tests/test-helper");
 } else {
-  require("xtalus/app")["default"].create({"API_HOST":"http://localhost:8000/api","name":"xtalus","version":"0.0.0.fbe6d666"});
+  require("xtalus/app")["default"].create({"API_HOST":"http://localhost:8000/api","name":"xtalus","version":"0.0.0.5a5a9c97"});
 }
 
 /* jshint ignore:end */
