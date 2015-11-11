@@ -1,2 +1,3 @@
 /midoffice/vendor
 .env
+.DS_Store
