@@ -447,6 +447,15 @@ define('xtalus/controllers/login', ['exports', 'ember'], function (exports, Embe
     exports['default'] = LoginController;
 
 });
+define('xtalus/controllers/me', ['exports', 'ember', 'xtalus/controllers/application'], function (exports, Ember, App) {
+
+	'use strict';
+
+	var MeController = App['default'].extend({});
+
+	exports['default'] = MeController;
+
+});
 define('xtalus/controllers/me/connections', ['exports', 'ember'], function (exports, Ember) {
 
     'use strict';
@@ -542,13 +551,17 @@ define('xtalus/controllers/me/projects', ['exports', 'ember'], function (exports
     exports['default'] = MeProjectsController;
 
 });
-define('xtalus/controllers/me', ['exports', 'ember', 'xtalus/controllers/application'], function (exports, Ember, App) {
+define('xtalus/controllers/profile', ['exports', 'ember', 'xtalus/controllers/application'], function (exports, Ember, App) {
 
-	'use strict';
+    'use strict';
 
-	var MeController = App['default'].extend({});
+    var ProfileController = App['default'].extend({
 
-	exports['default'] = MeController;
+        actions: {}
+
+    });
+
+    exports['default'] = ProfileController;
 
 });
 define('xtalus/controllers/profile/connections', ['exports', 'ember'], function (exports, Ember) {
@@ -597,17 +610,13 @@ define('xtalus/controllers/profile/projects', ['exports', 'ember'], function (ex
     exports['default'] = ProjectenController;
 
 });
-define('xtalus/controllers/profile', ['exports', 'ember', 'xtalus/controllers/application'], function (exports, Ember, App) {
+define('xtalus/controllers/project', ['exports', 'ember', 'xtalus/controllers/application'], function (exports, Ember, App) {
 
-    'use strict';
+	'use strict';
 
-    var ProfileController = App['default'].extend({
+	var ProjectController = App['default'].extend({});
 
-        actions: {}
-
-    });
-
-    exports['default'] = ProfileController;
+	exports['default'] = ProjectController;
 
 });
 define('xtalus/controllers/project/index', ['exports', 'ember'], function (exports, Ember) {
@@ -825,15 +834,6 @@ define('xtalus/controllers/project/matching', ['exports', 'ember'], function (ex
     exports['default'] = ProjectMatchingController;
 
 });
-define('xtalus/controllers/project', ['exports', 'ember', 'xtalus/controllers/application'], function (exports, Ember, App) {
-
-	'use strict';
-
-	var ProjectController = App['default'].extend({});
-
-	exports['default'] = ProjectController;
-
-});
 define('xtalus/controllers/registration', ['exports', 'ember', 'xtalus/mixins/validator'], function (exports, Ember, Validator) {
 
     'use strict';
@@ -977,6 +977,8 @@ define('xtalus/initializers/export-application-global', ['exports', 'ember', 'xt
       }
     }
   }
+
+  ;
 
   exports['default'] = {
     name: 'export-application-global',
@@ -1542,6 +1544,29 @@ define('xtalus/routes/login', ['exports', 'ember'], function (exports, Ember) {
     exports['default'] = LoginRoute;
 
 });
+define('xtalus/routes/me', ['exports', 'ember', 'xtalus/routes/auth'], function (exports, Ember, Auth) {
+
+    'use strict';
+
+    var MeRoute = Auth['default'].extend({
+
+        beforeModel: function beforeModel() {
+            //if(this.controller) this.controller.init();
+            if (!$ISIS.getCookie('auth')) {
+                this.transitionTo('login');
+            }
+        },
+
+        model: function model() {
+            return this.modelFor('application').get('activePerson');
+        },
+
+        actions: {}
+    });
+
+    exports['default'] = MeRoute;
+
+});
 define('xtalus/routes/me/connections', ['exports', 'ember'], function (exports, Ember) {
 
     'use strict';
@@ -1585,27 +1610,18 @@ define('xtalus/routes/me/projects', ['exports', 'ember'], function (exports, Emb
     exports['default'] = MeProjectsRoute;
 
 });
-define('xtalus/routes/me', ['exports', 'ember', 'xtalus/routes/auth'], function (exports, Ember, Auth) {
+define('xtalus/routes/profile', ['exports', 'ember', 'xtalus/routes/auth'], function (exports, Ember, Auth) {
 
     'use strict';
 
-    var MeRoute = Auth['default'].extend({
+    var ProfileRoute = Auth['default'].extend({
 
-        beforeModel: function beforeModel() {
-            //if(this.controller) this.controller.init();
-            if (!$ISIS.getCookie('auth')) {
-                this.transitionTo('login');
-            }
-        },
-
-        model: function model() {
-            return this.modelFor('application').get('activePerson');
-        },
-
-        actions: {}
+        model: function model(params) {
+            return this.store.find('person', params.user_id);
+        }
     });
 
-    exports['default'] = MeRoute;
+    exports['default'] = ProfileRoute;
 
 });
 define('xtalus/routes/profile/connections', ['exports', 'ember'], function (exports, Ember) {
@@ -1651,18 +1667,26 @@ define('xtalus/routes/profile/projects', ['exports', 'ember'], function (exports
     exports['default'] = ProfileProjectsRoute;
 
 });
-define('xtalus/routes/profile', ['exports', 'ember', 'xtalus/routes/auth'], function (exports, Ember, Auth) {
+define('xtalus/routes/project', ['exports', 'ember', 'xtalus/routes/auth'], function (exports, Ember, Auth) {
 
     'use strict';
 
-    var ProfileRoute = Auth['default'].extend({
-
+    var ProjectRoute = Auth['default'].extend({
         model: function model(params) {
-            return this.store.find('person', params.user_id);
+            var demand = this.store.find('demand', params.project_id);
+            return demand;
+        },
+
+        actions: {
+            selectMatchingProfile: function selectMatchingProfile(id) {
+                this.controllerFor('project.matching').send('selectMatchingProfile', id);
+                this.transitionTo('project.matching');
+            }
         }
+
     });
 
-    exports['default'] = ProfileRoute;
+    exports['default'] = ProjectRoute;
 
 });
 define('xtalus/routes/project/index', ['exports', 'ember'], function (exports, Ember) {
@@ -1719,28 +1743,6 @@ define('xtalus/routes/project/matching', ['exports', 'ember'], function (exports
     exports['default'] = ProjectMatchingRoute;
 
 });
-define('xtalus/routes/project', ['exports', 'ember', 'xtalus/routes/auth'], function (exports, Ember, Auth) {
-
-    'use strict';
-
-    var ProjectRoute = Auth['default'].extend({
-        model: function model(params) {
-            var demand = this.store.find('demand', params.project_id);
-            return demand;
-        },
-
-        actions: {
-            selectMatchingProfile: function selectMatchingProfile(id) {
-                this.controllerFor('project.matching').send('selectMatchingProfile', id);
-                this.transitionTo('project.matching');
-            }
-        }
-
-    });
-
-    exports['default'] = ProjectRoute;
-
-});
 define('xtalus/routes/registration', ['exports', 'ember'], function (exports, Ember) {
 
     'use strict';
@@ -1783,7 +1785,7 @@ define('xtalus/routes/registration', ['exports', 'ember'], function (exports, Em
                     if (result.success == 1) {
 
                         _this.store.createRecord('email', {
-                            email: formdata.email,
+                            email: params.email,
                             type: "confirm",
                             subject: "registration",
                             title: "Xtalus registratie",
@@ -5268,6 +5270,217 @@ define('xtalus/templates/login', ['exports'], function (exports) {
   }()));
 
 });
+define('xtalus/templates/me', ['exports'], function (exports) {
+
+  'use strict';
+
+  exports['default'] = Ember.HTMLBars.template((function() {
+    var child0 = (function() {
+      return {
+        isHTMLBars: true,
+        revision: "Ember@1.11.1",
+        blockParams: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        build: function build(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("Algemeen");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        render: function render(context, env, contextualElement) {
+          var dom = env.dom;
+          dom.detectNamespace(contextualElement);
+          var fragment;
+          if (env.useFragmentCache && dom.canClone) {
+            if (this.cachedFragment === null) {
+              fragment = this.build(dom);
+              if (this.hasRendered) {
+                this.cachedFragment = fragment;
+              } else {
+                this.hasRendered = true;
+              }
+            }
+            if (this.cachedFragment) {
+              fragment = dom.cloneNode(this.cachedFragment, true);
+            }
+          } else {
+            fragment = this.build(dom);
+          }
+          return fragment;
+        }
+      };
+    }());
+    var child1 = (function() {
+      return {
+        isHTMLBars: true,
+        revision: "Ember@1.11.1",
+        blockParams: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        build: function build(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("Referenties");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        render: function render(context, env, contextualElement) {
+          var dom = env.dom;
+          dom.detectNamespace(contextualElement);
+          var fragment;
+          if (env.useFragmentCache && dom.canClone) {
+            if (this.cachedFragment === null) {
+              fragment = this.build(dom);
+              if (this.hasRendered) {
+                this.cachedFragment = fragment;
+              } else {
+                this.hasRendered = true;
+              }
+            }
+            if (this.cachedFragment) {
+              fragment = dom.cloneNode(this.cachedFragment, true);
+            }
+          } else {
+            fragment = this.build(dom);
+          }
+          return fragment;
+        }
+      };
+    }());
+    var child2 = (function() {
+      return {
+        isHTMLBars: true,
+        revision: "Ember@1.11.1",
+        blockParams: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        build: function build(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("Netwerk");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        render: function render(context, env, contextualElement) {
+          var dom = env.dom;
+          dom.detectNamespace(contextualElement);
+          var fragment;
+          if (env.useFragmentCache && dom.canClone) {
+            if (this.cachedFragment === null) {
+              fragment = this.build(dom);
+              if (this.hasRendered) {
+                this.cachedFragment = fragment;
+              } else {
+                this.hasRendered = true;
+              }
+            }
+            if (this.cachedFragment) {
+              fragment = dom.cloneNode(this.cachedFragment, true);
+            }
+          } else {
+            fragment = this.build(dom);
+          }
+          return fragment;
+        }
+      };
+    }());
+    return {
+      isHTMLBars: true,
+      revision: "Ember@1.11.1",
+      blockParams: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      build: function build(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("header");
+        dom.setAttribute(el1,"id","page-header");
+        var el2 = dom.createTextNode("\n\n	");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("h4");
+        var el3 = dom.createTextNode("Profiel: ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n\n	");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("nav");
+        dom.setAttribute(el2,"id","submenu");
+        var el3 = dom.createTextNode("\n		");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("ul");
+        var el4 = dom.createTextNode("\n			");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("li");
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n			");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("li");
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n			");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("li");
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n		");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n	");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      render: function render(context, env, contextualElement) {
+        var dom = env.dom;
+        var hooks = env.hooks, content = hooks.content, block = hooks.block;
+        dom.detectNamespace(contextualElement);
+        var fragment;
+        if (env.useFragmentCache && dom.canClone) {
+          if (this.cachedFragment === null) {
+            fragment = this.build(dom);
+            if (this.hasRendered) {
+              this.cachedFragment = fragment;
+            } else {
+              this.hasRendered = true;
+            }
+          }
+          if (this.cachedFragment) {
+            fragment = dom.cloneNode(this.cachedFragment, true);
+          }
+        } else {
+          fragment = this.build(dom);
+        }
+        var element0 = dom.childAt(fragment, [0]);
+        var element1 = dom.childAt(element0, [3, 1]);
+        var morph0 = dom.createMorphAt(dom.childAt(element0, [1]),1,1);
+        var morph1 = dom.createMorphAt(dom.childAt(element1, [1]),0,0);
+        var morph2 = dom.createMorphAt(dom.childAt(element1, [3]),0,0);
+        var morph3 = dom.createMorphAt(dom.childAt(element1, [5]),0,0);
+        var morph4 = dom.createMorphAt(fragment,2,2,contextualElement);
+        content(env, morph0, context, "model.fullName");
+        block(env, morph1, context, "link-to", ["me.index"], {}, child0, null);
+        block(env, morph2, context, "link-to", ["me.references"], {}, child1, null);
+        block(env, morph3, context, "link-to", ["me.connections"], {}, child2, null);
+        content(env, morph4, context, "outlet");
+        return fragment;
+      }
+    };
+  }()));
+
+});
 define('xtalus/templates/me/connections', ['exports'], function (exports) {
 
   'use strict';
@@ -7777,7 +7990,7 @@ define('xtalus/templates/me/references', ['exports'], function (exports) {
   }()));
 
 });
-define('xtalus/templates/me', ['exports'], function (exports) {
+define('xtalus/templates/profile', ['exports'], function (exports) {
 
   'use strict';
 
@@ -7900,7 +8113,25 @@ define('xtalus/templates/me', ['exports'], function (exports) {
         var el0 = dom.createDocumentFragment();
         var el1 = dom.createElement("header");
         dom.setAttribute(el1,"id","page-header");
-        var el2 = dom.createTextNode("\n\n	");
+        dom.setAttribute(el1,"class","has-image");
+        var el2 = dom.createTextNode("\n    ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("button");
+        dom.setAttribute(el2,"id","addProjectBtn");
+        var el3 = dom.createTextNode("connect ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("i");
+        dom.setAttribute(el3,"class","fa fa-plus");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n    ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("img");
+        dom.setAttribute(el2,"class","profilePicture");
+        dom.setAttribute(el2,"width","100");
+        dom.setAttribute(el2,"height","100");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n    ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("h4");
         var el3 = dom.createTextNode("Profiel: ");
@@ -7908,35 +8139,35 @@ define('xtalus/templates/me', ['exports'], function (exports) {
         var el3 = dom.createComment("");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n\n	");
+        var el2 = dom.createTextNode("\n\n\n\n    ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("nav");
         dom.setAttribute(el2,"id","submenu");
-        var el3 = dom.createTextNode("\n		");
+        var el3 = dom.createTextNode("\n        ");
         dom.appendChild(el2, el3);
         var el3 = dom.createElement("ul");
-        var el4 = dom.createTextNode("\n			");
+        var el4 = dom.createTextNode("\n            ");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("li");
         var el5 = dom.createComment("");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n			");
+        var el4 = dom.createTextNode("\n            ");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("li");
         var el5 = dom.createComment("");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n			");
+        var el4 = dom.createTextNode("\n            ");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("li");
         var el5 = dom.createComment("");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n		");
+        var el4 = dom.createTextNode("\n        ");
         dom.appendChild(el3, el4);
         dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n	");
+        var el3 = dom.createTextNode("\n    ");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n\n");
@@ -7952,7 +8183,7 @@ define('xtalus/templates/me', ['exports'], function (exports) {
       },
       render: function render(context, env, contextualElement) {
         var dom = env.dom;
-        var hooks = env.hooks, content = hooks.content, block = hooks.block;
+        var hooks = env.hooks, get = hooks.get, element = hooks.element, concat = hooks.concat, attribute = hooks.attribute, content = hooks.content, block = hooks.block;
         dom.detectNamespace(contextualElement);
         var fragment;
         if (env.useFragmentCache && dom.canClone) {
@@ -7971,16 +8202,21 @@ define('xtalus/templates/me', ['exports'], function (exports) {
           fragment = this.build(dom);
         }
         var element0 = dom.childAt(fragment, [0]);
-        var element1 = dom.childAt(element0, [3, 1]);
-        var morph0 = dom.createMorphAt(dom.childAt(element0, [1]),1,1);
-        var morph1 = dom.createMorphAt(dom.childAt(element1, [1]),0,0);
-        var morph2 = dom.createMorphAt(dom.childAt(element1, [3]),0,0);
-        var morph3 = dom.createMorphAt(dom.childAt(element1, [5]),0,0);
+        var element1 = dom.childAt(element0, [1]);
+        var element2 = dom.childAt(element0, [3]);
+        var element3 = dom.childAt(element0, [7, 1]);
+        var attrMorph0 = dom.createAttrMorph(element2, 'src');
+        var morph0 = dom.createMorphAt(dom.childAt(element0, [5]),1,1);
+        var morph1 = dom.createMorphAt(dom.childAt(element3, [1]),0,0);
+        var morph2 = dom.createMorphAt(dom.childAt(element3, [3]),0,0);
+        var morph3 = dom.createMorphAt(dom.childAt(element3, [5]),0,0);
         var morph4 = dom.createMorphAt(fragment,2,2,contextualElement);
+        element(env, element1, context, "action", ["createPersonalContact", get(env, context, "model.id")], {});
+        attribute(env, attrMorph0, element2, "src", concat(env, [get(env, context, "model.profilePicture")]));
         content(env, morph0, context, "model.fullName");
-        block(env, morph1, context, "link-to", ["me.index"], {}, child0, null);
-        block(env, morph2, context, "link-to", ["me.references"], {}, child1, null);
-        block(env, morph3, context, "link-to", ["me.connections"], {}, child2, null);
+        block(env, morph1, context, "link-to", ["profile.index"], {}, child0, null);
+        block(env, morph2, context, "link-to", ["profile.references"], {}, child1, null);
+        block(env, morph3, context, "link-to", ["profile.connections"], {}, child2, null);
         content(env, morph4, context, "outlet");
         return fragment;
       }
@@ -9007,7 +9243,7 @@ define('xtalus/templates/profile/projects', ['exports'], function (exports) {
   }()));
 
 });
-define('xtalus/templates/profile', ['exports'], function (exports) {
+define('xtalus/templates/project', ['exports'], function (exports) {
 
   'use strict';
 
@@ -9021,7 +9257,10 @@ define('xtalus/templates/profile', ['exports'], function (exports) {
         hasRendered: false,
         build: function build(dom) {
           var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("Algemeen");
+          var el1 = dom.createElement("i");
+          dom.setAttribute(el1,"class","fa fa-chevron-left");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode(" Terug naar projecten");
           dom.appendChild(el0, el1);
           return el0;
         },
@@ -9057,7 +9296,7 @@ define('xtalus/templates/profile', ['exports'], function (exports) {
         hasRendered: false,
         build: function build(dom) {
           var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("Referenties");
+          var el1 = dom.createTextNode("Algemeen");
           dom.appendChild(el0, el1);
           return el0;
         },
@@ -9093,7 +9332,7 @@ define('xtalus/templates/profile', ['exports'], function (exports) {
         hasRendered: false,
         build: function build(dom) {
           var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("Netwerk");
+          var el1 = dom.createTextNode("Matches");
           dom.appendChild(el0, el1);
           return el0;
         },
@@ -9130,64 +9369,38 @@ define('xtalus/templates/profile', ['exports'], function (exports) {
         var el0 = dom.createDocumentFragment();
         var el1 = dom.createElement("header");
         dom.setAttribute(el1,"id","page-header");
-        dom.setAttribute(el1,"class","has-image");
-        var el2 = dom.createTextNode("\n    ");
+        var el2 = dom.createTextNode("\n\n    ");
         dom.appendChild(el1, el2);
-        var el2 = dom.createElement("button");
-        dom.setAttribute(el2,"id","addProjectBtn");
-        var el3 = dom.createTextNode("connect ");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createElement("i");
-        dom.setAttribute(el3,"class","fa fa-plus");
-        dom.appendChild(el2, el3);
-        dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n    ");
-        dom.appendChild(el1, el2);
-        var el2 = dom.createElement("img");
-        dom.setAttribute(el2,"class","profilePicture");
-        dom.setAttribute(el2,"width","100");
-        dom.setAttribute(el2,"height","100");
-        dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n    ");
-        dom.appendChild(el1, el2);
-        var el2 = dom.createElement("h4");
-        var el3 = dom.createTextNode("Profiel: ");
-        dom.appendChild(el2, el3);
+        var el2 = dom.createElement("h5");
         var el3 = dom.createComment("");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n\n\n\n    ");
+        var el2 = dom.createTextNode("\n\n	");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("nav");
         dom.setAttribute(el2,"id","submenu");
-        var el3 = dom.createTextNode("\n        ");
+        var el3 = dom.createTextNode("\n		");
         dom.appendChild(el2, el3);
         var el3 = dom.createElement("ul");
-        var el4 = dom.createTextNode("\n            ");
+        var el4 = dom.createTextNode("\n			");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("li");
         var el5 = dom.createComment("");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n            ");
+        var el4 = dom.createTextNode("\n			");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("li");
         var el5 = dom.createComment("");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n            ");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createElement("li");
-        var el5 = dom.createComment("");
-        dom.appendChild(el4, el5);
-        dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n        ");
+        var el4 = dom.createTextNode("\n		");
         dom.appendChild(el3, el4);
         dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n    ");
+        var el3 = dom.createTextNode("\n	");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n\n");
+        var el2 = dom.createTextNode("\n");
         dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n\n");
@@ -9200,7 +9413,7 @@ define('xtalus/templates/profile', ['exports'], function (exports) {
       },
       render: function render(context, env, contextualElement) {
         var dom = env.dom;
-        var hooks = env.hooks, get = hooks.get, element = hooks.element, concat = hooks.concat, attribute = hooks.attribute, content = hooks.content, block = hooks.block;
+        var hooks = env.hooks, block = hooks.block, content = hooks.content;
         dom.detectNamespace(contextualElement);
         var fragment;
         if (env.useFragmentCache && dom.canClone) {
@@ -9219,22 +9432,15 @@ define('xtalus/templates/profile', ['exports'], function (exports) {
           fragment = this.build(dom);
         }
         var element0 = dom.childAt(fragment, [0]);
-        var element1 = dom.childAt(element0, [1]);
-        var element2 = dom.childAt(element0, [3]);
-        var element3 = dom.childAt(element0, [7, 1]);
-        var attrMorph0 = dom.createAttrMorph(element2, 'src');
-        var morph0 = dom.createMorphAt(dom.childAt(element0, [5]),1,1);
-        var morph1 = dom.createMorphAt(dom.childAt(element3, [1]),0,0);
-        var morph2 = dom.createMorphAt(dom.childAt(element3, [3]),0,0);
-        var morph3 = dom.createMorphAt(dom.childAt(element3, [5]),0,0);
-        var morph4 = dom.createMorphAt(fragment,2,2,contextualElement);
-        element(env, element1, context, "action", ["createPersonalContact", get(env, context, "model.id")], {});
-        attribute(env, attrMorph0, element2, "src", concat(env, [get(env, context, "model.profilePicture")]));
-        content(env, morph0, context, "model.fullName");
-        block(env, morph1, context, "link-to", ["profile.index"], {}, child0, null);
-        block(env, morph2, context, "link-to", ["profile.references"], {}, child1, null);
-        block(env, morph3, context, "link-to", ["profile.connections"], {}, child2, null);
-        content(env, morph4, context, "outlet");
+        var element1 = dom.childAt(element0, [3, 1]);
+        var morph0 = dom.createMorphAt(dom.childAt(element0, [1]),0,0);
+        var morph1 = dom.createMorphAt(dom.childAt(element1, [1]),0,0);
+        var morph2 = dom.createMorphAt(dom.childAt(element1, [3]),0,0);
+        var morph3 = dom.createMorphAt(fragment,2,2,contextualElement);
+        block(env, morph0, context, "link-to", ["me.projects"], {}, child0, null);
+        block(env, morph1, context, "link-to", ["project.index"], {}, child1, null);
+        block(env, morph2, context, "link-to", ["project.matching"], {}, child2, null);
+        content(env, morph3, context, "outlet");
         return fragment;
       }
     };
@@ -11372,210 +11578,6 @@ define('xtalus/templates/project/matching', ['exports'], function (exports) {
   }()));
 
 });
-define('xtalus/templates/project', ['exports'], function (exports) {
-
-  'use strict';
-
-  exports['default'] = Ember.HTMLBars.template((function() {
-    var child0 = (function() {
-      return {
-        isHTMLBars: true,
-        revision: "Ember@1.11.1",
-        blockParams: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        build: function build(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createElement("i");
-          dom.setAttribute(el1,"class","fa fa-chevron-left");
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode(" Terug naar projecten");
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        render: function render(context, env, contextualElement) {
-          var dom = env.dom;
-          dom.detectNamespace(contextualElement);
-          var fragment;
-          if (env.useFragmentCache && dom.canClone) {
-            if (this.cachedFragment === null) {
-              fragment = this.build(dom);
-              if (this.hasRendered) {
-                this.cachedFragment = fragment;
-              } else {
-                this.hasRendered = true;
-              }
-            }
-            if (this.cachedFragment) {
-              fragment = dom.cloneNode(this.cachedFragment, true);
-            }
-          } else {
-            fragment = this.build(dom);
-          }
-          return fragment;
-        }
-      };
-    }());
-    var child1 = (function() {
-      return {
-        isHTMLBars: true,
-        revision: "Ember@1.11.1",
-        blockParams: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        build: function build(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("Algemeen");
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        render: function render(context, env, contextualElement) {
-          var dom = env.dom;
-          dom.detectNamespace(contextualElement);
-          var fragment;
-          if (env.useFragmentCache && dom.canClone) {
-            if (this.cachedFragment === null) {
-              fragment = this.build(dom);
-              if (this.hasRendered) {
-                this.cachedFragment = fragment;
-              } else {
-                this.hasRendered = true;
-              }
-            }
-            if (this.cachedFragment) {
-              fragment = dom.cloneNode(this.cachedFragment, true);
-            }
-          } else {
-            fragment = this.build(dom);
-          }
-          return fragment;
-        }
-      };
-    }());
-    var child2 = (function() {
-      return {
-        isHTMLBars: true,
-        revision: "Ember@1.11.1",
-        blockParams: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        build: function build(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("Matches");
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        render: function render(context, env, contextualElement) {
-          var dom = env.dom;
-          dom.detectNamespace(contextualElement);
-          var fragment;
-          if (env.useFragmentCache && dom.canClone) {
-            if (this.cachedFragment === null) {
-              fragment = this.build(dom);
-              if (this.hasRendered) {
-                this.cachedFragment = fragment;
-              } else {
-                this.hasRendered = true;
-              }
-            }
-            if (this.cachedFragment) {
-              fragment = dom.cloneNode(this.cachedFragment, true);
-            }
-          } else {
-            fragment = this.build(dom);
-          }
-          return fragment;
-        }
-      };
-    }());
-    return {
-      isHTMLBars: true,
-      revision: "Ember@1.11.1",
-      blockParams: 0,
-      cachedFragment: null,
-      hasRendered: false,
-      build: function build(dom) {
-        var el0 = dom.createDocumentFragment();
-        var el1 = dom.createElement("header");
-        dom.setAttribute(el1,"id","page-header");
-        var el2 = dom.createTextNode("\n\n    ");
-        dom.appendChild(el1, el2);
-        var el2 = dom.createElement("h5");
-        var el3 = dom.createComment("");
-        dom.appendChild(el2, el3);
-        dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n\n	");
-        dom.appendChild(el1, el2);
-        var el2 = dom.createElement("nav");
-        dom.setAttribute(el2,"id","submenu");
-        var el3 = dom.createTextNode("\n		");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createElement("ul");
-        var el4 = dom.createTextNode("\n			");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createElement("li");
-        var el5 = dom.createComment("");
-        dom.appendChild(el4, el5);
-        dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n			");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createElement("li");
-        var el5 = dom.createComment("");
-        dom.appendChild(el4, el5);
-        dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n		");
-        dom.appendChild(el3, el4);
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n	");
-        dom.appendChild(el2, el3);
-        dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n");
-        dom.appendChild(el1, el2);
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createComment("");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        return el0;
-      },
-      render: function render(context, env, contextualElement) {
-        var dom = env.dom;
-        var hooks = env.hooks, block = hooks.block, content = hooks.content;
-        dom.detectNamespace(contextualElement);
-        var fragment;
-        if (env.useFragmentCache && dom.canClone) {
-          if (this.cachedFragment === null) {
-            fragment = this.build(dom);
-            if (this.hasRendered) {
-              this.cachedFragment = fragment;
-            } else {
-              this.hasRendered = true;
-            }
-          }
-          if (this.cachedFragment) {
-            fragment = dom.cloneNode(this.cachedFragment, true);
-          }
-        } else {
-          fragment = this.build(dom);
-        }
-        var element0 = dom.childAt(fragment, [0]);
-        var element1 = dom.childAt(element0, [3, 1]);
-        var morph0 = dom.createMorphAt(dom.childAt(element0, [1]),0,0);
-        var morph1 = dom.createMorphAt(dom.childAt(element1, [1]),0,0);
-        var morph2 = dom.createMorphAt(dom.childAt(element1, [3]),0,0);
-        var morph3 = dom.createMorphAt(fragment,2,2,contextualElement);
-        block(env, morph0, context, "link-to", ["me.projects"], {}, child0, null);
-        block(env, morph1, context, "link-to", ["project.index"], {}, child1, null);
-        block(env, morph2, context, "link-to", ["project.matching"], {}, child2, null);
-        content(env, morph3, context, "outlet");
-        return fragment;
-      }
-    };
-  }()));
-
-});
 define('xtalus/templates/registration', ['exports'], function (exports) {
 
   'use strict';
@@ -12363,6 +12365,16 @@ define('xtalus/tests/controllers/login.jshint', function () {
   });
 
 });
+define('xtalus/tests/controllers/me.jshint', function () {
+
+  'use strict';
+
+  module('JSHint - controllers');
+  test('controllers/me.js should pass jshint', function() {
+    ok(false, 'controllers/me.js should pass jshint.\ncontrollers/me.js: line 1, col 8, \'Ember\' is defined but never used.\n\n1 error');
+  });
+
+});
 define('xtalus/tests/controllers/me/connections.jshint', function () {
 
   'use strict';
@@ -12393,13 +12405,13 @@ define('xtalus/tests/controllers/me/projects.jshint', function () {
   });
 
 });
-define('xtalus/tests/controllers/me.jshint', function () {
+define('xtalus/tests/controllers/profile.jshint', function () {
 
   'use strict';
 
   module('JSHint - controllers');
-  test('controllers/me.js should pass jshint', function() { 
-    ok(false, 'controllers/me.js should pass jshint.\ncontrollers/me.js: line 1, col 8, \'Ember\' is defined but never used.\n\n1 error'); 
+  test('controllers/profile.js should pass jshint', function() {
+    ok(false, 'controllers/profile.js should pass jshint.\ncontrollers/profile.js: line 1, col 8, \'Ember\' is defined but never used.\n\n1 error');
   });
 
 });
@@ -12423,13 +12435,13 @@ define('xtalus/tests/controllers/profile/projects.jshint', function () {
   });
 
 });
-define('xtalus/tests/controllers/profile.jshint', function () {
+define('xtalus/tests/controllers/project.jshint', function () {
 
   'use strict';
 
   module('JSHint - controllers');
-  test('controllers/profile.js should pass jshint', function() { 
-    ok(false, 'controllers/profile.js should pass jshint.\ncontrollers/profile.js: line 1, col 8, \'Ember\' is defined but never used.\n\n1 error'); 
+  test('controllers/project.js should pass jshint', function() {
+    ok(false, 'controllers/project.js should pass jshint.\ncontrollers/project.js: line 1, col 8, \'Ember\' is defined but never used.\n\n1 error');
   });
 
 });
@@ -12450,16 +12462,6 @@ define('xtalus/tests/controllers/project/matching.jshint', function () {
   module('JSHint - controllers/project');
   test('controllers/project/matching.js should pass jshint', function() { 
     ok(false, 'controllers/project/matching.js should pass jshint.\ncontrollers/project/matching.js: line 15, col 43, Missing semicolon.\ncontrollers/project/matching.js: line 36, col 41, Missing semicolon.\ncontrollers/project/matching.js: line 45, col 51, Missing semicolon.\ncontrollers/project/matching.js: line 46, col 19, Missing semicolon.\ncontrollers/project/matching.js: line 47, col 15, Missing semicolon.\ncontrollers/project/matching.js: line 51, col 42, Missing semicolon.\ncontrollers/project/matching.js: line 58, col 42, Missing semicolon.\ncontrollers/project/matching.js: line 59, col 79, Missing semicolon.\ncontrollers/project/matching.js: line 70, col 26, Missing semicolon.\ncontrollers/project/matching.js: line 74, col 25, \'profile\' is already defined.\ncontrollers/project/matching.js: line 93, col 35, Missing semicolon.\ncontrollers/project/matching.js: line 97, col 75, Missing semicolon.\ncontrollers/project/matching.js: line 137, col 50, Missing semicolon.\ncontrollers/project/matching.js: line 141, col 68, Missing semicolon.\ncontrollers/project/matching.js: line 144, col 15, Missing semicolon.\ncontrollers/project/matching.js: line 147, col 47, Missing semicolon.\ncontrollers/project/matching.js: line 155, col 28, Expected \'{\' and instead saw \'Ember\'.\ncontrollers/project/matching.js: line 18, col 94, \'result\' is defined but never used.\ncontrollers/project/matching.js: line 28, col 85, \'result\' is defined but never used.\ncontrollers/project/matching.js: line 42, col 74, \'result\' is defined but never used.\ncontrollers/project/matching.js: line 50, col 31, \'element\' is defined but never used.\ncontrollers/project/matching.js: line 57, col 31, \'element\' is defined but never used.\ncontrollers/project/matching.js: line 67, col 17, \'profile\' is defined but never used.\ncontrollers/project/matching.js: line 77, col 91, \'data\' is defined but never used.\ncontrollers/project/matching.js: line 80, col 29, \'a_promises\' is defined but never used.\ncontrollers/project/matching.js: line 112, col 17, \'profile\' is defined but never used.\ncontrollers/project/matching.js: line 114, col 17, \'demand\' is defined but never used.\ncontrollers/project/matching.js: line 146, col 61, \'widgets\' is defined but never used.\n\n28 errors'); 
-  });
-
-});
-define('xtalus/tests/controllers/project.jshint', function () {
-
-  'use strict';
-
-  module('JSHint - controllers');
-  test('controllers/project.js should pass jshint', function() { 
-    ok(false, 'controllers/project.js should pass jshint.\ncontrollers/project.js: line 1, col 8, \'Ember\' is defined but never used.\n\n1 error'); 
   });
 
 });
@@ -12650,6 +12652,16 @@ define('xtalus/tests/routes/login.jshint', function () {
   });
 
 });
+define('xtalus/tests/routes/me.jshint', function () {
+
+  'use strict';
+
+  module('JSHint - routes');
+  test('routes/me.js should pass jshint', function() {
+    ok(false, 'routes/me.js should pass jshint.\nroutes/me.js: line 1, col 8, \'Ember\' is defined but never used.\n\n1 error');
+  });
+
+});
 define('xtalus/tests/routes/me/connections.jshint', function () {
 
   'use strict';
@@ -12680,13 +12692,13 @@ define('xtalus/tests/routes/me/projects.jshint', function () {
   });
 
 });
-define('xtalus/tests/routes/me.jshint', function () {
+define('xtalus/tests/routes/profile.jshint', function () {
 
   'use strict';
 
   module('JSHint - routes');
-  test('routes/me.js should pass jshint', function() { 
-    ok(false, 'routes/me.js should pass jshint.\nroutes/me.js: line 1, col 8, \'Ember\' is defined but never used.\n\n1 error'); 
+  test('routes/profile.js should pass jshint', function() {
+    ok(false, 'routes/profile.js should pass jshint.\nroutes/profile.js: line 8, col 57, Missing semicolon.\nroutes/profile.js: line 1, col 8, \'Ember\' is defined but never used.\nroutes/profile.js: line 3, col 1, \'$ISIS\' is defined but never used.\n\n3 errors');
   });
 
 });
@@ -12720,13 +12732,13 @@ define('xtalus/tests/routes/profile/projects.jshint', function () {
   });
 
 });
-define('xtalus/tests/routes/profile.jshint', function () {
+define('xtalus/tests/routes/project.jshint', function () {
 
   'use strict';
 
   module('JSHint - routes');
-  test('routes/profile.js should pass jshint', function() { 
-    ok(false, 'routes/profile.js should pass jshint.\nroutes/profile.js: line 8, col 57, Missing semicolon.\nroutes/profile.js: line 1, col 8, \'Ember\' is defined but never used.\nroutes/profile.js: line 3, col 1, \'$ISIS\' is defined but never used.\n\n3 errors'); 
+  test('routes/project.js should pass jshint', function() {
+    ok(false, 'routes/project.js should pass jshint.\nroutes/project.js: line 1, col 8, \'Ember\' is defined but never used.\nroutes/project.js: line 3, col 1, \'$ISIS\' is defined but never used.\n\n2 errors');
   });
 
 });
@@ -12747,16 +12759,6 @@ define('xtalus/tests/routes/project/matching.jshint', function () {
   module('JSHint - routes/project');
   test('routes/project/matching.js should pass jshint', function() { 
     ok(false, 'routes/project/matching.js should pass jshint.\nroutes/project/matching.js: line 13, col 13, Expected \'{\' and instead saw \'controller\'.\nroutes/project/matching.js: line 2, col 1, \'$\' is defined but never used.\n\n2 errors'); 
-  });
-
-});
-define('xtalus/tests/routes/project.jshint', function () {
-
-  'use strict';
-
-  module('JSHint - routes');
-  test('routes/project.js should pass jshint', function() { 
-    ok(false, 'routes/project.js should pass jshint.\nroutes/project.js: line 1, col 8, \'Ember\' is defined but never used.\nroutes/project.js: line 3, col 1, \'$ISIS\' is defined but never used.\n\n2 errors'); 
   });
 
 });
@@ -12804,6 +12806,16 @@ define('xtalus/tests/views/login.jshint', function () {
   module('JSHint - views');
   test('views/login.js should pass jshint', function() { 
     ok(true, 'views/login.js should pass jshint.'); 
+  });
+
+});
+define('xtalus/tests/views/me.jshint', function () {
+
+  'use strict';
+
+  module('JSHint - views');
+  test('views/me.js should pass jshint', function() {
+    ok(true, 'views/me.js should pass jshint.');
   });
 
 });
@@ -12857,13 +12869,13 @@ define('xtalus/tests/views/me/references.jshint', function () {
   });
 
 });
-define('xtalus/tests/views/me.jshint', function () {
+define('xtalus/tests/views/profile.jshint', function () {
 
   'use strict';
 
   module('JSHint - views');
-  test('views/me.js should pass jshint', function() { 
-    ok(true, 'views/me.js should pass jshint.'); 
+  test('views/profile.js should pass jshint', function() {
+    ok(true, 'views/profile.js should pass jshint.');
   });
 
 });
@@ -12897,13 +12909,13 @@ define('xtalus/tests/views/profile/projects.jshint', function () {
   });
 
 });
-define('xtalus/tests/views/profile.jshint', function () {
+define('xtalus/tests/views/project.jshint', function () {
 
   'use strict';
 
   module('JSHint - views');
-  test('views/profile.js should pass jshint', function() { 
-    ok(true, 'views/profile.js should pass jshint.'); 
+  test('views/project.js should pass jshint', function() {
+    ok(true, 'views/project.js should pass jshint.');
   });
 
 });
@@ -12924,16 +12936,6 @@ define('xtalus/tests/views/project/matching.jshint', function () {
   module('JSHint - views/project');
   test('views/project/matching.js should pass jshint', function() { 
     ok(true, 'views/project/matching.js should pass jshint.'); 
-  });
-
-});
-define('xtalus/tests/views/project.jshint', function () {
-
-  'use strict';
-
-  module('JSHint - views');
-  test('views/project.js should pass jshint', function() { 
-    ok(true, 'views/project.js should pass jshint.'); 
   });
 
 });
@@ -12965,6 +12967,21 @@ define('xtalus/views/login', ['exports', 'ember'], function (exports, Ember) {
 
     var UserView = Ember['default'].View.extend({
         layoutName: 'login',
+        tagName: 'section',
+        elementId: ''
+
+    });
+
+    exports['default'] = UserView;
+
+});
+define('xtalus/views/me', ['exports', 'ember'], function (exports, Ember) {
+
+    'use strict';
+
+    var UserView = Ember['default'].View.extend({
+        layoutName: 'layout/main',
+        templateName: 'me',
         tagName: 'section',
         elementId: ''
 
@@ -13038,19 +13055,18 @@ define('xtalus/views/me/references', ['exports', 'ember'], function (exports, Em
 	exports['default'] = UserView;
 
 });
-define('xtalus/views/me', ['exports', 'ember'], function (exports, Ember) {
+define('xtalus/views/profile', ['exports', 'ember'], function (exports, Ember) {
 
     'use strict';
 
-    var UserView = Ember['default'].View.extend({
+    var ProfileView = Ember['default'].View.extend({
         layoutName: 'layout/main',
-        templateName: 'me',
+        templateName: 'profile',
         tagName: 'section',
         elementId: ''
-
     });
 
-    exports['default'] = UserView;
+    exports['default'] = ProfileView;
 
 });
 define('xtalus/views/profile/connections', ['exports', 'ember'], function (exports, Ember) {
@@ -13092,18 +13108,15 @@ define('xtalus/views/profile/projects', ['exports', 'ember'], function (exports,
     exports['default'] = ProfileProjectsView;
 
 });
-define('xtalus/views/profile', ['exports', 'ember'], function (exports, Ember) {
+define('xtalus/views/project', ['exports', 'ember'], function (exports, Ember) {
 
     'use strict';
 
-    var ProfileView = Ember['default'].View.extend({
-        layoutName: 'layout/main',
-        templateName: 'profile',
-        tagName: 'section',
-        elementId: ''
+    var ProjectView = Ember['default'].View.extend({
+        layoutName: 'layout/main'
     });
 
-    exports['default'] = ProfileView;
+    exports['default'] = ProjectView;
 
 });
 define('xtalus/views/project/index', ['exports', 'ember'], function (exports, Ember) {
@@ -13130,17 +13143,6 @@ define('xtalus/views/project/matching', ['exports', 'ember'], function (exports,
     });
 
     exports['default'] = UserView;
-
-});
-define('xtalus/views/project', ['exports', 'ember'], function (exports, Ember) {
-
-    'use strict';
-
-    var ProjectView = Ember['default'].View.extend({
-        layoutName: 'layout/main'
-    });
-
-    exports['default'] = ProjectView;
 
 });
 /* jshint ignore:start */
@@ -13171,7 +13173,7 @@ catch(err) {
 if (runningTests) {
   require("xtalus/tests/test-helper");
 } else {
-  require("xtalus/app")["default"].create({"API_HOST":"http://localhost:8000/api","name":"xtalus","version":"0.0.0.5a5a9c97"});
+  require("xtalus/app")["default"].create({"API_HOST":"http://localhost:8000/api","name":"xtalus","version":"0.0.0.ffcb841a"});
 }
 
 /* jshint ignore:end */
