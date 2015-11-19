@@ -973,12 +973,37 @@ define('xtalus/models/application', ['exports', 'ember-data'], function (exports
     });
 
 });
+define('xtalus/models/assessment', ['exports', 'ember-data'], function (exports, DS) {
+
+	'use strict';
+
+	exports['default'] = DS['default'].Model.extend({
+		description: DS['default'].attr(),
+		feedback: DS['default'].attr(),
+		ownerFullName: DS['default'].attr(),
+		ownerImageUrl: DS['default'].attr(),
+		owner: DS['default'].belongsTo("person")
+	});
+
+});
+define('xtalus/models/communicationchannel', ['exports', 'ember-data'], function (exports, DS) {
+
+	'use strict';
+
+	exports['default'] = DS['default'].Model.extend({
+		description: DS['default'].attr(),
+		feedback: DS['default'].attr(),
+		ownerFullName: DS['default'].attr(),
+		ownerImageUrl: DS['default'].attr(),
+		owner: DS['default'].belongsTo("person")
+	});
+
+});
 define('xtalus/models/demand', ['exports', 'ember-data'], function (exports, DS) {
 
 	'use strict';
 
 	exports['default'] = DS['default'].Model.extend({
-		URI: DS['default'].attr(),
 		description: DS['default'].attr(),
 		story: DS['default'].attr(),
 		startDate: DS['default'].attr(),
@@ -1108,6 +1133,20 @@ define('xtalus/models/demandprofile', ['exports', 'ember-data'], function (expor
     });
 
 });
+define('xtalus/models/elements', ['exports', 'ember-data'], function (exports, DS) {
+
+    'use strict';
+
+    exports['default'] = DS['default'].Model.extend({
+
+        description: DS['default'].attr(),
+        weight: DS['default'].attr(),
+        widgetType: DS['default'].attr(),
+        tagholders: DS['default'].hasMany("tagholder")
+
+    });
+
+});
 define('xtalus/models/email', ['exports', 'ember-data'], function (exports, DS) {
 
     'use strict';
@@ -1139,23 +1178,31 @@ define('xtalus/models/person', ['exports', 'ember-data'], function (exports, DS)
 
     exports['default'] = DS['default'].Model.extend({
 
-        URI: DS['default'].attr(),
         firstName: DS['default'].attr(),
         middleName: DS['default'].attr({ defaultValue: '' }),
         lastName: DS['default'].attr(),
-        birthDay: DS['default'].attr(),
-        email: DS['default'].attr(),
+        imageUrl: DS['default'].attr(), //mapping naar: profilePicture: DS.attr(),
+        education: DS['default'].attr(), // ontbreekt nog
+        institute: DS['default'].attr(), // ontbreekt nog
+        entity: DS['default'].attr(), // ontbreekt nog
         roles: DS['default'].attr(),
-        address: DS['default'].attr(),
-        postalCode: DS['default'].attr(),
-        town: DS['default'].attr(),
+        honoursProgram: DS['default'].attr(),
+        interesses: DS['default'].attr(),
+        mainTown: DS['default'].attr(), // mappen naar: city: DS.attr(),
+        story: DS['default'].attr(),
+        qualities: DS['default'].attr(),
+        dateOfBirth: DS['default'].attr(), // mappen naar: birthday: DS.attr(),
 
-        demands: DS['default'].attr({ defaultValue: [] }),
-        supplies: DS['default'].attr({ defaultValue: [] }),
-        personalContacts: DS['default'].attr({ defaultValue: [] }),
-        assessments: DS['default'].attr({ defaultValue: [] }),
+        personalContacts: DS['default'].hasMany("personalcontact"),
+        profileMatches: DS['default'].hasMany("profilematches"),
+        // profileMatchesOwned: DS.hasMany("profilematches"),
+        assessments: DS['default'].hasMany("assessment"),
+        communicationChannels: DS['default'].hasMany("communicationchannel"),
 
-        newProjectParams: DS['default'].attr(),
+        companyName: DS['default'].attr(),
+        branche: DS['default'].attr(),
+        companyLocation: DS['default'].attr(),
+        companyDescription: DS['default'].attr(),
 
         birthday: (function (e) {
             return moment(this.get('birthDay')).format('DD-MM-YYYY');
@@ -1182,6 +1229,48 @@ define('xtalus/models/person', ['exports', 'ember-data'], function (exports, DS)
     });
 
 });
+define('xtalus/models/personalcontact', ['exports', 'ember-data'], function (exports, DS) {
+
+    'use strict';
+
+    exports['default'] = DS['default'].Model.extend({
+
+        owner: DS['default'].belongsTo("person"),
+        contactFullname: DS['default'].attr(),
+        contactImageUrl: DS['default'].attr({ defaultValue: '' })
+
+    });
+
+});
+define('xtalus/models/profilematch', ['exports', 'ember-data'], function (exports, DS) {
+
+    'use strict';
+
+    exports['default'] = DS['default'].Model.extend({
+
+        ownerFullName: DS['default'].attr(),
+        ownerImageUrl: DS['default'].attr(),
+        supplyCandidateFullName: DS['default'].attr(),
+        supplyCandidateImageUrl: DS['default'].attr(),
+        owner: DS['default'].belongsTo("person")
+
+    });
+
+});
+define('xtalus/models/supply', ['exports', 'ember-data'], function (exports, DS) {
+
+	'use strict';
+
+	exports['default'] = DS['default'].Model.extend({
+				description: DS['default'].attr(),
+				startDate: DS['default'].attr(),
+				endDate: DS['default'].attr(),
+				imageUrl: DS['default'].attr(),
+				profiles: DS['default'].attr(),
+				owner: DS['default'].belongsTo('person')
+	});
+
+});
 define('xtalus/models/supplyprofile', ['exports', 'ember-data'], function (exports, DS) {
 
     'use strict';
@@ -1191,6 +1280,21 @@ define('xtalus/models/supplyprofile', ['exports', 'ember-data'], function (expor
         description: DS['default'].attr(),
         profileElements: DS['default'].attr(),
         matches: DS['default'].attr()
+    });
+
+});
+define('xtalus/models/tagholder', ['exports', 'ember-data'], function (exports, DS) {
+
+    'use strict';
+
+    exports['default'] = DS['default'].Model.extend({
+
+        category: DS['default'].attr(),
+        dateLastUsed: DS['default'].attr(),
+        numberOfTimesUsed: DS['default'].attr(),
+        value: DS['default'].attr(),
+        element: DS['default'].belongsTo('element')
+
     });
 
 });
@@ -6237,7 +6341,7 @@ define('xtalus/templates/me/index', ['exports'], function (exports) {
         dom.setAttribute(el4,"id","edit-btn");
         dom.setAttribute(el4,"class","fa fa-cog");
         dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n\n\n				");
+        var el4 = dom.createTextNode("\n\n				");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("p");
         var el5 = dom.createTextNode("\n                    Woonplaats: ");
@@ -6261,7 +6365,7 @@ define('xtalus/templates/me/index', ['exports'], function (exports) {
         var el5 = dom.createTextNode("\n				 ");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n\n            Interesse in:\n\n\n			");
+        var el4 = dom.createTextNode("\n\n            Interesse in:\n\n			");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("hr");
         dom.appendChild(el3, el4);
@@ -6528,7 +6632,7 @@ define('xtalus/templates/me/index', ['exports'], function (exports) {
         var morph11 = dom.createMorphAt(dom.childAt(element9, [3]),1,1);
         var morph12 = dom.createMorphAt(element9,7,7);
         element(env, element2, context, "action", ["changeView", "page-left", 1], {});
-        content(env, morph0, context, "model.town");
+        content(env, morph0, context, "model.mainTown");
         element(env, element4, context, "action", ["changeView", "page-left", 0], {});
         element(env, element5, context, "action", ["updatePerson"], {"on": "submit"});
         inline(env, morph1, context, "input", [], {"value": get(env, context, "model.firstName"), "type": "text", "placeholder": "Voornaam", "class": "txt-field"});
@@ -12253,6 +12357,26 @@ define('xtalus/tests/models/application.jshint', function () {
   });
 
 });
+define('xtalus/tests/models/assessment.jshint', function () {
+
+  'use strict';
+
+  module('JSHint - models');
+  test('models/assessment.js should pass jshint', function() {
+    ok(true, 'models/assessment.js should pass jshint.');
+  });
+
+});
+define('xtalus/tests/models/communicationchannel.jshint', function () {
+
+  'use strict';
+
+  module('JSHint - models');
+  test('models/communicationchannel.js should pass jshint', function() {
+    ok(true, 'models/communicationchannel.js should pass jshint.');
+  });
+
+});
 define('xtalus/tests/models/demand.jshint', function () {
 
   'use strict';
@@ -12270,6 +12394,16 @@ define('xtalus/tests/models/demandprofile.jshint', function () {
   module('JSHint - models');
   test('models/demandprofile.js should pass jshint', function() { 
     ok(false, 'models/demandprofile.js should pass jshint.\nmodels/demandprofile.js: line 36, col 50, Missing semicolon.\nmodels/demandprofile.js: line 43, col 28, Expected \'{\' and instead saw \'a_promises\'.\nmodels/demandprofile.js: line 43, col 114, Missing semicolon.\nmodels/demandprofile.js: line 44, col 19, Missing semicolon.\nmodels/demandprofile.js: line 50, col 19, Missing semicolon.\nmodels/demandprofile.js: line 52, col 74, Missing semicolon.\nmodels/demandprofile.js: line 55, col 71, Missing semicolon.\nmodels/demandprofile.js: line 58, col 63, Expected \'===\' and instead saw \'==\'.\nmodels/demandprofile.js: line 60, col 50, Missing semicolon.\nmodels/demandprofile.js: line 64, col 23, Missing semicolon.\nmodels/demandprofile.js: line 67, col 46, Missing semicolon.\nmodels/demandprofile.js: line 71, col 37, Missing semicolon.\nmodels/demandprofile.js: line 113, col 32, Expected \'{\' and instead saw \'Ember\'.\nmodels/demandprofile.js: line 16, col 16, \'Ember\' is not defined.\nmodels/demandprofile.js: line 27, col 13, \'$ISIS\' is not defined.\nmodels/demandprofile.js: line 42, col 9, \'$\' is not defined.\nmodels/demandprofile.js: line 43, col 44, \'$ISIS\' is not defined.\nmodels/demandprofile.js: line 47, col 13, \'Ember\' is not defined.\nmodels/demandprofile.js: line 54, col 17, \'$\' is not defined.\nmodels/demandprofile.js: line 56, col 21, \'$\' is not defined.\nmodels/demandprofile.js: line 83, col 31, \'Ember\' is not defined.\nmodels/demandprofile.js: line 89, col 9, \'$\' is not defined.\nmodels/demandprofile.js: line 90, col 13, \'$ISIS\' is not defined.\nmodels/demandprofile.js: line 102, col 16, \'$ISIS\' is not defined.\nmodels/demandprofile.js: line 104, col 21, \'$ISIS\' is not defined.\nmodels/demandprofile.js: line 111, col 13, \'$ISIS\' is not defined.\nmodels/demandprofile.js: line 113, col 32, \'Ember\' is not defined.\nmodels/demandprofile.js: line 114, col 17, \'Ember\' is not defined.\n\n28 errors'); 
+  });
+
+});
+define('xtalus/tests/models/elements.jshint', function () {
+
+  'use strict';
+
+  module('JSHint - models');
+  test('models/elements.js should pass jshint', function() {
+    ok(true, 'models/elements.js should pass jshint.');
   });
 
 });
@@ -12299,7 +12433,37 @@ define('xtalus/tests/models/person.jshint', function () {
 
   module('JSHint - models');
   test('models/person.js should pass jshint', function() { 
-    ok(false, 'models/person.js should pass jshint.\nmodels/person.js: line 29, col 26, Missing semicolon.\nmodels/person.js: line 33, col 23, Expected \'{\' and instead saw \'fullname\'.\nmodels/person.js: line 34, col 24, Expected \'{\' and instead saw \'fullname\'.\nmodels/person.js: line 35, col 22, Expected \'{\' and instead saw \'fullname\'.\nmodels/person.js: line 35, col 48, Missing semicolon.\nmodels/person.js: line 36, col 24, Missing semicolon.\nmodels/person.js: line 41, col 23, Expected \'{\' and instead saw \'return\'.\nmodels/person.js: line 41, col 99, Missing semicolon.\nmodels/person.js: line 24, col 17, \'moment\' is not defined.\nmodels/person.js: line 41, col 66, \'md5\' is not defined.\nmodels/person.js: line 23, col 24, \'e\' is defined but never used.\nmodels/person.js: line 28, col 24, \'e\' is defined but never used.\n\n12 errors'); 
+    ok(false, 'models/person.js should pass jshint.\nmodels/person.js: line 36, col 26, Missing semicolon.\nmodels/person.js: line 40, col 23, Expected \'{\' and instead saw \'fullname\'.\nmodels/person.js: line 41, col 24, Expected \'{\' and instead saw \'fullname\'.\nmodels/person.js: line 42, col 22, Expected \'{\' and instead saw \'fullname\'.\nmodels/person.js: line 42, col 48, Missing semicolon.\nmodels/person.js: line 43, col 24, Missing semicolon.\nmodels/person.js: line 48, col 23, Expected \'{\' and instead saw \'return\'.\nmodels/person.js: line 48, col 99, Missing semicolon.\nmodels/person.js: line 32, col 17, \'moment\' is not defined.\nmodels/person.js: line 48, col 66, \'md5\' is not defined.\nmodels/person.js: line 31, col 24, \'e\' is defined but never used.\nmodels/person.js: line 35, col 24, \'e\' is defined but never used.\n\n12 errors');
+  });
+
+});
+define('xtalus/tests/models/personalcontact.jshint', function () {
+
+  'use strict';
+
+  module('JSHint - models');
+  test('models/personalcontact.js should pass jshint', function() {
+    ok(true, 'models/personalcontact.js should pass jshint.');
+  });
+
+});
+define('xtalus/tests/models/profilematch.jshint', function () {
+
+  'use strict';
+
+  module('JSHint - models');
+  test('models/profilematch.js should pass jshint', function() {
+    ok(true, 'models/profilematch.js should pass jshint.');
+  });
+
+});
+define('xtalus/tests/models/supply.jshint', function () {
+
+  'use strict';
+
+  module('JSHint - models');
+  test('models/supply.js should pass jshint', function() {
+    ok(true, 'models/supply.js should pass jshint.');
   });
 
 });
@@ -12310,6 +12474,16 @@ define('xtalus/tests/models/supplyprofile.jshint', function () {
   module('JSHint - models');
   test('models/supplyprofile.js should pass jshint', function() { 
     ok(true, 'models/supplyprofile.js should pass jshint.'); 
+  });
+
+});
+define('xtalus/tests/models/tagholder.jshint', function () {
+
+  'use strict';
+
+  module('JSHint - models');
+  test('models/tagholder.js should pass jshint', function() {
+    ok(true, 'models/tagholder.js should pass jshint.');
   });
 
 });
@@ -12864,7 +13038,7 @@ catch(err) {
 if (runningTests) {
   require("xtalus/tests/test-helper");
 } else {
-  require("xtalus/app")["default"].create({"API_HOST":"http://acc.xtalus.gedge.nl","API_NS":"simple/restful/v2","API_PHP_HOST":"http://localhost:8000","name":"xtalus","version":"0.0.0.7d841c89"});
+  require("xtalus/app")["default"].create({"API_HOST":"http://acc.xtalus.gedge.nl","API_NS":"simple/restful/v2","API_PHP_HOST":"http://localhost:8000","name":"xtalus","version":"0.0.0.5253cf0a"});
 }
 
 /* jshint ignore:end */

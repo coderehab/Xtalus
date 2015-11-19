@@ -2,27 +2,34 @@ import DS from 'ember-data';
 
 export default DS.Model.extend({
 
-    URI: DS.attr(),
     firstName: DS.attr(),
     middleName: DS.attr({defaultValue:''}),
     lastName: DS.attr(),
-    birthDay: DS.attr(),
-    email: DS.attr(),
-	roles: DS.attr(),
-	address: DS.attr(),
-	postalCode: DS.attr(),
-	town: DS.attr(),
+    imageUrl: DS.attr(), //mapping naar: profilePicture: DS.attr(),
+    education: DS.attr(), // ontbreekt nog
+    institute: DS.attr(), // ontbreekt nog
+    entity: DS.attr(), // ontbreekt nog
+    roles: DS.attr(),
+    honoursProgram: DS.attr(),
+    interesses: DS.attr(),
+    mainTown: DS.attr(), // mappen naar: city: DS.attr(),
+    story: DS.attr(),
+    qualities: DS.attr(),
+    dateOfBirth: DS.attr(), // mappen naar: birthday: DS.attr(),
 
-    demands: DS.attr({defaultValue:[]}),
-    supplies: DS.attr({defaultValue:[]}),
-    personalContacts: DS.attr({defaultValue:[]}),
-	assessments: DS.attr({defaultValue:[]}),
+    personalContacts: DS.hasMany("personalcontact"),
+    profileMatches: DS.hasMany("profilematches"),
+    // profileMatchesOwned: DS.hasMany("profilematches"),
+    assessments: DS.hasMany("assessment"),
+    communicationChannels: DS.hasMany("communicationchannel"),
 
-    newProjectParams: DS.attr(),
+    companyName: DS.attr(),
+    branche: DS.attr(),
+    companyLocation: DS.attr(),
+    companyDescription: DS.attr(),
 
 	birthday: function(e){
 		 return moment(this.get('birthDay')).format('DD-MM-YYYY');
-
 	}.property('birthDay'),
 
     fullName: function(e) {
