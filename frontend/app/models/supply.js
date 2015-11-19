@@ -5,6 +5,6 @@ export default DS.Model.extend({
     startDate: DS.attr(),
 	endDate: DS.attr(),
     imageUrl:DS.attr(),
-	profiles: DS.attr(),
+	profiles: DS.hasMany('profile'),
 	owner:DS.belongsTo('person'),
 });

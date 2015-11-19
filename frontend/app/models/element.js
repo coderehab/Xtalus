@@ -6,7 +6,8 @@ export default DS.Model.extend({
     weight: DS.attr(),
     widgetType: DS.attr(),
     tagholders: DS.hasMany("tagholder"),
-
+    textValue: DS.attr(),
+    weight: DS.attr(),
 
 
 });

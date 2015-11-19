@@ -7,6 +7,15 @@ export default Ember.Route.extend({
         return this.modelFor('application')
     },
 
+    afterModel: function(model, transition){
+
+        //console.log(model.get('supplies'))
+
+
+
+
+    },
+
     actions: {
 
     },
