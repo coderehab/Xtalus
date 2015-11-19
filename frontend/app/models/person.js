@@ -23,6 +23,9 @@ export default DS.Model.extend({
     assessments: DS.hasMany("assessment"),
     communicationChannels: DS.hasMany("communicationchannel"),
 
+    demands: DS.hasMany('demand'),
+    supplies: DS.hasMany('supply'),
+
     companyName: DS.attr(),
     branche: DS.attr(),
     companyLocation: DS.attr(),
@@ -49,6 +52,18 @@ export default DS.Model.extend({
         picture = picture.split(':');
         return 'data:image/png;base64,'+picture[2];
     }.property('rawPicture', 'email'),
+
+    profileElements: function(){
+        var elements;
+
+        this.get('supplies').forEach(function(supply, i){
+            supply.get('profiles').forEach(function(profile, i){
+                elements = profile.get('elements');
+            })
+        })
+
+        return elements;
+    }.property('supplies'),
 
 
 });
