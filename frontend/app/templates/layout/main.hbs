@@ -9,7 +9,7 @@
                 {{#if globalSearchResults.Person}} <h3>Personen</h3> {{/if}}
                 {{#each person in globalSearchResults.Person}}
                     <li {{action 'handleSearchResultClick' 'person' person.id}}>
-                        <img class="profilePicture" src="{{person.picture}}" width="20" height="20"/>
+                        <img class="profilePicture" src="{{person.profileImage}}" width="20" height="20"/>
                         {{person.fullName}}
                     </li>
                 {{/each}}
@@ -26,7 +26,7 @@
         </section>
 
 		<section id="profileAccountInfo">
-			<img id="profilePicture" src="{{activePerson.profilePicture}}" width="40" height="40"/>
+			<img id="profilePicture" src="{{model.imageUrl}}" width="40" height="40"/>
 			<section id="account-nav">
 				<h2>Account</h2>
 				<ul>
@@ -36,7 +36,7 @@
 				</ul>
 			</section>
 
-			<span id="profile-username">{{activePerson.fullName}}<i class="fa fa-chevron-down"></i></span>
+			<span id="profile-username">{{model.fullName}}<i class="fa fa-chevron-down"></i></span>
 		</section>
 
 	</header>
@@ -44,9 +44,8 @@
 	<aside id="user-menu">
 		<button id="toggle-user-menu" {{action "toggleUsernav"}}><i class="fa fa-chevron-left"></i></button>
         <section class='userinfo'>
-            <img class="profilePicture" src="{{activePerson.profilePicture}}" width="100" height="100"/>
-            <h4>{{activePerson.fullName}}</h4>
-            <span>{{activePerson.roles}}</span><br />
+            <h4>{{model.fullName}}</h4>
+            <span>{{model.roles}}</span><br />
         </section>
 		<nav>
 			<ul>
@@ -66,9 +65,9 @@
 				<h3>Recente projecten</h3>
 
 				<ul>
-					<li>{{#link-to 'me.projects'}}<img class="projectImg" src="{{activePerson.profilePicture}}" width="40" height="40"/><span>Intranet GGnet</span>{{/link-to}}</li>
-					<li>{{#link-to 'me.projects'}}<img class="projectImg" src="{{activePerson.profilePicture}}" width="40" height="40"/><span>Ecologische auto</span>{{/link-to}}</li>
-					<li>{{#link-to 'me.projects'}}<img class="projectImg" src="{{activePerson.profilePicture}}" width="40" height="40"/><span>Duurzaam kantoor</span>{{/link-to}}</li>
+					<li>{{#link-to 'me.projects'}}<img class="projectImg" src="{{model.imageUrl}}" width="40" height="40"/><span>Intranet GGnet</span>{{/link-to}}</li>
+					<li>{{#link-to 'me.projects'}}<img class="projectImg" src="{{model.imageUrl}}" width="40" height="40"/><span>Ecologische auto</span>{{/link-to}}</li>
+					<li>{{#link-to 'me.projects'}}<img class="projectImg" src="{{model.imageUrl}}" width="40" height="40"/><span>Duurzaam kantoor</span>{{/link-to}}</li>
 				</ul>
 
 				{{#link-to 'me.projects' class="more-projects"}}Meer{{/link-to}}
