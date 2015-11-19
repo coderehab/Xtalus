@@ -43,31 +43,5 @@ export default DS.Model.extend({
         return 'data:image/png;base64,'+picture[2];
     }.property('rawPicture', 'email'),
 
-    connections:function(){
-        var connections = this.get('personalContacts')
-        var email = this.get('email')
 
-        $.each(connections, function(i, connection){
-            console.log(connection)
-            var picture = connection.picture || false;
-            if (!picture) picture = 'http://www.gravatar.com/avatar/' + md5(connection.email)
-            else {
-                picture = picture.split(':');
-                picture = 'data:image/png;base64,'+picture[2];
-            }
-
-            connection.picture = picture;
-
-        });
-
-        return connections;
-    }.property('personalContacts'),
-
-    isisObj:function(){
-        return $ISIS.get('http://acc.xtalus.gedge.nl/simple/restful/'+this.get('URI')).then(function(isisObjData){
-
-            return ($ISIS.extractMembers(isisObjData));
-
-        });
-    }.property('URI')
 });

@@ -26,7 +26,8 @@ module.exports = function(environment) {
         APP: {
             // Here you can pass flags/options to your application instance
             // when it is created
-            API_HOST: "http://localhost:8000/api",
+            API_HOST: "http://acc.xtalus.gedge.nl",
+            API_NS: "simple/restful/v2",
         }
     };
 

@@ -12,7 +12,7 @@ var MeRoute = Auth.extend({
     },
 
     model:function(){
-        return this.modelFor('application').get('activePerson');
+        return this.modelFor('application')
     },
 
     actions: {

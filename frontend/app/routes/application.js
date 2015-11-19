@@ -8,26 +8,15 @@ var ApplicationRoute = Ember.Route.extend({
     globalSearchQuery:"",
 
     model: function(){
+
+        //var app = this.store.find('application', 'login');
         var store = this.store;
-        if($ISIS.getCookie('auth')) {
-            return $ISIS.init().then(function(isis){
-                console.log("\nAPI referentie:\n",'--------------------------------------------------', isis, "===================================================\n");
 
-                return $ISIS.get("http://acc.xtalus.gedge.nl/simple/restful/v1").then(function(restData){
-                    console.log("\nPerson referentie:\n",'--------------------------------------------------', restData, "===================================================\n");
+        return $ISIS.get('http://acc.xtalus.gedge.nl/simple/restful/v2/action/login').then(function(app){
+            console.log(app);
+            return store.find('person', app.application.activePerson);
+        })
 
-
-                    var person = store.find('person', restData.person.id);
-                    var isis = store.createRecord('isis')
-                    isis.set('isis', isis);
-                    isis.set('activePerson', person);
-
-                    return isis;
-                });
-            });
-        }else {
-            return store.createRecord('isis')
-        }
     },
 
 
