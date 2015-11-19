@@ -28,6 +28,8 @@ module.exports = function(environment) {
             // when it is created
             API_HOST: "http://acc.xtalus.gedge.nl",
             API_NS: "simple/restful/v2",
+
+            API_PHP_HOST: "http://localhost:8000",
         }
     };
 

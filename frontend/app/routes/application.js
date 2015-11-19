@@ -13,12 +13,9 @@ var ApplicationRoute = Ember.Route.extend({
         var store = this.store;
 
         return $ISIS.get('http://acc.xtalus.gedge.nl/simple/restful/v2/action/login').then(function(app){
-            console.log(app);
             return store.find('person', app.application.activePerson);
         })
-
     },
-
 
     actions: {
         getProject:function(id){

@@ -7,71 +7,11 @@ define('xtalus/adapters/application', ['exports', 'ember-data', 'xtalus/config/e
 
     'use strict';
 
-    var adapterSettings = {};
-
     exports['default'] = DS['default'].RESTAdapter.extend({
         host: ENV['default'].APP.API_HOST,
-
-        pathForType: function pathForType(type) {
-            return ENV['default'].APP.API_NS + '/action';
-        },
-
-        extract: function extract(loader, json, type, record) {
-            var root = this.rootForType(type);
-
-            this.sideload(loader, type, json, root);
-            this.extractMeta(loader, type, json);
-
-            if (json[root]) {
-                if (record) {
-                    loader.updateId(record, json[root]);
-                }
-                this.extractRecordRepresentation(loader, type, json[root]);
-            }
-        },
+        namespace: ENV['default'].APP.API_NS,
 
         headers: (function () {
-            $ISIS.auth.login('frans', 'pass');
-            var user_cookie = $ISIS.getCookie('auth');
-            return {
-                "Authorization": $ISIS.authHeader
-            };
-        }).property("session.authToken")
-    });
-
-});
-define('xtalus/adapters/demand', ['exports', 'ember-data'], function (exports, DS) {
-
-    'use strict';
-
-    var adapterSettings = {};
-
-    exports['default'] = DS['default'].RESTAdapter.extend({
-        host: 'http://acc.xtalus.gedge.nl/simple/restful/v1',
-        namespace: '',
-
-        headers: (function () {
-
-            var user_cookie = $ISIS.getCookie('auth');
-            return {
-                "Authorization": $ISIS.authHeader
-            };
-        }).property("session.authToken")
-    });
-
-});
-define('xtalus/adapters/demandprofile', ['exports', 'ember-data'], function (exports, DS) {
-
-    'use strict';
-
-    var adapterSettings = {};
-
-    exports['default'] = DS['default'].RESTAdapter.extend({
-        host: 'http://acc.xtalus.gedge.nl/simple/restful/v1',
-        namespace: '',
-
-        headers: (function () {
-
             var user_cookie = $ISIS.getCookie('auth');
             return {
                 "Authorization": $ISIS.authHeader
@@ -87,7 +27,7 @@ define('xtalus/adapters/email', ['exports', 'ember-data', 'xtalus/config/environ
     console.log(ENV['default']);
 
     exports['default'] = DS['default'].Adapter.extend({
-        host: ENV['default'].APP.API_HOST,
+        host: ENV['default'].APP.API_PHP_HOST,
 
         createRecord: function createRecord(store, type, snapshot) {
             var jdata = [];
@@ -123,55 +63,14 @@ define('xtalus/adapters/email', ['exports', 'ember-data', 'xtalus/config/environ
     });
 
 });
-define('xtalus/adapters/isis', ['exports', 'ember-data'], function (exports, DS) {
-
-	'use strict';
-
-	var adapterSettings = {};
-
-	exports['default'] = DS['default'].FixtureAdapter.extend({});
-
-});
-define('xtalus/adapters/person', ['exports', 'ember-data', 'xtalus/config/environment'], function (exports, DS, ENV) {
+define('xtalus/adapters/person', ['exports', 'ember-data', 'xtalus/config/environment', 'xtalus/adapters/application'], function (exports, DS, ENV, ApplicationAdapter) {
 
     'use strict';
 
-    var adapterSettings = {};
-
-    exports['default'] = DS['default'].RESTAdapter.extend({
-        host: ENV['default'].APP.API_HOST,
-        namespace: ENV['default'].APP.API_NS,
-
-        headers: (function () {
-            var user_cookie = $ISIS.getCookie('auth');
-            return {
-                "Authorization": $ISIS.authHeader
-            };
-        }).property("session.authToken"),
-
+    exports['default'] = ApplicationAdapter['default'].extend({
         pathForType: function pathForType(type) {
             return 'persons';
         }
-    });
-
-});
-define('xtalus/adapters/supplyprofile', ['exports', 'ember-data'], function (exports, DS) {
-
-    'use strict';
-
-    var adapterSettings = {};
-
-    exports['default'] = DS['default'].RESTAdapter.extend({
-        host: 'http://acc.xtalus.gedge.nl/simple/restful/v1',
-        namespace: '',
-
-        headers: (function () {
-
-            var user_cookie = $ISIS.getCookie('auth');
-            return {
-                "Authorization": $ISIS.authHeader
-            };
-        }).property("session.authToken")
     });
 
 });
@@ -1264,17 +1163,6 @@ define('xtalus/models/image', ['exports', 'ember-data'], function (exports, DS) 
     });
 
 });
-define('xtalus/models/isis', ['exports', 'ember-data'], function (exports, DS) {
-
-    'use strict';
-
-    exports['default'] = DS['default'].Model.extend({
-        isis: DS['default'].attr({ defaultValue: {} }),
-        activePerson: DS['default'].attr({ defaultValue: {} }),
-        globalSearchQuery: DS['default'].attr()
-    });
-
-});
 define('xtalus/models/person', ['exports', 'ember-data'], function (exports, DS) {
 
     'use strict';
@@ -1386,7 +1274,6 @@ define('xtalus/routes/application', ['exports', 'ember', 'ember-data'], function
             var store = this.store;
 
             return $ISIS.get('http://acc.xtalus.gedge.nl/simple/restful/v2/action/login').then(function (app) {
-                console.log(app);
                 return store.find('person', app.application.activePerson);
             });
         },
@@ -12221,27 +12108,7 @@ define('xtalus/tests/adapters/application.jshint', function () {
 
   module('JSHint - adapters');
   test('adapters/application.js should pass jshint', function() { 
-    ok(false, 'adapters/application.js should pass jshint.\nadapters/application.js: line 26, col 9, \'$ISIS\' is not defined.\nadapters/application.js: line 27, col 27, \'$ISIS\' is not defined.\nadapters/application.js: line 29, col 30, \'$ISIS\' is not defined.\nadapters/application.js: line 4, col 5, \'adapterSettings\' is defined but never used.\nadapters/application.js: line 9, col 27, \'type\' is defined but never used.\nadapters/application.js: line 27, col 13, \'user_cookie\' is defined but never used.\n\n6 errors'); 
-  });
-
-});
-define('xtalus/tests/adapters/demand.jshint', function () {
-
-  'use strict';
-
-  module('JSHint - adapters');
-  test('adapters/demand.js should pass jshint', function() { 
-    ok(false, 'adapters/demand.js should pass jshint.\nadapters/demand.js: line 11, col 27, \'$ISIS\' is not defined.\nadapters/demand.js: line 13, col 30, \'$ISIS\' is not defined.\nadapters/demand.js: line 3, col 5, \'adapterSettings\' is defined but never used.\nadapters/demand.js: line 11, col 13, \'user_cookie\' is defined but never used.\n\n4 errors'); 
-  });
-
-});
-define('xtalus/tests/adapters/demandprofile.jshint', function () {
-
-  'use strict';
-
-  module('JSHint - adapters');
-  test('adapters/demandprofile.js should pass jshint', function() { 
-    ok(false, 'adapters/demandprofile.js should pass jshint.\nadapters/demandprofile.js: line 11, col 27, \'$ISIS\' is not defined.\nadapters/demandprofile.js: line 13, col 30, \'$ISIS\' is not defined.\nadapters/demandprofile.js: line 3, col 5, \'adapterSettings\' is defined but never used.\nadapters/demandprofile.js: line 11, col 13, \'user_cookie\' is defined but never used.\n\n4 errors'); 
+    ok(false, 'adapters/application.js should pass jshint.\nadapters/application.js: line 9, col 27, \'$ISIS\' is not defined.\nadapters/application.js: line 11, col 30, \'$ISIS\' is not defined.\nadapters/application.js: line 9, col 13, \'user_cookie\' is defined but never used.\n\n3 errors');
   });
 
 });
@@ -12255,33 +12122,13 @@ define('xtalus/tests/adapters/email.jshint', function () {
   });
 
 });
-define('xtalus/tests/adapters/isis.jshint', function () {
-
-  'use strict';
-
-  module('JSHint - adapters');
-  test('adapters/isis.js should pass jshint', function() { 
-    ok(false, 'adapters/isis.js should pass jshint.\nadapters/isis.js: line 3, col 5, \'adapterSettings\' is defined but never used.\n\n1 error'); 
-  });
-
-});
 define('xtalus/tests/adapters/person.jshint', function () {
 
   'use strict';
 
   module('JSHint - adapters');
   test('adapters/person.js should pass jshint', function() { 
-    ok(false, 'adapters/person.js should pass jshint.\nadapters/person.js: line 11, col 27, \'$ISIS\' is not defined.\nadapters/person.js: line 13, col 30, \'$ISIS\' is not defined.\nadapters/person.js: line 4, col 5, \'adapterSettings\' is defined but never used.\nadapters/person.js: line 11, col 13, \'user_cookie\' is defined but never used.\nadapters/person.js: line 18, col 27, \'type\' is defined but never used.\n\n5 errors'); 
-  });
-
-});
-define('xtalus/tests/adapters/supplyprofile.jshint', function () {
-
-  'use strict';
-
-  module('JSHint - adapters');
-  test('adapters/supplyprofile.js should pass jshint', function() { 
-    ok(false, 'adapters/supplyprofile.js should pass jshint.\nadapters/supplyprofile.js: line 11, col 27, \'$ISIS\' is not defined.\nadapters/supplyprofile.js: line 13, col 30, \'$ISIS\' is not defined.\nadapters/supplyprofile.js: line 3, col 5, \'adapterSettings\' is defined but never used.\nadapters/supplyprofile.js: line 11, col 13, \'user_cookie\' is defined but never used.\n\n4 errors'); 
+    ok(false, 'adapters/person.js should pass jshint.\nadapters/person.js: line 1, col 8, \'DS\' is defined but never used.\nadapters/person.js: line 2, col 8, \'ENV\' is defined but never used.\nadapters/person.js: line 6, col 27, \'type\' is defined but never used.\n\n3 errors');
   });
 
 });
@@ -12552,16 +12399,6 @@ define('xtalus/tests/models/image.jshint', function () {
   });
 
 });
-define('xtalus/tests/models/isis.jshint', function () {
-
-  'use strict';
-
-  module('JSHint - models');
-  test('models/isis.js should pass jshint', function() { 
-    ok(true, 'models/isis.js should pass jshint.'); 
-  });
-
-});
 define('xtalus/tests/models/person.jshint', function () {
 
   'use strict';
@@ -12588,7 +12425,7 @@ define('xtalus/tests/router.jshint', function () {
 
   module('JSHint - .');
   test('router.js should pass jshint', function() { 
-    ok(false, 'router.js should pass jshint.\nrouter.js: line 32, col 31, Missing semicolon.\nrouter.js: line 33, col 7, Missing semicolon.\n\n2 errors'); 
+    ok(true, 'router.js should pass jshint.');
   });
 
 });
@@ -12598,7 +12435,7 @@ define('xtalus/tests/routes/application.jshint', function () {
 
   module('JSHint - routes');
   test('routes/application.js should pass jshint', function() { 
-    ok(false, 'routes/application.js should pass jshint.\nroutes/application.js: line 18, col 11, Missing semicolon.\nroutes/application.js: line 40, col 56, Missing semicolon.\nroutes/application.js: line 43, col 55, Missing semicolon.\nroutes/application.js: line 72, col 31, Missing semicolon.\nroutes/application.js: line 75, col 83, Missing semicolon.\nroutes/application.js: line 78, col 19, Missing semicolon.\nroutes/application.js: line 79, col 15, Missing semicolon.\nroutes/application.js: line 40, col 17, \'$\' is not defined.\nroutes/application.js: line 43, col 13, \'$\' is not defined.\nroutes/application.js: line 2, col 8, \'DS\' is defined but never used.\nroutes/application.js: line 37, col 46, \'type\' is defined but never used.\n\n11 errors'); 
+    ok(false, 'routes/application.js should pass jshint.\nroutes/application.js: line 17, col 11, Missing semicolon.\nroutes/application.js: line 37, col 56, Missing semicolon.\nroutes/application.js: line 40, col 55, Missing semicolon.\nroutes/application.js: line 69, col 31, Missing semicolon.\nroutes/application.js: line 72, col 83, Missing semicolon.\nroutes/application.js: line 75, col 19, Missing semicolon.\nroutes/application.js: line 76, col 15, Missing semicolon.\nroutes/application.js: line 37, col 17, \'$\' is not defined.\nroutes/application.js: line 40, col 13, \'$\' is not defined.\nroutes/application.js: line 2, col 8, \'DS\' is defined but never used.\nroutes/application.js: line 34, col 46, \'type\' is defined but never used.\n\n11 errors');
   });
 
 });
@@ -13143,7 +12980,7 @@ catch(err) {
 if (runningTests) {
   require("xtalus/tests/test-helper");
 } else {
-  require("xtalus/app")["default"].create({"API_HOST":"http://acc.xtalus.gedge.nl","API_NS":"simple/restful/v2","name":"xtalus","version":"0.0.0.a3c72fc8"});
+  require("xtalus/app")["default"].create({"API_HOST":"http://acc.xtalus.gedge.nl","API_NS":"simple/restful/v2","API_PHP_HOST":"http://localhost:8000","name":"xtalus","version":"0.0.0.7d841c89"});
 }
 
 /* jshint ignore:end */

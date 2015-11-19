@@ -12,7 +12,6 @@ export default Router.map(function() {
 	this.route('forgot');
 	this.route('help');
 
-
     this.resource('me',function(){
         this.route('connections');
         this.route('projects');
@@ -29,6 +28,6 @@ export default Router.map(function() {
     });
 
     this.resource('project', {path:"project/:project_id"}, function(){
-        this.route('matching')
-    })
+        this.route('matching');
+    });
 });

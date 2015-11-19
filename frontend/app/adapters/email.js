@@ -4,7 +4,7 @@ import ENV from '../config/environment';
 console.log(ENV);
 
 export default DS.Adapter.extend({
-    host: ENV.APP.API_HOST,
+    host: ENV.APP.API_PHP_HOST,
 
     createRecord: function(store, type, snapshot) {
         var jdata = [];
