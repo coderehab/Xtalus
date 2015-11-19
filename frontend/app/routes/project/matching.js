@@ -1,7 +1,8 @@
 import Ember from 'ember';
 /* global $ */
 
-var ProjectMatchingRoute = Ember.Route.extend({
+export default Ember.Route.extend({
+
     model: function() {
         var project = this.modelFor('project');
         return project;
@@ -13,5 +14,3 @@ var ProjectMatchingRoute = Ember.Route.extend({
             controller.send('selectMatchingProfile', model.get('profiles')[0].id);
     }
 });
-
-export default ProjectMatchingRoute;

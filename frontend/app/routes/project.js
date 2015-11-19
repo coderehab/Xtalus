@@ -2,7 +2,7 @@ import Ember from 'ember';
 import Auth from './auth';
 /* global $ISIS */
 
-var ProjectRoute = Auth.extend({
+export default Ember.Route.extend({
     model: function(params) {
         var demand = this.store.find('demand', params.project_id);
         return demand;
@@ -16,5 +16,3 @@ var ProjectRoute = Auth.extend({
     },
 
 });
-
-export default ProjectRoute;

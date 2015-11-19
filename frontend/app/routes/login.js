@@ -1,7 +1,7 @@
  import Ember from 'ember';
 /* global $ISIS */
 
-var LoginRoute = Ember.Route.extend({
+export default Ember.Route.extend({
 
     beforeModel:function(){
         if($ISIS.getCookie('auth')) {
@@ -10,5 +10,3 @@ var LoginRoute = Ember.Route.extend({
     },
 
 });
-
-export default LoginRoute;

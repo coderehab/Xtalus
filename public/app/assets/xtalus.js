@@ -17,6 +17,7 @@ define('xtalus/adapters/application', ['exports', 'ember-data', 'xtalus/config/e
                 "Authorization": $ISIS.authHeader
             };
         }).property("session.authToken")
+
     });
 
 });
@@ -469,15 +470,6 @@ define('xtalus/controllers/me/projects', ['exports', 'ember'], function (exports
     exports['default'] = MeProjectsController;
 
 });
-define('xtalus/controllers/me', ['exports', 'ember', 'xtalus/controllers/application'], function (exports, Ember, App) {
-
-	'use strict';
-
-	var MeController = App['default'].extend({});
-
-	exports['default'] = MeController;
-
-});
 define('xtalus/controllers/profile/connections', ['exports', 'ember'], function (exports, Ember) {
 
     'use strict';
@@ -522,19 +514,6 @@ define('xtalus/controllers/profile/projects', ['exports', 'ember'], function (ex
     });
 
     exports['default'] = ProjectenController;
-
-});
-define('xtalus/controllers/profile', ['exports', 'ember', 'xtalus/controllers/application'], function (exports, Ember, App) {
-
-    'use strict';
-
-    var ProfileController = App['default'].extend({
-
-        actions: {}
-
-    });
-
-    exports['default'] = ProfileController;
 
 });
 define('xtalus/controllers/project/index', ['exports', 'ember'], function (exports, Ember) {
@@ -750,15 +729,6 @@ define('xtalus/controllers/project/matching', ['exports', 'ember'], function (ex
     });
 
     exports['default'] = ProjectMatchingController;
-
-});
-define('xtalus/controllers/project', ['exports', 'ember', 'xtalus/controllers/application'], function (exports, Ember, App) {
-
-	'use strict';
-
-	var ProjectController = App['default'].extend({});
-
-	exports['default'] = ProjectController;
 
 });
 define('xtalus/controllers/registration', ['exports', 'ember', 'xtalus/mixins/validator'], function (exports, Ember, Validator) {
@@ -1264,7 +1234,7 @@ define('xtalus/routes/application', ['exports', 'ember', 'ember-data'], function
 
     'use strict';
 
-    var ApplicationRoute = Ember['default'].Route.extend({
+    exports['default'] = Ember['default'].Route.extend({
 
         globalSearchQuery: "",
 
@@ -1272,13 +1242,27 @@ define('xtalus/routes/application', ['exports', 'ember', 'ember-data'], function
 
             //var app = this.store.find('application', 'login');
             var store = this.store;
-
-            return $ISIS.get('http://acc.xtalus.gedge.nl/simple/restful/v2/action/login').then(function (app) {
+            if ($ISIS.getCookie('auth')) return $ISIS.get('http://acc.xtalus.gedge.nl/simple/restful/v2/action/login').then(function (app) {
                 return store.find('person', app.application.activePerson);
             });
         },
 
         actions: {
+
+            login: function login() {
+                $ISIS.auth.login(this.get("username"), this.get("password")).then((function (data) {
+                    console.log(data);
+                    if (data.message) {
+                        this.set('message', data.message);
+                        return;
+                    } else {
+                        this.get('target.router').refresh();
+                    }
+                }).bind(this));
+
+                return false;
+            },
+
             getProject: function getProject(id) {
                 this.transitionTo('project', id);
             },
@@ -1342,43 +1326,12 @@ define('xtalus/routes/application', ['exports', 'ember', 'ember-data'], function
         }
     });
 
-    exports['default'] = ApplicationRoute;
-
-});
-define('xtalus/routes/auth', ['exports', 'ember'], function (exports, Ember) {
-
-    'use strict';
-
-    var AuthRoute = Ember['default'].Route.extend({
-
-        beforeModel: function beforeModel() {
-            if (!$ISIS.getCookie('auth')) {
-                this.transitionTo('login');
-            }
-        },
-
-        setupController: function setupController(controller, model) {
-            controller.set('activePerson', this.modelFor('application').get('activePerson'));
-            controller.set('model', model);
-            console.log("\nPage referentie:\n", '--------------------------------------------------', controller, "===================================================\n");
-        },
-
-        actions: {
-            logout: function logout() {
-                $ISIS.auth.logout();
-                this.transitionTo('login');
-            }
-        }
-    });
-
-    exports['default'] = AuthRoute;
-
 });
 define('xtalus/routes/login', ['exports', 'ember'], function (exports, Ember) {
 
     'use strict';
 
-    var LoginRoute = Ember['default'].Route.extend({
+    exports['default'] = Ember['default'].Route.extend({
 
         beforeModel: function beforeModel() {
             if ($ISIS.getCookie('auth')) {
@@ -1388,27 +1341,24 @@ define('xtalus/routes/login', ['exports', 'ember'], function (exports, Ember) {
 
     });
 
-    exports['default'] = LoginRoute;
-
 });
 define('xtalus/routes/me/connections', ['exports', 'ember'], function (exports, Ember) {
 
     'use strict';
 
-    var MeConnectionsRoute = Ember['default'].Route.extend({
+    exports['default'] = Ember['default'].Route.extend({
+
         model: function model() {
             return this.modelFor('me');
         }
     });
-
-    exports['default'] = MeConnectionsRoute;
 
 });
 define('xtalus/routes/me/index', ['exports', 'ember'], function (exports, Ember) {
 
     'use strict';
 
-    var MeIndexRoute = Ember['default'].Route.extend({
+    exports['default'] = Ember['default'].Route.extend({
         model: function model() {
             return this.modelFor('me');
         },
@@ -1416,14 +1366,12 @@ define('xtalus/routes/me/index', ['exports', 'ember'], function (exports, Ember)
         actions: {}
     });
 
-    exports['default'] = MeIndexRoute;
-
 });
 define('xtalus/routes/me/projects', ['exports', 'ember'], function (exports, Ember) {
 
     'use strict';
 
-    var MeProjectsRoute = Ember['default'].Route.extend({
+    exports['default'] = Ember['default'].Route.extend({
 
         model: function model() {
             return this.modelFor('me');
@@ -1431,21 +1379,12 @@ define('xtalus/routes/me/projects', ['exports', 'ember'], function (exports, Emb
 
     });
 
-    exports['default'] = MeProjectsRoute;
-
 });
-define('xtalus/routes/me', ['exports', 'ember', 'xtalus/routes/auth'], function (exports, Ember, Auth) {
+define('xtalus/routes/me', ['exports', 'ember'], function (exports, Ember) {
 
     'use strict';
 
-    var MeRoute = Auth['default'].extend({
-
-        beforeModel: function beforeModel() {
-            //if(this.controller) this.controller.init();
-            if (!$ISIS.getCookie('auth')) {
-                this.transitionTo('login');
-            }
-        },
+    exports['default'] = Ember['default'].Route.extend({
 
         model: function model() {
             return this.modelFor('application');
@@ -1454,28 +1393,25 @@ define('xtalus/routes/me', ['exports', 'ember', 'xtalus/routes/auth'], function 
         actions: {}
     });
 
-    exports['default'] = MeRoute;
-
 });
 define('xtalus/routes/profile/connections', ['exports', 'ember'], function (exports, Ember) {
 
     'use strict';
 
-    var ProfileConnectionsRoute = Ember['default'].Route.extend({
+    exports['default'] = Ember['default'].Route.extend({
 
         model: function model() {
             return this.modelFor('profile');
         }
     });
 
-    exports['default'] = ProfileConnectionsRoute;
-
 });
 define('xtalus/routes/profile/index', ['exports', 'ember'], function (exports, Ember) {
 
 	'use strict';
 
-	var ProfileIndexRoute = Ember['default'].Route.extend({
+	exports['default'] = Ember['default'].Route.extend({
+
 		model: function model() {
 			return this.modelFor('profile');
 		},
@@ -1483,42 +1419,37 @@ define('xtalus/routes/profile/index', ['exports', 'ember'], function (exports, E
 		actions: {}
 	});
 
-	exports['default'] = ProfileIndexRoute;
-
 });
 define('xtalus/routes/profile/projects', ['exports', 'ember'], function (exports, Ember) {
 
     'use strict';
 
-    var ProfileProjectsRoute = Ember['default'].Route.extend({
+    exports['default'] = Ember['default'].Route.extend({
 
         model: function model() {
             return this.modelFor('profile');
         }
     });
 
-    exports['default'] = ProfileProjectsRoute;
-
 });
 define('xtalus/routes/profile', ['exports', 'ember', 'xtalus/routes/auth'], function (exports, Ember, Auth) {
 
     'use strict';
 
-    var ProfileRoute = Auth['default'].extend({
+    exports['default'] = Ember['default'].Route.extend({
 
         model: function model(params) {
             return this.store.find('person', params.user_id);
         }
     });
 
-    exports['default'] = ProfileRoute;
-
 });
 define('xtalus/routes/project/index', ['exports', 'ember'], function (exports, Ember) {
 
     'use strict';
 
-    var ProjectIndexRoute = Ember['default'].Route.extend({
+    exports['default'] = Ember['default'].Route.extend({
+
         model: function model() {
             return this.modelFor('project');
         },
@@ -1546,14 +1477,13 @@ define('xtalus/routes/project/index', ['exports', 'ember'], function (exports, E
         }
     });
 
-    exports['default'] = ProjectIndexRoute;
-
 });
 define('xtalus/routes/project/matching', ['exports', 'ember'], function (exports, Ember) {
 
     'use strict';
 
-    var ProjectMatchingRoute = Ember['default'].Route.extend({
+    exports['default'] = Ember['default'].Route.extend({
+
         model: function model() {
             var project = this.modelFor('project');
             return project;
@@ -1565,14 +1495,12 @@ define('xtalus/routes/project/matching', ['exports', 'ember'], function (exports
         }
     });
 
-    exports['default'] = ProjectMatchingRoute;
-
 });
 define('xtalus/routes/project', ['exports', 'ember', 'xtalus/routes/auth'], function (exports, Ember, Auth) {
 
     'use strict';
 
-    var ProjectRoute = Auth['default'].extend({
+    exports['default'] = Ember['default'].Route.extend({
         model: function model(params) {
             var demand = this.store.find('demand', params.project_id);
             return demand;
@@ -1587,14 +1515,12 @@ define('xtalus/routes/project', ['exports', 'ember', 'xtalus/routes/auth'], func
 
     });
 
-    exports['default'] = ProjectRoute;
-
 });
 define('xtalus/routes/registration', ['exports', 'ember'], function (exports, Ember) {
 
     'use strict';
 
-    var RegistrationRoute = Ember['default'].Route.extend({
+    exports['default'] = Ember['default'].Route.extend({
 
         model: function model(params, transition) {
             return this.store.createRecord('person');
@@ -1703,8 +1629,6 @@ define('xtalus/routes/registration', ['exports', 'ember'], function (exports, Em
             }
         }
     });
-
-    exports['default'] = RegistrationRoute;
 
 });
 define('xtalus/templates/application', ['exports'], function (exports) {
@@ -12202,16 +12126,6 @@ define('xtalus/tests/controllers/me/projects.jshint', function () {
   });
 
 });
-define('xtalus/tests/controllers/me.jshint', function () {
-
-  'use strict';
-
-  module('JSHint - controllers');
-  test('controllers/me.js should pass jshint', function() { 
-    ok(false, 'controllers/me.js should pass jshint.\ncontrollers/me.js: line 1, col 8, \'Ember\' is defined but never used.\n\n1 error'); 
-  });
-
-});
 define('xtalus/tests/controllers/profile/connections.jshint', function () {
 
   'use strict';
@@ -12232,16 +12146,6 @@ define('xtalus/tests/controllers/profile/projects.jshint', function () {
   });
 
 });
-define('xtalus/tests/controllers/profile.jshint', function () {
-
-  'use strict';
-
-  module('JSHint - controllers');
-  test('controllers/profile.js should pass jshint', function() { 
-    ok(false, 'controllers/profile.js should pass jshint.\ncontrollers/profile.js: line 1, col 8, \'Ember\' is defined but never used.\n\n1 error'); 
-  });
-
-});
 define('xtalus/tests/controllers/project/index.jshint', function () {
 
   'use strict';
@@ -12259,16 +12163,6 @@ define('xtalus/tests/controllers/project/matching.jshint', function () {
   module('JSHint - controllers/project');
   test('controllers/project/matching.js should pass jshint', function() { 
     ok(false, 'controllers/project/matching.js should pass jshint.\ncontrollers/project/matching.js: line 15, col 43, Missing semicolon.\ncontrollers/project/matching.js: line 36, col 41, Missing semicolon.\ncontrollers/project/matching.js: line 45, col 51, Missing semicolon.\ncontrollers/project/matching.js: line 46, col 19, Missing semicolon.\ncontrollers/project/matching.js: line 47, col 15, Missing semicolon.\ncontrollers/project/matching.js: line 51, col 42, Missing semicolon.\ncontrollers/project/matching.js: line 58, col 42, Missing semicolon.\ncontrollers/project/matching.js: line 59, col 79, Missing semicolon.\ncontrollers/project/matching.js: line 70, col 26, Missing semicolon.\ncontrollers/project/matching.js: line 74, col 25, \'profile\' is already defined.\ncontrollers/project/matching.js: line 93, col 35, Missing semicolon.\ncontrollers/project/matching.js: line 97, col 75, Missing semicolon.\ncontrollers/project/matching.js: line 137, col 50, Missing semicolon.\ncontrollers/project/matching.js: line 141, col 68, Missing semicolon.\ncontrollers/project/matching.js: line 144, col 15, Missing semicolon.\ncontrollers/project/matching.js: line 147, col 47, Missing semicolon.\ncontrollers/project/matching.js: line 155, col 28, Expected \'{\' and instead saw \'Ember\'.\ncontrollers/project/matching.js: line 18, col 94, \'result\' is defined but never used.\ncontrollers/project/matching.js: line 28, col 85, \'result\' is defined but never used.\ncontrollers/project/matching.js: line 42, col 74, \'result\' is defined but never used.\ncontrollers/project/matching.js: line 50, col 31, \'element\' is defined but never used.\ncontrollers/project/matching.js: line 57, col 31, \'element\' is defined but never used.\ncontrollers/project/matching.js: line 67, col 17, \'profile\' is defined but never used.\ncontrollers/project/matching.js: line 77, col 91, \'data\' is defined but never used.\ncontrollers/project/matching.js: line 80, col 29, \'a_promises\' is defined but never used.\ncontrollers/project/matching.js: line 112, col 17, \'profile\' is defined but never used.\ncontrollers/project/matching.js: line 114, col 17, \'demand\' is defined but never used.\ncontrollers/project/matching.js: line 146, col 61, \'widgets\' is defined but never used.\n\n28 errors'); 
-  });
-
-});
-define('xtalus/tests/controllers/project.jshint', function () {
-
-  'use strict';
-
-  module('JSHint - controllers');
-  test('controllers/project.js should pass jshint', function() { 
-    ok(false, 'controllers/project.js should pass jshint.\ncontrollers/project.js: line 1, col 8, \'Ember\' is defined but never used.\n\n1 error'); 
   });
 
 });
@@ -12435,17 +12329,7 @@ define('xtalus/tests/routes/application.jshint', function () {
 
   module('JSHint - routes');
   test('routes/application.js should pass jshint', function() { 
-    ok(false, 'routes/application.js should pass jshint.\nroutes/application.js: line 17, col 11, Missing semicolon.\nroutes/application.js: line 37, col 56, Missing semicolon.\nroutes/application.js: line 40, col 55, Missing semicolon.\nroutes/application.js: line 69, col 31, Missing semicolon.\nroutes/application.js: line 72, col 83, Missing semicolon.\nroutes/application.js: line 75, col 19, Missing semicolon.\nroutes/application.js: line 76, col 15, Missing semicolon.\nroutes/application.js: line 37, col 17, \'$\' is not defined.\nroutes/application.js: line 40, col 13, \'$\' is not defined.\nroutes/application.js: line 2, col 8, \'DS\' is defined but never used.\nroutes/application.js: line 34, col 46, \'type\' is defined but never used.\n\n11 errors');
-  });
-
-});
-define('xtalus/tests/routes/auth.jshint', function () {
-
-  'use strict';
-
-  module('JSHint - routes');
-  test('routes/auth.js should pass jshint', function() { 
-    ok(false, 'routes/auth.js should pass jshint.\nroutes/auth.js: line 13, col 89, Missing semicolon.\nroutes/auth.js: line 14, col 39, Missing semicolon.\n\n2 errors'); 
+    ok(false, 'routes/application.js should pass jshint.\nroutes/application.js: line 16, col 13, Expected \'{\' and instead saw \'return\'.\nroutes/application.js: line 18, col 15, Missing semicolon.\nroutes/application.js: line 56, col 56, Missing semicolon.\nroutes/application.js: line 59, col 55, Missing semicolon.\nroutes/application.js: line 88, col 31, Missing semicolon.\nroutes/application.js: line 91, col 83, Missing semicolon.\nroutes/application.js: line 94, col 19, Missing semicolon.\nroutes/application.js: line 95, col 15, Missing semicolon.\nroutes/application.js: line 56, col 17, \'$\' is not defined.\nroutes/application.js: line 59, col 13, \'$\' is not defined.\nroutes/application.js: line 2, col 8, \'DS\' is defined but never used.\nroutes/application.js: line 53, col 46, \'type\' is defined but never used.\n\n12 errors');
   });
 
 });
@@ -12495,7 +12379,7 @@ define('xtalus/tests/routes/me.jshint', function () {
 
   module('JSHint - routes');
   test('routes/me.js should pass jshint', function() { 
-    ok(false, 'routes/me.js should pass jshint.\nroutes/me.js: line 15, col 44, Missing semicolon.\nroutes/me.js: line 1, col 8, \'Ember\' is defined but never used.\n\n2 errors'); 
+    ok(false, 'routes/me.js should pass jshint.\nroutes/me.js: line 7, col 44, Missing semicolon.\nroutes/me.js: line 2, col 1, \'$ISIS\' is defined but never used.\n\n2 errors');
   });
 
 });
@@ -12535,7 +12419,7 @@ define('xtalus/tests/routes/profile.jshint', function () {
 
   module('JSHint - routes');
   test('routes/profile.js should pass jshint', function() { 
-    ok(false, 'routes/profile.js should pass jshint.\nroutes/profile.js: line 8, col 57, Missing semicolon.\nroutes/profile.js: line 1, col 8, \'Ember\' is defined but never used.\nroutes/profile.js: line 3, col 1, \'$ISIS\' is defined but never used.\n\n3 errors'); 
+    ok(false, 'routes/profile.js should pass jshint.\nroutes/profile.js: line 8, col 57, Missing semicolon.\nroutes/profile.js: line 2, col 8, \'Auth\' is defined but never used.\nroutes/profile.js: line 3, col 1, \'$ISIS\' is defined but never used.\n\n3 errors');
   });
 
 });
@@ -12545,7 +12429,7 @@ define('xtalus/tests/routes/project/index.jshint', function () {
 
   module('JSHint - routes/project');
   test('routes/project/index.js should pass jshint', function() { 
-    ok(false, 'routes/project/index.js should pass jshint.\nroutes/project/index.js: line 25, col 19, Missing semicolon.\nroutes/project/index.js: line 12, col 17, \'store\' is defined but never used.\nroutes/project/index.js: line 2, col 1, \'$\' is defined but never used.\n\n3 errors'); 
+    ok(false, 'routes/project/index.js should pass jshint.\nroutes/project/index.js: line 26, col 19, Missing semicolon.\nroutes/project/index.js: line 13, col 17, \'store\' is defined but never used.\nroutes/project/index.js: line 2, col 1, \'$\' is defined but never used.\n\n3 errors');
   });
 
 });
@@ -12555,7 +12439,7 @@ define('xtalus/tests/routes/project/matching.jshint', function () {
 
   module('JSHint - routes/project');
   test('routes/project/matching.js should pass jshint', function() { 
-    ok(false, 'routes/project/matching.js should pass jshint.\nroutes/project/matching.js: line 13, col 13, Expected \'{\' and instead saw \'controller\'.\nroutes/project/matching.js: line 2, col 1, \'$\' is defined but never used.\n\n2 errors'); 
+    ok(false, 'routes/project/matching.js should pass jshint.\nroutes/project/matching.js: line 14, col 13, Expected \'{\' and instead saw \'controller\'.\nroutes/project/matching.js: line 2, col 1, \'$\' is defined but never used.\n\n2 errors');
   });
 
 });
@@ -12565,7 +12449,7 @@ define('xtalus/tests/routes/project.jshint', function () {
 
   module('JSHint - routes');
   test('routes/project.js should pass jshint', function() { 
-    ok(false, 'routes/project.js should pass jshint.\nroutes/project.js: line 1, col 8, \'Ember\' is defined but never used.\nroutes/project.js: line 3, col 1, \'$ISIS\' is defined but never used.\n\n2 errors'); 
+    ok(false, 'routes/project.js should pass jshint.\nroutes/project.js: line 2, col 8, \'Auth\' is defined but never used.\nroutes/project.js: line 3, col 1, \'$ISIS\' is defined but never used.\n\n2 errors');
   });
 
 });

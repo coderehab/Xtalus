@@ -10,5 +10,6 @@ export default DS.RESTAdapter.extend({
         return {
             "Authorization": $ISIS.authHeader
         };
-    }.property("session.authToken")
+    }.property("session.authToken"),
+
 });

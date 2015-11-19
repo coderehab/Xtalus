@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-var RegistrationRoute = Ember.Route.extend({
+export default Ember.Route.extend({
 
     model: function(params, transition) {
         return this.store.createRecord('person');
@@ -112,5 +112,3 @@ var RegistrationRoute = Ember.Route.extend({
         }
     },
 });
-
-export default RegistrationRoute;

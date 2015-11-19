@@ -1,7 +1,9 @@
 import Ember from 'ember';
 /* global $ */
 
-var ProfileIndexRoute = Ember.Route.extend({
+
+export default Ember.Route.extend({
+
 	model:function(){
 		return this.modelFor('profile');
 	},
@@ -12,5 +14,3 @@ var ProfileIndexRoute = Ember.Route.extend({
 
 	},
 });
-
-export default ProfileIndexRoute;

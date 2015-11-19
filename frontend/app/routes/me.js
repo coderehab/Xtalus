@@ -1,15 +1,7 @@
 import Ember from 'ember';
-import Auth from './auth';
 /* global $ISIS */
 
-var MeRoute = Auth.extend({
-
-    beforeModel:function(){
-        //if(this.controller) this.controller.init();
-        if(!$ISIS.getCookie('auth')) {
-            this.transitionTo('login');
-        }
-    },
+export default Ember.Route.extend({
 
     model:function(){
         return this.modelFor('application')
@@ -19,5 +11,3 @@ var MeRoute = Auth.extend({
 
     },
 });
-
-export default MeRoute;

@@ -1,7 +1,8 @@
 import Ember from 'ember';
 /* global $ */
 
-var ProjectIndexRoute = Ember.Route.extend({
+export default Ember.Route.extend({
+
     model: function() {
         return this.modelFor('project');
     },
@@ -28,5 +29,3 @@ var ProjectIndexRoute = Ember.Route.extend({
 
     },
 });
-
-export default ProjectIndexRoute;

@@ -3,7 +3,7 @@ import DS from 'ember-data';
 
 /* global $ISIS */
 
-var ApplicationRoute = Ember.Route.extend({
+export default Ember.Route.extend({
 
     globalSearchQuery:"",
 
@@ -11,13 +11,32 @@ var ApplicationRoute = Ember.Route.extend({
 
         //var app = this.store.find('application', 'login');
         var store = this.store;
+        if($ISIS.getCookie('auth'))
 
-        return $ISIS.get('http://acc.xtalus.gedge.nl/simple/restful/v2/action/login').then(function(app){
-            return store.find('person', app.application.activePerson);
-        })
+            return $ISIS.get('http://acc.xtalus.gedge.nl/simple/restful/v2/action/login').then(function(app){
+                return store.find('person', app.application.activePerson);
+            })
+
     },
 
     actions: {
+
+        login: function(){
+            $ISIS.auth.login(this.get("username"), this.get("password")).then(function(data){
+                console.log(data);
+                if (data.message) {
+                    this.set('message', data.message);
+                    return;
+                }else {
+                    this.get('target.router').refresh();
+                }
+            }.bind(this));
+
+            return false;
+        },
+
+
+
         getProject:function(id){
             this.transitionTo('project', id);
         },
@@ -83,5 +102,3 @@ var ApplicationRoute = Ember.Route.extend({
 
     }
 });
-
-export default ApplicationRoute;

@@ -1,7 +1,7 @@
 import Ember from 'ember';
 /* global $ */
 
-var MeIndexRoute = Ember.Route.extend({
+export default Ember.Route.extend({
     model:function(){
         return this.modelFor('me');
     },
@@ -10,5 +10,3 @@ var MeIndexRoute = Ember.Route.extend({
 
     }
 });
-
-export default MeIndexRoute;
