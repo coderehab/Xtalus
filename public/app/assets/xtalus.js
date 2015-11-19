@@ -1748,8 +1748,6 @@ define('xtalus/templates/application', ['exports'], function (exports) {
       hasRendered: false,
       build: function build(dom) {
         var el0 = dom.createDocumentFragment();
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
         var el1 = dom.createComment("");
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n");
@@ -1776,7 +1774,8 @@ define('xtalus/templates/application', ['exports'], function (exports) {
         } else {
           fragment = this.build(dom);
         }
-        var morph0 = dom.createMorphAt(fragment,1,1,contextualElement);
+        var morph0 = dom.createMorphAt(fragment,0,0,contextualElement);
+        dom.insertBoundary(fragment, 0);
         content(env, morph0, context, "outlet");
         return fragment;
       }
@@ -3519,8 +3518,6 @@ define('xtalus/templates/components/matching-widgets-content/text', ['exports'],
       hasRendered: false,
       build: function build(dom) {
         var el0 = dom.createDocumentFragment();
-        var el1 = dom.createTextNode("\n	");
-        dom.appendChild(el0, el1);
         var el1 = dom.createComment("");
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n");
@@ -3547,7 +3544,8 @@ define('xtalus/templates/components/matching-widgets-content/text', ['exports'],
         } else {
           fragment = this.build(dom);
         }
-        var morph0 = dom.createMorphAt(fragment,1,1,contextualElement);
+        var morph0 = dom.createMorphAt(fragment,0,0,contextualElement);
+        dom.insertBoundary(fragment, 0);
         inline(env, morph0, context, "input", [], {"type": get(env, context, "type"), "value": get(env, context, "params.postcode"), "class": "cols-2"});
         return fragment;
       }
@@ -6331,13 +6329,13 @@ define('xtalus/templates/me/index', ['exports'], function (exports) {
         dom.setAttribute(el4,"id","edit-btn");
         dom.setAttribute(el4,"class","fa fa-cog");
         dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n\n            \n            ");
+        var el4 = dom.createTextNode("\n\n\n            ");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("h3");
         var el5 = dom.createTextNode("Marketing en communicatie");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n            \n            ");
+        var el4 = dom.createTextNode("\n\n            ");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("p");
         var el5 = dom.createTextNode("Instituut");
@@ -6351,7 +6349,7 @@ define('xtalus/templates/me/index', ['exports'], function (exports) {
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("hr");
         dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n            \n            ");
+        var el4 = dom.createTextNode("\n\n            ");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("h4");
         var el5 = dom.createElement("i");
@@ -6360,7 +6358,7 @@ define('xtalus/templates/me/index', ['exports'], function (exports) {
         var el5 = dom.createTextNode(" Honoursprogramma");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n            \n            ");
+        var el4 = dom.createTextNode("\n\n            ");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("h4");
         var el5 = dom.createElement("i");
@@ -6378,7 +6376,7 @@ define('xtalus/templates/me/index', ['exports'], function (exports) {
         var el5 = dom.createTextNode(" Woonplaats");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n            \n            \n            \n		");
+        var el4 = dom.createTextNode("\n\n\n\n		");
         dom.appendChild(el3, el4);
         dom.appendChild(el2, el3);
         var el3 = dom.createTextNode("\n\n		");
@@ -7753,11 +7751,17 @@ define('xtalus/templates/me', ['exports'], function (exports) {
         var el0 = dom.createDocumentFragment();
         var el1 = dom.createElement("header");
         dom.setAttribute(el1,"id","page-header");
-        var el2 = dom.createTextNode("\n\n	");
+        dom.setAttribute(el1,"class","has-image");
+        var el2 = dom.createTextNode("\n     ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("img");
+        dom.setAttribute(el2,"class","profilePicture");
+        dom.setAttribute(el2,"width","100");
+        dom.setAttribute(el2,"height","100");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n	");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("h4");
-        var el3 = dom.createTextNode("Profiel: ");
-        dom.appendChild(el2, el3);
         var el3 = dom.createComment("");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
@@ -7805,7 +7809,7 @@ define('xtalus/templates/me', ['exports'], function (exports) {
       },
       render: function render(context, env, contextualElement) {
         var dom = env.dom;
-        var hooks = env.hooks, content = hooks.content, block = hooks.block;
+        var hooks = env.hooks, get = hooks.get, concat = hooks.concat, attribute = hooks.attribute, content = hooks.content, block = hooks.block;
         dom.detectNamespace(contextualElement);
         var fragment;
         if (env.useFragmentCache && dom.canClone) {
@@ -7824,12 +7828,15 @@ define('xtalus/templates/me', ['exports'], function (exports) {
           fragment = this.build(dom);
         }
         var element0 = dom.childAt(fragment, [0]);
-        var element1 = dom.childAt(element0, [3, 1]);
-        var morph0 = dom.createMorphAt(dom.childAt(element0, [1]),1,1);
-        var morph1 = dom.createMorphAt(dom.childAt(element1, [1]),0,0);
-        var morph2 = dom.createMorphAt(dom.childAt(element1, [3]),0,0);
-        var morph3 = dom.createMorphAt(dom.childAt(element1, [5]),0,0);
+        var element1 = dom.childAt(element0, [1]);
+        var element2 = dom.childAt(element0, [5, 1]);
+        var attrMorph0 = dom.createAttrMorph(element1, 'src');
+        var morph0 = dom.createMorphAt(dom.childAt(element0, [3]),0,0);
+        var morph1 = dom.createMorphAt(dom.childAt(element2, [1]),0,0);
+        var morph2 = dom.createMorphAt(dom.childAt(element2, [3]),0,0);
+        var morph3 = dom.createMorphAt(dom.childAt(element2, [5]),0,0);
         var morph4 = dom.createMorphAt(fragment,2,2,contextualElement);
+        attribute(env, attrMorph0, element1, "src", concat(env, [get(env, context, "model.profilePicture")]));
         content(env, morph0, context, "model.fullName");
         block(env, morph1, context, "link-to", ["me.index"], {}, child0, null);
         block(env, morph2, context, "link-to", ["me.references"], {}, child1, null);
@@ -11443,7 +11450,7 @@ define('xtalus/templates/registration', ['exports'], function (exports) {
         hasRendered: false,
         build: function build(dom) {
           var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("Annuleren");
+          var el1 = dom.createTextNode("U heeft al een account?");
           dom.appendChild(el0, el1);
           return el0;
         },
@@ -11972,21 +11979,23 @@ define('xtalus/templates/registration', ['exports'], function (exports) {
         dom.setAttribute(el5,"class","fa fa-sign-in");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n\n        ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n          ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("footer");
         var el4 = dom.createTextNode("\n            ");
         dom.appendChild(el3, el4);
         var el4 = dom.createComment("");
         dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n        ");
+        var el4 = dom.createTextNode("\n    ");
         dom.appendChild(el3, el4);
         dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n\n    ");
+        var el3 = dom.createTextNode("\n\n\n    ");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n    ");
-        dom.appendChild(el1, el2);
-        var el2 = dom.createComment("");
-        dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n");
+        var el2 = dom.createTextNode("\n\n\n\n");
         dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n\n");
@@ -12013,8 +12022,8 @@ define('xtalus/templates/registration', ['exports'], function (exports) {
         } else {
           fragment = this.build(dom);
         }
-        var element0 = dom.childAt(fragment, [0]);
-        var element1 = dom.childAt(element0, [3, 3]);
+        var element0 = dom.childAt(fragment, [0, 3]);
+        var element1 = dom.childAt(element0, [3]);
         var element2 = dom.childAt(element1, [5]);
         var element3 = dom.childAt(element1, [7]);
         var element4 = dom.childAt(element1, [9]);
@@ -12055,8 +12064,7 @@ define('xtalus/templates/registration', ['exports'], function (exports) {
         var morph24 = dom.createMorphAt(dom.childAt(element13, [3]),0,0);
         var morph25 = dom.createMorphAt(dom.childAt(element14, [1]),5,5);
         var morph26 = dom.createMorphAt(dom.childAt(element14, [3]),0,0);
-        var morph27 = dom.createMorphAt(element1,33,33);
-        var morph28 = dom.createMorphAt(element0,5,5);
+        var morph27 = dom.createMorphAt(dom.childAt(element0, [5]),1,1);
         element(env, element1, context, "action", ["submitRegistration"], {"on": "submit"});
         content(env, morph0, context, "message");
         element(env, element2, context, "bind-attr", [], {"class": "errors.firstname:error :cols-2"});
@@ -12098,8 +12106,7 @@ define('xtalus/templates/registration', ['exports'], function (exports) {
         element(env, element14, context, "bind-attr", [], {"class": "errors.passwordConfirm:error :cols-2"});
         inline(env, morph25, context, "input", [], {"value": get(env, context, "formdata.passwordConfirm"), "type": "password", "placeholder": "Herhaal het wachtwoord"});
         content(env, morph26, context, "errors.passwordConfirm");
-        block(env, morph27, context, "link-to", ["login"], {"tagName": "button", "class": "btn-left"}, child0, null);
-        inline(env, morph28, context, "log", [get(env, context, "this")], {});
+        block(env, morph27, context, "link-to", ["login"], {}, child0, null);
         return fragment;
       }
     };
@@ -12112,7 +12119,7 @@ define('xtalus/tests/adapters/application.jshint', function () {
 
   module('JSHint - adapters');
   test('adapters/application.js should pass jshint', function() { 
-    ok(false, 'adapters/application.js should pass jshint.\nadapters/application.js: line 9, col 27, \'$ISIS\' is not defined.\nadapters/application.js: line 11, col 30, \'$ISIS\' is not defined.\nadapters/application.js: line 9, col 13, \'user_cookie\' is defined but never used.\n\n3 errors');
+    ok(false, 'adapters/application.js should pass jshint.\nadapters/application.js: line 9, col 27, \'$ISIS\' is not defined.\nadapters/application.js: line 11, col 30, \'$ISIS\' is not defined.\nadapters/application.js: line 9, col 13, \'user_cookie\' is defined but never used.\n\n3 errors'); 
   });
 
 });
@@ -12132,7 +12139,7 @@ define('xtalus/tests/adapters/person.jshint', function () {
 
   module('JSHint - adapters');
   test('adapters/person.js should pass jshint', function() { 
-    ok(false, 'adapters/person.js should pass jshint.\nadapters/person.js: line 1, col 8, \'DS\' is defined but never used.\nadapters/person.js: line 2, col 8, \'ENV\' is defined but never used.\nadapters/person.js: line 6, col 27, \'type\' is defined but never used.\n\n3 errors');
+    ok(false, 'adapters/person.js should pass jshint.\nadapters/person.js: line 1, col 8, \'DS\' is defined but never used.\nadapters/person.js: line 2, col 8, \'ENV\' is defined but never used.\nadapters/person.js: line 6, col 27, \'type\' is defined but never used.\n\n3 errors'); 
   });
 
 });
@@ -12338,8 +12345,8 @@ define('xtalus/tests/models/assessment.jshint', function () {
   'use strict';
 
   module('JSHint - models');
-  test('models/assessment.js should pass jshint', function() {
-    ok(true, 'models/assessment.js should pass jshint.');
+  test('models/assessment.js should pass jshint', function() { 
+    ok(true, 'models/assessment.js should pass jshint.'); 
   });
 
 });
@@ -12348,8 +12355,8 @@ define('xtalus/tests/models/communicationchannel.jshint', function () {
   'use strict';
 
   module('JSHint - models');
-  test('models/communicationchannel.js should pass jshint', function() {
-    ok(true, 'models/communicationchannel.js should pass jshint.');
+  test('models/communicationchannel.js should pass jshint', function() { 
+    ok(true, 'models/communicationchannel.js should pass jshint.'); 
   });
 
 });
@@ -12378,8 +12385,8 @@ define('xtalus/tests/models/elements.jshint', function () {
   'use strict';
 
   module('JSHint - models');
-  test('models/elements.js should pass jshint', function() {
-    ok(true, 'models/elements.js should pass jshint.');
+  test('models/elements.js should pass jshint', function() { 
+    ok(true, 'models/elements.js should pass jshint.'); 
   });
 
 });
@@ -12409,7 +12416,7 @@ define('xtalus/tests/models/person.jshint', function () {
 
   module('JSHint - models');
   test('models/person.js should pass jshint', function() { 
-    ok(false, 'models/person.js should pass jshint.\nmodels/person.js: line 36, col 26, Missing semicolon.\nmodels/person.js: line 40, col 23, Expected \'{\' and instead saw \'fullname\'.\nmodels/person.js: line 41, col 24, Expected \'{\' and instead saw \'fullname\'.\nmodels/person.js: line 42, col 22, Expected \'{\' and instead saw \'fullname\'.\nmodels/person.js: line 42, col 48, Missing semicolon.\nmodels/person.js: line 43, col 24, Missing semicolon.\nmodels/person.js: line 48, col 23, Expected \'{\' and instead saw \'return\'.\nmodels/person.js: line 48, col 99, Missing semicolon.\nmodels/person.js: line 32, col 17, \'moment\' is not defined.\nmodels/person.js: line 48, col 66, \'md5\' is not defined.\nmodels/person.js: line 31, col 24, \'e\' is defined but never used.\nmodels/person.js: line 35, col 24, \'e\' is defined but never used.\n\n12 errors');
+    ok(false, 'models/person.js should pass jshint.\nmodels/person.js: line 36, col 26, Missing semicolon.\nmodels/person.js: line 40, col 23, Expected \'{\' and instead saw \'fullname\'.\nmodels/person.js: line 41, col 24, Expected \'{\' and instead saw \'fullname\'.\nmodels/person.js: line 42, col 22, Expected \'{\' and instead saw \'fullname\'.\nmodels/person.js: line 42, col 48, Missing semicolon.\nmodels/person.js: line 43, col 24, Missing semicolon.\nmodels/person.js: line 48, col 23, Expected \'{\' and instead saw \'return\'.\nmodels/person.js: line 48, col 99, Missing semicolon.\nmodels/person.js: line 32, col 17, \'moment\' is not defined.\nmodels/person.js: line 48, col 66, \'md5\' is not defined.\nmodels/person.js: line 31, col 24, \'e\' is defined but never used.\nmodels/person.js: line 35, col 24, \'e\' is defined but never used.\n\n12 errors'); 
   });
 
 });
@@ -12418,8 +12425,8 @@ define('xtalus/tests/models/personalcontact.jshint', function () {
   'use strict';
 
   module('JSHint - models');
-  test('models/personalcontact.js should pass jshint', function() {
-    ok(true, 'models/personalcontact.js should pass jshint.');
+  test('models/personalcontact.js should pass jshint', function() { 
+    ok(true, 'models/personalcontact.js should pass jshint.'); 
   });
 
 });
@@ -12428,8 +12435,8 @@ define('xtalus/tests/models/profilematch.jshint', function () {
   'use strict';
 
   module('JSHint - models');
-  test('models/profilematch.js should pass jshint', function() {
-    ok(true, 'models/profilematch.js should pass jshint.');
+  test('models/profilematch.js should pass jshint', function() { 
+    ok(true, 'models/profilematch.js should pass jshint.'); 
   });
 
 });
@@ -12438,8 +12445,8 @@ define('xtalus/tests/models/supply.jshint', function () {
   'use strict';
 
   module('JSHint - models');
-  test('models/supply.js should pass jshint', function() {
-    ok(true, 'models/supply.js should pass jshint.');
+  test('models/supply.js should pass jshint', function() { 
+    ok(true, 'models/supply.js should pass jshint.'); 
   });
 
 });
@@ -12458,8 +12465,8 @@ define('xtalus/tests/models/tagholder.jshint', function () {
   'use strict';
 
   module('JSHint - models');
-  test('models/tagholder.js should pass jshint', function() {
-    ok(true, 'models/tagholder.js should pass jshint.');
+  test('models/tagholder.js should pass jshint', function() { 
+    ok(true, 'models/tagholder.js should pass jshint.'); 
   });
 
 });
@@ -12469,7 +12476,7 @@ define('xtalus/tests/router.jshint', function () {
 
   module('JSHint - .');
   test('router.js should pass jshint', function() { 
-    ok(true, 'router.js should pass jshint.');
+    ok(true, 'router.js should pass jshint.'); 
   });
 
 });
@@ -12479,7 +12486,7 @@ define('xtalus/tests/routes/application.jshint', function () {
 
   module('JSHint - routes');
   test('routes/application.js should pass jshint', function() { 
-    ok(false, 'routes/application.js should pass jshint.\nroutes/application.js: line 16, col 13, Expected \'{\' and instead saw \'return\'.\nroutes/application.js: line 18, col 15, Missing semicolon.\nroutes/application.js: line 56, col 56, Missing semicolon.\nroutes/application.js: line 59, col 55, Missing semicolon.\nroutes/application.js: line 88, col 31, Missing semicolon.\nroutes/application.js: line 91, col 83, Missing semicolon.\nroutes/application.js: line 94, col 19, Missing semicolon.\nroutes/application.js: line 95, col 15, Missing semicolon.\nroutes/application.js: line 56, col 17, \'$\' is not defined.\nroutes/application.js: line 59, col 13, \'$\' is not defined.\nroutes/application.js: line 2, col 8, \'DS\' is defined but never used.\nroutes/application.js: line 53, col 46, \'type\' is defined but never used.\n\n12 errors');
+    ok(false, 'routes/application.js should pass jshint.\nroutes/application.js: line 16, col 13, Expected \'{\' and instead saw \'return\'.\nroutes/application.js: line 18, col 15, Missing semicolon.\nroutes/application.js: line 56, col 56, Missing semicolon.\nroutes/application.js: line 59, col 55, Missing semicolon.\nroutes/application.js: line 88, col 31, Missing semicolon.\nroutes/application.js: line 91, col 83, Missing semicolon.\nroutes/application.js: line 94, col 19, Missing semicolon.\nroutes/application.js: line 95, col 15, Missing semicolon.\nroutes/application.js: line 56, col 17, \'$\' is not defined.\nroutes/application.js: line 59, col 13, \'$\' is not defined.\nroutes/application.js: line 2, col 8, \'DS\' is defined but never used.\nroutes/application.js: line 53, col 46, \'type\' is defined but never used.\n\n12 errors'); 
   });
 
 });
@@ -12529,7 +12536,7 @@ define('xtalus/tests/routes/me.jshint', function () {
 
   module('JSHint - routes');
   test('routes/me.js should pass jshint', function() { 
-    ok(false, 'routes/me.js should pass jshint.\nroutes/me.js: line 7, col 44, Missing semicolon.\nroutes/me.js: line 2, col 1, \'$ISIS\' is defined but never used.\n\n2 errors');
+    ok(false, 'routes/me.js should pass jshint.\nroutes/me.js: line 7, col 44, Missing semicolon.\nroutes/me.js: line 2, col 1, \'$ISIS\' is defined but never used.\n\n2 errors'); 
   });
 
 });
@@ -12569,7 +12576,7 @@ define('xtalus/tests/routes/profile.jshint', function () {
 
   module('JSHint - routes');
   test('routes/profile.js should pass jshint', function() { 
-    ok(false, 'routes/profile.js should pass jshint.\nroutes/profile.js: line 8, col 57, Missing semicolon.\nroutes/profile.js: line 2, col 8, \'Auth\' is defined but never used.\nroutes/profile.js: line 3, col 1, \'$ISIS\' is defined but never used.\n\n3 errors');
+    ok(false, 'routes/profile.js should pass jshint.\nroutes/profile.js: line 8, col 57, Missing semicolon.\nroutes/profile.js: line 2, col 8, \'Auth\' is defined but never used.\nroutes/profile.js: line 3, col 1, \'$ISIS\' is defined but never used.\n\n3 errors'); 
   });
 
 });
@@ -12579,7 +12586,7 @@ define('xtalus/tests/routes/project/index.jshint', function () {
 
   module('JSHint - routes/project');
   test('routes/project/index.js should pass jshint', function() { 
-    ok(false, 'routes/project/index.js should pass jshint.\nroutes/project/index.js: line 26, col 19, Missing semicolon.\nroutes/project/index.js: line 13, col 17, \'store\' is defined but never used.\nroutes/project/index.js: line 2, col 1, \'$\' is defined but never used.\n\n3 errors');
+    ok(false, 'routes/project/index.js should pass jshint.\nroutes/project/index.js: line 26, col 19, Missing semicolon.\nroutes/project/index.js: line 13, col 17, \'store\' is defined but never used.\nroutes/project/index.js: line 2, col 1, \'$\' is defined but never used.\n\n3 errors'); 
   });
 
 });
@@ -12589,7 +12596,7 @@ define('xtalus/tests/routes/project/matching.jshint', function () {
 
   module('JSHint - routes/project');
   test('routes/project/matching.js should pass jshint', function() { 
-    ok(false, 'routes/project/matching.js should pass jshint.\nroutes/project/matching.js: line 14, col 13, Expected \'{\' and instead saw \'controller\'.\nroutes/project/matching.js: line 2, col 1, \'$\' is defined but never used.\n\n2 errors');
+    ok(false, 'routes/project/matching.js should pass jshint.\nroutes/project/matching.js: line 14, col 13, Expected \'{\' and instead saw \'controller\'.\nroutes/project/matching.js: line 2, col 1, \'$\' is defined but never used.\n\n2 errors'); 
   });
 
 });
@@ -12599,7 +12606,7 @@ define('xtalus/tests/routes/project.jshint', function () {
 
   module('JSHint - routes');
   test('routes/project.js should pass jshint', function() { 
-    ok(false, 'routes/project.js should pass jshint.\nroutes/project.js: line 2, col 8, \'Auth\' is defined but never used.\nroutes/project.js: line 3, col 1, \'$ISIS\' is defined but never used.\n\n2 errors');
+    ok(false, 'routes/project.js should pass jshint.\nroutes/project.js: line 2, col 8, \'Auth\' is defined but never used.\nroutes/project.js: line 3, col 1, \'$ISIS\' is defined but never used.\n\n2 errors'); 
   });
 
 });
@@ -13014,7 +13021,7 @@ catch(err) {
 if (runningTests) {
   require("xtalus/tests/test-helper");
 } else {
-  require("xtalus/app")["default"].create({"API_HOST":"http://acc.xtalus.gedge.nl","API_NS":"simple/restful/v2","API_PHP_HOST":"http://localhost:8000","name":"xtalus","version":"0.0.0.d3f65dec"});
+  require("xtalus/app")["default"].create({"API_HOST":"http://acc.xtalus.gedge.nl","API_NS":"simple/restful/v2","API_PHP_HOST":"http://localhost:8000","name":"xtalus","version":"0.0.0.e2589b8e"});
 }
 
 /* jshint ignore:end */

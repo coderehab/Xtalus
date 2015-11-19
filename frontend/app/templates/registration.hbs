@@ -115,10 +115,16 @@
             </div>
 
             <button type="submit" class="btn">Registreren <i class="fa fa-sign-in"></i></button>
-            {{#link-to 'login' tagName='button' class='btn-left'}}Annuleren{{/link-to}}
+
         </form>
+          <footer>
+            {{#link-to 'login' }}U heeft al een account?{{/link-to}}
+    </footer>
+
 
     </section>
-    {{log this}}
+
+
+
 </section>
 
