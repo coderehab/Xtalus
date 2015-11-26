@@ -305,7 +305,26 @@ define('xtalus/components/multiselect-checkboxes', ['exports', 'ember-multiselec
 	exports['default'] = MultiselectCheckboxesComponent['default'];
 
 });
-define('xtalus/controllers/application', ['exports', 'ember'], function (exports, Ember) {
+define('xtalus/components/profile-element', ['exports', 'ember', 'ember-data'], function (exports, Ember, DS) {
+
+    'use strict';
+
+    exports['default'] = Ember['default'].Component.extend({
+        tagName: 'section',
+        classNames: 'profile-element',
+
+        data: {},
+        params: {},
+        actions: {},
+
+        isPassion: (function () {
+            return this.get('data.description') === 'PASSION_ELEMENT';
+        }).property('data.description')
+
+    });
+
+});
+define('xtalus/controllers/application', ['exports', 'ember', 'xtalus/config/environment'], function (exports, Ember, ENV) {
 
     'use strict';
 
@@ -327,7 +346,25 @@ define('xtalus/controllers/application', ['exports', 'ember'], function (exports
             });
         }).observes('globalSearchQuery'),
 
+        //  Post actions
+        sendAction: function sendAction(actionName, params) {
+
+            return new Promise(function (resolve, reject) {
+                Ember['default'].$.ajax({
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    url: ENV['default'].APP.API_HOST + '/' + ENV['default'].APP.API_NS + "/action/" + actionName,
+                    data: params
+                }).done(function (response) {
+                    resolve(response);
+                }).fail(function (error) {
+                    reject(error);
+                });
+            });
+        },
+
         actions: {
+
             handleSearchResultClick: function handleSearchResultClick(type, id) {
                 this.set('globalSearchQuery', '');
                 this.set('globalSearchResults', null);
@@ -738,19 +775,18 @@ define('xtalus/controllers/registration', ['exports', 'ember', 'xtalus/mixins/va
     var RegistrationController = Ember['default'].Controller.extend(Validator['default'], {
 
         formdata: {
-            username: 'edgar',
-            password: 'pass',
-            passwordConfirm: 'pass',
-            email: 'edgar@code.rehab',
-            firstname: 'Edgar',
+            firstname: '',
             middlename: '',
-            lastname: 'Ravenhorst',
-            phone: '0627311410',
-            birthdate: '1991-02-20',
-            address: 'Haaksbergerstraat 149-119',
-            postal: '7513 EL',
-            city: 'Enschede',
-            entity: { label: 'Student', value: 'student' }
+            lastname: '',
+            email: '',
+            birthday: '',
+            phone: '',
+            address: '',
+            postal: '',
+            city: '',
+            entity: { label: 'Student', value: 'student' },
+            password: '',
+            passwordConfirm: ''
         },
         form: {
             entities: [{ label: 'Student', value: 'student' }, { label: 'Zper', value: 'zp' }, { label: 'Mkber', value: 'mkb' }]
@@ -1015,125 +1051,7 @@ define('xtalus/models/demand', ['exports', 'ember-data'], function (exports, DS)
 	});
 
 });
-define('xtalus/models/demandprofile', ['exports', 'ember-data'], function (exports, DS) {
-
-    'use strict';
-
-    exports['default'] = DS['default'].Model.extend({
-        URI: DS['default'].attr(),
-        description: DS['default'].attr(),
-        profileElements: DS['default'].attr(),
-        profileElementChoices: DS['default'].attr(),
-        availableWidgets: DS['default'].attr(),
-        profileMatches: DS['default'].attr(),
-        profileComparisons: DS['default'].attr(),
-        chosenProfileMatchId: DS['default'].attr({ defaultValue: "" }),
-        chosenProfileMatchURI: DS['default'].attr({ defaultValue: "" }),
-
-        orderedProfileComparisons: (function () {
-            var profileComparisons = this.get('profileComparisons');
-            return Ember.ArrayController.create({
-                model: profileComparisons,
-                sortProperties: ['calculatedMatchingValue'],
-                sortAscending: false
-            });
-        }).property('profileComparisons'),
-
-        initMatch: (function () {
-            var _this = this;
-            if (this.get('chosenProfileMatchURI')) {
-                $ISIS.init('http://acc.xtalus.gedge.nl/simple/restful/' + this.get('chosenProfileMatchURI')).then(function (person) {
-                    person.fullName = person.supplyCandidate.title;
-                    _this.initMatchInfo(person);
-                    _this.set('match', person);
-                });
-            }
-        }).observes('chosenProfileMatchURI'),
-
-        initWidgets: (function () {
-            var widgets = this.get('profileElements');
-            var a_promises = [];
-            var _this = this;
-
-            console.log(widgets);
-
-            $.each(widgets, function (i, widget) {
-                if (widget.URI) a_promises.push($ISIS.init('http://acc.xtalus.gedge.nl/simple/restful/' + widget.URI));
-            });
-
-            if (a_promises.length > 0) {
-                Ember.RSVP.all(a_promises).then(function (widgets) {
-                    widgets.sort(function (a, b) {
-                        return b.weight - a.weight;
-                    });
-
-                    var availableWidgets = _this.get('profileElementChoices');
-                    var itemsRemoved = 0;
-                    $.each(availableWidgets, function (i, availableWidget) {
-                        availableWidget = availableWidgets[i - itemsRemoved];
-                        $.each(widgets, function (j, widget) {
-                            if (availableWidget && widget) {
-                                if (availableWidget.description == widget.description) {
-                                    availableWidgets.splice(i - itemsRemoved, 1);
-                                    itemsRemoved += 1;
-                                }
-                            }
-                        });
-                    });
-
-                    _this.set('widgets', widgets);
-                    _this.set('availableWidgets', availableWidgets);
-                });
-            } else {
-                _this.set('widgets', []);
-                _this.set('availableWidgets', this.get('profileElementChoices'));
-            }
-
-            return [];
-        }).observes('profileElements'),
-
-        candidates: (function () {
-            var _this = this;
-            var profileMatches = this.get('profileMatches');
-
-            var filteredMatches = Ember.ArrayController.create({
-                model: [],
-                sortProperties: ['calculatedMatchingValue'],
-                sortAscending: false
-            });
-
-            $.each(profileMatches, function (i, match) {
-                $ISIS.init('http://acc.xtalus.gedge.nl/simple/restful/' + match.URI).then(function (match) {
-                    match.contactName = match.supplyCandidate.title;
-                    _this.initMatchInfo(match);
-                    filteredMatches.pushObject(match);
-                });
-            });
-
-            return filteredMatches;
-        }).property('profileMatches'),
-
-        isisObj: (function () {
-            return $ISIS.get('http://acc.xtalus.gedge.nl/simple/restful/' + this.get('URI')).then(function (isisObjData) {
-
-                return $ISIS.extractMembers(isisObjData);
-            });
-        }).property('URI'),
-
-        initMatchInfo: function initMatchInfo(match) {
-            if (match) {
-                $ISIS.init(match.supplyCandidate.href).then(function (person) {
-                    var picture = person.picture ? person.picture.split(':') : '';
-                    if (picture[2]) Ember.set(match, 'profilePicture', 'data:image/png;base64,' + picture[2]);
-                    Ember.set(match, 'roles', person.roles);
-                });
-            }
-        }
-
-    });
-
-});
-define('xtalus/models/elements', ['exports', 'ember-data'], function (exports, DS) {
+define('xtalus/models/element', ['exports', 'ember-data'], function (exports, DS) {
 
     'use strict';
 
@@ -1142,7 +1060,9 @@ define('xtalus/models/elements', ['exports', 'ember-data'], function (exports, D
         description: DS['default'].attr(),
         weight: DS['default'].attr(),
         widgetType: DS['default'].attr(),
-        tagholders: DS['default'].hasMany("tagholder")
+        tagholders: DS['default'].hasMany("tagholder"),
+        textValue: DS['default'].attr(),
+        weight: DS['default'].attr()
 
     });
 
@@ -1199,6 +1119,9 @@ define('xtalus/models/person', ['exports', 'ember-data'], function (exports, DS)
         assessments: DS['default'].hasMany("assessment"),
         communicationChannels: DS['default'].hasMany("communicationchannel"),
 
+        demands: DS['default'].hasMany('demand'),
+        supplies: DS['default'].hasMany('supply'),
+
         companyName: DS['default'].attr(),
         branche: DS['default'].attr(),
         companyLocation: DS['default'].attr(),
@@ -1224,7 +1147,19 @@ define('xtalus/models/person', ['exports', 'ember-data'], function (exports, DS)
             if (!picture) return 'http://www.gravatar.com/avatar/' + md5(this.get('email')) + '?s=500';
             picture = picture.split(':');
             return 'data:image/png;base64,' + picture[2];
-        }).property('rawPicture', 'email')
+        }).property('rawPicture', 'email'),
+
+        profileElements: (function () {
+            var elements;
+
+            this.get('supplies').forEach(function (supply, i) {
+                supply.get('profiles').forEach(function (profile, i) {
+                    elements = profile.get('elements');
+                });
+            });
+
+            return elements;
+        }).property('supplies')
 
     });
 
@@ -1239,6 +1174,19 @@ define('xtalus/models/personalcontact', ['exports', 'ember-data'], function (exp
         contactFullname: DS['default'].attr(),
         contactImageUrl: DS['default'].attr({ defaultValue: '' })
 
+    });
+
+});
+define('xtalus/models/profile', ['exports', 'ember-data'], function (exports, DS) {
+
+    'use strict';
+
+    exports['default'] = DS['default'].Model.extend({
+        name: DS['default'].attr(),
+        elements: DS['default'].hasMany('element'),
+        weight: DS['default'].attr(),
+        type: DS['default'].attr(),
+        owner: DS['default'].belongsTo('person')
     });
 
 });
@@ -1266,7 +1214,7 @@ define('xtalus/models/supply', ['exports', 'ember-data'], function (exports, DS)
 				startDate: DS['default'].attr(),
 				endDate: DS['default'].attr(),
 				imageUrl: DS['default'].attr(),
-				profiles: DS['default'].attr(),
+				profiles: DS['default'].hasMany('profile'),
 				owner: DS['default'].belongsTo('person')
 	});
 
@@ -1494,6 +1442,12 @@ define('xtalus/routes/me', ['exports', 'ember'], function (exports, Ember) {
             return this.modelFor('application');
         },
 
+        afterModel: function afterModel(model, transition) {
+
+            //console.log(model.get('supplies'))
+
+        },
+
         actions: {}
     });
 
@@ -1633,8 +1587,6 @@ define('xtalus/routes/registration', ['exports', 'ember'], function (exports, Em
         setupController: function setupController(controller, model) {},
 
         actions: {
-            //{"username" : "hoi1234" , "password" : "hoi", "passwordConfirm" : "hoi", "email" : "email.johan@somewhere.nl"}
-            //$ISIS.put('http://acc.xtalus.gedge.nl/simple/restful/register')
 
             submitRegistration: function submitRegistration(e) {
                 var _this = this;
@@ -1642,93 +1594,29 @@ define('xtalus/routes/registration', ['exports', 'ember'], function (exports, Em
                 var appModel = this.modelFor('application');
 
                 var formdata = this.controller.get('formdata');
-                console.log(formdata);
-                var params = {
-                    username: formdata.username,
-                    password: formdata.password,
-                    passwordConfirm: formdata.passwordConfirm,
-                    email: formdata.email
-                    //,
-                    //phone:formdata.phone,
-                    //address:formdata.adress,
-                    //city:formdata.city,
-                    //postal:formdata.postal,
 
+                console.log(formdata);
+
+                var params = {
+
+                    firstname: formdata.firstname,
+                    middlename: formdata.middlename,
+                    lastname: formdata.lastname,
+                    birthday: formdata.birthday,
+                    email: formdata.email,
+                    phone: formdata.phone,
+                    address: formdata.adress,
+                    postal: formdata.postal,
+                    city: formdata.city,
+                    entity: formdata.entity.value,
+                    password: formdata.password,
+                    passwordConfirm: formdata.passwordConfirm
                 };
 
-                $ISIS.auth.logout();
-                $ISIS.post('http://acc.xtalus.gedge.nl/simple/restful/register', params, false).then(function (result) {
+                params = JSON.stringify(params);
 
-                    if (result.success == 1) {
-
-                        _this.store.createRecord('email', {
-                            email: params.email,
-                            type: "confirm",
-                            subject: "registration",
-                            title: "Xtalus registratie",
-                            firstname: formdata.firstname,
-                            middlename: formdata.middlename,
-                            lastname: formdata.lastname
-                        }).save();
-
-                        _this.store.createRecord('email', {
-                            email: 'info@xtalus.nl',
-                            type: "notify",
-                            subject: "new_registration",
-                            title: "Nieuwe Aanmelding",
-                            firstname: formdata.firstname,
-                            middlename: formdata.middlename,
-                            lastname: formdata.lastname
-                        }).save();
-
-                        $ISIS.auth.login(formdata.username, formdata.password).then(function (data) {
-                            $ISIS.init().then(function (isis) {
-
-                                //appModel.isis = isis;
-                                appModel.set('isis', isis);
-
-                                var personData = {
-                                    firstName: formdata.firstname,
-                                    middleName: formdata.middlename,
-                                    lastName: formdata.lastname,
-                                    dateOfBirth: formdata.birthday
-                                };
-
-                                if (formdata.entity.value === 'student') {
-                                    isis.createStudent.invoke(personData).then(function (personID) {
-                                        console.log(personID);
-                                        return store.find('person', personID).then(function (person) {
-                                            var isis = store.createRecord('isis');
-                                            appModel.set('activePerson', person);
-                                            _this.transitionTo('me');
-                                        });
-                                    });
-                                }
-
-                                if (formdata.entity.value === 'zp') {
-                                    isis.createProfessional.invoke(personData).then(function (personID) {
-                                        return store.find('person', personID).then(function (person) {
-                                            var isis = store.createRecord('isis');
-                                            appModel.set('activePerson', person);
-                                            _this.transitionTo('me');
-                                        });
-                                    });
-                                }
-
-                                if (formdata.entity.value === 'mkb') {
-                                    isis.createPrincipal.invoke(personData).then(function (personID) {
-                                        return store.find('person', personID).then(function (person) {
-                                            var isis = store.createRecord('isis');
-                                            appModel.set('activePerson', person);
-                                            _this.transitionTo('me');
-                                        });
-                                    });
-                                }
-                            });
-                        });
-                    } else {
-                        alert('Registration failed');
-                    }
+                this.controllerFor('application').sendAction('registration', params).then(function (response) {
+                    console.log(response);
                 });
             }
         }
@@ -3705,6 +3593,130 @@ define('xtalus/templates/components/multiselect-checkboxes', ['exports'], functi
         dom.insertBoundary(fragment, null);
         dom.insertBoundary(fragment, 0);
         block(env, morph0, context, "each", [get(env, context, "checkboxes")], {}, child0, null);
+        return fragment;
+      }
+    };
+  }()));
+
+});
+define('xtalus/templates/components/profile-element', ['exports'], function (exports) {
+
+  'use strict';
+
+  exports['default'] = Ember.HTMLBars.template((function() {
+    var child0 = (function() {
+      return {
+        isHTMLBars: true,
+        revision: "Ember@1.11.1",
+        blockParams: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        build: function build(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("section");
+          dom.setAttribute(el1,"id","passion");
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("i");
+          dom.setAttribute(el2,"id","edit-btn");
+          dom.setAttribute(el2,"class","fa fa-cog");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("h3");
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("p");
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        render: function render(context, env, contextualElement) {
+          var dom = env.dom;
+          var hooks = env.hooks, element = hooks.element, content = hooks.content;
+          dom.detectNamespace(contextualElement);
+          var fragment;
+          if (env.useFragmentCache && dom.canClone) {
+            if (this.cachedFragment === null) {
+              fragment = this.build(dom);
+              if (this.hasRendered) {
+                this.cachedFragment = fragment;
+              } else {
+                this.hasRendered = true;
+              }
+            }
+            if (this.cachedFragment) {
+              fragment = dom.cloneNode(this.cachedFragment, true);
+            }
+          } else {
+            fragment = this.build(dom);
+          }
+          var element0 = dom.childAt(fragment, [1]);
+          var element1 = dom.childAt(element0, [1]);
+          var morph0 = dom.createMorphAt(dom.childAt(element0, [3]),0,0);
+          var morph1 = dom.createMorphAt(dom.childAt(element0, [5]),0,0);
+          element(env, element1, context, "action", ["editSection", "user-info"], {});
+          content(env, morph0, context, "data.description");
+          content(env, morph1, context, "data.textValue");
+          return fragment;
+        }
+      };
+    }());
+    return {
+      isHTMLBars: true,
+      revision: "Ember@1.11.1",
+      blockParams: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      build: function build(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      render: function render(context, env, contextualElement) {
+        var dom = env.dom;
+        var hooks = env.hooks, get = hooks.get, block = hooks.block, inline = hooks.inline;
+        dom.detectNamespace(contextualElement);
+        var fragment;
+        if (env.useFragmentCache && dom.canClone) {
+          if (this.cachedFragment === null) {
+            fragment = this.build(dom);
+            if (this.hasRendered) {
+              this.cachedFragment = fragment;
+            } else {
+              this.hasRendered = true;
+            }
+          }
+          if (this.cachedFragment) {
+            fragment = dom.cloneNode(this.cachedFragment, true);
+          }
+        } else {
+          fragment = this.build(dom);
+        }
+        var morph0 = dom.createMorphAt(fragment,1,1,contextualElement);
+        var morph1 = dom.createMorphAt(fragment,3,3,contextualElement);
+        block(env, morph0, context, "if", [get(env, context, "isPassion")], {}, child0, null);
+        inline(env, morph1, context, "log", [get(env, context, "data")], {});
         return fragment;
       }
     };
@@ -6262,6 +6274,49 @@ define('xtalus/templates/me/index', ['exports'], function (exports) {
         hasRendered: false,
         build: function build(dom) {
           var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("    ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createComment("");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        render: function render(context, env, contextualElement) {
+          var dom = env.dom;
+          var hooks = env.hooks, get = hooks.get, inline = hooks.inline;
+          dom.detectNamespace(contextualElement);
+          var fragment;
+          if (env.useFragmentCache && dom.canClone) {
+            if (this.cachedFragment === null) {
+              fragment = this.build(dom);
+              if (this.hasRendered) {
+                this.cachedFragment = fragment;
+              } else {
+                this.hasRendered = true;
+              }
+            }
+            if (this.cachedFragment) {
+              fragment = dom.cloneNode(this.cachedFragment, true);
+            }
+          } else {
+            fragment = this.build(dom);
+          }
+          var morph0 = dom.createMorphAt(fragment,1,1,contextualElement);
+          inline(env, morph0, context, "profile-element", [], {"data": get(env, context, "element")});
+          return fragment;
+        }
+      };
+    }());
+    var child1 = (function() {
+      return {
+        isHTMLBars: true,
+        revision: "Ember@1.11.1",
+        blockParams: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        build: function build(dom) {
+          var el0 = dom.createDocumentFragment();
           var el1 = dom.createTextNode("			");
           dom.appendChild(el0, el1);
           var el1 = dom.createElement("li");
@@ -6493,41 +6548,14 @@ define('xtalus/templates/me/index', ['exports'], function (exports) {
         dom.appendChild(el0, el1);
         var el1 = dom.createElement("section");
         dom.setAttribute(el1,"id","page-content");
+        var el2 = dom.createTextNode("\n\n");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n	");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("section");
-        dom.setAttribute(el2,"id","passion");
-        var el3 = dom.createTextNode("\n		");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createElement("i");
-        dom.setAttribute(el3,"id","edit-btn");
-        dom.setAttribute(el3,"class","fa fa-cog");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n		");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createElement("h3");
-        var el4 = dom.createTextNode("Verhaal");
-        dom.appendChild(el3, el4);
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n		");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createElement("p");
-        var el4 = dom.createComment("");
-        dom.appendChild(el3, el4);
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n	");
-        dom.appendChild(el2, el3);
-        dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n\n	");
-        dom.appendChild(el1, el2);
-        var el2 = dom.createElement("section");
         dom.setAttribute(el2,"id","qualities");
-        var el3 = dom.createTextNode("\n		");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createElement("h3");
-        var el4 = dom.createTextNode("Kwaliteiten");
-        dom.appendChild(el3, el4);
-        dom.appendChild(el2, el3);
         var el3 = dom.createTextNode("\n\n		");
         dom.appendChild(el2, el3);
         var el3 = dom.createElement("ul");
@@ -6561,13 +6589,13 @@ define('xtalus/templates/me/index', ['exports'], function (exports) {
         var el2 = dom.createTextNode("\n");
         dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n\n");
+        var el1 = dom.createTextNode("\n");
         dom.appendChild(el0, el1);
         return el0;
       },
       render: function render(context, env, contextualElement) {
         var dom = env.dom;
-        var hooks = env.hooks, element = hooks.element, get = hooks.get, inline = hooks.inline, content = hooks.content, block = hooks.block;
+        var hooks = env.hooks, element = hooks.element, get = hooks.get, inline = hooks.inline, block = hooks.block;
         dom.detectNamespace(contextualElement);
         var fragment;
         if (env.useFragmentCache && dom.canClone) {
@@ -6591,9 +6619,7 @@ define('xtalus/templates/me/index', ['exports'], function (exports) {
         var element3 = dom.childAt(element2, [1]);
         var element4 = dom.childAt(element2, [5]);
         var element5 = dom.childAt(fragment, [2]);
-        var element6 = dom.childAt(element5, [1]);
-        var element7 = dom.childAt(element6, [1]);
-        var element8 = dom.childAt(element5, [3]);
+        var element6 = dom.childAt(element5, [3]);
         var morph0 = dom.createMorphAt(element4,1,1);
         var morph1 = dom.createMorphAt(element4,4,4);
         var morph2 = dom.createMorphAt(element4,7,7);
@@ -6603,9 +6629,9 @@ define('xtalus/templates/me/index', ['exports'], function (exports) {
         var morph6 = dom.createMorphAt(element4,21,21);
         var morph7 = dom.createMorphAt(element4,26,26);
         var morph8 = dom.createMorphAt(element4,29,29);
-        var morph9 = dom.createMorphAt(dom.childAt(element6, [5]),0,0);
-        var morph10 = dom.createMorphAt(dom.childAt(element8, [3]),1,1);
-        var morph11 = dom.createMorphAt(element8,7,7);
+        var morph9 = dom.createMorphAt(element5,1,1);
+        var morph10 = dom.createMorphAt(dom.childAt(element6, [1]),1,1);
+        var morph11 = dom.createMorphAt(element6,5,5);
         element(env, element1, context, "action", ["changeView", "page-left", 1], {});
         element(env, element3, context, "action", ["changeView", "page-left", 0], {});
         element(env, element4, context, "action", ["updatePerson"], {"on": "submit"});
@@ -6618,9 +6644,8 @@ define('xtalus/templates/me/index', ['exports'], function (exports) {
         inline(env, morph6, context, "input", [], {"value": get(env, context, "model.town"), "type": "text", "placeholder": "plaats", "class": "txt-field"});
         inline(env, morph7, context, "date-picker", [], {"value": get(env, context, "model.date"), "date": get(env, context, "mydate"), "valueFormat": "YYYY-MM-DD", "format": "DD-MM-YYYY", "yearRange": "-70,0"});
         inline(env, morph8, context, "date-picker", [], {"value": get(env, context, "model.date"), "date": get(env, context, "mydate"), "valueFormat": "YYYY-MM-DD", "format": "DD-MM-YYYY", "yearRange": "-70,0"});
-        element(env, element7, context, "action", ["editSection", "user-info"], {});
-        content(env, morph9, context, "model.passion");
-        block(env, morph10, context, "each", [get(env, context, "qualities")], {"keyword": "quality"}, child0, null);
+        block(env, morph9, context, "each", [get(env, context, "model.profileElements")], {"keyword": "element"}, child0, null);
+        block(env, morph10, context, "each", [get(env, context, "qualities")], {"keyword": "quality"}, child1, null);
         inline(env, morph11, context, "input", [], {"value": get(env, context, "quality"), "type": "text", "placeholder": "Type hier een nieuwe kwaliteit"});
         return fragment;
       }
@@ -11850,40 +11875,6 @@ define('xtalus/templates/registration', ['exports'], function (exports) {
         dom.appendChild(el5, el6);
         var el6 = dom.createElement("br");
         dom.appendChild(el5, el6);
-        var el6 = dom.createTextNode("\n\n\n                    ");
-        dom.appendChild(el5, el6);
-        var el6 = dom.createComment("");
-        dom.appendChild(el5, el6);
-        var el6 = dom.createTextNode("\n                ");
-        dom.appendChild(el5, el6);
-        dom.appendChild(el4, el5);
-        var el5 = dom.createTextNode("\n                ");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createElement("span");
-        var el6 = dom.createComment("");
-        dom.appendChild(el5, el6);
-        dom.appendChild(el4, el5);
-        var el5 = dom.createTextNode("\n            ");
-        dom.appendChild(el4, el5);
-        dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n\n\n\n            ");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createElement("div");
-        var el5 = dom.createTextNode("\n                ");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createElement("label");
-        var el6 = dom.createElement("i");
-        dom.setAttribute(el6,"class","fa fa-user");
-        dom.appendChild(el5, el6);
-        var el6 = dom.createTextNode(" Gebruikersnaam ");
-        dom.appendChild(el5, el6);
-        var el6 = dom.createElement("span");
-        dom.setAttribute(el6,"class","required");
-        var el7 = dom.createTextNode("*");
-        dom.appendChild(el6, el7);
-        dom.appendChild(el5, el6);
-        var el6 = dom.createElement("br");
-        dom.appendChild(el5, el6);
         var el6 = dom.createTextNode("\n                    ");
         dom.appendChild(el5, el6);
         var el6 = dom.createComment("");
@@ -11900,7 +11891,7 @@ define('xtalus/templates/registration', ['exports'], function (exports) {
         var el5 = dom.createTextNode("\n            ");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n\n\n            ");
+        var el4 = dom.createTextNode("\n\n            ");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("div");
         var el5 = dom.createTextNode("\n                ");
@@ -12036,7 +12027,6 @@ define('xtalus/templates/registration', ['exports'], function (exports) {
         var element11 = dom.childAt(element1, [23]);
         var element12 = dom.childAt(element1, [25]);
         var element13 = dom.childAt(element1, [27]);
-        var element14 = dom.childAt(element1, [29]);
         var morph0 = dom.createMorphAt(dom.childAt(element1, [3]),0,0);
         var morph1 = dom.createMorphAt(dom.childAt(element2, [1]),5,5);
         var morph2 = dom.createMorphAt(dom.childAt(element2, [3]),0,0);
@@ -12062,9 +12052,7 @@ define('xtalus/templates/registration', ['exports'], function (exports) {
         var morph22 = dom.createMorphAt(dom.childAt(element12, [3]),0,0);
         var morph23 = dom.createMorphAt(dom.childAt(element13, [1]),5,5);
         var morph24 = dom.createMorphAt(dom.childAt(element13, [3]),0,0);
-        var morph25 = dom.createMorphAt(dom.childAt(element14, [1]),5,5);
-        var morph26 = dom.createMorphAt(dom.childAt(element14, [3]),0,0);
-        var morph27 = dom.createMorphAt(dom.childAt(element0, [5]),1,1);
+        var morph25 = dom.createMorphAt(dom.childAt(element0, [5]),1,1);
         element(env, element1, context, "action", ["submitRegistration"], {"on": "submit"});
         content(env, morph0, context, "message");
         element(env, element2, context, "bind-attr", [], {"class": "errors.firstname:error :cols-2"});
@@ -12077,7 +12065,7 @@ define('xtalus/templates/registration', ['exports'], function (exports) {
         inline(env, morph5, context, "input", [], {"value": get(env, context, "formdata.lastname"), "type": "text", "placeholder": "Uw achternaam"});
         content(env, morph6, context, "errors.lastname");
         element(env, element5, context, "bind-attr", [], {"class": "errors.birthday:error :cols-2"});
-        inline(env, morph7, context, "date-picker", [], {"value": get(env, context, "formdata.birthday"), "date": get(env, context, "mydate"), "valueFormat": "YYYY-MM-DD", "yearRange": "-70,0"});
+        inline(env, morph7, context, "date-picker", [], {"format": "DD-MM-YYYY", "value": get(env, context, "formdata.birthday"), "valueFormat": "YYYY-MM-DD", "yearRange": "-70,0"});
         content(env, morph8, context, "errors.birthday");
         element(env, element6, context, "bind-attr", [], {"class": "errors.email:error :cols-2"});
         inline(env, morph9, context, "input", [], {"value": get(env, context, "formdata.email"), "type": "text", "placeholder": "Uw e-mailadres"});
@@ -12097,16 +12085,13 @@ define('xtalus/templates/registration', ['exports'], function (exports) {
         element(env, element11, context, "bind-attr", [], {"class": "errors.entity:error :cols-2"});
         inline(env, morph19, context, "view", [get(env, context, "Ember.Select")], {"contentBinding": "form.entities", "selectionBinding": "formdata.entity", "optionLabelPath": "content.label", "optionValuePath": "content.value"});
         content(env, morph20, context, "errors.entity");
-        element(env, element12, context, "bind-attr", [], {"class": "errors.username:error :cols-2"});
-        inline(env, morph21, context, "input", [], {"value": get(env, context, "formdata.username"), "type": "text", "placeholder": "Kies een gebruikersnaam"});
-        content(env, morph22, context, "errors.username");
-        element(env, element13, context, "bind-attr", [], {"class": "errors.password:error :cols-2"});
-        inline(env, morph23, context, "input", [], {"value": get(env, context, "formdata.password"), "type": "password", "placeholder": "Kies een wachtwoord"});
-        content(env, morph24, context, "errors.password");
-        element(env, element14, context, "bind-attr", [], {"class": "errors.passwordConfirm:error :cols-2"});
-        inline(env, morph25, context, "input", [], {"value": get(env, context, "formdata.passwordConfirm"), "type": "password", "placeholder": "Herhaal het wachtwoord"});
-        content(env, morph26, context, "errors.passwordConfirm");
-        block(env, morph27, context, "link-to", ["login"], {}, child0, null);
+        element(env, element12, context, "bind-attr", [], {"class": "errors.password:error :cols-2"});
+        inline(env, morph21, context, "input", [], {"value": get(env, context, "formdata.password"), "type": "password", "placeholder": "Kies een wachtwoord"});
+        content(env, morph22, context, "errors.password");
+        element(env, element13, context, "bind-attr", [], {"class": "errors.passwordConfirm:error :cols-2"});
+        inline(env, morph23, context, "input", [], {"value": get(env, context, "formdata.passwordConfirm"), "type": "password", "placeholder": "Herhaal het wachtwoord"});
+        content(env, morph24, context, "errors.passwordConfirm");
+        block(env, morph25, context, "link-to", ["login"], {}, child0, null);
         return fragment;
       }
     };
@@ -12163,13 +12148,23 @@ define('xtalus/tests/components/matching-widget.jshint', function () {
   });
 
 });
+define('xtalus/tests/components/profile-element.jshint', function () {
+
+  'use strict';
+
+  module('JSHint - components');
+  test('components/profile-element.js should pass jshint', function() {
+    ok(false, 'components/profile-element.js should pass jshint.\ncomponents/profile-element.js: line 2, col 8, \'DS\' is defined but never used.\n\n1 error');
+  });
+
+});
 define('xtalus/tests/controllers/application.jshint', function () {
 
   'use strict';
 
   module('JSHint - controllers');
   test('controllers/application.js should pass jshint', function() { 
-    ok(false, 'controllers/application.js should pass jshint.\ncontrollers/application.js: line 9, col 43, Expected \'===\' and instead saw \'==\'.\ncontrollers/application.js: line 17, col 17, Expected \'{\' and instead saw \'result\'.\ncontrollers/application.js: line 19, col 53, Missing semicolon.\ncontrollers/application.js: line 26, col 50, Missing semicolon.\ncontrollers/application.js: line 35, col 102, Missing semicolon.\n\n5 errors'); 
+    ok(false, 'controllers/application.js should pass jshint.\ncontrollers/application.js: line 10, col 43, Expected \'===\' and instead saw \'==\'.\ncontrollers/application.js: line 18, col 17, Expected \'{\' and instead saw \'result\'.\ncontrollers/application.js: line 20, col 53, Missing semicolon.\ncontrollers/application.js: line 46, col 50, Missing semicolon.\ncontrollers/application.js: line 55, col 102, Missing semicolon.\ncontrollers/application.js: line 27, col 20, \'Promise\' is not defined.\n\n6 errors');
   });
 
 });
@@ -12259,7 +12254,7 @@ define('xtalus/tests/controllers/registration.jshint', function () {
 
   module('JSHint - controllers');
   test('controllers/registration.js should pass jshint', function() { 
-    ok(false, 'controllers/registration.js should pass jshint.\ncontrollers/registration.js: line 37, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 41, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 45, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 49, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 53, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 57, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 61, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 65, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 69, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 73, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 77, col 29, Expected \'{\' and instead saw \'errors\'.\n\n11 errors'); 
+    ok(false, 'controllers/registration.js should pass jshint.\ncontrollers/registration.js: line 36, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 40, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 44, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 48, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 52, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 56, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 60, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 64, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 68, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 72, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 76, col 29, Expected \'{\' and instead saw \'errors\'.\n\n11 errors');
   });
 
 });
@@ -12370,23 +12365,13 @@ define('xtalus/tests/models/demand.jshint', function () {
   });
 
 });
-define('xtalus/tests/models/demandprofile.jshint', function () {
+define('xtalus/tests/models/element.jshint', function () {
 
   'use strict';
 
   module('JSHint - models');
-  test('models/demandprofile.js should pass jshint', function() { 
-    ok(false, 'models/demandprofile.js should pass jshint.\nmodels/demandprofile.js: line 36, col 50, Missing semicolon.\nmodels/demandprofile.js: line 43, col 28, Expected \'{\' and instead saw \'a_promises\'.\nmodels/demandprofile.js: line 43, col 114, Missing semicolon.\nmodels/demandprofile.js: line 44, col 19, Missing semicolon.\nmodels/demandprofile.js: line 50, col 19, Missing semicolon.\nmodels/demandprofile.js: line 52, col 74, Missing semicolon.\nmodels/demandprofile.js: line 55, col 71, Missing semicolon.\nmodels/demandprofile.js: line 58, col 63, Expected \'===\' and instead saw \'==\'.\nmodels/demandprofile.js: line 60, col 50, Missing semicolon.\nmodels/demandprofile.js: line 64, col 23, Missing semicolon.\nmodels/demandprofile.js: line 67, col 46, Missing semicolon.\nmodels/demandprofile.js: line 71, col 37, Missing semicolon.\nmodels/demandprofile.js: line 113, col 32, Expected \'{\' and instead saw \'Ember\'.\nmodels/demandprofile.js: line 16, col 16, \'Ember\' is not defined.\nmodels/demandprofile.js: line 27, col 13, \'$ISIS\' is not defined.\nmodels/demandprofile.js: line 42, col 9, \'$\' is not defined.\nmodels/demandprofile.js: line 43, col 44, \'$ISIS\' is not defined.\nmodels/demandprofile.js: line 47, col 13, \'Ember\' is not defined.\nmodels/demandprofile.js: line 54, col 17, \'$\' is not defined.\nmodels/demandprofile.js: line 56, col 21, \'$\' is not defined.\nmodels/demandprofile.js: line 83, col 31, \'Ember\' is not defined.\nmodels/demandprofile.js: line 89, col 9, \'$\' is not defined.\nmodels/demandprofile.js: line 90, col 13, \'$ISIS\' is not defined.\nmodels/demandprofile.js: line 102, col 16, \'$ISIS\' is not defined.\nmodels/demandprofile.js: line 104, col 21, \'$ISIS\' is not defined.\nmodels/demandprofile.js: line 111, col 13, \'$ISIS\' is not defined.\nmodels/demandprofile.js: line 113, col 32, \'Ember\' is not defined.\nmodels/demandprofile.js: line 114, col 17, \'Ember\' is not defined.\n\n28 errors'); 
-  });
-
-});
-define('xtalus/tests/models/elements.jshint', function () {
-
-  'use strict';
-
-  module('JSHint - models');
-  test('models/elements.js should pass jshint', function() { 
-    ok(true, 'models/elements.js should pass jshint.'); 
+  test('models/element.js should pass jshint', function() {
+    ok(false, 'models/element.js should pass jshint.\nmodels/element.js: line 10, col 11, Duplicate key \'weight\'.\n\n1 error');
   });
 
 });
@@ -12416,7 +12401,7 @@ define('xtalus/tests/models/person.jshint', function () {
 
   module('JSHint - models');
   test('models/person.js should pass jshint', function() { 
-    ok(false, 'models/person.js should pass jshint.\nmodels/person.js: line 36, col 26, Missing semicolon.\nmodels/person.js: line 40, col 23, Expected \'{\' and instead saw \'fullname\'.\nmodels/person.js: line 41, col 24, Expected \'{\' and instead saw \'fullname\'.\nmodels/person.js: line 42, col 22, Expected \'{\' and instead saw \'fullname\'.\nmodels/person.js: line 42, col 48, Missing semicolon.\nmodels/person.js: line 43, col 24, Missing semicolon.\nmodels/person.js: line 48, col 23, Expected \'{\' and instead saw \'return\'.\nmodels/person.js: line 48, col 99, Missing semicolon.\nmodels/person.js: line 32, col 17, \'moment\' is not defined.\nmodels/person.js: line 48, col 66, \'md5\' is not defined.\nmodels/person.js: line 31, col 24, \'e\' is defined but never used.\nmodels/person.js: line 35, col 24, \'e\' is defined but never used.\n\n12 errors'); 
+    ok(false, 'models/person.js should pass jshint.\nmodels/person.js: line 39, col 26, Missing semicolon.\nmodels/person.js: line 43, col 23, Expected \'{\' and instead saw \'fullname\'.\nmodels/person.js: line 44, col 24, Expected \'{\' and instead saw \'fullname\'.\nmodels/person.js: line 45, col 22, Expected \'{\' and instead saw \'fullname\'.\nmodels/person.js: line 45, col 48, Missing semicolon.\nmodels/person.js: line 46, col 24, Missing semicolon.\nmodels/person.js: line 51, col 23, Expected \'{\' and instead saw \'return\'.\nmodels/person.js: line 51, col 99, Missing semicolon.\nmodels/person.js: line 62, col 15, Missing semicolon.\nmodels/person.js: line 63, col 11, Missing semicolon.\nmodels/person.js: line 35, col 17, \'moment\' is not defined.\nmodels/person.js: line 51, col 66, \'md5\' is not defined.\nmodels/person.js: line 34, col 24, \'e\' is defined but never used.\nmodels/person.js: line 38, col 24, \'e\' is defined but never used.\nmodels/person.js: line 59, col 55, \'i\' is defined but never used.\nmodels/person.js: line 60, col 62, \'i\' is defined but never used.\n\n16 errors');
   });
 
 });
@@ -12427,6 +12412,16 @@ define('xtalus/tests/models/personalcontact.jshint', function () {
   module('JSHint - models');
   test('models/personalcontact.js should pass jshint', function() { 
     ok(true, 'models/personalcontact.js should pass jshint.'); 
+  });
+
+});
+define('xtalus/tests/models/profile.jshint', function () {
+
+  'use strict';
+
+  module('JSHint - models');
+  test('models/profile.js should pass jshint', function() {
+    ok(true, 'models/profile.js should pass jshint.');
   });
 
 });
@@ -12536,7 +12531,7 @@ define('xtalus/tests/routes/me.jshint', function () {
 
   module('JSHint - routes');
   test('routes/me.js should pass jshint', function() { 
-    ok(false, 'routes/me.js should pass jshint.\nroutes/me.js: line 7, col 44, Missing semicolon.\nroutes/me.js: line 2, col 1, \'$ISIS\' is defined but never used.\n\n2 errors'); 
+    ok(false, 'routes/me.js should pass jshint.\nroutes/me.js: line 7, col 44, Missing semicolon.\nroutes/me.js: line 10, col 33, \'transition\' is defined but never used.\nroutes/me.js: line 10, col 26, \'model\' is defined but never used.\nroutes/me.js: line 2, col 1, \'$ISIS\' is defined but never used.\n\n4 errors');
   });
 
 });
@@ -12616,7 +12611,7 @@ define('xtalus/tests/routes/registration.jshint', function () {
 
   module('JSHint - routes');
   test('routes/registration.js should pass jshint', function() { 
-    ok(false, 'routes/registration.js should pass jshint.\nroutes/registration.js: line 34, col 14, Missing semicolon.\nroutes/registration.js: line 41, col 37, Expected \'===\' and instead saw \'==\'.\nroutes/registration.js: line 67, col 54, Missing semicolon.\nroutes/registration.js: line 74, col 30, Missing semicolon.\nroutes/registration.js: line 78, col 58, Missing semicolon.\nroutes/registration.js: line 83, col 39, Missing semicolon.\nroutes/registration.js: line 84, col 35, Missing semicolon.\nroutes/registration.js: line 93, col 39, Missing semicolon.\nroutes/registration.js: line 94, col 35, Missing semicolon.\nroutes/registration.js: line 103, col 39, Missing semicolon.\nroutes/registration.js: line 104, col 35, Missing semicolon.\nroutes/registration.js: line 37, col 13, \'$ISIS\' is not defined.\nroutes/registration.js: line 38, col 13, \'$ISIS\' is not defined.\nroutes/registration.js: line 63, col 21, \'$ISIS\' is not defined.\nroutes/registration.js: line 64, col 25, \'$ISIS\' is not defined.\nroutes/registration.js: line 5, col 29, \'transition\' is defined but never used.\nroutes/registration.js: line 5, col 21, \'params\' is defined but never used.\nroutes/registration.js: line 9, col 43, \'model\' is defined but never used.\nroutes/registration.js: line 9, col 31, \'controller\' is defined but never used.\nroutes/registration.js: line 16, col 38, \'e\' is defined but never used.\nroutes/registration.js: line 63, col 90, \'data\' is defined but never used.\nroutes/registration.js: line 80, col 45, \'isis\' is defined but never used.\nroutes/registration.js: line 90, col 45, \'isis\' is defined but never used.\nroutes/registration.js: line 100, col 45, \'isis\' is defined but never used.\n\n24 errors'); 
+    ok(false, 'routes/registration.js should pass jshint.\nroutes/registration.js: line 37, col 14, Missing semicolon.\nroutes/registration.js: line 5, col 29, \'transition\' is defined but never used.\nroutes/registration.js: line 5, col 21, \'params\' is defined but never used.\nroutes/registration.js: line 9, col 43, \'model\' is defined but never used.\nroutes/registration.js: line 9, col 31, \'controller\' is defined but never used.\nroutes/registration.js: line 15, col 17, \'_this\' is defined but never used.\nroutes/registration.js: line 16, col 17, \'store\' is defined but never used.\nroutes/registration.js: line 17, col 17, \'appModel\' is defined but never used.\nroutes/registration.js: line 14, col 38, \'e\' is defined but never used.\n\n9 errors');
   });
 
 });
@@ -13021,7 +13016,7 @@ catch(err) {
 if (runningTests) {
   require("xtalus/tests/test-helper");
 } else {
-  require("xtalus/app")["default"].create({"API_HOST":"http://acc.xtalus.gedge.nl","API_NS":"simple/restful/v2","API_PHP_HOST":"http://localhost:8000","name":"xtalus","version":"0.0.0.e2589b8e"});
+  require("xtalus/app")["default"].create({"API_HOST":"http://acc.xtalus.gedge.nl","API_NS":"simple/restful/v2","API_PHP_HOST":"http://localhost:8000","name":"xtalus","version":"0.0.0.82911282"});
 }
 
 /* jshint ignore:end */

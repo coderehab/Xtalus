@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import ENV from '../config/environment';
 /* global $ISIS */
 
 var ApplicationController = Ember.Controller.extend({
@@ -20,7 +21,26 @@ var ApplicationController = Ember.Controller.extend({
         });
     }.observes('globalSearchQuery'),
 
+    //  Post actions
+    sendAction: function(actionName,params){
+
+        return new Promise(function(resolve, reject) {
+            Ember.$.ajax({
+                 type: "POST",
+                contentType: "application/json; charset=utf-8",
+                url: ENV.APP.API_HOST+'/'+ENV.APP.API_NS+"/action/"+actionName,
+                data: params
+            }).done(function(response){
+                  resolve(response);
+            }).fail(function(error) {
+                reject(error);
+            });
+        });
+
+    },
+
     actions: {
+
         handleSearchResultClick:function(type, id){
             this.set('globalSearchQuery', '');
             this.set('globalSearchResults', null)

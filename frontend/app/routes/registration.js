@@ -10,8 +10,6 @@ export default Ember.Route.extend({
     },
 
     actions: {
-        //{"username" : "hoi1234" , "password" : "hoi", "passwordConfirm" : "hoi", "email" : "email.johan@somewhere.nl"}
-        //$ISIS.put('http://acc.xtalus.gedge.nl/simple/restful/register')
 
         submitRegistration: function(e) {
             var _this = this;
@@ -19,96 +17,33 @@ export default Ember.Route.extend({
             var appModel = this.modelFor('application');
 
             var formdata = this.controller.get('formdata');
+
             console.log(formdata);
+
             var params = {
-                username:formdata.username,
+
+                firstname: formdata.firstname,
+                middlename: formdata.middlename,
+                lastname: formdata.lastname,
+                birthday: formdata.birthday,
+                email:formdata.email,
+                phone:formdata.phone,
+                address:formdata.adress,
+                postal:formdata.postal,
+                city:formdata.city,
+                entity: formdata.entity.value,
                 password:formdata.password,
                 passwordConfirm:formdata.passwordConfirm,
-                email:formdata.email
-                //,
-                //phone:formdata.phone,
-                //address:formdata.adress,
-                //city:formdata.city,
-                //postal:formdata.postal,
-
             }
 
+            params = JSON.stringify(params);
 
-            $ISIS.auth.logout();
-            $ISIS.post('http://acc.xtalus.gedge.nl/simple/restful/register', params, false)
-                .then(function(result){
-
-                if(result.success == 1){
-
-                    _this.store.createRecord('email', {
-                        email:params.email,
-                        type:"confirm",
-                        subject:"registration",
-                        title:"Xtalus registratie",
-                        firstname:formdata.firstname,
-                        middlename:formdata.middlename,
-                        lastname:formdata.lastname,
-                    }).save();
-
-                    _this.store.createRecord('email', {
-                        email:'info@xtalus.nl',
-                        type:"notify",
-                        subject:"new_registration",
-                        title:"Nieuwe Aanmelding",
-                        firstname:formdata.firstname,
-                        middlename:formdata.middlename,
-                        lastname:formdata.lastname,
-                    }).save();
-
-                    $ISIS.auth.login(formdata.username, formdata.password).then(function(data){
-                        $ISIS.init().then(function(isis){
-
-                            //appModel.isis = isis;
-                            appModel.set('isis',isis)
-
-                            var personData = {
-                                firstName: formdata.firstname,
-                                middleName: formdata.middlename,
-                                lastName: formdata.lastname,
-                                dateOfBirth: formdata.birthday,
-                            }
-
-                            if(formdata.entity.value === 'student') {
-                                isis.createStudent.invoke(personData).then(function(personID){
-                                    console.log(personID)
-                                    return store.find('person', personID).then(function(person){
-                                        var isis = store.createRecord('isis');
-                                        appModel.set('activePerson', person);
-                                        _this.transitionTo('me');
-                                    })
-                                })
-                            }
-
-                            if(formdata.entity.value === 'zp') {
-                                isis.createProfessional.invoke(personData).then(function(personID){
-                                    return store.find('person', personID).then(function(person){
-                                        var isis = store.createRecord('isis');
-                                        appModel.set('activePerson', person);
-                                        _this.transitionTo('me');
-                                    })
-                                })
-                            }
-
-                            if(formdata.entity.value === 'mkb') {
-                                isis.createPrincipal.invoke(personData).then(function(personID){
-                                    return store.find('person', personID).then(function(person){
-                                        var isis = store.createRecord('isis');
-                                        appModel.set('activePerson', person);
-                                        _this.transitionTo('me');
-                                    })
-                                })
-                            }
-                        });
-                    });
-                }else {
-                    alert('Registration failed');
-                }
+            this.controllerFor('application').sendAction('registration',params).then(function(response){
+                console.log(response);
             });
+
+
+
         }
     },
 });
