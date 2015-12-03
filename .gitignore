@@ -1,3 +1,10 @@
 /midoffice/vendor
 .env
 .DS_Store
+/public/app/
+/frontend/.sass-cache/
+/frontend/app/templates/me/projects.hbs
+/public/app/assets/xtalus.css
+/public/app/assets/xtalus.js
+/public/app/assets/xtalus.map
+/public/app/index.html
