@@ -7,36 +7,46 @@
 
     <section>
         <h2>Registreer jezelf</h2>
+
+
+        <span class="error-msg">
+            - passwords should match // Wachtwoorden moeten matchen<br>
+            - password // ongeldig wachtwoord <br>
+            - no valid email  // ongeldig  emaildres <br>
+            - no valid firstName // ongeldige voornaam <br>
+            - no valid lastName // ongeldige achternaam<br>
+            - no valid date // ongeldige datum<br>
+            - no valid roletype: choose 'STUDENT', 'PROFESSIONAL' or 'PRINCIPAL  // ongeldige rol<br>
+            - username already registered and person object already made  // gebruikersnaam is bezet<br>
+            - username already registered; no person object made // gebruikersnaam is bezet<br>
+            - email already registered // emaildres is al geregisteerd<br>
+            - registration failure // Registratie fout, neem contact op met de webmaster(info@xtalus.nl)<br>
+            - failure creating Person object // Registratie fout, neem contact op met de webmaster(info@xtalus.nl)
+        </span>
+
         <form method="post" {{action "submitRegistration" on="submit"}} class="columns">
             <!-- Left column -->
             <p class="message">{{message}}</p>
 
             <div {{bind-attr class="errors.firstname:error :cols-2"}}>
                 <label><i class="fa fa-user"></i> Voornaam <span class="required">*</span><br>
-                    {{input value=formdata.firstname type="text" placeholder="Uw voornaam"}}
+                    {{input value=formdata.firstName type="text" placeholder="Uw voornaam"}}
                 </label>
                 <span>{{errors.firstname}}</span>
             </div>
 
             <div {{bind-attr class="errors.middlename:error :cols-2"}}>
                 <label><i class="fa fa-user"></i> Tussenvoegsel<br>
-                    {{input value=formdata.middlename type="text" placeholder="Tussenvoegsel"}}
+                    {{input value=formdata.middleName type="text" placeholder="Tussenvoegsel"}}
                 </label>
                 <span>{{errors.middlename}}</span>
             </div>
 
             <div {{bind-attr class="errors.lastname:error :cols-2"}}>
                 <label><i class="fa fa-user"></i> Achternaam <span class="required">*</span><br>
-                    {{input value=formdata.lastname type="text" placeholder="Uw achternaam"}}
+                    {{input value=formdata.lastName type="text" placeholder="Uw achternaam"}}
                 </label>
                 <span>{{errors.lastname}}</span>
-            </div>
-
-            <div {{bind-attr class="errors.birthday:error :cols-2"}}>
-                <label><i class="fa fa-birthday-cake"></i> Geboortedatum <span class="required">*</span><br>
-                    {{date-picker format='DD-MM-YYYY' value=formdata.birthday valueFormat='YYYY-MM-DD' yearRange="-70,0"}}
-                </label>
-                <span>{{errors.birthday}}</span>
             </div>
 
             <div {{bind-attr class="errors.email:error :cols-2"}}>

@@ -4,11 +4,10 @@ import Validator from '../mixins/validator';
 var RegistrationController = Ember.Controller.extend(Validator, {
 
     formdata:{
-        firstname: '',
-        middlename: '',
-        lastname: '',
+        firstName: '',
+        middleName: '',
+        lastName: '',
         email:'',
-        birthday: '',
         phone: '',
         address: '',
         postal: '',
@@ -32,16 +31,12 @@ var RegistrationController = Ember.Controller.extend(Validator, {
             var errors = {};
 
             //firstname
-            validated = this.validateRequired(formdata.firstname) ? false : true;
-            if (!validated) errors.firstname = 'Voornaam is verplicht';
+            validated = this.validateRequired(formdata.firstName) ? false : true;
+            if (!validated) errors.firstName = 'Voornaam is verplicht';
 
             //lastname
-            validated = this.validateRequired(formdata.lastname) ? false : true;
-            if (!validated) errors.lastname = 'Achternaam is verplicht';
-
-            //birthdate
-            validated = this.validateRequired(formdata.birthday) ? false : true;
-            if (!validated) errors.birthday = 'Uw birthdate is verplicht';
+            validated = this.validateRequired(formdata.lastName) ? false : true;
+            if (!validated) errors.lastName = 'Achternaam is verplicht';
 
             //email
             validated = this.validateEmail(formdata.email) ? false : true;
@@ -65,7 +60,7 @@ var RegistrationController = Ember.Controller.extend(Validator, {
 
             //entity
             validated = this.validateRequired(formdata.entity) ? false : true;
-            if (!validated) errors.entity = 'Uw entiteit is verplicht';
+            if (!validated) errors.entity = 'Uw rol is verplicht';
 
             //password
             validated = this.validateRequired(formdata.password) ? false : true;

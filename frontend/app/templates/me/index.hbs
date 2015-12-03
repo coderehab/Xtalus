@@ -2,29 +2,38 @@
 	<section class='slideContainer'>
 
 		<section id='index' class='slide-0'>
-			<i id="edit-btn" {{action 'changeView' 'page-left' 1 }} class="fa fa-cog"></i>
+			<!--<i id="edit-btn" {{action 'changeView' 'page-left' 1 }} class="fa fa-cog"></i>-->
 
 
-            <h3>Marketing en communicatie</h3>
+            <h2>{{model.education}}</h2>
 
-            <p>Instituut<br>
-            Student
-            </p>
+            <h3>{{model.institute}}</h3>
+
+            <p>{{model.roles}}</p>
 
             <hr>
 
             <h4><i class="fa fa-graduation-cap"></i> Honoursprogramma</h4>
+            <p>{{model.honoursProgram}}</p>
 
             <h4><i class="fa fa-heart"></i> Interesses</h4>
 
-            <h4><i class="fa fa-location-arrow"></i> Woonplaats</h4>
+            {{#each interest in model.interests}}
+            <p><strong>{{interest.type}}</strong><br>
+                {{interest.dateFrom}} t/m {{interest.dateTill}}<br>
+                {{interest.hoursWeekly}} uur per week
+            </p>
+            {{/each}}
 
+
+            <h4><i class="fa fa-location-arrow"></i> Woonplaats</h4>
+            <p>{{model.city}}</p>
 
 
 		</section>
 
 		<section id='edit' class='slide-1'>
-			<i id="back-btn" {{action 'changeView' 'page-left' 0 }} class="fa fa-chevron-circle-left"></i>
+			<!-- <i id="back-btn" {{action 'changeView' 'page-left' 0 }} class="fa fa-chevron-circle-left"></i> -->
 			<h4>Instellingen</h4>
 
 			<form method="post" {{action "updatePerson" on="submit"}}>
@@ -65,14 +74,19 @@
     {{/each}}
 
 	<section id='qualities'>
-
+        <h3>Kwaliteiten</h3>
 		<ul>
-			{{#each quality in qualities}}
-			<li>{{ quality }} <i class="fa fa-times"></i></li>
+			{{#each quality in model.qualities}}
+			<li>{{ quality.name }} <i class="fa fa-times"></i> </li>
 			{{/each}}
 		</ul>
-		Kwaliteit toevoegen<br>
-		{{input value=quality type="text" placeholder="Type hier een nieuwe kwaliteit"}}<br>
+
+        Kwaliteit toevoegen<br>
+
+        {{input value=quality type="text" placeholder="Type hier een nieuwe kwaliteit"}}<br>
 		<span class="add-quality-btn">Toevoegen</span>
+
+        <button>Annuleren</button>
+        <button>Opslaan <i class="fa fa-heart"></i></button>
 	</section>
 </section>

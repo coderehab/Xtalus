@@ -775,11 +775,10 @@ define('xtalus/controllers/registration', ['exports', 'ember', 'xtalus/mixins/va
     var RegistrationController = Ember['default'].Controller.extend(Validator['default'], {
 
         formdata: {
-            firstname: '',
-            middlename: '',
-            lastname: '',
+            firstName: '',
+            middleName: '',
+            lastName: '',
             email: '',
-            birthday: '',
             phone: '',
             address: '',
             postal: '',
@@ -799,16 +798,12 @@ define('xtalus/controllers/registration', ['exports', 'ember', 'xtalus/mixins/va
                 var errors = {};
 
                 //firstname
-                validated = this.validateRequired(formdata.firstname) ? false : true;
-                if (!validated) errors.firstname = 'Voornaam is verplicht';
+                validated = this.validateRequired(formdata.firstName) ? false : true;
+                if (!validated) errors.firstName = 'Voornaam is verplicht';
 
                 //lastname
-                validated = this.validateRequired(formdata.lastname) ? false : true;
-                if (!validated) errors.lastname = 'Achternaam is verplicht';
-
-                //birthdate
-                validated = this.validateRequired(formdata.birthday) ? false : true;
-                if (!validated) errors.birthday = 'Uw birthdate is verplicht';
+                validated = this.validateRequired(formdata.lastName) ? false : true;
+                if (!validated) errors.lastName = 'Achternaam is verplicht';
 
                 //email
                 validated = this.validateEmail(formdata.email) ? false : true;
@@ -832,7 +827,7 @@ define('xtalus/controllers/registration', ['exports', 'ember', 'xtalus/mixins/va
 
                 //entity
                 validated = this.validateRequired(formdata.entity) ? false : true;
-                if (!validated) errors.entity = 'Uw entiteit is verplicht';
+                if (!validated) errors.entity = 'Uw rol is verplicht';
 
                 //password
                 validated = this.validateRequired(formdata.password) ? false : true;
@@ -1102,16 +1097,35 @@ define('xtalus/models/person', ['exports', 'ember-data'], function (exports, DS)
         middleName: DS['default'].attr({ defaultValue: '' }),
         lastName: DS['default'].attr(),
         imageUrl: DS['default'].attr(), //mapping naar: profilePicture: DS.attr(),
-        education: DS['default'].attr(), // ontbreekt nog
-        institute: DS['default'].attr(), // ontbreekt nog
+        education: DS['default'].attr({ defaultValue: 'Kunst en techniek' }),
+        institute: DS['default'].attr({ defaultValue: 'Saxion hogeschool' }),
         entity: DS['default'].attr(), // ontbreekt nog
         roles: DS['default'].attr(),
-        honoursProgram: DS['default'].attr(),
-        interesses: DS['default'].attr(),
-        mainTown: DS['default'].attr(), // mappen naar: city: DS.attr(),
+        honoursProgram: DS['default'].attr({ defaultValue: 'innovatie en media' }),
+        interests: DS['default'].attr({ defaultValue: [{
+                type: 'stage',
+                dateFrom: '01-04-2015',
+                dateTill: '30-05-2015',
+                hoursWeekly: '15'
+            }, {
+                type: 'relevante bijbaan',
+                dateFrom: '20-10-2015',
+                dateTill: '30-12-2015',
+                hoursWeekly: '8'
+            }]
+        }),
+        city: DS['default'].attr({ defaultValue: 'Enschede' }), // mappen naar: city: DS.attr(),
         story: DS['default'].attr(),
-        qualities: DS['default'].attr(),
-        dateOfBirth: DS['default'].attr(), // mappen naar: birthday: DS.attr(),
+        qualities: DS['default'].attr({ defaultValue: [{
+                name: 'Vingerverf'
+            }, {
+                name: 'Action painting'
+            }, {
+                name: 'Grafisch vormgeving'
+            }, {
+                name: 'Out of the box thinking'
+            }]
+        }),
 
         personalContacts: DS['default'].hasMany("personalcontact"),
         profileMatches: DS['default'].hasMany("profilematches"),
@@ -1599,10 +1613,9 @@ define('xtalus/routes/registration', ['exports', 'ember'], function (exports, Em
 
                 var params = {
 
-                    firstname: formdata.firstname,
-                    middlename: formdata.middlename,
-                    lastname: formdata.lastname,
-                    birthday: formdata.birthday,
+                    firstName: formdata.firstName,
+                    middleName: formdata.middleName,
+                    lastName: formdata.lastName,
                     email: formdata.email,
                     phone: formdata.phone,
                     address: formdata.adress,
@@ -3619,14 +3632,16 @@ define('xtalus/templates/components/profile-element', ['exports'], function (exp
           dom.setAttribute(el1,"id","passion");
           var el2 = dom.createTextNode("\n    ");
           dom.appendChild(el1, el2);
-          var el2 = dom.createElement("i");
-          dom.setAttribute(el2,"id","edit-btn");
-          dom.setAttribute(el2,"class","fa fa-cog");
+          var el2 = dom.createComment(" <i id=\"edit-btn\" {{action 'editSection' 'user-info'}} class=\"fa fa-cog\"></i> ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createComment(" <h3>{{data.description}}</h3> ");
           dom.appendChild(el1, el2);
           var el2 = dom.createTextNode("\n    ");
           dom.appendChild(el1, el2);
           var el2 = dom.createElement("h3");
-          var el3 = dom.createComment("");
+          var el3 = dom.createTextNode("Verhaal");
           dom.appendChild(el2, el3);
           dom.appendChild(el1, el2);
           var el2 = dom.createTextNode("\n    ");
@@ -3644,7 +3659,7 @@ define('xtalus/templates/components/profile-element', ['exports'], function (exp
         },
         render: function render(context, env, contextualElement) {
           var dom = env.dom;
-          var hooks = env.hooks, element = hooks.element, content = hooks.content;
+          var hooks = env.hooks, content = hooks.content;
           dom.detectNamespace(contextualElement);
           var fragment;
           if (env.useFragmentCache && dom.canClone) {
@@ -3662,13 +3677,8 @@ define('xtalus/templates/components/profile-element', ['exports'], function (exp
           } else {
             fragment = this.build(dom);
           }
-          var element0 = dom.childAt(fragment, [1]);
-          var element1 = dom.childAt(element0, [1]);
-          var morph0 = dom.createMorphAt(dom.childAt(element0, [3]),0,0);
-          var morph1 = dom.createMorphAt(dom.childAt(element0, [5]),0,0);
-          element(env, element1, context, "action", ["editSection", "user-info"], {});
-          content(env, morph0, context, "data.description");
-          content(env, morph1, context, "data.textValue");
+          var morph0 = dom.createMorphAt(dom.childAt(fragment, [1, 7]),0,0);
+          content(env, morph0, context, "data.textValue");
           return fragment;
         }
       };
@@ -6274,6 +6284,78 @@ define('xtalus/templates/me/index', ['exports'], function (exports) {
         hasRendered: false,
         build: function build(dom) {
           var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("            ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("p");
+          var el2 = dom.createElement("strong");
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("br");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n                ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createComment("");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode(" t/m ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createComment("");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("br");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n                ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createComment("");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode(" uur per week\n            ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        render: function render(context, env, contextualElement) {
+          var dom = env.dom;
+          var hooks = env.hooks, content = hooks.content;
+          dom.detectNamespace(contextualElement);
+          var fragment;
+          if (env.useFragmentCache && dom.canClone) {
+            if (this.cachedFragment === null) {
+              fragment = this.build(dom);
+              if (this.hasRendered) {
+                this.cachedFragment = fragment;
+              } else {
+                this.hasRendered = true;
+              }
+            }
+            if (this.cachedFragment) {
+              fragment = dom.cloneNode(this.cachedFragment, true);
+            }
+          } else {
+            fragment = this.build(dom);
+          }
+          var element0 = dom.childAt(fragment, [1]);
+          var morph0 = dom.createMorphAt(dom.childAt(element0, [0]),0,0);
+          var morph1 = dom.createMorphAt(element0,3,3);
+          var morph2 = dom.createMorphAt(element0,5,5);
+          var morph3 = dom.createMorphAt(element0,8,8);
+          content(env, morph0, context, "interest.type");
+          content(env, morph1, context, "interest.dateFrom");
+          content(env, morph2, context, "interest.dateTill");
+          content(env, morph3, context, "interest.hoursWeekly");
+          return fragment;
+        }
+      };
+    }());
+    var child1 = (function() {
+      return {
+        isHTMLBars: true,
+        revision: "Ember@1.11.1",
+        blockParams: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        build: function build(dom) {
+          var el0 = dom.createDocumentFragment();
           var el1 = dom.createTextNode("    ");
           dom.appendChild(el0, el1);
           var el1 = dom.createComment("");
@@ -6308,7 +6390,7 @@ define('xtalus/templates/me/index', ['exports'], function (exports) {
         }
       };
     }());
-    var child1 = (function() {
+    var child2 = (function() {
       return {
         isHTMLBars: true,
         revision: "Ember@1.11.1",
@@ -6326,6 +6408,8 @@ define('xtalus/templates/me/index', ['exports'], function (exports) {
           dom.appendChild(el1, el2);
           var el2 = dom.createElement("i");
           dom.setAttribute(el2,"class","fa fa-times");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode(" ");
           dom.appendChild(el1, el2);
           dom.appendChild(el0, el1);
           var el1 = dom.createTextNode("\n");
@@ -6353,7 +6437,7 @@ define('xtalus/templates/me/index', ['exports'], function (exports) {
             fragment = this.build(dom);
           }
           var morph0 = dom.createMorphAt(dom.childAt(fragment, [1]),0,0);
-          content(env, morph0, context, "quality");
+          content(env, morph0, context, "quality.name");
           return fragment;
         }
       };
@@ -6380,24 +6464,24 @@ define('xtalus/templates/me/index', ['exports'], function (exports) {
         dom.setAttribute(el3,"class","slide-0");
         var el4 = dom.createTextNode("\n			");
         dom.appendChild(el3, el4);
-        var el4 = dom.createElement("i");
-        dom.setAttribute(el4,"id","edit-btn");
-        dom.setAttribute(el4,"class","fa fa-cog");
+        var el4 = dom.createComment("<i id=\"edit-btn\" {{action 'changeView' 'page-left' 1 }} class=\"fa fa-cog\"></i>");
         dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n\n\n            ");
+        var el4 = dom.createTextNode("\n\n            \n            ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("h2");
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n\n            ");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("h3");
-        var el5 = dom.createTextNode("Marketing en communicatie");
+        var el5 = dom.createComment("");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n\n            ");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("p");
-        var el5 = dom.createTextNode("Instituut");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createElement("br");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createTextNode("\n            Student\n            ");
+        var el5 = dom.createComment("");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n\n            ");
@@ -6413,7 +6497,13 @@ define('xtalus/templates/me/index', ['exports'], function (exports) {
         var el5 = dom.createTextNode(" Honoursprogramma");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n\n            ");
+        var el4 = dom.createTextNode("\n            ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("p");
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n            \n            ");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("h4");
         var el5 = dom.createElement("i");
@@ -6422,7 +6512,11 @@ define('xtalus/templates/me/index', ['exports'], function (exports) {
         var el5 = dom.createTextNode(" Interesses");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n\n            ");
+        var el4 = dom.createTextNode("\n          \n");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("            \n\n            ");
         dom.appendChild(el3, el4);
         var el4 = dom.createElement("h4");
         var el5 = dom.createElement("i");
@@ -6431,7 +6525,13 @@ define('xtalus/templates/me/index', ['exports'], function (exports) {
         var el5 = dom.createTextNode(" Woonplaats");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n\n\n\n		");
+        var el4 = dom.createTextNode("\n            ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("p");
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n\n\n		");
         dom.appendChild(el3, el4);
         dom.appendChild(el2, el3);
         var el3 = dom.createTextNode("\n\n		");
@@ -6441,9 +6541,7 @@ define('xtalus/templates/me/index', ['exports'], function (exports) {
         dom.setAttribute(el3,"class","slide-1");
         var el4 = dom.createTextNode("\n			");
         dom.appendChild(el3, el4);
-        var el4 = dom.createElement("i");
-        dom.setAttribute(el4,"id","back-btn");
-        dom.setAttribute(el4,"class","fa fa-chevron-circle-left");
+        var el4 = dom.createComment(" <i id=\"back-btn\" {{action 'changeView' 'page-left' 0 }} class=\"fa fa-chevron-circle-left\"></i> ");
         dom.appendChild(el3, el4);
         var el4 = dom.createTextNode("\n			");
         dom.appendChild(el3, el4);
@@ -6556,7 +6654,13 @@ define('xtalus/templates/me/index', ['exports'], function (exports) {
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("section");
         dom.setAttribute(el2,"id","qualities");
-        var el3 = dom.createTextNode("\n\n		");
+        var el3 = dom.createTextNode("\n        ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("h3");
+        var el4 = dom.createTextNode("Kwaliteiten");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n		");
         dom.appendChild(el2, el3);
         var el3 = dom.createElement("ul");
         var el4 = dom.createTextNode("\n");
@@ -6566,11 +6670,11 @@ define('xtalus/templates/me/index', ['exports'], function (exports) {
         var el4 = dom.createTextNode("		");
         dom.appendChild(el3, el4);
         dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n		Kwaliteit toevoegen");
+        var el3 = dom.createTextNode("\n        \n        Kwaliteit toevoegen");
         dom.appendChild(el2, el3);
         var el3 = dom.createElement("br");
         dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n		");
+        var el3 = dom.createTextNode("\n		\n        ");
         dom.appendChild(el2, el3);
         var el3 = dom.createComment("");
         dom.appendChild(el2, el3);
@@ -6581,6 +6685,21 @@ define('xtalus/templates/me/index', ['exports'], function (exports) {
         var el3 = dom.createElement("span");
         dom.setAttribute(el3,"class","add-quality-btn");
         var el4 = dom.createTextNode("Toevoegen");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n        \n        ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("button");
+        var el4 = dom.createTextNode("Annuleren");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n        ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("button");
+        var el4 = dom.createTextNode("Opslaan ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("i");
+        dom.setAttribute(el4,"class","fa fa-heart");
         dom.appendChild(el3, el4);
         dom.appendChild(el2, el3);
         var el3 = dom.createTextNode("\n	");
@@ -6595,7 +6714,7 @@ define('xtalus/templates/me/index', ['exports'], function (exports) {
       },
       render: function render(context, env, contextualElement) {
         var dom = env.dom;
-        var hooks = env.hooks, element = hooks.element, get = hooks.get, inline = hooks.inline, block = hooks.block;
+        var hooks = env.hooks, content = hooks.content, get = hooks.get, block = hooks.block, element = hooks.element, inline = hooks.inline;
         dom.detectNamespace(contextualElement);
         var fragment;
         if (env.useFragmentCache && dom.canClone) {
@@ -6613,40 +6732,48 @@ define('xtalus/templates/me/index', ['exports'], function (exports) {
         } else {
           fragment = this.build(dom);
         }
-        var element0 = dom.childAt(fragment, [0, 1]);
-        var element1 = dom.childAt(element0, [1, 1]);
-        var element2 = dom.childAt(element0, [3]);
-        var element3 = dom.childAt(element2, [1]);
-        var element4 = dom.childAt(element2, [5]);
-        var element5 = dom.childAt(fragment, [2]);
-        var element6 = dom.childAt(element5, [3]);
-        var morph0 = dom.createMorphAt(element4,1,1);
-        var morph1 = dom.createMorphAt(element4,4,4);
-        var morph2 = dom.createMorphAt(element4,7,7);
-        var morph3 = dom.createMorphAt(element4,10,10);
-        var morph4 = dom.createMorphAt(element4,15,15);
-        var morph5 = dom.createMorphAt(element4,18,18);
-        var morph6 = dom.createMorphAt(element4,21,21);
-        var morph7 = dom.createMorphAt(element4,26,26);
-        var morph8 = dom.createMorphAt(element4,29,29);
-        var morph9 = dom.createMorphAt(element5,1,1);
-        var morph10 = dom.createMorphAt(dom.childAt(element6, [1]),1,1);
-        var morph11 = dom.createMorphAt(element6,5,5);
-        element(env, element1, context, "action", ["changeView", "page-left", 1], {});
-        element(env, element3, context, "action", ["changeView", "page-left", 0], {});
-        element(env, element4, context, "action", ["updatePerson"], {"on": "submit"});
-        inline(env, morph0, context, "input", [], {"value": get(env, context, "model.firstName"), "type": "text", "placeholder": "Voornaam", "class": "txt-field"});
-        inline(env, morph1, context, "input", [], {"value": get(env, context, "model.middleName"), "type": "text", "placeholder": "Tussenvoegsel", "class": "txt-field"});
-        inline(env, morph2, context, "input", [], {"value": get(env, context, "model.lastName"), "type": "text", "placeholder": "Achternaam", "class": "txt-field"});
-        inline(env, morph3, context, "date-picker", [], {"value": get(env, context, "model.birthDay"), "valueFormat": "YYYY-MM-DD", "format": "YYYY-MM-DD"});
-        inline(env, morph4, context, "input", [], {"value": get(env, context, "model.address"), "type": "text", "placeholder": "adres", "class": "txt-field"});
-        inline(env, morph5, context, "input", [], {"value": get(env, context, "model.postalCode"), "type": "text", "placeholder": "postcode", "class": "txt-field"});
-        inline(env, morph6, context, "input", [], {"value": get(env, context, "model.town"), "type": "text", "placeholder": "plaats", "class": "txt-field"});
-        inline(env, morph7, context, "date-picker", [], {"value": get(env, context, "model.date"), "date": get(env, context, "mydate"), "valueFormat": "YYYY-MM-DD", "format": "DD-MM-YYYY", "yearRange": "-70,0"});
-        inline(env, morph8, context, "date-picker", [], {"value": get(env, context, "model.date"), "date": get(env, context, "mydate"), "valueFormat": "YYYY-MM-DD", "format": "DD-MM-YYYY", "yearRange": "-70,0"});
-        block(env, morph9, context, "each", [get(env, context, "model.profileElements")], {"keyword": "element"}, child0, null);
-        block(env, morph10, context, "each", [get(env, context, "qualities")], {"keyword": "quality"}, child1, null);
-        inline(env, morph11, context, "input", [], {"value": get(env, context, "quality"), "type": "text", "placeholder": "Type hier een nieuwe kwaliteit"});
+        var element1 = dom.childAt(fragment, [0, 1]);
+        var element2 = dom.childAt(element1, [1]);
+        var element3 = dom.childAt(element1, [3, 5]);
+        var element4 = dom.childAt(fragment, [2]);
+        var element5 = dom.childAt(element4, [3]);
+        var morph0 = dom.createMorphAt(dom.childAt(element2, [3]),0,0);
+        var morph1 = dom.createMorphAt(dom.childAt(element2, [5]),0,0);
+        var morph2 = dom.createMorphAt(dom.childAt(element2, [7]),0,0);
+        var morph3 = dom.createMorphAt(dom.childAt(element2, [13]),0,0);
+        var morph4 = dom.createMorphAt(element2,17,17);
+        var morph5 = dom.createMorphAt(dom.childAt(element2, [21]),0,0);
+        var morph6 = dom.createMorphAt(element3,1,1);
+        var morph7 = dom.createMorphAt(element3,4,4);
+        var morph8 = dom.createMorphAt(element3,7,7);
+        var morph9 = dom.createMorphAt(element3,10,10);
+        var morph10 = dom.createMorphAt(element3,15,15);
+        var morph11 = dom.createMorphAt(element3,18,18);
+        var morph12 = dom.createMorphAt(element3,21,21);
+        var morph13 = dom.createMorphAt(element3,26,26);
+        var morph14 = dom.createMorphAt(element3,29,29);
+        var morph15 = dom.createMorphAt(element4,1,1);
+        var morph16 = dom.createMorphAt(dom.childAt(element5, [3]),1,1);
+        var morph17 = dom.createMorphAt(element5,7,7);
+        content(env, morph0, context, "model.education");
+        content(env, morph1, context, "model.institute");
+        content(env, morph2, context, "model.roles");
+        content(env, morph3, context, "model.honoursProgram");
+        block(env, morph4, context, "each", [get(env, context, "model.interests")], {"keyword": "interest"}, child0, null);
+        content(env, morph5, context, "model.city");
+        element(env, element3, context, "action", ["updatePerson"], {"on": "submit"});
+        inline(env, morph6, context, "input", [], {"value": get(env, context, "model.firstName"), "type": "text", "placeholder": "Voornaam", "class": "txt-field"});
+        inline(env, morph7, context, "input", [], {"value": get(env, context, "model.middleName"), "type": "text", "placeholder": "Tussenvoegsel", "class": "txt-field"});
+        inline(env, morph8, context, "input", [], {"value": get(env, context, "model.lastName"), "type": "text", "placeholder": "Achternaam", "class": "txt-field"});
+        inline(env, morph9, context, "date-picker", [], {"value": get(env, context, "model.birthDay"), "valueFormat": "YYYY-MM-DD", "format": "YYYY-MM-DD"});
+        inline(env, morph10, context, "input", [], {"value": get(env, context, "model.address"), "type": "text", "placeholder": "adres", "class": "txt-field"});
+        inline(env, morph11, context, "input", [], {"value": get(env, context, "model.postalCode"), "type": "text", "placeholder": "postcode", "class": "txt-field"});
+        inline(env, morph12, context, "input", [], {"value": get(env, context, "model.town"), "type": "text", "placeholder": "plaats", "class": "txt-field"});
+        inline(env, morph13, context, "date-picker", [], {"value": get(env, context, "model.date"), "date": get(env, context, "mydate"), "valueFormat": "YYYY-MM-DD", "format": "DD-MM-YYYY", "yearRange": "-70,0"});
+        inline(env, morph14, context, "date-picker", [], {"value": get(env, context, "model.date"), "date": get(env, context, "mydate"), "valueFormat": "YYYY-MM-DD", "format": "DD-MM-YYYY", "yearRange": "-70,0"});
+        block(env, morph15, context, "each", [get(env, context, "model.profileElements")], {"keyword": "element"}, child1, null);
+        block(env, morph16, context, "each", [get(env, context, "model.qualities")], {"keyword": "quality"}, child2, null);
+        inline(env, morph17, context, "input", [], {"value": get(env, context, "quality"), "type": "text", "placeholder": "Type hier een nieuwe kwaliteit"});
         return fragment;
       }
     };
@@ -11540,7 +11667,58 @@ define('xtalus/templates/registration', ['exports'], function (exports) {
         var el4 = dom.createTextNode("Registreer jezelf");
         dom.appendChild(el3, el4);
         dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n        ");
+        var el3 = dom.createTextNode("\n        \n        \n        ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("span");
+        dom.setAttribute(el3,"class","error-msg");
+        var el4 = dom.createTextNode("\n            - passwords should match // Wachtwoorden moeten matchen");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("br");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n            - password // ongeldig wachtwoord ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("br");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n            - no valid email  // ongeldig  emaildres ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("br");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n            - no valid firstName // ongeldige voornaam ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("br");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode(" \n            - no valid lastName // ongeldige achternaam");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("br");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n            - no valid date // ongeldige datum");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("br");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n            - no valid roletype: choose 'STUDENT', 'PROFESSIONAL' or 'PRINCIPAL  // ongeldige rol");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("br");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n            - username already registered and person object already made  // gebruikersnaam is bezet");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("br");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n            - username already registered; no person object made // gebruikersnaam is bezet");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("br");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode(" \n            - email already registered // emaildres is al geregisteerd");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("br");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode(" \n            - registration failure // Registratie fout, neem contact op met de webmaster(info@xtalus.nl)");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("br");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n            - failure creating Person object // Registratie fout, neem contact op met de webmaster(info@xtalus.nl)\n        ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n        \n        ");
         dom.appendChild(el2, el3);
         var el3 = dom.createElement("form");
         dom.setAttribute(el3,"method","post");
@@ -11629,40 +11807,6 @@ define('xtalus/templates/registration', ['exports'], function (exports) {
         dom.setAttribute(el6,"class","fa fa-user");
         dom.appendChild(el5, el6);
         var el6 = dom.createTextNode(" Achternaam ");
-        dom.appendChild(el5, el6);
-        var el6 = dom.createElement("span");
-        dom.setAttribute(el6,"class","required");
-        var el7 = dom.createTextNode("*");
-        dom.appendChild(el6, el7);
-        dom.appendChild(el5, el6);
-        var el6 = dom.createElement("br");
-        dom.appendChild(el5, el6);
-        var el6 = dom.createTextNode("\n                    ");
-        dom.appendChild(el5, el6);
-        var el6 = dom.createComment("");
-        dom.appendChild(el5, el6);
-        var el6 = dom.createTextNode("\n                ");
-        dom.appendChild(el5, el6);
-        dom.appendChild(el4, el5);
-        var el5 = dom.createTextNode("\n                ");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createElement("span");
-        var el6 = dom.createComment("");
-        dom.appendChild(el5, el6);
-        dom.appendChild(el4, el5);
-        var el5 = dom.createTextNode("\n            ");
-        dom.appendChild(el4, el5);
-        dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n\n            ");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createElement("div");
-        var el5 = dom.createTextNode("\n                ");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createElement("label");
-        var el6 = dom.createElement("i");
-        dom.setAttribute(el6,"class","fa fa-birthday-cake");
-        dom.appendChild(el5, el6);
-        var el6 = dom.createTextNode(" Geboortedatum ");
         dom.appendChild(el5, el6);
         var el6 = dom.createElement("span");
         dom.setAttribute(el6,"class","required");
@@ -12014,7 +12158,7 @@ define('xtalus/templates/registration', ['exports'], function (exports) {
           fragment = this.build(dom);
         }
         var element0 = dom.childAt(fragment, [0, 3]);
-        var element1 = dom.childAt(element0, [3]);
+        var element1 = dom.childAt(element0, [5]);
         var element2 = dom.childAt(element1, [5]);
         var element3 = dom.childAt(element1, [7]);
         var element4 = dom.childAt(element1, [9]);
@@ -12026,7 +12170,6 @@ define('xtalus/templates/registration', ['exports'], function (exports) {
         var element10 = dom.childAt(element1, [21]);
         var element11 = dom.childAt(element1, [23]);
         var element12 = dom.childAt(element1, [25]);
-        var element13 = dom.childAt(element1, [27]);
         var morph0 = dom.createMorphAt(dom.childAt(element1, [3]),0,0);
         var morph1 = dom.createMorphAt(dom.childAt(element2, [1]),5,5);
         var morph2 = dom.createMorphAt(dom.childAt(element2, [3]),0,0);
@@ -12050,48 +12193,43 @@ define('xtalus/templates/registration', ['exports'], function (exports) {
         var morph20 = dom.createMorphAt(dom.childAt(element11, [3]),0,0);
         var morph21 = dom.createMorphAt(dom.childAt(element12, [1]),5,5);
         var morph22 = dom.createMorphAt(dom.childAt(element12, [3]),0,0);
-        var morph23 = dom.createMorphAt(dom.childAt(element13, [1]),5,5);
-        var morph24 = dom.createMorphAt(dom.childAt(element13, [3]),0,0);
-        var morph25 = dom.createMorphAt(dom.childAt(element0, [5]),1,1);
+        var morph23 = dom.createMorphAt(dom.childAt(element0, [7]),1,1);
         element(env, element1, context, "action", ["submitRegistration"], {"on": "submit"});
         content(env, morph0, context, "message");
         element(env, element2, context, "bind-attr", [], {"class": "errors.firstname:error :cols-2"});
-        inline(env, morph1, context, "input", [], {"value": get(env, context, "formdata.firstname"), "type": "text", "placeholder": "Uw voornaam"});
+        inline(env, morph1, context, "input", [], {"value": get(env, context, "formdata.firstName"), "type": "text", "placeholder": "Uw voornaam"});
         content(env, morph2, context, "errors.firstname");
         element(env, element3, context, "bind-attr", [], {"class": "errors.middlename:error :cols-2"});
-        inline(env, morph3, context, "input", [], {"value": get(env, context, "formdata.middlename"), "type": "text", "placeholder": "Tussenvoegsel"});
+        inline(env, morph3, context, "input", [], {"value": get(env, context, "formdata.middleName"), "type": "text", "placeholder": "Tussenvoegsel"});
         content(env, morph4, context, "errors.middlename");
         element(env, element4, context, "bind-attr", [], {"class": "errors.lastname:error :cols-2"});
-        inline(env, morph5, context, "input", [], {"value": get(env, context, "formdata.lastname"), "type": "text", "placeholder": "Uw achternaam"});
+        inline(env, morph5, context, "input", [], {"value": get(env, context, "formdata.lastName"), "type": "text", "placeholder": "Uw achternaam"});
         content(env, morph6, context, "errors.lastname");
-        element(env, element5, context, "bind-attr", [], {"class": "errors.birthday:error :cols-2"});
-        inline(env, morph7, context, "date-picker", [], {"format": "DD-MM-YYYY", "value": get(env, context, "formdata.birthday"), "valueFormat": "YYYY-MM-DD", "yearRange": "-70,0"});
-        content(env, morph8, context, "errors.birthday");
-        element(env, element6, context, "bind-attr", [], {"class": "errors.email:error :cols-2"});
-        inline(env, morph9, context, "input", [], {"value": get(env, context, "formdata.email"), "type": "text", "placeholder": "Uw e-mailadres"});
-        content(env, morph10, context, "errors.email");
-        element(env, element7, context, "bind-attr", [], {"class": "errors.phone:error :cols-2"});
-        inline(env, morph11, context, "input", [], {"value": get(env, context, "formdata.phone"), "type": "text", "placeholder": "Uw telefoonnummer"});
-        content(env, morph12, context, "errors.phone");
-        element(env, element8, context, "bind-attr", [], {"class": "errors.address:error :cols-2"});
-        inline(env, morph13, context, "input", [], {"value": get(env, context, "formdata.address"), "type": "text", "placeholder": "Uw adres"});
-        content(env, morph14, context, "errors.address");
-        element(env, element9, context, "bind-attr", [], {"class": "errors.postal:error :cols-2"});
-        inline(env, morph15, context, "input", [], {"value": get(env, context, "formdata.postal"), "type": "text", "placeholder": "Uw postcode"});
-        content(env, morph16, context, "errors.postal");
-        element(env, element10, context, "bind-attr", [], {"class": "errors.city:error :cols-2"});
-        inline(env, morph17, context, "input", [], {"value": get(env, context, "formdata.city"), "type": "text", "placeholder": "Uw woonplaats"});
-        content(env, morph18, context, "errors.city");
-        element(env, element11, context, "bind-attr", [], {"class": "errors.entity:error :cols-2"});
-        inline(env, morph19, context, "view", [get(env, context, "Ember.Select")], {"contentBinding": "form.entities", "selectionBinding": "formdata.entity", "optionLabelPath": "content.label", "optionValuePath": "content.value"});
-        content(env, morph20, context, "errors.entity");
-        element(env, element12, context, "bind-attr", [], {"class": "errors.password:error :cols-2"});
-        inline(env, morph21, context, "input", [], {"value": get(env, context, "formdata.password"), "type": "password", "placeholder": "Kies een wachtwoord"});
-        content(env, morph22, context, "errors.password");
-        element(env, element13, context, "bind-attr", [], {"class": "errors.passwordConfirm:error :cols-2"});
-        inline(env, morph23, context, "input", [], {"value": get(env, context, "formdata.passwordConfirm"), "type": "password", "placeholder": "Herhaal het wachtwoord"});
-        content(env, morph24, context, "errors.passwordConfirm");
-        block(env, morph25, context, "link-to", ["login"], {}, child0, null);
+        element(env, element5, context, "bind-attr", [], {"class": "errors.email:error :cols-2"});
+        inline(env, morph7, context, "input", [], {"value": get(env, context, "formdata.email"), "type": "text", "placeholder": "Uw e-mailadres"});
+        content(env, morph8, context, "errors.email");
+        element(env, element6, context, "bind-attr", [], {"class": "errors.phone:error :cols-2"});
+        inline(env, morph9, context, "input", [], {"value": get(env, context, "formdata.phone"), "type": "text", "placeholder": "Uw telefoonnummer"});
+        content(env, morph10, context, "errors.phone");
+        element(env, element7, context, "bind-attr", [], {"class": "errors.address:error :cols-2"});
+        inline(env, morph11, context, "input", [], {"value": get(env, context, "formdata.address"), "type": "text", "placeholder": "Uw adres"});
+        content(env, morph12, context, "errors.address");
+        element(env, element8, context, "bind-attr", [], {"class": "errors.postal:error :cols-2"});
+        inline(env, morph13, context, "input", [], {"value": get(env, context, "formdata.postal"), "type": "text", "placeholder": "Uw postcode"});
+        content(env, morph14, context, "errors.postal");
+        element(env, element9, context, "bind-attr", [], {"class": "errors.city:error :cols-2"});
+        inline(env, morph15, context, "input", [], {"value": get(env, context, "formdata.city"), "type": "text", "placeholder": "Uw woonplaats"});
+        content(env, morph16, context, "errors.city");
+        element(env, element10, context, "bind-attr", [], {"class": "errors.entity:error :cols-2"});
+        inline(env, morph17, context, "view", [get(env, context, "Ember.Select")], {"contentBinding": "form.entities", "selectionBinding": "formdata.entity", "optionLabelPath": "content.label", "optionValuePath": "content.value"});
+        content(env, morph18, context, "errors.entity");
+        element(env, element11, context, "bind-attr", [], {"class": "errors.password:error :cols-2"});
+        inline(env, morph19, context, "input", [], {"value": get(env, context, "formdata.password"), "type": "password", "placeholder": "Kies een wachtwoord"});
+        content(env, morph20, context, "errors.password");
+        element(env, element12, context, "bind-attr", [], {"class": "errors.passwordConfirm:error :cols-2"});
+        inline(env, morph21, context, "input", [], {"value": get(env, context, "formdata.passwordConfirm"), "type": "password", "placeholder": "Herhaal het wachtwoord"});
+        content(env, morph22, context, "errors.passwordConfirm");
+        block(env, morph23, context, "link-to", ["login"], {}, child0, null);
         return fragment;
       }
     };
@@ -12153,8 +12291,8 @@ define('xtalus/tests/components/profile-element.jshint', function () {
   'use strict';
 
   module('JSHint - components');
-  test('components/profile-element.js should pass jshint', function() {
-    ok(false, 'components/profile-element.js should pass jshint.\ncomponents/profile-element.js: line 2, col 8, \'DS\' is defined but never used.\n\n1 error');
+  test('components/profile-element.js should pass jshint', function() { 
+    ok(false, 'components/profile-element.js should pass jshint.\ncomponents/profile-element.js: line 2, col 8, \'DS\' is defined but never used.\n\n1 error'); 
   });
 
 });
@@ -12164,7 +12302,7 @@ define('xtalus/tests/controllers/application.jshint', function () {
 
   module('JSHint - controllers');
   test('controllers/application.js should pass jshint', function() { 
-    ok(false, 'controllers/application.js should pass jshint.\ncontrollers/application.js: line 10, col 43, Expected \'===\' and instead saw \'==\'.\ncontrollers/application.js: line 18, col 17, Expected \'{\' and instead saw \'result\'.\ncontrollers/application.js: line 20, col 53, Missing semicolon.\ncontrollers/application.js: line 46, col 50, Missing semicolon.\ncontrollers/application.js: line 55, col 102, Missing semicolon.\ncontrollers/application.js: line 27, col 20, \'Promise\' is not defined.\n\n6 errors');
+    ok(false, 'controllers/application.js should pass jshint.\ncontrollers/application.js: line 10, col 43, Expected \'===\' and instead saw \'==\'.\ncontrollers/application.js: line 18, col 17, Expected \'{\' and instead saw \'result\'.\ncontrollers/application.js: line 20, col 53, Missing semicolon.\ncontrollers/application.js: line 46, col 50, Missing semicolon.\ncontrollers/application.js: line 55, col 102, Missing semicolon.\ncontrollers/application.js: line 27, col 20, \'Promise\' is not defined.\n\n6 errors'); 
   });
 
 });
@@ -12254,7 +12392,7 @@ define('xtalus/tests/controllers/registration.jshint', function () {
 
   module('JSHint - controllers');
   test('controllers/registration.js should pass jshint', function() { 
-    ok(false, 'controllers/registration.js should pass jshint.\ncontrollers/registration.js: line 36, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 40, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 44, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 48, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 52, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 56, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 60, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 64, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 68, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 72, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 76, col 29, Expected \'{\' and instead saw \'errors\'.\n\n11 errors');
+    ok(false, 'controllers/registration.js should pass jshint.\ncontrollers/registration.js: line 35, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 39, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 43, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 47, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 51, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 55, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 59, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 63, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 67, col 29, Expected \'{\' and instead saw \'errors\'.\ncontrollers/registration.js: line 71, col 29, Expected \'{\' and instead saw \'errors\'.\n\n10 errors'); 
   });
 
 });
@@ -12370,8 +12508,8 @@ define('xtalus/tests/models/element.jshint', function () {
   'use strict';
 
   module('JSHint - models');
-  test('models/element.js should pass jshint', function() {
-    ok(false, 'models/element.js should pass jshint.\nmodels/element.js: line 10, col 11, Duplicate key \'weight\'.\n\n1 error');
+  test('models/element.js should pass jshint', function() { 
+    ok(false, 'models/element.js should pass jshint.\nmodels/element.js: line 10, col 11, Duplicate key \'weight\'.\n\n1 error'); 
   });
 
 });
@@ -12401,7 +12539,7 @@ define('xtalus/tests/models/person.jshint', function () {
 
   module('JSHint - models');
   test('models/person.js should pass jshint', function() { 
-    ok(false, 'models/person.js should pass jshint.\nmodels/person.js: line 39, col 26, Missing semicolon.\nmodels/person.js: line 43, col 23, Expected \'{\' and instead saw \'fullname\'.\nmodels/person.js: line 44, col 24, Expected \'{\' and instead saw \'fullname\'.\nmodels/person.js: line 45, col 22, Expected \'{\' and instead saw \'fullname\'.\nmodels/person.js: line 45, col 48, Missing semicolon.\nmodels/person.js: line 46, col 24, Missing semicolon.\nmodels/person.js: line 51, col 23, Expected \'{\' and instead saw \'return\'.\nmodels/person.js: line 51, col 99, Missing semicolon.\nmodels/person.js: line 62, col 15, Missing semicolon.\nmodels/person.js: line 63, col 11, Missing semicolon.\nmodels/person.js: line 35, col 17, \'moment\' is not defined.\nmodels/person.js: line 51, col 66, \'md5\' is not defined.\nmodels/person.js: line 34, col 24, \'e\' is defined but never used.\nmodels/person.js: line 38, col 24, \'e\' is defined but never used.\nmodels/person.js: line 59, col 55, \'i\' is defined but never used.\nmodels/person.js: line 60, col 62, \'i\' is defined but never used.\n\n16 errors');
+    ok(false, 'models/person.js should pass jshint.\nmodels/person.js: line 65, col 26, Missing semicolon.\nmodels/person.js: line 69, col 23, Expected \'{\' and instead saw \'fullname\'.\nmodels/person.js: line 70, col 24, Expected \'{\' and instead saw \'fullname\'.\nmodels/person.js: line 71, col 22, Expected \'{\' and instead saw \'fullname\'.\nmodels/person.js: line 71, col 48, Missing semicolon.\nmodels/person.js: line 72, col 24, Missing semicolon.\nmodels/person.js: line 77, col 23, Expected \'{\' and instead saw \'return\'.\nmodels/person.js: line 77, col 99, Missing semicolon.\nmodels/person.js: line 88, col 15, Missing semicolon.\nmodels/person.js: line 89, col 11, Missing semicolon.\nmodels/person.js: line 61, col 17, \'moment\' is not defined.\nmodels/person.js: line 77, col 66, \'md5\' is not defined.\nmodels/person.js: line 60, col 24, \'e\' is defined but never used.\nmodels/person.js: line 64, col 24, \'e\' is defined but never used.\nmodels/person.js: line 85, col 55, \'i\' is defined but never used.\nmodels/person.js: line 86, col 62, \'i\' is defined but never used.\n\n16 errors'); 
   });
 
 });
@@ -12420,8 +12558,8 @@ define('xtalus/tests/models/profile.jshint', function () {
   'use strict';
 
   module('JSHint - models');
-  test('models/profile.js should pass jshint', function() {
-    ok(true, 'models/profile.js should pass jshint.');
+  test('models/profile.js should pass jshint', function() { 
+    ok(true, 'models/profile.js should pass jshint.'); 
   });
 
 });
@@ -12531,7 +12669,7 @@ define('xtalus/tests/routes/me.jshint', function () {
 
   module('JSHint - routes');
   test('routes/me.js should pass jshint', function() { 
-    ok(false, 'routes/me.js should pass jshint.\nroutes/me.js: line 7, col 44, Missing semicolon.\nroutes/me.js: line 10, col 33, \'transition\' is defined but never used.\nroutes/me.js: line 10, col 26, \'model\' is defined but never used.\nroutes/me.js: line 2, col 1, \'$ISIS\' is defined but never used.\n\n4 errors');
+    ok(false, 'routes/me.js should pass jshint.\nroutes/me.js: line 7, col 44, Missing semicolon.\nroutes/me.js: line 10, col 33, \'transition\' is defined but never used.\nroutes/me.js: line 10, col 26, \'model\' is defined but never used.\nroutes/me.js: line 2, col 1, \'$ISIS\' is defined but never used.\n\n4 errors'); 
   });
 
 });
@@ -12611,7 +12749,7 @@ define('xtalus/tests/routes/registration.jshint', function () {
 
   module('JSHint - routes');
   test('routes/registration.js should pass jshint', function() { 
-    ok(false, 'routes/registration.js should pass jshint.\nroutes/registration.js: line 37, col 14, Missing semicolon.\nroutes/registration.js: line 5, col 29, \'transition\' is defined but never used.\nroutes/registration.js: line 5, col 21, \'params\' is defined but never used.\nroutes/registration.js: line 9, col 43, \'model\' is defined but never used.\nroutes/registration.js: line 9, col 31, \'controller\' is defined but never used.\nroutes/registration.js: line 15, col 17, \'_this\' is defined but never used.\nroutes/registration.js: line 16, col 17, \'store\' is defined but never used.\nroutes/registration.js: line 17, col 17, \'appModel\' is defined but never used.\nroutes/registration.js: line 14, col 38, \'e\' is defined but never used.\n\n9 errors');
+    ok(false, 'routes/registration.js should pass jshint.\nroutes/registration.js: line 36, col 14, Missing semicolon.\nroutes/registration.js: line 5, col 29, \'transition\' is defined but never used.\nroutes/registration.js: line 5, col 21, \'params\' is defined but never used.\nroutes/registration.js: line 9, col 43, \'model\' is defined but never used.\nroutes/registration.js: line 9, col 31, \'controller\' is defined but never used.\nroutes/registration.js: line 15, col 17, \'_this\' is defined but never used.\nroutes/registration.js: line 16, col 17, \'store\' is defined but never used.\nroutes/registration.js: line 17, col 17, \'appModel\' is defined but never used.\nroutes/registration.js: line 14, col 38, \'e\' is defined but never used.\n\n9 errors'); 
   });
 
 });
@@ -13016,7 +13154,7 @@ catch(err) {
 if (runningTests) {
   require("xtalus/tests/test-helper");
 } else {
-  require("xtalus/app")["default"].create({"API_HOST":"http://acc.xtalus.gedge.nl","API_NS":"simple/restful/v2","API_PHP_HOST":"http://localhost:8000","name":"xtalus","version":"0.0.0.82911282"});
+  require("xtalus/app")["default"].create({"API_HOST":"http://acc.xtalus.gedge.nl","API_NS":"simple/restful/v2","API_PHP_HOST":"http://localhost:8000","name":"xtalus","version":"0.0.0.939c0df2"});
 }
 
 /* jshint ignore:end */

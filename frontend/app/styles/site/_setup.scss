@@ -863,6 +863,16 @@ section#page.registration {
     @extend .absoluteFill;
     overflow:auto;
 
+    .error-msg{
+        display: block;
+        width:100%;
+        margin-top:20px;
+        padding:10px 20px;
+        color:red;
+        @include box-sizing();
+        height: auto;
+        border:1px solid red;
+    }
 
     .btn-left{
         right:inherit;

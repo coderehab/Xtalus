@@ -22,10 +22,9 @@ export default Ember.Route.extend({
 
             var params = {
 
-                firstname: formdata.firstname,
-                middlename: formdata.middlename,
-                lastname: formdata.lastname,
-                birthday: formdata.birthday,
+                firstName: formdata.firstName,
+                middleName: formdata.middleName,
+                lastName: formdata.lastName,
                 email:formdata.email,
                 phone:formdata.phone,
                 address:formdata.adress,

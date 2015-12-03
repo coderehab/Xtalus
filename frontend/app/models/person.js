@@ -6,16 +6,42 @@ export default DS.Model.extend({
     middleName: DS.attr({defaultValue:''}),
     lastName: DS.attr(),
     imageUrl: DS.attr(), //mapping naar: profilePicture: DS.attr(),
-    education: DS.attr(), // ontbreekt nog
-    institute: DS.attr(), // ontbreekt nog
+    education: DS.attr({defaultValue: 'Kunst en techniek'}),
+    institute: DS.attr({defaultValue: 'Saxion hogeschool'}),
     entity: DS.attr(), // ontbreekt nog
     roles: DS.attr(),
-    honoursProgram: DS.attr(),
-    interesses: DS.attr(),
-    mainTown: DS.attr(), // mappen naar: city: DS.attr(),
+    honoursProgram: DS.attr({defaultValue: 'innovatie en media'}),
+    interests: DS.attr({defaultValue:
+    [{
+        type : 'stage' ,
+        dateFrom: '01-04-2015',
+        dateTill: '30-05-2015',
+        hoursWeekly: '15'
+    },
+    {
+        type : 'relevante bijbaan' ,
+        dateFrom: '20-10-2015',
+        dateTill: '30-12-2015',
+        hoursWeekly: '8',
+    } ]
+    }),
+    city: DS.attr({defaultValue: 'Enschede'}), // mappen naar: city: DS.attr(),
     story: DS.attr(),
-    qualities: DS.attr(),
-    dateOfBirth: DS.attr(), // mappen naar: birthday: DS.attr(),
+    qualities: DS.attr({defaultValue: [{
+        name : 'Vingerverf' ,
+    },
+    {
+        name : 'Action painting' ,
+    },
+    {
+        name : 'Grafisch vormgeving' ,
+    },
+
+    {
+        name : 'Out of the box thinking' ,
+    }
+    ]
+    }),
 
     personalContacts: DS.hasMany("personalcontact"),
     profileMatches: DS.hasMany("profilematches"),
