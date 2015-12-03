@@ -33,21 +33,21 @@ module.exports = function(environment) {
 	};
 
 	if (environment === 'development') {
-		ENV.APP.API_HOST: "http://acc.xtalus.gedge.nl"
-		ENV.APP.API_NS: "simple/restful/v2"
-		ENV.APP.API_PHP_HOST: "//dev.xtalus.nl/api"
+		ENV.APP.API_HOST = "http://acc.xtalus.gedge.nl";
+		ENV.APP.API_NS = "simple/restful/v2";
+		ENV.APP.API_PHP_HOST = "//dev.xtalus.nl/api";
 	}
 
 	if (environment === 'acceptation') {
-		ENV.APP.API_HOST: "http://acc.xtalus.gedge.nl"
-		ENV.APP.API_NS: "simple/restful/v2"
-		ENV.APP.API_HOST = "//acc.xtalus.nl/api"
+		ENV.APP.API_HOST = "http://acc.xtalus.gedge.nl";
+		ENV.APP.API_NS = "simple/restful/v2";
+		ENV.APP.API_HOST = "//acc.xtalus.nl/api";
 	}
 
 	if (environment === 'production') {
-		ENV.APP.API_HOST: "//prod.xtalus.gedge.nl"
-		ENV.APP.API_NS: "simple/restful/v2"
-		ENV.APP.API_HOST = "//app.xtalus.nl/api"
+		ENV.APP.API_HOST = "//prod.xtalus.gedge.nl";
+		ENV.APP.API_NS = "simple/restful/v2";
+		ENV.APP.API_HOST = "//app.xtalus.nl/api";
 	}
 
 	return ENV;
