@@ -32,11 +32,11 @@ var RegistrationController = Ember.Controller.extend(Validator, {
 
             //firstname
             validated = this.validateRequired(formdata.firstName) ? false : true;
-            if (!validated) errors.firstName = 'Voornaam is verplicht';
+            if (!validated) errors.firstName = this.validateRequired(formdata.firstName);;
 
             //lastname
             validated = this.validateRequired(formdata.lastName) ? false : true;
-            if (!validated) errors.lastName = 'Achternaam is verplicht';
+            if (!validated) errors.lastName = this.validateRequired(formdata.lastName);
 
             //email
             validated = this.validateEmail(formdata.email) ? false : true;
@@ -48,7 +48,7 @@ var RegistrationController = Ember.Controller.extend(Validator, {
 
             //address
             validated = this.validateRequired(formdata.address) ? false : true;
-            if (!validated) errors.address = 'Het adres is verplicht';
+            if (!validated) errors.address = this.validateRequired(formdata.address);
 
             //postal
             validated = this.validatePostal(formdata.postal) ? false : true;
@@ -56,19 +56,19 @@ var RegistrationController = Ember.Controller.extend(Validator, {
 
             //city
             validated = this.validateRequired(formdata.city) ? false : true;
-            if (!validated) errors.city = 'Uw woonplaats is verplicht';
+            if (!validated) errors.city = this.validateRequired(formdata.city);
 
             //entity
             validated = this.validateRequired(formdata.entity) ? false : true;
-            if (!validated) errors.entity = 'Uw rol is verplicht';
+            if (!validated) errors.entity = this.validateRequired(formdata.entity);
 
             //password
-            validated = this.validateRequired(formdata.password) ? false : true;
-            if (!validated) errors.password = 'wachtwoord is verplicht';
+            validated = this.validatePassword(formdata.password) ? false : true;
+            if (!validated) errors.password = this.validatePassword(formdata.password);
 
             //passwordConfirm
             validated = this.validateMatch(formdata.password, formdata.passwordConfirm) ? false : true;
-            if (!validated) errors.passwordConfirm = 'Wachtwoorden komen niet overeen';
+            if (!validated) errors.passwordConfirm = this.validateMatch(formdata.password, formdata.passwordConfirm);
 
             this.set('errors', errors);
             console.log(Object.keys(errors).length);

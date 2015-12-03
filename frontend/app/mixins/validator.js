@@ -5,8 +5,8 @@ export default Ember.Mixin.create({
         var value = value || '';
         var error = false;
 
-        label = label || 'Dit veld'
-        if (value === '') error = label + 'is verplicht';
+        // label = label || 'Dit veld'
+        if (value === '') error = 'required';
 
         return error;
     },
@@ -17,8 +17,8 @@ export default Ember.Mixin.create({
 
         var error = false;
 
-        label = label || 'De waarde'
-        if (value1 !== value2) error = label + ' komt niet overeen';
+        //label = label || 'De waarde'
+        if (value1 !== value2) error = 'match';
 
         return error;
     },
@@ -29,15 +29,31 @@ export default Ember.Mixin.create({
         var stripped = value.replace(/[\(\)\.\-\ ]/g, '');
 
         if (value == "") {
-            error = "Uw telefoonnummer is verplicht";
+            error = "required";
         } else if (isNaN(stripped)) {
-            error = "Het telefoonnummer heeft niet het juiste format";
-        } else if (!(stripped.length == 10)) {
-            error = "Het telefoonnummer heeft niet de juiste lengte";
+            error = "invalid:chars";
+        } else if (!(stripped.length >= 10)) {
+            error = "invalid:length.min";
         }
 
         return error;
     },
+
+
+   validatePassword: function(value){
+
+      var value = value || '';
+        var error = false;
+
+        if (value == "") {
+            error = "required";
+        } else if (!(value.length >= 6)) {
+            error = "invalid:length.min";
+        }
+
+        return error;
+
+   },
 
     validateEmail: function (value) {
         var value = value || '';
@@ -47,11 +63,11 @@ export default Ember.Mixin.create({
         var illegalChars= /[\(\)\<\>\,\;\:\\\"\[\]]/ ;
 
         if (value == "") {
-            error = "Uw emailadres is verplicht";
+            error = "required";
         } else if (!emailFilter.test(trimmedValue)) {
-            error = "Vul alstubieft een correct emailadres in";
+            error = "invalid:format";
         } else if (value.match(illegalChars)) {
-            error = "Het emailadres bevat verkeerde characters";
+            error = "invalid:chars";
         }
 
         return error;
@@ -64,9 +80,9 @@ export default Ember.Mixin.create({
         var postalFilter = /^[1-9][0-9]{3}[A-Z]{2}$/i ;
 
         if (value == "") {
-            error = "Uw postcode is verplicht";
+            error = "required";
         } else if(!postalFilter.test(trimmedValue)) {
-            error = "Vul alstubieft een correcte postcode in";
+            error = "invalid:format";
         }
 
         return error;

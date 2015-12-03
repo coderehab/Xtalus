@@ -9,6 +9,36 @@ export default Ember.Route.extend({
     setupController: function(controller, model) {
     },
 
+    registrationSuccess: function(response){
+
+      // send email to client
+
+
+      // transition to page
+
+
+    },
+
+    registrationInvalid: function(errors){
+
+      console.log(errors);
+
+
+    },
+
+    registrationFailed: function(errors){
+
+      //for testing!!
+      this.registrationSuccess();
+
+      // send email to client
+
+
+      // transition to page
+
+
+    },
+
     actions: {
 
         submitRegistration: function(e) {
@@ -37,11 +67,14 @@ export default Ember.Route.extend({
 
             params = JSON.stringify(params);
 
-            this.controllerFor('application').sendAction('registration',params).then(function(response){
-                console.log(response);
-            });
 
+            this.controllerFor('application').sendAction('registration',params).then(
+              function(response){
 
+                if(response.succes) _this.registrationSuccess(response);
+                else _this.registrationInvalid(response.errors);
+
+              }, _this.registrationFailed );
 
         }
     },

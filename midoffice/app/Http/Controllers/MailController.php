@@ -24,7 +24,11 @@ class MailController extends BaseController
     }
 
     public function sendmail(Request $request, $type, $subject){
+
+
         $data = (object) $request->json('data');
+
+
 
         $data->fullname = $data->firstname . ' ' .$data->lastname;
         if(isset($data->middlename)) $data->fullname = $data->firstname . ' ' . $data->middlename . ' ' . $data->lastname;
