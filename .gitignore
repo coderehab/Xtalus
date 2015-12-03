@@ -1,3 +1,5 @@
 /midoffice/vendor
 .env
 .DS_Store
+/public/app/
+/frontend/.sass-cache/
