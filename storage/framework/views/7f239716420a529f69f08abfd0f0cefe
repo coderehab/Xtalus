@@ -8,12 +8,14 @@
 <?php $__env->startSection('email_content'); ?>
 
 <h2 style="margin:20px 0; font-weight:normal; color:#212121;">
-  <?php echo e(ucfirst($postdata->firstname)); ?> 
-  
+  <?php echo e(ucfirst($postdata->firstname)); ?>
+
+
   <?php if(isset($postdata->middlename)): ?>
-    <?php echo e(ucfirst($postdata->middlename)); ?> 
+    <?php echo e(ucfirst($postdata->middlename)); ?>
+
   <?php endif; ?>
-  
+
   <?php echo e(ucfirst($postdata->lastname)); ?>,
 </h2>
 <p style="color:#888; line-height:180%; font-weight:300;">
