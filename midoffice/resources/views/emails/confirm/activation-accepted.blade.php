@@ -1,19 +1,20 @@
-<?php $__env->startSection('email_header'); ?>
+@extends ('emails.template')
+
+@section('email_header')
 <h1 style="color:#a21e5c;">Xtalus</h1>
 <p style="color:#888; line-height:180%; font-weight:300;">Together the perfect 'match-maker' for finding and growing talent</p>
-<?php $__env->stopSection(); ?>
+@stop
 
-<?php $__env->startSection('email_content'); ?>
+@section('email_content')
 
 <h2 style="margin:20px 0; font-weight:normal; color:#212121;">
-  Hé <?php echo e(ucfirst($postdata->firstname)); ?>
-
+  Hé {{ucfirst($postdata->firstname)}}
 </h2>
 <p style="color:#888; line-height:180%; font-weight:300;">
   Uw account is geverifieerd en geactiveerd. U kunt inloggen met uw eerder gekozen e-mailadres en wachtwoord.<br><br>
 
 
-  <?php echo $__env->make('emails.partials.button', [
+  @include ('emails.partials.button', [
     'width' => '160',
     'height' => '45',
     'bgcolor' => '#a21e5c',
@@ -21,7 +22,7 @@
     'color' => '#fff',
     'text' => 'Inloggen op Xtalus',
     'url' => 'http://dev.xtalus.nl'
-  ], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?><br>
+  ])<br>
 
   Het Xtalus team wens u veel matching plezier toe.<br>Voor vragen kunt u contact opnemen met: <a href="mailto:info@xtalus.nl">info@xtalus.nl</a>.<br><br>
 
@@ -30,13 +31,13 @@
   Xtalus team
 </p>
 
-<?php $__env->stopSection(); ?>
+@stop
 
-<?php $__env->startSection('email_footer'); ?>
+@section('email_footer')
 
 <p style="color:#888; line-height:180%; font-weight:300;">Meer weten over Xtalus? Bekijk onze website: <a href="www.xtalus.nl" style="color:#a21e5c; text-decoration:none">www.xtalus.nl</a></p>
 
-<?php $__env->stopSection(); ?>
+@stop
 
 
 <!--
@@ -65,5 +66,3 @@ Mauris vulputate orci eu faucibus consectetur. Donec nec ultrices erat, vitae fe
 ])
     */
 ?>
-
-<?php echo $__env->make('emails.template', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

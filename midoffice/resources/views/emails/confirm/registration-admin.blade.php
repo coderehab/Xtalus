@@ -2,32 +2,32 @@
 
 @section('email_header')
 
-  <h1 style="color:#a21e5c;">Xtalus</h1>
-  <p style="color:#888; line-height:180%; font-weight:300;">Together the perfect 'match-maker' for finding and growing talent</p>
+<h1 style="color:#a21e5c;">Xtalus</h1>
+<p style="color:#888; line-height:180%; font-weight:300;">Together the perfect 'match-maker' for finding and growing talent</p>
 
 @stop
 
 @section('email_content')
 
 <h2 style="margin:20px 0; font-weight:normal; color:#212121;">
-  {{ucfirst($postdata->firstname)}}
-
-  @if(isset($postdata->middlename))
-    {{ucfirst($postdata->middlename)}}
-  @endif
-
-  {{ucfirst($postdata->lastname)}},
+  Hé admin,
 </h2>
 <p style="color:#888; line-height:180%; font-weight:300;">
-    Je account is geactiveerd, je hebt nu toegang tot Xtalus.
-  Log meteen in via: <a href="http://www.xtalus.nl">www.xtalus.nl</a>
-</p>
 
+Een nieuwe gebruiker wil toegang krijgen tot Xtalus. Verifieer en activeer deze gebruiker zodat hij/zij gebruik kan maken van het platform.<br><br>
 
-<p style="color:#888; line-height:180%; font-weight:300;">
+@include ('emails.partials.button', [
+'width' => '240',
+'height' => '45',
+'bgcolor' => '#a21e5c',
+'border_color' => '#a21e5c',
+'color' => '#fff',
+'text' => 'Verifieer nieuwe gebruiker',
+'url' => 'http://test.xtalus.gedge.nl/simple/wicket'
+])<br>
+
 Met vriendelijke groeten,<br>
-Xtalus<br>
-(logo Xtalus)
+Xtalus team
 </p>
 
 @stop

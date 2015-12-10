@@ -10,20 +10,9 @@
 
 </h2>
 <p style="color:#888; line-height:180%; font-weight:300;">
-  Uw account is geverifieerd en geactiveerd. U kunt inloggen met uw eerder gekozen e-mailadres en wachtwoord.<br><br>
-
-
-  <?php echo $__env->make('emails.partials.button', [
-    'width' => '160',
-    'height' => '45',
-    'bgcolor' => '#a21e5c',
-    'border_color' => '#a21e5c',
-    'color' => '#fff',
-    'text' => 'Inloggen op Xtalus',
-    'url' => 'http://dev.xtalus.nl'
-  ], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?><br>
-
-  Het Xtalus team wens u veel matching plezier toe.<br>Voor vragen kunt u contact opnemen met: <a href="mailto:info@xtalus.nl">info@xtalus.nl</a>.<br><br>
+ Uw account is geverifieerd en geweigerd.<br>
+ U kunt momenteel niet inloggen op Xtalus. <br>
+Voor vragen kunt u contact opnemen met: <a href="mailto:info@xtalus.nl">info@xtalus.nl</a>.<br><br>
 
   Met vriendelijke groeten,<br>
 

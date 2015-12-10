@@ -1,0 +1,18 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td>
+            <div>
+                <!--[if mso]>
+                <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="<?php echo e($url); ?>" style="height:<?php echo e($height); ?>px;v-text-anchor:middle;width:<?php echo e($width); ?>px;" arcsize="5%" strokecolor="#<?php echo e($border_color); ?>" fillcolor="<?php echo e($bgcolor); ?>">
+                <w:anchorlock/>
+                <center style="color:<?php echo e($color); ?>;font-family:Helvetica, Arial,sans-serif;font-size:16px;"><?php echo e($text); ?></center>
+                </v:roundrect>
+                <![endif]-->
+                <a href="<?php echo e($url); ?>" style="background-color:<?php echo e($bgcolor); ?>;border:1px solid <?php echo e($border_color); ?>;border-radius:3px;color:<?php echo e($color); ?>;display:inline-block;font-size:16px;line-height:44px;text-align:center;text-decoration:none;width:<?php echo e($width); ?>px;height:<?php echo e($height); ?>px;-webkit-text-size-adjust:none;mso-hide:all;">
+                    <?php echo e($text); ?>
+
+                </a>
+            </div>
+        </td>
+    </tr>
+</table>

@@ -25,18 +25,17 @@ class MailController extends BaseController
 
     public function sendmail(Request $request, $type, $subject){
 
-
         $data = (object) $request->json('data');
 
 
-
-        $data->fullname = $data->firstname . ' ' .$data->lastname;
+        if(isset($data->firstname) && isset($data->lastname))
+          $data->fullname = $data->firstname . ' ' .$data->lastname;
         if(isset($data->middlename)) $data->fullname = $data->firstname . ' ' . $data->middlename . ' ' . $data->lastname;
 
 
         $mail = Mail::send("emails.$type.$subject", array('postdata' => $data), function ($message) use($data) {
             $message->from('no-reply@xtalus.nl', 'Xtalus');
-            $message->to("$data->email", "$data->fullname");
+            $message->to("$data->email","$data->fullname");
             $message->subject("$data->subject");
         });
 
