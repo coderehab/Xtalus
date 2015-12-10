@@ -40,10 +40,10 @@ export default Ember.Route.extend({
 			this.controllerFor('application').sendAction('registration',params).then(function(response){
 				console.log(response);
 			});
-			/*
+
 			this.controllerFor('application').sendMail('registration',{params}).then(function(response){
 				console.log(response);
-			});*/
+			});
 		}
 	},
 });

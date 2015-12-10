@@ -1,44 +1,40 @@
-@extends ('emails.template')
-
-@section('email_header')
+<?php $__env->startSection('email_header'); ?>
 
 <h1 style="color:#a21e5c;">Xtalus</h1>
 <p style="color:#888; line-height:180%; font-weight:300;">Together the perfect 'match-maker' for finding and growing talent</p>
 
-@stop
+<?php $__env->stopSection(); ?>
 
-@section('email_content')
+<?php $__env->startSection('email_content'); ?>
 
-<h2 style="margin:20px 0; font-weight:normal; color:#212121;">
-  {{ucfirst($postdata->firstname)}}
-
-  @if(isset($postdata->middlename))
-    {{ucfirst($postdata->middlename)}}
-  @endif
-
-  {{ucfirst($postdata->lastname)}},
+<h2 style="margin:20px 0; font-weight:normal; color:#212121;">  
+  Hé admin,
 </h2>
 <p style="color:#888; line-height:180%; font-weight:300;">
-    Bedankt voor uw registratie. Uw account is aangevraagd.
-Binnen enkele werkdagen ontvangt u per email uw inloggegevens en kunt u via Xtalus inloggen.
-</p>
-<p style="color:#888; line-height:180%; font-weight:300;">
-   Voor vragen kunt u contact opnemen met <a href='mailto:info@xtalus.nl'>info@xtalus.nl</a>
-</p>
 
-<p style="color:#888; line-height:180%; font-weight:300;">
+Een nieuwe gebruiker wil toegang krijgen tot Xtalus. Verifieer en activeer deze gebruiker zodat hij/zij gebruik kan maken van het platform.<br><br>
+
+<?php echo $__env->make('emails.partials.button', [
+'width' => '240',
+'height' => '45',
+'bgcolor' => '#a21e5c',
+'border_color' => '#a21e5c',
+'color' => '#fff',
+'text' => 'Verifieer nieuwe gebruiker',
+'url' => 'http://test.xtalus.gedge.nl/simple/wicket'
+], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?><br>
+
 Met vriendelijke groeten,<br>
-Xtalus<br>
-(logo Xtalus)
+Xtalus team
 </p>
 
-@stop
+<?php $__env->stopSection(); ?>
 
-@section('email_footer')
+<?php $__env->startSection('email_footer'); ?>
 
 <p style="color:#888; line-height:180%; font-weight:300;">Meer weten over Xtalus? Bekijk onze website: <a href="www.xtalus.nl" style="color:#a21e5c; text-decoration:none">www.xtalus.nl</a></p>
 
-@stop
+<?php $__env->stopSection(); ?>
 
 
 <!--
@@ -67,3 +63,5 @@ Xtalus<br>
 ])
     */
 ?>
+
+<?php echo $__env->make('emails.template', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

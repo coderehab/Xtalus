@@ -1,33 +1,28 @@
 <?php $__env->startSection('email_header'); ?>
+
 <h1 style="color:#a21e5c;">Xtalus</h1>
 <p style="color:#888; line-height:180%; font-weight:300;">Together the perfect 'match-maker' for finding and growing talent</p>
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('email_content'); ?>
 
-<h2 style="margin:20px 0; font-weight:normal; color:#212121;">
-  Hé <?php echo e(ucfirst($postdata->firstname)); ?>
-
+<h2 style="margin:20px 0; font-weight:normal; color:#212121;">  
+  Welkom <?php echo e(ucfirst($postdata->firstname)); ?>,
 </h2>
 <p style="color:#888; line-height:180%; font-weight:300;">
-  Uw account is geverifieerd en geactiveerd. U kunt inloggen met uw eerder gekozen e-mailadres en wachtwoord.<br><br>
+Bedankt voor uw registratie! Uw account is aangevraagd en wordt momenteel door een van onze medewerkers geverifieerd. Hiermee kunnen we de kwaliteit op Xtalus garanderen.<br><br>
 
+Binnen enkele werkdagen is uw account geverifieerd en kunt u inloggen met de volgende gegevens:<br><br>
 
-  <?php echo $__env->make('emails.partials.button', [
-    'width' => '160',
-    'height' => '45',
-    'bgcolor' => '#a21e5c',
-    'border_color' => '#a21e5c',
-    'color' => '#fff',
-    'text' => 'Inloggen op Xtalus',
-    'url' => 'http://dev.xtalus.nl'
-  ], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?><br>
+Gebruikersnaam: <?php echo e($postdata->username); ?><br>
+Wachtwoord:     <?php echo e($postdata->password); ?><br><br>
 
-  Het Xtalus team wens u veel matching plezier toe.<br>Voor vragen kunt u contact opnemen met: <a href="mailto:info@xtalus.nl">info@xtalus.nl</a>.<br><br>
+Voor vragen kunt u contact opnemen met: <a href="mailto:info@xtalus.nl">info@xtalus.nl</a>.<br><br>
 
-  Met vriendelijke groeten,<br>
+Met vriendelijke groeten,<br><br>
 
-  Xtalus team
+Xtalus team
 </p>
 
 <?php $__env->stopSection(); ?>
@@ -43,13 +38,13 @@
 
 
 <ul style="list-style:square; color:#a21e5c; padding-left: 16px; line-height:180%;">
-<li><span style="color:#888" >item 1</span></li>
-<li><span style="color:#888" >item 2</span></li>
-<li><span style="color:#888" >item 3</span></li>
+    <li><span style="color:#888" >item 1</span></li>
+    <li><span style="color:#888" >item 2</span></li>
+    <li><span style="color:#888" >item 3</span></li>
 </ul>
 
 <p style="color:#888; line-height:180%; font-weight:300;">
-Mauris vulputate orci eu faucibus consectetur. Donec nec ultrices erat, vitae fermentum ex. Praesent ut lacus vel nulla tristique lacinia. Suspendisse condimentum pellentesque felis eu venenatis.
+    Mauris vulputate orci eu faucibus consectetur. Donec nec ultrices erat, vitae fermentum ex. Praesent ut lacus vel nulla tristique lacinia. Suspendisse condimentum pellentesque felis eu venenatis.
 </p>-->
 
 <?php

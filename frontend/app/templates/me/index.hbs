@@ -13,11 +13,16 @@
 			{{/file-picker}}
 
 
-            <h2>{{model.education}}</h2>
 
+            <h2>{{model.education}}</h2>
             <h3>{{model.institute}}</h3>
 
-            <p>{{model.roles}}</p>
+            <!-- zp'er
+            <h2>{{model.company.name}}</h2>
+            <h3>{{model.company.branche}}</h3>
+            -->
+
+            <p>{{model.entity}}</p>
 
             <hr>
 
@@ -28,8 +33,8 @@
 
             {{#each interest in model.interests}}
             <p><strong>{{interest.name}}</strong><br>
-                {{interest.dateFrom}} t/m {{interest.dateTill}}<br>
-                {{interest.timeAvailable}} uur per {{interest.timeDefinition}}
+                {{interest.period.from}} t/m {{interest.period.to}}<br>
+                {{interest.timeAvailable}} uur per week
             </p>
             {{/each}}
 
@@ -37,6 +42,11 @@
             <h4><i class="fa fa-location-arrow"></i> Woonplaats</h4>
             <p>{{model.city}}</p>
 
+            <h4><i class="fa fa-suitcase"></i> Bedrijfsinformatie</h4>
+            <p>{{model.company.description}}</p>
+
+            <h4><i class="fa fa-location-arrow"></i> Vestigingslocatie</h4>
+            <p>{{model.company.location.postal}} {{model.company.location.city}}</p>
 
 		</section>
 
@@ -84,7 +94,7 @@
         <h3>Kwaliteiten</h3>
 		<ul>
 			{{#each quality in model.qualities}}
-			<li>{{ quality }} <i class="fa fa-times"></i> </li>
+			<li>{{ quality }} <!-- <i class="fa fa-times"></i>--> </li>
 			{{/each}}
 		</ul>
       <!--
