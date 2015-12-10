@@ -73,6 +73,14 @@
 				{{#link-to 'me.projects' class="more-projects"}}Meer{{/link-to}}
 			</span>
 		</nav>
+
+		{{#file-picker
+                accept=".jpg,.jpeg,.gif,.png"
+                fileLoaded="fileLoaded"
+                readAs="readAsDataURL"
+                }}
+		Klik hier of sleep een afbeelding
+		{{/file-picker}}
 	</aside>
 
 	<section id="pagewrapper">
