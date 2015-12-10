@@ -26,7 +26,7 @@ $app->configure('view');
 $app->configure('image');
 $app->configure('cors');
 
-
+class_alias('Illuminate\Http\Response', 'Response');
 
 /*
 |--------------------------------------------------------------------------

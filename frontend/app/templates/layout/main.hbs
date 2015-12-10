@@ -2,28 +2,28 @@
 
 	<header id="app">
 		{{#link-to 'index'}}<img id="logo" src="assets/images/logo.png"/>{{/link-to}}
-        <section id='globalSearchBox' {{bind-attr class=":searchbox globalSearchResults:hasresults"}}>
-            {{input id="searchfield" value=globalSearchQuery}}
-            <ul class='result' >
+		<section id='globalSearchBox' {{bind-attr class=":searchbox globalSearchResults:hasresults"}}>
+			{{input id="searchfield" value=globalSearchQuery}}
+			<ul class='result' >
 
-                {{#if globalSearchResults.Person}} <h3>Personen</h3> {{/if}}
-                {{#each person in globalSearchResults.Person}}
-                    <li {{action 'handleSearchResultClick' 'person' person.id}}>
-                        <img class="profilePicture" src="{{person.profileImage}}" width="20" height="20"/>
-                        {{person.fullName}}
-                    </li>
-                {{/each}}
+				{{#if globalSearchResults.Person}} <h3>Personen</h3> {{/if}}
+				{{#each person in globalSearchResults.Person}}
+				<li {{action 'handleSearchResultClick' 'person' person.id}}>
+					<img class="profilePicture" src="{{person.profileImage}}" width="20" height="20"/>
+					{{person.fullName}}
+				</li>
+				{{/each}}
 
-                {{#if globalSearchResults.Demand}} <h3>Projecten</h3> {{/if}}
-                {{#each demand in globalSearchResults.Demand}}
-                    <li {{action 'handleSearchResultClick' 'project' demand.id}}>
-                        <img class="profilePicture" src="http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d5" width="20" height="20"/>
-                        {{demand.description}}
-                    </li>
-                {{/each}}
+				{{#if globalSearchResults.Demand}} <h3>Projecten</h3> {{/if}}
+				{{#each demand in globalSearchResults.Demand}}
+				<li {{action 'handleSearchResultClick' 'project' demand.id}}>
+					<img class="profilePicture" src="http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d5" width="20" height="20"/>
+					{{demand.description}}
+				</li>
+				{{/each}}
 
-            </ul>
-        </section>
+			</ul>
+		</section>
 
 		<section id="profileAccountInfo">
 			<img id="profilePicture" src="{{model.imageUrl}}" width="40" height="40"/>
@@ -43,21 +43,21 @@
 
 	<aside id="user-menu">
 		<button id="toggle-user-menu" {{action "toggleUsernav"}}><i class="fa fa-chevron-left"></i></button>
-        <section class='userinfo'>
-            <h4>{{model.fullName}}</h4>
-            <span>{{model.roles}}</span><br />
-        </section>
+		<section class='userinfo'>
+			<h4>{{model.fullName}}</h4>
+			<span>{{model.roles}}</span><br />
+		</section>
 		<nav>
 			<ul>
 				<li>{{#link-to 'me.projects'}}<i class="fa fa-bars"></i><span>Mijn projecten</span>{{/link-to}}</li>
 				{{!-- <li>{{#link-to 'me.courses'}}<i class="fa fa-graduation-cap"></i><span>Opleidingen</span>{{/link-to}}</li> --}}
 				<li>{{#link-to 'me.connections'}}<i class="fa fa-heart"></i><span>Mijn netwerk</span>{{/link-to}}</li>
 				<li>{{#link-to 'me.index'}}<i class="fa fa-user"></i><span>Mijn profiel</span>{{/link-to}}</li>
-                <hr>
-                <li>{{#link-to 'me.settings'}}<i class="fa fa-cog"></i><span>Instellingen</span>{{/link-to}}</li>
-                <li>{{#link-to 'help'}}<i class="fa fa-info"></i><span>Help</span>{{/link-to}}</li>
-                <li><a href="#" {{action 'logout' }}><i class="fa fa-sign-out"></i><span>Uitloggen</span></a></li>
-            </ul>
+				<hr>
+				<li>{{#link-to 'me.settings'}}<i class="fa fa-cog"></i><span>Instellingen</span>{{/link-to}}</li>
+				<li>{{#link-to 'help'}}<i class="fa fa-info"></i><span>Help</span>{{/link-to}}</li>
+				<li><a href="#" {{action 'logout' }}><i class="fa fa-sign-out"></i><span>Uitloggen</span></a></li>
+			</ul>
 
 
 			<span style="display:none;">
@@ -74,13 +74,6 @@
 			</span>
 		</nav>
 
-		{{#file-picker
-                accept=".jpg,.jpeg,.gif,.png"
-                fileLoaded="fileLoaded"
-                readAs="readAsDataURL"
-                }}
-		Klik hier of sleep een afbeelding
-		{{/file-picker}}
 	</aside>
 
 	<section id="pagewrapper">

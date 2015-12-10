@@ -2,6 +2,7 @@
 
 use Laravel\Lumen\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Imagine;
 use Image;
 use stdClass;
@@ -17,7 +18,7 @@ class ImageController extends BaseController
 	}
 
 	public function get_image($imagename=false, $w=false, $h=false) {
-
+		//header('Content-type: image/jpeg');
 		//if width and height are set -> create new image with new size and return url
 		if($w && $h) {
 			$img = Image::make("uploads/$imagename",array(
@@ -27,7 +28,9 @@ class ImageController extends BaseController
 
 			$img_location = "uploads/" . substr($imagename, 0 , (strrpos($imagename, ".")));
 			$img->save("$img_location-image(" . $w . "x" . $h . ").jpg");
-			return "<img src='" . Image::url($img_location . ".jpg", $w, $h) . "' />";
+
+			$image = $img->get('jpeg');
+			return response($image)->header('Content-type', 'image/jpeg');
 		}
 
 		return  "<img src='" . url("uploads/$imagename") . "' />";
@@ -47,7 +50,8 @@ class ImageController extends BaseController
 			$img_location = "uploads/" . substr($imagename, 0 , (strrpos($imagename, ".")));
 			$img->save("$img_location-image(" . $w . "x" . $h . "-crop).jpg");
 
-			return "<img src='" . Image::url($img_location, $w, $h, array('crop')) . ".jpg' />";
+			$image = $img->get('jpeg');
+			return response($image)->header('Content-type', 'image/jpeg');
 		}
 
 		return  "<img src='" . url("uploads/$imagename") . "' />";
@@ -55,22 +59,24 @@ class ImageController extends BaseController
 
 	public function post_image(Request $request) {
 
-		$tmp_img = $request->json('image')['image'];
+		$tmp_img = $request->json('image');
 
 		$img = explode(',', $tmp_img['data']);
 		$img = base64_decode($img[1]);
 
-		$file = "uploads/" . $tmp_img['filename'];
+		$random_string = uniqid();
+
+		$file = "uploads/" . $random_string . "-" . $tmp_img['filename'];
 
 		$success = file_put_contents($file, $img);
 
 		$data = new stdClass();
 		$image = new stdClass();
-		$image->name = $tmp_img['filename'];
+		$image->name =  $random_string . "-" . $tmp_img['filename'];
 		$image->url = url($file);
 		$data->image = $image;
 
-		return response()->json($data);
+		return json_encode($data);
 	}
 
 	public function update_image() {

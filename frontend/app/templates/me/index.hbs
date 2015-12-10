@@ -4,6 +4,14 @@
 		<section id='index' class='slide-0'>
 			<!--<i id="edit-btn" {{action 'changeView' 'page-left' 1 }} class="fa fa-cog"></i>-->
 
+			{{#file-picker
+    accept=".jpg,.jpeg,.gif,.png"
+    fileLoaded="uploadProfilePicture"
+    readAs="readAsDataURL"
+                }}
+			Klik hier of sleep een afbeelding
+			{{/file-picker}}
+
 
             <h2>{{model.education}}</h2>
 

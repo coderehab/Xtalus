@@ -45,7 +45,7 @@ var ApplicationController = Ember.Controller.extend({
 				type: "POST",
 				contentType: "application/json; charset=utf-8",
 				url: ENV.APP.API_PHP_HOST+'/images',
-				data: params
+				data: JSON.stringify(params)
 			}).done(function(response){
 				resolve(response);
 			}).fail(function(error) {
@@ -54,6 +54,7 @@ var ApplicationController = Ember.Controller.extend({
 		});
 	},
 
+	//paramaters moeten nog in de url verwerkt worden!
 	sendMail: function(params){
 		return new Promise(function(resolve, reject) {
 			Ember.$.ajax({
@@ -70,7 +71,6 @@ var ApplicationController = Ember.Controller.extend({
 	},
 
 	actions: {
-
 		handleSearchResultClick:function(type, id){
 			this.set('globalSearchQuery', '');
 			this.set('globalSearchResults', null)

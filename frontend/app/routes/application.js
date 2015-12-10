@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
+import ENV from '../config/environment';
 
 /* global $ISIS */
 
@@ -20,15 +21,6 @@ export default Ember.Route.extend({
 			},
 
 	actions: {
-
-		fileLoaded: function(file) {
-			var _this = this;
-			console.log(file);
-
-			this.controller.saveImage('registration',file).then(function(response){
-				console.log(response.get('url'));
-			});
-		},
 
 		login: function(){
 			$ISIS.auth.login(this.get("username"), this.get("password")).then(function(data){
