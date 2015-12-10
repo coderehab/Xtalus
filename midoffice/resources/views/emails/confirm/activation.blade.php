@@ -2,8 +2,8 @@
 
 @section('email_header')
 
-<h1 style="color:#a21e5c;">Xtalus</h1>
-<p style="color:#888; line-height:180%; font-weight:300;">Together the perfect 'match-maker' for finding and growing talent</p>
+  <h1 style="color:#a21e5c;">Xtalus</h1>
+  <p style="color:#888; line-height:180%; font-weight:300;">Together the perfect 'match-maker' for finding and growing talent</p>
 
 @stop
 

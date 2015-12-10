@@ -33,7 +33,7 @@ module.exports = function(environment) {
 	};
 
 	if (environment === 'development') {
-		ENV.APP.API_HOST = "http://acc.xtalus.gedge.nl";
+		ENV.APP.API_HOST = "http://test.xtalus.gedge.nl";
 		ENV.APP.API_NS = "simple/restful/v2";
 		ENV.APP.API_PHP_HOST = "//dev.xtalus.nl/api";
 	}

@@ -28,7 +28,7 @@ var ApplicationController = Ember.Controller.extend({
             Ember.$.ajax({
                  type: "POST",
                 contentType: "application/json; charset=utf-8",
-                url: ENV.APP.API_HOST+'/'+ENV.APP.API_NS+"/action/"+actionName,
+                url: ENV.APP.API_HOST+'/'+ENV.APP.API_NS+"/actions/"+actionName,
                 data: params
             }).done(function(response){
                   resolve(response);

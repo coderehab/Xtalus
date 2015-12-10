@@ -19,9 +19,9 @@
             <h4><i class="fa fa-heart"></i> Interesses</h4>
 
             {{#each interest in model.interests}}
-            <p><strong>{{interest.type}}</strong><br>
+            <p><strong>{{interest.name}}</strong><br>
                 {{interest.dateFrom}} t/m {{interest.dateTill}}<br>
-                {{interest.hoursWeekly}} uur per week
+                {{interest.timeAvailable}} uur per {{interest.timeDefinition}}
             </p>
             {{/each}}
 
@@ -69,18 +69,17 @@
 
 <section id='page-content'>
 
-    {{#each element in model.profileElements}}
-    {{profile-element data=element}}
-    {{/each}}
+  <h3>Verhaal</h3>
+  {{ model.story }}
 
 	<section id='qualities'>
         <h3>Kwaliteiten</h3>
 		<ul>
 			{{#each quality in model.qualities}}
-			<li>{{ quality.name }} <i class="fa fa-times"></i> </li>
+			<li>{{ quality }} <i class="fa fa-times"></i> </li>
 			{{/each}}
 		</ul>
-
+      <!--
         Kwaliteit toevoegen<br>
 
         {{input value=quality type="text" placeholder="Type hier een nieuwe kwaliteit"}}<br>
@@ -88,5 +87,6 @@
 
         <button>Annuleren</button>
         <button>Opslaan <i class="fa fa-heart"></i></button>
+  -->
 	</section>
 </section>
