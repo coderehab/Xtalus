@@ -25,9 +25,7 @@ export default Ember.Route.extend({
 			var _this = this;
 			console.log(file);
 
-			this.controller.saveImage('registration',{
-				image: file,
-			}).then(function(response){
+			this.controller.saveImage('registration',file).then(function(response){
 				console.log(response.get('url'));
 			});
 		},

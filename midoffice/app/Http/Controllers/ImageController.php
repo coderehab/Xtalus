@@ -54,6 +54,7 @@ class ImageController extends BaseController
 	}
 
 	public function post_image(Request $request) {
+
 		$tmp_img = $request->json('image')['image'];
 
 		$img = explode(',', $tmp_img['data']);
@@ -69,7 +70,7 @@ class ImageController extends BaseController
 		$image->url = url($file);
 		$data->image = $image;
 
-		return json_encode($data);
+		return response()->json($data);
 	}
 
 	public function update_image() {
