@@ -2,8 +2,8 @@
 
 @section('email_header')
 
-<h1 style="color:#a21e5c;">Xtalus</h1>
-<p style="color:#888; line-height:180%; font-weight:300;">Together the perfect 'match-maker' for finding and growing talent</p>
+  <h1 style="color:#a21e5c;">Xtalus</h1>
+  <p style="color:#888; line-height:180%; font-weight:300;">Together the perfect 'match-maker' for finding and growing talent</p>
 
 @stop
 
@@ -19,12 +19,10 @@
   {{ucfirst($postdata->lastname)}},
 </h2>
 <p style="color:#888; line-height:180%; font-weight:300;">
-    Bedankt voor uw registratie. Uw account is aangevraagd.
-Binnen enkele werkdagen ontvangt u per email uw inloggegevens en kunt u via Xtalus inloggen.
+    Je account is geactiveerd, je hebt nu toegang tot Xtalus.
+  Log meteen in via: <a href="http://www.xtalus.nl">www.xtalus.nl</a>
 </p>
-<p style="color:#888; line-height:180%; font-weight:300;">
-   Voor vragen kunt u contact opnemen met <a href='mailto:info@xtalus.nl'>info@xtalus.nl</a>
-</p>
+
 
 <p style="color:#888; line-height:180%; font-weight:300;">
 Met vriendelijke groeten,<br>

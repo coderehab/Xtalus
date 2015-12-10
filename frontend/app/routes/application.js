@@ -13,7 +13,7 @@ export default Ember.Route.extend({
 		var store = this.store;
 		if($ISIS.getCookie('auth'))
 
-			return $ISIS.get('http://acc.xtalus.gedge.nl/simple/restful/v2/action/login').then(function(app){
+			return $ISIS.get('http://test.xtalus.gedge.nl/simple/restful/v2/action/login').then(function(app){
 				return store.find('person', app.application.activePerson);
 			})
 

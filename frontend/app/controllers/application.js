@@ -23,11 +23,12 @@ var ApplicationController = Ember.Controller.extend({
 
 	//  Post actions
 	sendAction: function(actionName,params){
+
 		return new Promise(function(resolve, reject) {
 			Ember.$.ajax({
 				type: "POST",
 				contentType: "application/json; charset=utf-8",
-				url: ENV.APP.API_HOST+'/'+ENV.APP.API_NS+"/action/"+actionName,
+				url: ENV.APP.API_HOST+'/'+ENV.APP.API_NS+"/actions/"+actionName,
 				data: params
 			}).done(function(response){
 				resolve(response);
@@ -35,6 +36,7 @@ var ApplicationController = Ember.Controller.extend({
 				reject(error);
 			});
 		});
+
 	},
 
 	saveImage: function(params){
