@@ -9,6 +9,7 @@ export default DS.Model.extend({
   location:     DS.attr({defaultValue:{
     city:   "Enschede",
     postal: "7521BE"
-  }),
+  }
+  })
 
 });
