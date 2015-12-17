@@ -1,32 +1,26 @@
-<section id="page" class='login'>
 
-    <header>
-        <h1>Xtalus</h1>
-        <h3>Together the perfect 'match-maker' for finding and growing talent.</h3>
-    </header>
+<section id="login" class="panel">
+	<form method="post" {{action "login" on="submit"}}>
+		<h3>Inloggen</h3>
+		<div {{bind-attr class="message:error"}}>
+			<label><i class="fa fa-user"></i>
+				{{input value=username type="text" placeholder="Gebruikersnaam"}}
 
-    <section>
-        <form method="post" {{action "login" on="submit"}}>
-            <h4>Welkom terug</h4>
-            <label><i class="fa fa-user"></i>
-                {{input value=username type="text" placeholder="Gebruikersnaam"}}
-                <p class="message">{{message}}</p>
-            </label>
-            <label><i class="fa fa-lock"></i>
-                {{input value=password type="password" placeholder="Wachtwoord"}}
-                <p class="password message">{{message}}</p>
-            </label>
-            <!-- {{input type="checkbox" name="remember" checked=remember}} Onthouden -->
-            <button type="submit" class="btn">Login <i class="fa fa-sign-in"></i></button>
-        </form>
+			</label>
+			<span class="message">{{message}}</span>
+		</div>
+		<div {{bind-attr class="message:error"}}>
+		<label><i class="fa fa-lock"></i>
+			{{input value=password type="password" placeholder="Wachtwoord"}}
+		</label>
+			<span class="message">{{message}}</span>
+		</div>
+		<!-- {{input type="checkbox" name="remember" checked=remember}} Onthouden -->
+		<button>Login <i class="fa fa-sign-in"></i></button>
+	</form>
 
-        <footer>
-            {{#link-to 'registration'}}Nog geen account?{{/link-to}}
-            <!-- {{#link-to 'forgot'}}Wachtwoord vergeten?{{/link-to}} -->
-        </footer>
-
-    </section>
-
-
+	<footer>
+		{{#link-to 'registration'}}Nog geen account?{{/link-to}}
+	</footer>
 
 </section>

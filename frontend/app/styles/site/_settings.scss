@@ -1,120 +1,232 @@
-//@import 'fonts';
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,600);
 
-@font-face {
-    font-family: 'proxima_nova_rgregular';
-    src: url('../fonts/proximanova-regular-webfont.eot');
-    src: url('../fonts/proximanova-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/proximanova-regular-webfont.woff2') format('woff2'),
-         url('../fonts/proximanova-regular-webfont.woff') format('woff'),
-         url('../fonts/proximanova-regular-webfont.ttf') format('truetype'),
-         url('../fonts/proximanova-regular-webfont.svg#proxima_nova_rgregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
+@import 'compass';
 
-@font-face {
-    font-family: 'proxima_nova_rgbold';
-    src: url('../fonts/proximanova-bold-webfont.eot');
-    src: url('../fonts/proximanova-bold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/proximanova-bold-webfont.woff2') format('woff2'),
-         url('../fonts/proximanova-bold-webfont.woff') format('woff'),
-         url('../fonts/proximanova-bold-webfont.ttf') format('truetype'),
-         url('../fonts/proximanova-bold-webfont.svg#proxima_nova_rgbold') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'proxima_novasemibold';
-    src: url('../fonts/proximanova-semibold-webfont.eot');
-    src: url('../fonts/proximanova-semibold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/proximanova-semibold-webfont.woff2') format('woff2'),
-         url('../fonts/proximanova-semibold-webfont.woff') format('woff'),
-         url('../fonts/proximanova-semibold-webfont.ttf') format('truetype'),
-         url('../fonts/proximanova-semibold-webfont.svg#proxima_novasemibold') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@import "compass/utilities/general/clearfix";
-@import "compass/css3/box-shadow";
-@import "compass/css3/box-sizing";
-@import "compass/css3/border-radius";
-@import "compass/css3/transition";
-@import "compass/css3/transform";
-
-$font1: 'proxima_nova_rgregular', 'Open Sans';
-$font2: 'proxima_novasemibold', 'Open Sans';
-$font3: 'proxima_nova_rgbold', 'Open Sans';
-
-// black, gray and white
-$color1: #000;
-$color2: #212121;
-$color3: #757575;
-$color4: #9e9e9e;
-$color5: #bdbdbd;
-$color6: #f5f5f5;
-$color7: #fafafa;
-$color8: #ffffff;
-
-// roze
-$color9: #a21e5c;
-$color10: #a21e5c;
-
-// purple/blue
-$color11: #3949ab;
-$color12: #3f51b5;
-
-// orange
-$color13: #fb8c00;
-$color14: #ff9800;
-
-// green
-$color13: #7cb342;
-$color14: #8bc34a;
-
-$body-color: #fff;
-$text-color: $color1;
-
-// fontsizes
-$iconsize: 8px;
-
-$fontsize1: 12px;
-$fontsize2: 14px;
-$fontsize3: 16px;
-$fontsize4: 18px;
-$fontsize5: 22px;
-$fontsize6: 24px;
-$fontsize7: 30px;
-$fontsize8: 48px;
-
-// Padding
-$globalPadding: 3%;
-$viewSliderPadding: 35px;
-
-/* Mixins and includes */
-@import "coderehab/mixins/ignorepadding";
-@import "coderehab/mixins/centerelement";
-@import "coderehab/include/viewslider";
-@import "coderehab/include/columns";
+@import "core/mixins/centerElement";
 
 $susy: (
     global-box-sizing: border-box,
-    use-custom: (rem: true)
 );
 
-.color-1 {color:$color1}
-.color-2 {color:$color2}
-.color-3 {color:$color3}
-.color-4 {color:$color4}
-.color-5 {color:$color5}
+@import url(https://fonts.googleapis.com/css?family=Bitter:700);
 
-.font-1 {font-family:$font1 !important}
-.font-2 {font-family:$font2 !important}
-.font-3 {font-family:$font3 !important}
+@font-face {
+	font-family: 'GothamRounded';
+	src: url('../fonts/GothamRounded-Book.eot?#iefix') format('embedded-opentype'),  url('../fonts/GothamRounded-Book.otf')  format('opentype'),
+		url('../fonts/GothamRounded-Book.woff') format('woff'), url('../fonts/GothamRounded-Book.ttf')  format('truetype'), url('../fonts/GothamRounded-Book.svg#../fonts/GothamRounded-Book') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
 
+@font-face {
+	font-family: 'GothamRounded';
+	src: url('../fonts/GothamRounded-Bold.eot?#iefix') format('embedded-opentype'),  url('../fonts/GothamRounded-Bold.otf')  format('opentype'),
+		url('../fonts/GothamRounded-Bold.woff') format('woff'), url('../fonts/GothamRounded-Bold.ttf')  format('truetype'), url('../fonts/GothamRounded-Bold.svg#../fonts/GothamRounded-Bold') format('svg');
+	font-weight: bold;
+	font-style: normal;
+}
+
+$font1: 'GothamRounded', sans-serif;
+$font2: 'Bitter', serif;
+$font3: $font1;
+$font4: $font1;
+
+$color1: #ec2761;
+$color2: #3f51b5;
+$color3: #263238;
+$color4: #455a64;
+
+//basic setup
+$body-color: #eceff1;
+$base_font_size: 14px;
+$base_text_color: #444;
+$base_line_height: 150%;
+$base_font:$font1;
+
+//basic link
+$link_decoration: none;
+$link_color: $color1;
+$link_hover_color: $color1;
+
+$paragraph_margin_mobile: 10px 0 20px 0;
+$paragraph_margin_tablet: 10px 0 20px 0;
+$paragraph_margin_desktop: 10px 0 20px 0;
+
+$max-page-width: 960px;
 $screen-size-mobile: 0px;
 $screen-size-tablet: 650px;
-$screen-size-desktop: 1050px;
-$screen-size-bigscreen: 1400px;
+$screen-size-desktop: 1020px;
+$screen-size-bigscreen: 1600px;
+
+//buttons
+$button_padding: 15px 20px;
+$button_bg_color:$color2;
+$button_text_color:#fff;
+$button_hover_bg_color:#ccc;
+$button_hover_text_color: $color1;
+$button_border_radius:2px;
+
+//form
+$input_padding: 10px 25px;
+$input_border_radius:5px;
+$placeholder_color: #999;
+$input_text_color: $base_text_color;
+
+//===============================================================================
+//  HEADINGS
+//-------------------------------------------------------------------------------
+
+//heading 1 settings
+//-------------------------------------------------------------------------------
+$h1_font: $font2;
+$h1_color: $color1;
+$h1_line_height: 100%;
+$h1_font_weight: 700;
+
+$h1_margin_desktop: 20px 0;
+$h1_margin_tablet: 15px 0;
+$h1_margin_mobile: 10px 0;
+
+$h1_font_size_desktop: 55px;
+$h1_font_size_tablet: 45px;
+$h1_font-size_mobile: 30px;
+
+//heading 2 settings
+//-------------------------------------------------------------------------------
+$h2_font: $font1;
+$h2_color: $color2;
+$h2_line_height: 110%;
+$h2_font_weight: 600;
+
+$h2_margin_desktop: 20px 0;
+$h2_margin_tablet: 15px 0;
+$h2_margin_mobile: 10px 0;
+
+$h2_font_size_desktop: 35px;
+$h2_font_size_tablet: 28px;
+$h2_font-size_mobile: 20px;
+
+//heading 3 settings
+//-------------------------------------------------------------------------------
+$h3_font: $font1;
+$h3_color: $color3;
+$h3_line_height: 110%;
+$h3_font_weight: 600;
+
+$h3_margin_desktop: 5px 0 20px 0;
+$h3_margin_tablet: 5px 0 20px 0;
+$h3_margin_mobile: 5px 0 20px 0;
+
+$h3_font_size_desktop: 24px;
+$h3_font_size_tablet: 22px;
+$h3_font-size_mobile: 20px;
+
+//heading 4 settings
+//-------------------------------------------------------------------------------
+$h4_font: $font1;
+$h4_color: $color1;
+$h4_line_height: 110%;
+$h4_font_weight: 600;
+
+$h4_margin_desktop: 20px 0 0 0;
+$h4_margin_tablet: 15px 0 0 0;
+$h4_margin_mobile: 10px 0 0 0;
+
+$h4_font_size_desktop: 18px;
+$h4_font_size_tablet: 17px;
+$h4_font-size_mobile: 16px;
+
+//heading 5 settings
+//-------------------------------------------------------------------------------
+$h5_font: $font1;
+$h5_color: $color1;
+$h5_line_height: 110%;
+$h5_font_weight: 700;
+
+$h5_margin_desktop: 20px 0 0 0;
+$h5_margin_tablet: 15px 0 0 0;
+$h5_margin_mobile: 10px 0 0 0;
+
+$h5_font_size_desktop: 16px;
+$h5_font_size_tablet: 15px;
+$h5_font-size_mobile: 14px;
+
+//heading 6 settings
+//-------------------------------------------------------------------------------
+$h6_font: $font1;
+$h6_color: $color1;
+$h6_line_height: 110%;
+$h6_font_weight: 700;
+
+$h6_margin_desktop: 20px 0 0 0;
+$h6_margin_tablet: 15px 0 0 0;
+$h6_margin_mobile: 10px 0 0 0;
+
+$h6_font_size_desktop: 14px;
+$h6_font_size_tablet: 13px;
+$h6_font-size_mobile: 12px;
+
+//===============================================================================
+//predefined classes
+//-------------------------------------------------------------------------------
+
+.color-1 {color:$color1 !important;}
+.color-2 {color:$color2 !important;}
+.color-3 {color:$color3 !important;}
+.color-4 {color:$color4 !important;}
+
+.bg-color-1 {background-color:$color1 !important;}
+.bg-color-2 {background-color:$color2 !important;}
+.bg-color-3 {background-color:$color3 !important;}
+.bg-color-4 {background-color:$color4 !important;}
+
+button, .btn, .button, input[type="submit"]{
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.2);
+	text-transform: uppercase;
+	font-size: 15px;
+	i{
+		margin: 0 0 0 10px;
+	}
+}
+
+//===============================================================================
+// Predefine elements
+//-------------------------------------------------------------------------------
+
+@import "core/predefine";
+
+
+.columns{
+
+	@for $i from 2 to 3 {
+		$margin: 1.5%;
+		$width: (100%-($margin*($i+2)))/$i;
+
+
+		.cols-#{$i}-small {
+			float:left;
+			width:$width;
+			margin:0 $margin;
+	}
+}
+
+@include clearfix();
+}
+
+@media screen and (min-width: 600px) {
+
+	.columns{
+		margin:0 -1.5%;
+		@for $i from 2 to 12 {
+			$margin: 1.5%;
+			$width: (100%-($margin*($i+2)))/$i;
+
+			.cols-#{$i} {
+				float:left;
+				width:$width;
+				margin:0 $margin;
+			}
+		}
+
+	}
+}
+

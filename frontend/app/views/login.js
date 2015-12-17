@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 var UserView = Ember.View.extend({
-    layoutName: 'login',
+    layoutName: 'layout/login',
     tagName: 'section',
     elementId: '',
 

@@ -1,4 +1,10 @@
-@import 'site/lib/font-awesome/font-awesome';
+
+@import 'susy';
+
 @import 'site/settings';
-@import 'site/globals';
+@import 'site/partials';
 @import 'site/setup';
+
+@import 'site/mobile/mobile';
+@import 'site/tablet/tablet';
+@import 'site/desktop/desktop';

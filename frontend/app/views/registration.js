@@ -1,9 +1,10 @@
 import Ember from 'ember';
 
 var UserView = Ember.View.extend({
+	layoutName: 'layout/login',
 	tagName: 'section',
-	elementId: 'page',
-    classNames: ['project', 'aside-left']
+	elementId: '',
+
 });
 
 export default UserView;
