@@ -4,11 +4,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Testmailtje</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+       <link href='https://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
         <style>
 
             body{
                 background-color:#f5f5f5;
-                font-family: "Helvetica", "Arial", "Verdana", "Trebuchet MS";
+                font-family: "Bitter";
                 color:#888;
                 font-size:14px;
                 letter-spacing: 0.025em;
@@ -89,7 +90,7 @@
     </head>
     <body style='background-color:#f5f5f5;
                  font-family: "Helvetica", "Arial", "Verdana", "Trebuchet MS";
-                 color:#888;
+                 color: #263238;
                  font-size:14px;
                  letter-spacing: 0.025em;
                  font-weight:300;'>
@@ -97,19 +98,18 @@
         <table style="width: 100%;">
             <tr>
                 <td>
-                    <center>
-                        <table width="750" style="text-align:center;">
-                            <tr>
-                                <td style="border:none">
-                                    <?php echo $__env->yieldContent('email_header'); ?>
-                                    </td>
-                            </tr>
+                    <center>                       
 
                         </table>
 
                         <table width="750" style="background:#fff; border:2px solid #efefef; ">
                             <tr>
-                                <td style="border:none; padding:35px 10%">
+                                <td style="border:none">
+                                    <?php echo $__env->yieldContent('email_header'); ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border:none; padding:35px 12.5%">
 
                                     <?php echo $__env->yieldContent('email_content'); ?>
                                 </td>

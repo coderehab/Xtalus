@@ -19,8 +19,8 @@ var RegistrationController = Ember.Controller.extend(Validator, {
     form:{
         entities: [
             {label:'Student', value:'student'},
-            {label:'Zper', value:'zp'},
-            {label:'Mkber', value:'mkb'},
+            {label:'Zper', value:'zper'},
+            {label:'Mkber', value:'mkber'},
         ]
     },
 
