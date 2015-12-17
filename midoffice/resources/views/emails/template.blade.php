@@ -4,12 +4,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Testmailtje</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-       <link href='https://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
+       <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
         <style>
 
             body{
                 background-color:#f5f5f5;
-                font-family: "Bitter";
+                font-family: "Montserrat";
                 color:#888;
                 font-size:14px;
                 letter-spacing: 0.025em;
