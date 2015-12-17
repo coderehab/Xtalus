@@ -95,35 +95,33 @@
                  letter-spacing: 0.025em;
                  font-weight:300;'>
 
-        <table style="width: 100%;">
+        <table style="width: 100%; border-collapse: collapse;" cellspacing="0" cellpadding="0">
             <tr>
                 <td>
                     <center>
-
-                        </table>
-
-                        <table width="750" style="background:#fff; border:2px solid #efefef; ">
+                      
+                        <table width="750" style="background:#fff; border:2px solid #efefef; border-collapse: collapse; " cellspacing="0" cellpadding="0">
                             <tr>
                                 <td style="border:none">
                                     <?php echo $__env->yieldContent('email_header'); ?>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="border:none; padding:35px 12.5%">
+                                <td style="border:none; padding:35px 80px;">
 
                                     <?php echo $__env->yieldContent('email_content'); ?>
                                 </td>
                             </tr>
                         </table>
 
-                        <table width="750" style="text-align:center;">
+                        <!-- <table width="750" style="text-align:center;">
                             <tr>
                                 <td style="border:none">
                                     <?php echo $__env->yieldContent('email_footer'); ?>
                                 </td>
                             </tr>
 
-                        </table>
+                        </table> -->
                     </center>
                 </td>
             </tr>
