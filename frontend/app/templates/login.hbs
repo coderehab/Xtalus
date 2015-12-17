@@ -1,10 +1,11 @@
 
+
 <section id="login" class="panel">
 	<form method="post" {{action "login" on="submit"}}>
 		<h3>Inloggen</h3>
 		<div {{bind-attr class="message:error"}}>
 			<label><i class="fa fa-user"></i>
-				{{input value=username type="text" placeholder="Gebruikersnaam"}}
+				{{input value=email type="text" placeholder="E-mailadres"}}
 
 			</label>
 			<span class="message">{{message}}</span>

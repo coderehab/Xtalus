@@ -4,11 +4,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Testmailtje</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+       <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
         <style>
 
             body{
                 background-color:#f5f5f5;
-                font-family: "Helvetica", "Arial", "Verdana", "Trebuchet MS";
+                font-family: "Montserrat";
                 color:#888;
                 font-size:14px;
                 letter-spacing: 0.025em;
@@ -89,41 +90,38 @@
     </head>
     <body style='background-color:#f5f5f5;
                  font-family: "Helvetica", "Arial", "Verdana", "Trebuchet MS";
-                 color:#888;
+                 color: #263238;
                  font-size:14px;
                  letter-spacing: 0.025em;
                  font-weight:300;'>
 
-        <table style="width: 100%;">
+        <table style="width: 100%; border-collapse: collapse;" cellspacing="0" cellpadding="0">
             <tr>
                 <td>
                     <center>
-                        <table width="750" style="text-align:center;">
+
+                        <table width="750" style="background:#fff; border:2px solid #efefef; border-collapse: collapse; " cellspacing="0" cellpadding="0">
                             <tr>
                                 <td style="border:none">
                                     @yield('email_header')
-                                    </td>
+                                </td>
                             </tr>
-
-                        </table>
-
-                        <table width="750" style="background:#fff; border:2px solid #efefef; ">
                             <tr>
-                                <td style="border:none; padding:35px 10%">
+                                <td style="border:none; padding:35px 80px;">
 
                                     @yield('email_content')
                                 </td>
                             </tr>
                         </table>
 
-                        <table width="750" style="text-align:center;">
+                        <!-- <table width="750" style="text-align:center;">
                             <tr>
                                 <td style="border:none">
                                     @yield('email_footer')
                                 </td>
                             </tr>
 
-                        </table>
+                        </table> -->
                     </center>
                 </td>
             </tr>
