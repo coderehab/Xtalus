@@ -23,7 +23,7 @@ export default Ember.Route.extend({
 	actions: {
 
 		login: function(){
-			$ISIS.auth.login(this.get("username"), this.get("password")).then(function(data){
+			$ISIS.auth.login(this.get("email"), this.get("password")).then(function(data){
 				console.log(data);
 				if (data.message) {
 					this.set('message', data.message);

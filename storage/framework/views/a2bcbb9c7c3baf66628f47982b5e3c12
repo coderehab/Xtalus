@@ -3,13 +3,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Testmailtje</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-       <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>        
+        <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+      <style>        
+      </style>
         <style>
 
             body{
-                background-color:#f5f5f5;
-                font-family: "Montserrat";
+                background-color:#f5f5f5; 
+                font-family: 'Varela Round', sans-serif;
                 color:#888;
                 font-size:14px;
                 letter-spacing: 0.025em;
@@ -20,14 +22,20 @@
                 margin:auto;
             }
 
-            p{color:#888; line-height:180%;}
+            p{ color: #263238; line-height:180%;}
 
-            h1{color:#a21e5c;}
+            h1{ 
+              color: #263238;
+              font-size:24px;
+              margin:0 0 40px 0;
+              font-weight:bold;
+              font-family: 'Montserrat', sans-serif;
+            }
 
             h2{
                 margin:20px 0;
                 font-weight:normal;
-                color:#212121;
+                color: #263238;
             }
 
             h3{
@@ -55,12 +63,13 @@
             }
 
             a{
-                color:#a21e5c;
-                text-decoration:none;
+              color: #263238;
+              text-decoration:none;
+              border-bottom: 2px solid #b0bec5;
             }
 
             a:hover{
-                text-decoration:underline;
+                border-bottom: 2px solid #ffc200;
             }
 
             a[class="button"] {
@@ -89,11 +98,13 @@
         </style>
     </head>
     <body style='background-color:#f5f5f5;
-                 font-family: "Helvetica", "Arial", "Verdana", "Trebuchet MS";
+                 font-family: "Varela Round", sans-serif;
                  color: #263238;
-                 font-size:14px;
+                 font-size:15px;
                  letter-spacing: 0.025em;
-                 font-weight:300;'>
+                 font-weight:300;
+                 padding:60px 0;
+                 '>
 
         <table style="width: 100%; border-collapse: collapse;" cellspacing="0" cellpadding="0">
             <tr>
@@ -107,8 +118,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td style="border:none; padding:35px 80px;">
-
+                                <td style="border:none; padding:60px 80px;">
                                     <?php echo $__env->yieldContent('email_content'); ?>
                                 </td>
                             </tr>
