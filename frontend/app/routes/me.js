@@ -9,11 +9,6 @@ export default Ember.Route.extend({
 
     afterModel: function(model, transition){
 
-        //console.log(model.get('supplies'))
-
-
-
-
     },
 
     actions: {

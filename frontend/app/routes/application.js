@@ -9,16 +9,14 @@ export default Ember.Route.extend({
 	globalSearchQuery:"",
 
 	model: function(){
-
 		//var app = this.store.find('application', 'login');
 		var store = this.store;
-		if($ISIS.getCookie('auth'))
-
-			return $ISIS.get('http://test.xtalus.gedge.nl/simple/restful/v2/action/login').then(function(app){
-				return store.find('person', app.application.activePerson);
+		if($ISIS.getCookie('auth')){
+			return $ISIS.get('http://test.xtalus.gedge.nl/simple/restful/v2/action/login').then(function(response){
+				return store.find('person', response.application.activePerson);
 			})
-
-			},
+		}
+	},
 
 	actions: {
 

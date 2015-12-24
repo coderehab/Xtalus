@@ -1,110 +1,46 @@
-<aside id='page-left' class='viewslider' >
-	<section class='slideContainer'>
+<header id="page-header">
+	<section class="user-info dark-theme">
 
-		<section id='index' class='slide-0'>
-			<!--<i id="edit-btn" {{action 'changeView' 'page-left' 1 }} class="fa fa-cog"></i>-->
-
-			{{#file-picker
-    accept=".jpg,.jpeg,.gif,.png"
-    fileLoaded="uploadProfilePicture"
-    readAs="readAsDataURL"
-                }}
-			Klik hier of sleep een afbeelding
-			{{/file-picker}}
-
-
-
-            <h2>{{model.education}}</h2>
-            <h3>{{model.institute}}</h3>
-
-            <!-- zp'er
-            <h2>{{model.company.name}}</h2>
-            <h3>{{model.company.branche}}</h3>
-            -->
-
-            <p>{{model.entity}}</p>
-
-            <hr>
-
-            <h4><i class="fa fa-graduation-cap"></i> Honoursprogramma</h4>
-            <p>{{model.honoursProgram}}</p>
-
-            <h4><i class="fa fa-heart"></i> Interesses</h4>
-
-            {{#each interest in model.interests}}
-            <p><strong>{{interest.name}}</strong><br>
-                {{interest.period.from}} t/m {{interest.period.to}}<br>
-                {{interest.timeAvailable}} uur per week
-            </p>
-            {{/each}}
-
-
-            <h4><i class="fa fa-location-arrow"></i> Woonplaats</h4>
-            <p>{{model.city}}</p>
-
-            <h4><i class="fa fa-suitcase"></i> Bedrijfsinformatie</h4>
-            <p>{{model.company.description}}</p>
-
-            <h4><i class="fa fa-location-arrow"></i> Vestigingslocatie</h4>
-            <p>{{model.company.location.postal}} {{model.company.location.city}}</p>
-
-		</section>
-
-		<section id='edit' class='slide-1'>
-			<!-- <i id="back-btn" {{action 'changeView' 'page-left' 0 }} class="fa fa-chevron-circle-left"></i> -->
-			<h4>Instellingen</h4>
-
-			<form method="post" {{action "updatePerson" on="submit"}}>
-
-				Voornaam
-				{{input value=model.firstName type="text" placeholder="Voornaam" class="txt-field"}}<br>
-				Tussenvoegsel
-				{{input value=model.middleName type="text" placeholder="Tussenvoegsel" class="txt-field"}}<br>
-				Achternaam
-				{{input value=model.lastName type="text" placeholder="Achternaam" class="txt-field"}}<br>
-				Geboortedatum
-                {{date-picker value=model.birthDay valueFormat='YYYY-MM-DD' format='YYYY-MM-DD'}}<br>
-
-				<h4>Locatiegegevens</h4>
-				Adres:
-				{{input value=model.address type="text" placeholder="adres" class="txt-field"}}<br>
-				Postcode:
-				{{input value=model.postalCode type="text" placeholder="postcode" class="txt-field"}}<br>
-				Plaats
-				{{input value=model.town type="text" placeholder="plaats" class="txt-field"}}<br>
-
-				<h4>Beschikbaarheid</h4>
-				Van:
-				{{date-picker value=model.date date=mydate valueFormat='YYYY-MM-DD' format='DD-MM-YYYY' yearRange="-70,0"}}<br>
-				tot:
-				{{date-picker value=model.date date=mydate valueFormat='YYYY-MM-DD' format='DD-MM-YYYY' yearRange="-70,0"}}<br>
-
-				<button type="submit" class="btn add-project-btn">Wijzigen <i class="fa fa-pencil"></i></button>
-			</form>
-		</section>
+		<section class='profile-picture'></section>
+		<h2 class='username'>Gebruikersnaam<label>student</label></h2>
+		<h4>Marketing en communicatie</h4>
+		<p>Saxion Hogeschool, Enschede</p>
 	</section>
-</aside>
+	<button class='edit'>Bewerken <i class="fa fa-pencil"></i></button>
+</header>
 
 <section id='page-content'>
-
-  <h3>Verhaal</h3>
-  {{ model.story }}
-
-	<section id='qualities'>
-        <h3>Kwaliteiten</h3>
-		<ul>
-			{{#each quality in model.qualities}}
-			<li>{{ quality }} <!-- <i class="fa fa-times"></i>--> </li>
-			{{/each}}
-		</ul>
-      <!--
-        Kwaliteit toevoegen<br>
-
-        {{input value=quality type="text" placeholder="Type hier een nieuwe kwaliteit"}}<br>
-		<span class="add-quality-btn">Toevoegen</span>
-
-        <button>Annuleren</button>
-        <button>Opslaan <i class="fa fa-heart"></i></button>
-  -->
+	<header><h3>Pagina opzet</h3></header>
+	<p>
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec erat vitae enim ultricies maximus. Proin gravida vulputate felis, et auctor tortor ultrices sed. Nullam posuere sagittis ligula consequat placerat. Proin sit amet augue consequat, venenatis dui ut, malesuada nibh. Phasellus et accumsan lectus, non scelerisque nisl. Nulla facilisi. Cras quis neque ut massa efficitur porta. Curabitur interdum, nisi ut tristique aliquam, diam velit accumsan risus, at sollicitudin diam neque id ipsum.
+		Vivamus ornare erat in orci sodales, eu ornare odio blandit. Quisque vitae odio dignissim, porttitor sapien at, feugiat nulla. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus porta nunc a elit gravida tempus. Etiam tellus mauris, pharetra nec pulvinar ac, pharetra non tellus. Proin rhoncus enim sed lorem pretium, id venenatis justo condimentum. Nam feugiat sem sed nisl fringilla luctus id a turpis. Suspendisse in mi sit amet sem aliquet luctus tincidunt ac ligula. Nulla in libero feugiat, rutrum risus nec, dignissim mi.
+	</p>
+	<header><h3>Kwaliteiten</h3></header>
+	<section id="qualities" class="labels">
+		<label>Out of the box denken</label>
+		<label>Positief</label>
+		<label>Copywriting</label>
+		<label>Grafisch vormgeven</label>
+		<label>Nieuwsgierig</label>
+		<label>Technisch inzicht</label>
 	</section>
 </section>
+
+<aside id='page-sidebar' >
+	<section>
+		<header><h3>Interesses</h3></header>
+		<ul class='extended'>
+			<li><h4>Stage</h4><p>1 januari 2016 - 30 juni 2016</p></li>
+			<li><h4>Afstudeeropdracht</h4><p>1 september 2018 - 30 december 2018</p></li>
+			<li><h4>Kort lopend project</h4><p>1 januari 2016 - 30 juni 2016</p></li>
+			<li><h4>Relevante bijbaan</h4><p>1 december 2015 - 31 december 2015</p></li>
+		</ul>
+	</section>
+	<section>
+		<header><h3>Overige informatie</h3></header>
+		<ul class='extended'>
+			<li><h4>Honoursprogramma</h4><p>Innovatie en media</p></li>
+			<li><h4>Woonplaats</h4><p>Enschede</p></li>
+		</ul>
+	</section>
+</aside>

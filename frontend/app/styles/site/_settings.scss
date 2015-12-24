@@ -32,14 +32,20 @@ $font4: $font1;
 
 $color1: #ec2761;
 $color2: #3f51b5;
-$color3: #263238;
-$color4: #455a64;
+$color3: #ffc200;
+$color4: #ffe17b;
+
+$gray1: #263238;
+$gray2: #455a64;
+$gray3: #78909c;
+$gray4: #b0bec5;
+$gray5: #eceff1;
 
 //basic setup
 $body-color: #eceff1;
-$base_font_size: 14px;
-$base_text_color: #444;
-$base_line_height: 150%;
+$base_font_size: 15px;
+$base_text_color: $gray1;
+$base_line_height: 165%;
 $base_font:$font1;
 
 //basic link
@@ -51,7 +57,7 @@ $paragraph_margin_mobile: 10px 0 20px 0;
 $paragraph_margin_tablet: 10px 0 20px 0;
 $paragraph_margin_desktop: 10px 0 20px 0;
 
-$max-page-width: 960px;
+$max-page-width: 1260px;
 $screen-size-mobile: 0px;
 $screen-size-tablet: 650px;
 $screen-size-desktop: 1020px;
@@ -61,8 +67,8 @@ $screen-size-bigscreen: 1600px;
 $button_padding: 15px 20px;
 $button_bg_color:$color2;
 $button_text_color:#fff;
-$button_hover_bg_color:#ccc;
-$button_hover_text_color: $color1;
+$button_hover_bg_color:#2f3ba2;
+$button_hover_text_color: #fff;
 $button_border_radius:2px;
 
 //form
@@ -78,7 +84,7 @@ $input_text_color: $base_text_color;
 //heading 1 settings
 //-------------------------------------------------------------------------------
 $h1_font: $font2;
-$h1_color: $color1;
+$h1_color: $gray1;
 $h1_line_height: 100%;
 $h1_font_weight: 700;
 
@@ -86,29 +92,29 @@ $h1_margin_desktop: 20px 0;
 $h1_margin_tablet: 15px 0;
 $h1_margin_mobile: 10px 0;
 
-$h1_font_size_desktop: 55px;
-$h1_font_size_tablet: 45px;
-$h1_font-size_mobile: 30px;
+$h1_font_size_desktop: 48px;
+$h1_font_size_tablet: 44px;
+$h1_font-size_mobile: 36px;
 
 //heading 2 settings
 //-------------------------------------------------------------------------------
-$h2_font: $font1;
-$h2_color: $color2;
+$h2_font: $font2;
+$h2_color: $gray1;
 $h2_line_height: 110%;
-$h2_font_weight: 600;
+$h2_font_weight: 700;
 
 $h2_margin_desktop: 20px 0;
 $h2_margin_tablet: 15px 0;
 $h2_margin_mobile: 10px 0;
 
-$h2_font_size_desktop: 35px;
-$h2_font_size_tablet: 28px;
-$h2_font-size_mobile: 20px;
+$h2_font_size_desktop: 36px;
+$h2_font_size_tablet: 32px;
+$h2_font-size_mobile: 28px;
 
 //heading 3 settings
 //-------------------------------------------------------------------------------
 $h3_font: $font1;
-$h3_color: $color3;
+$h3_color: $gray1;
 $h3_line_height: 110%;
 $h3_font_weight: 600;
 
@@ -120,20 +126,22 @@ $h3_font_size_desktop: 24px;
 $h3_font_size_tablet: 22px;
 $h3_font-size_mobile: 20px;
 
+header h3{display:inline-block; border-bottom: 2px solid $color3; padding-bottom:8px;}
+
 //heading 4 settings
 //-------------------------------------------------------------------------------
 $h4_font: $font1;
-$h4_color: $color1;
+$h4_color: $gray1;
 $h4_line_height: 110%;
-$h4_font_weight: 600;
+$h4_font_weight: bold;
 
 $h4_margin_desktop: 20px 0 0 0;
 $h4_margin_tablet: 15px 0 0 0;
 $h4_margin_mobile: 10px 0 0 0;
 
-$h4_font_size_desktop: 18px;
-$h4_font_size_tablet: 17px;
-$h4_font-size_mobile: 16px;
+$h4_font_size_desktop: 17px;
+$h4_font_size_tablet: 16px;
+$h4_font-size_mobile: 15px;
 
 //heading 5 settings
 //-------------------------------------------------------------------------------
@@ -195,6 +203,35 @@ button, .btn, .button, input[type="submit"]{
 @import "core/predefine";
 
 
+ul{
+	list-style: none;
+	padding:0;
+	li{
+		position: relative;
+		padding-left:20px;
+		margin:0px 0 10px 0;
+		&:before{
+			content: " ";
+			width:8px;
+			height: 8px;
+			background: $gray4;
+			position: absolute;
+			left:0;
+			margin-top:4px;
+		}
+		h4{
+			margin-top:0;
+			margin-bottom: 8px;
+		}
+	}
+}
+
+ul.extended{
+	li{
+		margin:0px 0 25px 0;
+	}
+}
+
 .columns{
 
 	@for $i from 2 to 3 {
@@ -226,7 +263,12 @@ button, .btn, .button, input[type="submit"]{
 				margin:0 $margin;
 			}
 		}
-
 	}
 }
 
+.dark-theme {
+	h1, h2,h3,h4,h5,h6,p, i{
+		color:#fff !important;
+	}
+	p, .icon{color: #b0bec5 !important;}
+}
