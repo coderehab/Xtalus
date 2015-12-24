@@ -10,30 +10,28 @@
 <p style="font-family: 'Varela Round', sans-serif; line-height:180%; margin:0 0 20px 0;">
     Bedankt voor uw registratie! Uw account is aangevraagd en wordt momenteel door een van onze medewerkers geverifieerd. Hiermee kunnen we de kwaliteit op Xtalus garanderen.
 </p>
-<p style="font-family: 'Varela Round', sans-serif; line-height:180%; margin:0 0 20px 0;">Binnen enkele werkdagen is uw account geverifieerd en kunt u inloggen met de volgende gegevens:</p>
-<p style="font-family: 'Varela Round', sans-serif; line-height:180%; margin:0 0 20px 0;">
-<table style="margin:0;">
-  <tr align="left">
-    <td width="150">Gebruikersnaam:</td>
-    <td><a style="color: #263238; text-decoration:none; border-bottom: 2px solid #b0bec5;" href="mailto:jan@jansen.nl">jan@jansen.nl</a></td>
-  </tr>
-  <tr>
-    <td>Wachtwoord:</td>
-    <td>janjansen123!</td>
-  </tr>
-</table>
-</p>
+<p style="font-family: 'Varela Round', sans-serif; line-height:180%; margin:0 0 20px 0;">Binnen enkele werkdagen is uw account geverifieerd en ontvangt u per e-mail uw inloggegevens.
+  Hierna kunt u direct inloggen en gebruik maken van Xtalus.</p>
 
 <p style="font-family: 'Varela Round', sans-serif; line-height:180%; margin:0 0 20px 0;">
-  U ontvangt per e-mail een bericht zodra dit is voltooid. Voor vragen kunt u contact opnemen met: <a style="color: #263238; text-decoration:none; border-bottom: 2px solid #b0bec5;" href="mailto:info@xtalus.nl">info@xtalus.nl</a>.
+  Voor vragen kunt u contact opnemen met: <a style="color: #263238; text-decoration:none; border-bottom: 2px solid #b0bec5;" href="mailto:info@xtalus.nl">info@xtalus.nl</a>.
 </p>
 
-<p style="font-family: 'Varela Round', sans-serif; line-height:180%; margin:0 0 20px 0;">
+<p style="font-family: 'Varela Round', sans-serif; line-height:180%; margin:0 0 -20px 0;">
 <br>Met vriendelijke groeten,<br>
 Xtalus team<br><br>
 </p>
 
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
+@stop
+
+@section('email_footer')
+
+@stop
+
+
+<?php
+
+/*<table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
         <td>
             <div>
@@ -49,9 +47,5 @@ Xtalus team<br><br>
         </td>
     </tr>
 </table>
-
-@stop
-
-@section('email_footer')
-
-@stop
+          */
+?>

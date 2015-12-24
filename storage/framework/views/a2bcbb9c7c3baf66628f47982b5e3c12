@@ -3,14 +3,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Testmailtje</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
-      <style>        
+      <style>
       </style>
         <style>
 
             body{
-                background-color:#f5f5f5; 
+                background-color:#f5f5f5;
                 font-family: 'Varela Round', sans-serif;
                 color:#888;
                 font-size:14px;
@@ -24,7 +24,7 @@
 
             p{ color: #263238; line-height:180%;}
 
-            h1{ 
+            h1{
               color: #263238;
               font-size:24px;
               margin:0 0 40px 0;

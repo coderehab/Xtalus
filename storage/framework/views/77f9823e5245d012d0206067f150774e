@@ -8,30 +8,28 @@
 <p style="font-family: 'Varela Round', sans-serif; line-height:180%; margin:0 0 20px 0;">
     Bedankt voor uw registratie! Uw account is aangevraagd en wordt momenteel door een van onze medewerkers geverifieerd. Hiermee kunnen we de kwaliteit op Xtalus garanderen.
 </p>
-<p style="font-family: 'Varela Round', sans-serif; line-height:180%; margin:0 0 20px 0;">Binnen enkele werkdagen is uw account geverifieerd en kunt u inloggen met de volgende gegevens:</p>
-<p style="font-family: 'Varela Round', sans-serif; line-height:180%; margin:0 0 20px 0;">
-<table style="margin:0;">
-  <tr align="left">
-    <td width="150">Gebruikersnaam:</td>
-    <td><a style="color: #263238; text-decoration:none; border-bottom: 2px solid #b0bec5;" href="mailto:jan@jansen.nl">jan@jansen.nl</a></td>
-  </tr>
-  <tr>
-    <td>Wachtwoord:</td>
-    <td>janjansen123!</td>
-  </tr>
-</table>
-</p>
+<p style="font-family: 'Varela Round', sans-serif; line-height:180%; margin:0 0 20px 0;">Binnen enkele werkdagen is uw account geverifieerd en ontvangt u per e-mail uw inloggegevens. 
+  Hierna kunt u direct inloggen en gebruik maken van Xtalus.</p>
 
 <p style="font-family: 'Varela Round', sans-serif; line-height:180%; margin:0 0 20px 0;">
-  U ontvangt per e-mail een bericht zodra dit is voltooid. Voor vragen kunt u contact opnemen met: <a style="color: #263238; text-decoration:none; border-bottom: 2px solid #b0bec5;" href="mailto:info@xtalus.nl">info@xtalus.nl</a>.
+  Voor vragen kunt u contact opnemen met: <a style="color: #263238; text-decoration:none; border-bottom: 2px solid #b0bec5;" href="mailto:info@xtalus.nl">info@xtalus.nl</a>.
 </p>
 
-<p style="font-family: 'Varela Round', sans-serif; line-height:180%; margin:0 0 20px 0;">
+<p style="font-family: 'Varela Round', sans-serif; line-height:180%; margin:0 0 -20px 0;">
 <br>Met vriendelijke groeten,<br>
 Xtalus team<br><br>
 </p>
 
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('email_footer'); ?>
+
+<?php $__env->stopSection(); ?>
+
+
+<?php 
+
+/*<table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
         <td>
             <div>
@@ -42,15 +40,11 @@ Xtalus team<br><br>
                 </v:roundrect>
                 <![endif]-->
                 <a href="http://dev.xtalus.nl" style="font-weight:400;background-color: #3f51b5;border:0;border-radius:3px;color:#ffffff;display:inline-block;font-size:15px;line-height:50px;text-align:center;text-decoration:none;width:auto;padding:0 20px; -webkit-text-size-adjust:none;mso-hide:all;text-transform:uppercase;font-family: 'Varela Round', sans-serif;">MEER WETEN? BEZOEK ONZE WEBSITE <img src="http://dev.code.rehab/xtalus-nieuwsbrief/arrow.png" width="5" height="10" style="margin:20px 0 0 10px; float:right;"></a>
-              
+
             </div>
         </td>
     </tr>
 </table>
-
-<?php $__env->stopSection(); ?>
-
-<?php $__env->startSection('email_footer'); ?>
-
-<?php $__env->stopSection(); ?>
+          */        
+?>
 <?php echo $__env->make('emails.template', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
