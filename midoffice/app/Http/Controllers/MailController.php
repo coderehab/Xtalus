@@ -12,6 +12,7 @@ class MailController extends BaseController
         $mail = Mail::send('emails.testmail', array(), function ($message) {
             $message->from('no-reply@xtalus.nl', 'Xtalus');
             $message->to('mathijs@code.rehab', "Code.Rehab");
+            $message->to('mathijsiej1987@gmail.com', "Code.Rehab");
             $message->subject("Testmail");
         });
 
