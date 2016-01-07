@@ -3,15 +3,21 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
-    model:function(){
-        return this.modelFor('application')
-    },
+	model:function(){
 
-    afterModel: function(model, transition){
+		var personId = this.modelFor('application').id
 
-    },
+		return this.store.find('person', personId)
 
-    actions: {
+		//return this.store.find('person', personId);
 
-    },
+	},
+
+	afterModel: function(model, transition){
+
+	},
+
+	actions: {
+
+	},
 });

@@ -3,9 +3,9 @@ import ENV from '../config/environment';
 
 export default DS.Model.extend({
     company: DS.belongsTo('company'),
-    firstName: DS.attr({defaultValue:'Mathijs'}),
+    firstName: DS.attr({defaultValue:'Voornaam'}),
     middleName: DS.attr({defaultValue:''}),
-    lastName: DS.attr({defaultValue:'Jansen'}),
+    lastName: DS.attr({defaultValue:'Achternaam'}),
 
     story: DS.attr({defaultValue: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas rhoncus elit vitae suscipit sollicitudin. Aenean aliquam tincidunt ante in dapibus. Vivamus pretium nulla eget vulputate rhoncus. Praesent fringilla, eros et laoreet sodales, justo massa rhoncus elit, id dignissim libero dolor ut erat. Nam eget lacus eu ante vestibulum interdum non commodo turpis. Nullam ante quam, feugiat et orci molestie, iaculis euismod est. Nam a justo sodales, rhoncus lectus et, iaculis leo. Nam mollis, eros imperdiet pulvinar maximus, lorem turpis pretium risus, nec sodales leo elit at sapien. Nunc at fermentum turpis. Curabitur id erat commodo, rutrum dolor nec, hendrerit tellus. Quisque sodales lorem nec nisi consectetur, lobortis mollis eros convallis. Mauris urna lectus, ultrices in sem vel, rhoncus consectetur est. Praesent cursus, urna tincidunt aliquam lobortis, ipsum nisl ullamcorper massa, id semper odio justo nec ex. Donec ac lacinia massa. Donec dapibus, augue vitae egestas pellentesque, mauris quam auctor metus, et vulputate ligula est eget mi. Phasellus eu mi ultricies, placerat ex sit amet, laoreet mi.'}),
 

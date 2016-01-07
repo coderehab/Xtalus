@@ -8,9 +8,8 @@ export default ApplicationAdapter.extend({
 	},
 
 	headers: function() {
-		var user_cookie = $ISIS.getCookie('auth');
 		return {
-			"Authorization": $ISIS.authHeader
+			"Authorization": $ISIS.getCookie('auth')
 		};
 	}.property("session.authToken"),
 });

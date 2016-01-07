@@ -7,33 +7,37 @@ import ENV from '../config/environment';
 export default Ember.Route.extend({
 
 	globalSearchQuery:"",
+	authDisabled: false,
+
+	beforeModel: function(transition){
+		if(
+			transition.targetName == 'login' ||
+			transition.targetName == 'registration.index' ||
+			transition.targetName == 'registration.complete'
+		){
+			this.set('authDisabled', true);
+		}
+	},
 
 	model: function(){
-		//var app = this.store.find('application', 'login');
-
-
 		var _this = this;
 		var store = this.store;
 		if($ISIS.getCookie('auth')){
 			return Ember.$.ajax({
 				type: 'GET',
-				url: ENV.APP.API_HOST + '/' +ENV.APP.API_NS + '/actions/login',
+				url: ENV.APP.API_HOST + '/' +ENV.APP.API_NS + '/actions/activeperson',
 				headers: {
 					"Authorization": $ISIS.getCookie('auth')
 				},
 				success : function(response) {
-					console.log(response);
-					if(response.success){
-						alert('login')
-						return store.find('person', response.activePerson);
-					}else{
+					if(!response.success){
 						$ISIS.auth.logout();
 						_this.transitionTo('login');
 					}
 				}
 			});
 		}else{
-			//this.transitionTo('login');
+			if(!this.get('authDisabled')) this.transitionTo('login');
 		}
 	},
 
