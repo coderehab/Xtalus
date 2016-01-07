@@ -11,7 +11,7 @@ var LoginController = Ember.Controller.extend({
 				password: this.get("password")
 			}
 
-			this.controllerFor('application').sendAction('login', JSON.stringify(params)).then(
+			this.controllerFor('application').sendAction('login', params).then(
 				function(response){
 					$ISIS.setCookie('auth', 'Basic ' + $ISIS.auth.base64.encode(params.email + ':' + params.password), 5);
 					location.reload();
