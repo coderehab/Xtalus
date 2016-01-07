@@ -39,7 +39,9 @@ export default Ember.Route.extend({
 			this.controllerFor('application').sendAction('registration',params).then(function(response){
 				console.log(response);
 
-				_this.controllerFor('application').sendMail('confirm/registration', params).then(function(response){
+				_this.controllerFor('application').sendMail('confirm/registration-admin', params);
+
+				_this.controllerFor('application').sendMail('confirm/registration-client', params).then(function(response){
 					console.log(response);
 					_this.transitionTo('registration.complete');
 				});
