@@ -28,7 +28,7 @@ class MailController extends BaseController
 
 		$data = (object) $request->json('data');
 
-		var_dump($data);
+		var_dump($request->json('data'));
 
 
 		if(isset($data->firstName) && isset($data->lastName))
