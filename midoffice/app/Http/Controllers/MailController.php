@@ -28,15 +28,14 @@ class MailController extends BaseController
 
         $data = (object) $request->json('data');
 
-
-        if(isset($data->firstname) && isset($data->lastname))
-          $data->fullname = $data->firstname . ' ' .$data->lastname;
-        if(isset($data->middlename)) $data->fullname = $data->firstname . ' ' . $data->middlename . ' ' . $data->lastname;
+        if(isset($data->firstName) && isset($data->lastName))
+          $data->fullName = $data->firstName . ' ' .$data->lastName;
+        if(isset($data->middleName)) $data->fullName = $data->firstName . ' ' . $data->middleName . ' ' . $data->lastName;
 
 
         $mail = Mail::send("emails.$type.$subject", array('postdata' => $data), function ($message) use($data) {
             $message->from('no-reply@xtalus.nl', 'Xtalus');
-            $message->to("$data->email","$data->fullname");
+            $message->to("$data->email","$data->fullName");
             $message->subject("$data->subject");
         });
 
@@ -53,8 +52,8 @@ class MailController extends BaseController
         $data = (object) $request->input();
 
 
-        $data->fullname = $data->firstname . ' ' .$data->lastname;
-        if(isset($data->middlename)) $data->fullname = $data->firstname . ' ' . $data->middlename . ' ' . $data->lastname;
+        $data->fullName = $data->firstName . ' ' .$data->lastName;
+        if(isset($data->middleName)) $data->fullName = $data->firstName . ' ' . $data->middleName . ' ' . $data->lastName;
 
         return view("emails.$type.$subject", array('postdata' => $data));
     }
