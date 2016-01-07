@@ -6,7 +6,7 @@
 
 @section('email_content')
 
-<h1 style="margin:0 0 40px 0;">Welkom {{ucfirst($postdata->firstname)}},</h1>
+<h1 style="margin:0 0 40px 0;">Welkom {{ucfirst($postdata->firstName)}},</h1>
 <p style="font-family: 'Varela Round', sans-serif; line-height:180%; margin:0 0 20px 0;">
     Bedankt voor uw registratie! Uw account is aangevraagd en wordt momenteel door een van onze medewerkers geverifieerd. Hiermee kunnen we de kwaliteit op Xtalus garanderen.
 </p>
