@@ -36,8 +36,8 @@ export default Ember.Route.extend({
 
 			this.controllerFor('application').sendAction('registration',params).then(function(response){
 
-				_this.controllerFor('application').sendMail('confirm/registration-admin', params);
-				_this.controllerFor('application').sendMail('confirm/registration-client', params);
+				_this.controllerFor('application').sendMail('confirm/registration-admin', 'Xtalus registratie', params);
+				_this.controllerFor('application').sendMail('confirm/registration-client', 'Xtalus registratie', params);
 
 				_this.transitionTo('registration.complete');
 			}, function(response){
