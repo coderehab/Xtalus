@@ -10,29 +10,34 @@ export default Ember.Route.extend({
 
 	model: function(){
 		//var app = this.store.find('application', 'login');
+
+
+		var _this = this;
 		var store = this.store;
 		if($ISIS.getCookie('auth')){
-			return $ISIS.get('http://test.xtalus.gedge.nl/simple/restful/v2/action/login').then(function(response){
-				return store.find('person', response.application.activePerson);
-			})
+			return Ember.$.ajax({
+				type: 'GET',
+				url: ENV.APP.API_HOST + '/' +ENV.APP.API_NS + '/actions/login',
+				headers: {
+					"Authorization": $ISIS.getCookie('auth')
+				},
+				success : function(response) {
+					console.log(response);
+					if(response.success){
+						alert('login')
+						return store.find('person', response.activePerson);
+					}else{
+						$ISIS.auth.logout();
+						_this.transitionTo('login');
+					}
+				}
+			});
+		}else{
+			//this.transitionTo('login');
 		}
 	},
 
 	actions: {
-
-		login: function(){
-			$ISIS.auth.login(this.get("email"), this.get("password")).then(function(data){
-				console.log(data);
-				if (data.message) {
-					this.set('message', data.message);
-					return;
-				}else {
-					this.get('target.router').refresh();
-				}
-			}.bind(this));
-
-			return false;
-		},
 
 		getProject:function(id){
 			this.transitionTo('project', id);
@@ -90,7 +95,6 @@ export default Ember.Route.extend({
 					});
 				})
 			})
-
 		},
 
 		deletePersonalContact: function(){

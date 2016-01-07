@@ -1,20 +1,19 @@
-
-
 <section id="login" class="panel">
+
 	<form method="post" {{action "login" on="submit"}}>
 		<h3>Inloggen</h3>
-		<div {{bind-attr class="message:error"}}>
+		<div {{bind-attr class="errors.email:error"}}>
 			<label><i class="fa fa-user"></i>
 				{{input value=email type="text" placeholder="E-mailadres"}}
 
 			</label>
-			<span class="message">{{message}}</span>
+			<span class="message">{{errors.email}}</span>
 		</div>
-		<div {{bind-attr class="message:error"}}>
+		<div {{bind-attr class="errors.password:error"}}>
 		<label><i class="fa fa-lock"></i>
 			{{input value=password type="password" placeholder="Wachtwoord"}}
 		</label>
-			<span class="message">{{message}}</span>
+			<span class="message">{{errors.password}}</span>
 		</div>
 		<!-- {{input type="checkbox" name="remember" checked=remember}} Onthouden -->
 		<button>Login <i class="fa fa-sign-in"></i></button>

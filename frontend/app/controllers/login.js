@@ -3,21 +3,29 @@ import Ember from 'ember';
 
 var LoginController = Ember.Controller.extend({
 
-    actions: {
-        login: function(){
-            $ISIS.auth.login(this.get("email"), this.get("password")).then(function(data){
-                console.log(data);
-                if (data.message) {
-                    this.set('message', data.message);
-                    return;
-                }else {
-                    this.get('target.router').refresh();
-                }
-            }.bind(this));
+	actions: {
+		login: function(){
+			var _this = this;
+			var params = {
+				email:this.get("email"),
+				password: this.get("password")
+			}
 
-            return false;
-        },
-    },
+			this.controllerFor('application').sendAction('login', JSON.stringify(params)).then(
+				function(response){
+					$ISIS.setCookie('auth', 'Basic ' + $ISIS.auth.base64.encode(params.email + ':' + params.password), 5);
+					location.reload();
+				},
+				function(errors){
+					console.log(errors.responseJSON);
 
+					var errors = errors.responseJSON.errors;
+
+					_this.set('errors', errors);
+				}
+			);
+		},
+	},
 });
+
 export default LoginController;

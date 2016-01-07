@@ -22,7 +22,7 @@ var ApplicationController = Ember.Controller.extend({
 	}.observes('globalSearchQuery'),
 
 	//  Post actions
-	sendAction: function(actionName,params){
+	sendAction: function(actionName, params){
 
 		return new Promise(function(resolve, reject) {
 			Ember.$.ajax({
@@ -55,12 +55,12 @@ var ApplicationController = Ember.Controller.extend({
 	},
 
 	//paramaters moeten nog in de url verwerkt worden!
-	sendMail: function(params){
+	sendMail: function(endpoint, params){
 		return new Promise(function(resolve, reject) {
 			Ember.$.ajax({
 				type: "POST",
 				contentType: "application/json; charset=utf-8",
-				url: ENV.APP.API_PHP_HOST+'/mail',
+				url: ENV.APP.API_PHP_HOST + '/mail/' + endpoint,
 				data: params
 			}).done(function(response){
 				resolve(response);
