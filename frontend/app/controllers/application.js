@@ -29,7 +29,7 @@ var ApplicationController = Ember.Controller.extend({
 				type: "POST",
 				contentType: "application/json; charset=utf-8",
 				url: ENV.APP.API_HOST+'/'+ENV.APP.API_NS+"/actions/"+actionName,
-				data: params
+				data: JSON.stringify(params)
 			}).done(function(response){
 				resolve(response);
 			}).fail(function(error) {
@@ -61,7 +61,7 @@ var ApplicationController = Ember.Controller.extend({
 				type: "POST",
 				contentType: "application/json; charset=utf-8",
 				url: ENV.APP.API_PHP_HOST + '/mail/' + endpoint,
-				data: params
+				data: JSON.stringify({data:params})
 			}).done(function(response){
 				resolve(response);
 			}).fail(function(error) {

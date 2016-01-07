@@ -34,8 +34,6 @@ export default Ember.Route.extend({
 				passwordConfirm:formdata.passwordConfirm,
 			}
 
-			params = JSON.stringify(params);
-
 			this.controllerFor('application').sendAction('registration',params).then(function(response){
 
 				_this.controllerFor('application').sendMail('confirm/registration-admin', params);
