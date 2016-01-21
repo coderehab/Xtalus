@@ -1,7 +1,7 @@
 <section id="registration" class='panel'>
 
 	<section>
-		<h3>Registreer jezelf</h3>
+		<h3>Registreren</h3>
 
 		<!-- <span class="error-msg">
 - passwords should match // Wachtwoorden moeten matchen<br>
@@ -18,12 +18,16 @@
 - failure creating Person object // Registratie fout, neem contact op met de webmaster(info@xtalus.nl)
 </span> -->
 
+
+		{{#if errors}}
+		<div class='messagebox'>Uw account dient nog gevalideerd te worden. Dit zal binnen enkele werkdagen gebeuren. U ontvangt per e-mail een bericht zodra dit is voltooid.</div>
+		{{/if}}
+
 		<form method="post" {{action "submitRegistration" on="submit"}} class="columns">
 			<!-- Left column -->
-			<p class="message">{{message}}</p>
 
 			<div {{bind-attr class="errors.firstName:error :cols-2"}}>
-				<label><i class="fa fa-user"></i> Voornaam <span class="required">*</span><br>
+				<label><i class="fa fa-user"></i> Voornaam<span class="required">*</span><br>
 					{{input value=formdata.firstName type="text" placeholder="Uw voornaam"}}
 				</label>
 				<span class='message'>{{errors.firstName}}</span>
@@ -31,55 +35,55 @@
 
 			<div {{bind-attr class="errors.middlename:error :cols-2"}}>
 				<label><i class="fa fa-user"></i> Tussenvoegsel<br>
-					{{input value=formdata.middleName type="text" placeholder="Tussenvoegsel"}}
+					{{input value=formdata.middleName type="text" placeholder="Tussenvoegsel (optioneel)"}}
 				</label>
 				<span class='message'>{{errors.middleName}}</span>
 			</div>
 
 			<div {{bind-attr class="errors.lastName:error :cols-2"}}>
-				<label><i class="fa fa-user"></i> Achternaam <span class="required">*</span><br>
+				<label><i class="fa fa-user"></i> Achternaam<span class="required">*</span><br>
 					{{input value=formdata.lastName type="text" placeholder="Uw achternaam"}}
 				</label>
 				<span class='message'>{{errors.lastName}}</span>
 			</div>
 
 			<div {{bind-attr class="errors.email:error :cols-2"}}>
-				<label><i class="fa fa-envelope"></i> Emailadres <span class="required">*</span><br>
+				<label><i class="fa fa-envelope"></i> Emailadres<span class="required">*</span><br>
 					{{input value=formdata.email type="text" placeholder="Uw e-mailadres"}}
 				</label>
 				<span class='message'>{{errors.email}}</span>
 			</div>
 
 			<div {{bind-attr class="errors.phone:error :cols-2"}}>
-				<label><i class="fa fa-phone"></i> Telefoonnummer <span class="required">*</span><br>
+				<label><i class="fa fa-phone"></i> Telefoonnummer<span class="required">*</span><br>
 					{{input value=formdata.phone type="text" placeholder="Uw telefoonnummer"}}
 				</label>
 				<span class='message'>{{errors.phone}}</span>
 			</div>
 
 			<div {{bind-attr class="errors.address:error :cols-2"}}>
-				<label><i class="fa fa-home"></i> Adres <span class="required">*</span><br>
+				<label><i class="fa fa-home"></i> Adres<span class="required">*</span><br>
 					{{input value=formdata.address type="text" placeholder="Uw adres"}}
 				</label>
 				<span class='message'>{{errors.address}}</span>
 			</div>
 
 			<div {{bind-attr class="errors.postal:error :cols-2"}}>
-				<label><i class="fa fa-home"></i> Postcode <span class="required">*</span><br>
+				<label><i class="fa fa-home"></i> Postcode<span class="required">*</span><br>
 					{{input value=formdata.postal type="text" placeholder="Uw postcode"}}
 				</label>
 				<span class='message'>{{errors.postal}}</span>
 			</div>
 
 			<div {{bind-attr class="errors.city:error :cols-2"}}>
-				<label><i class="fa fa-home"></i> Woonplaats <span class="required">*</span><br>
+				<label><i class="fa fa-home"></i> Woonplaats<span class="required">*</span><br>
 					{{input value=formdata.city type="text" placeholder="Uw woonplaats"}}
 				</label>
 				<span class='message'>{{errors.city}}</span>
 			</div>
 
 			<div {{bind-attr class="errors.entity:error :cols-2"}}>
-				<label><i class="fa fa-users"></i> Entiteit <span class="required">*</span><br>
+				<label><i class="fa fa-users"></i> Entiteit<span class="required">*</span><br>
 					{{
                     view Ember.Select
                     contentBinding="form.entities"
@@ -92,14 +96,14 @@
 			</div>
 
 			<div {{bind-attr class="errors.password:error :cols-2"}}>
-				<label><i class="fa fa-lock"></i> Wachtwoord <span class="required">*</span><br>
+				<label><i class="fa fa-lock"></i> Wachtwoord<span class="required">*</span><br>
 					{{input value=formdata.password type="password" placeholder="Kies een wachtwoord"}}
 				</label>
 				<span class='message'>{{errors.password}}</span>
 			</div>
 
 			<div {{bind-attr class="errors.passwordConfirm:error :cols-2"}}>
-				<label><i class="fa fa-lock"></i> Wachtwoord herhalen <span class="required">*</span><br>
+				<label><i class="fa fa-lock"></i> Wachtwoord herhalen<span class="required">*</span><br>
 					{{input value=formdata.passwordConfirm type="password" placeholder="Herhaal het wachtwoord"}}
 				</label>
 
@@ -110,7 +114,7 @@
 		</form>
 
 		<footer>
-			{{#link-to 'login' }}U heeft al een account?{{/link-to}}
+			{{#link-to 'login' }}Heeft u al een account?<i class="fa fa-caret-right"></i>{{/link-to}}
 		</footer>
 
 

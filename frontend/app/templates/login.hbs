@@ -1,7 +1,12 @@
 <section id="login" class="panel">
+	<h3>Inloggen</h3>
+
+	{{#if errors}}
+	<div class='messagebox'>Uw account dient nog gevalideerd te worden. Dit zal binnen enkele werkdagen gebeuren. U ontvangt per e-mail een bericht zodra dit is voltooid.</div>
+	{{/if}}
 
 	<form method="post" {{action "login" on="submit"}}>
-		<h3>Inloggen</h3>
+
 		<div {{bind-attr class="errors.email:error"}}>
 			<label><i class="fa fa-user"></i>
 				{{input value=email type="text" placeholder="E-mailadres"}}
@@ -20,7 +25,7 @@
 	</form>
 
 	<footer>
-		{{#link-to 'registration'}}Nog geen account?{{/link-to}}
+		{{#link-to 'registration'}}Nog geen account?<i class="fa fa-caret-right"></i>{{/link-to}}
 	</footer>
 
 </section>

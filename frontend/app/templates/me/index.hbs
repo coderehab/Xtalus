@@ -1,28 +1,24 @@
-<header id="page-header">
+<header id="page-header" style="background-image:url('{{model.pictureBackground}}')">
 	<section class="user-info dark-theme">
 
-		<section class='profile-picture'></section>
+		<section class='profile-picture' style="background-image:url('{{model.picture}}')"></section>
 		<h2 class='username'>{{model.fullName}}<label>{{model.entity}}</label></h2>
-		<h4>Marketing en communicatie</h4>
-		<p>Saxion Hogeschool, Enschede</p>
+		<h4>{{model.education.education}}</h4>
+		<p>{{model.education.institute}}, {{model.education.location.city}}</p>
 	</section>
 	<button class='edit'>Bewerken <i class="fa fa-pencil"></i></button>
 </header>
 
 <section id='page-content'>
 	<header><h3>Pagina opzet</h3></header>
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec erat vitae enim ultricies maximus. Proin gravida vulputate felis, et auctor tortor ultrices sed. Nullam posuere sagittis ligula consequat placerat. Proin sit amet augue consequat, venenatis dui ut, malesuada nibh. Phasellus et accumsan lectus, non scelerisque nisl. Nulla facilisi. Cras quis neque ut massa efficitur porta. Curabitur interdum, nisi ut tristique aliquam, diam velit accumsan risus, at sollicitudin diam neque id ipsum.
-		Vivamus ornare erat in orci sodales, eu ornare odio blandit. Quisque vitae odio dignissim, porttitor sapien at, feugiat nulla. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus porta nunc a elit gravida tempus. Etiam tellus mauris, pharetra nec pulvinar ac, pharetra non tellus. Proin rhoncus enim sed lorem pretium, id venenatis justo condimentum. Nam feugiat sem sed nisl fringilla luctus id a turpis. Suspendisse in mi sit amet sem aliquet luctus tincidunt ac ligula. Nulla in libero feugiat, rutrum risus nec, dignissim mi.
-	</p>
+	<p>{{model.story}}</p>
 	<header><h3>Kwaliteiten</h3></header>
 	<section id="qualities" class="labels">
-		<label>Out of the box denken</label>
-		<label>Positief</label>
-		<label>Copywriting</label>
-		<label>Grafisch vormgeven</label>
-		<label>Nieuwsgierig</label>
-		<label>Technisch inzicht</label>
+
+		{{#each quality in model.qualities }}
+		<label>{{quality}}</label>
+		{{/each}}
+
 	</section>
 </section>
 
@@ -30,16 +26,21 @@
 	<section>
 		<header><h3>Interesses</h3></header>
 		<ul class='extended'>
-			<li><h4>Stage</h4><p>1 januari 2016 - 30 juni 2016</p></li>
-			<li><h4>Afstudeeropdracht</h4><p>1 september 2018 - 30 december 2018</p></li>
-			<li><h4>Kort lopend project</h4><p>1 januari 2016 - 30 juni 2016</p></li>
-			<li><h4>Relevante bijbaan</h4><p>1 december 2015 - 31 december 2015</p></li>
+
+			{{#each interest in model.interests }}
+			<li><h4>{{interest.name}}</h4><p>{{interest.period.from}} - {{interest.period.to}}</p></li>
+			{{/each}}
+
 		</ul>
 	</section>
 	<section>
 		<header><h3>Overige informatie</h3></header>
 		<ul class='extended'>
-			<li><h4>Honoursprogramma</h4><p>Innovatie en media</p></li>
+
+			{{#if model.education.honoursProgram}}
+			<li><h4>Honoursprogramma</h4><p>{{model.education.honoursProgram}}</p></li>
+			{{/if}}
+
 			<li><h4>Woonplaats</h4><p>Enschede</p></li>
 		</ul>
 	</section>
