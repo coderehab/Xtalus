@@ -1,8 +1,10 @@
 <section id="login" class="panel">
 	<h3>Inloggen</h3>
 
-	{{#if errors}}
-	<div class='messagebox'>Uw account dient nog gevalideerd te worden. Dit zal binnen enkele werkdagen gebeuren. U ontvangt per e-mail een bericht zodra dit is voltooid.</div>
+	{{#if errors.message}}
+		<div class='messagebox'>
+			{{error-message key=errors.message field="account"}}
+		</div>
 	{{/if}}
 
 	<form method="post" {{action "login" on="submit"}}>
@@ -12,13 +14,13 @@
 				{{input value=email type="text" placeholder="E-mailadres"}}
 
 			</label>
-			<span class="message">{{errors.email}}</span>
+			{{error-message key=errors.email}}
 		</div>
 		<div {{bind-attr class="errors.password:error"}}>
 		<label><i class="fa fa-lock"></i>
 			{{input value=password type="password" placeholder="Wachtwoord"}}
 		</label>
-			<span class="message">{{errors.password}}</span>
+			{{error-message key=errors.password}}
 		</div>
 		<!-- {{input type="checkbox" name="remember" checked=remember}} Onthouden -->
 		<button>Login <i class="fa fa-sign-in"></i></button>

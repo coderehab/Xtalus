@@ -101,6 +101,19 @@ export default Ember.Route.extend({
 			})
 		},
 
+		enterEditMode:function(){
+			$("body").addClass('editmode');
+			this.set("editmode", true);
+		},
+
+		exitEditMode:function(){
+
+			//save data!
+
+			$("body").removeClass('editmode');
+			this.set("editmode", false);
+		},
+
 		deletePersonalContact: function(){
 
 		},
