@@ -41,7 +41,9 @@ export default Ember.Route.extend({
 
 				_this.transitionTo('registration.complete');
 			}, function(response){
-				alert('error!');
+				response = response.responseJSON;
+				console.log(response.errors);
+				_this.controller.set('errors', response.errors);
 			});
 
 
