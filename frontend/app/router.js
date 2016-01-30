@@ -33,6 +33,7 @@ export default Router.map(function() {
 
 	this.resource('project', function(){
 		this.route('single',{path:"project/:project_id"});
+
 		this.route('matching');
 	});
 });

@@ -9,14 +9,14 @@ $susy: (
 
 @import url(https://fonts.googleapis.com/css?family=Bitter:700);
 
-/*
+
 @font-face {
-	font-family: 'GothamRounded';
+	font-family: 'GothamRoundedlight';
 	src: url('../fonts/GothamRounded-Book.eot?#iefix') format('embedded-opentype'),  url('../fonts/GothamRounded-Book.otf')  format('opentype'),
 		url('../fonts/GothamRounded-Book.woff') format('woff'), url('../fonts/GothamRounded-Book.ttf')  format('truetype'), url('../fonts/GothamRounded-Book.svg#../fonts/GothamRounded-Book') format('svg');
 	font-weight: normal;
 	font-style: normal;
-}*/
+}
 
 @font-face {
 	font-family: 'GothamRounded';
@@ -37,7 +37,7 @@ $susy: (
 
 $font1: 'GothamRounded', sans-serif;
 $font2: 'Bitter', serif;
-$font3: $font1;
+$font3: 'GothamRoundedlight', serif;
 $font4: $font1;
 
 $color1: #ec2761;

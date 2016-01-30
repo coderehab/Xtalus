@@ -1,23 +1,35 @@
 @media screen and (min-width: $screen-size-desktop) {
 
-	#page-container {
-		margin-top:2.5%;
-		overflow: hidden;
-	}
+    #page-container {
+        margin-top:2.5%;
+        overflow: hidden;
+    }
 
-	#page-header{
-		border-top-left-radius: 2px;
-		border-top-right-radius: 2px;
-	}
+    #page-header{
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+    }
 
-	#page-content{
-		@include span(10 of 20 3 split);
-		padding-left:40px;
-	}
+    #page-content{
+        @include span(10 of 20 3 split);
+        padding-left:40px;
+    }
 
-	#page-sidebar{
-		@include span(6 of 20 3 split last );
-		padding-right:40px;
-	}
+    #page-sidebar{
+        @include span(6 of 20 3 split last );
+        padding-right:40px;
+    }
+
+    #me-projects{
+        #page-content{
+            @include span(12 of 20 3 split);
+            padding-left:40px;
+        }
+
+        #page-sidebar{
+            @include span(6 of 20 3 split last );
+            padding-right:40px;
+        }
+    }
 
 }
