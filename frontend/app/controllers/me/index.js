@@ -2,23 +2,34 @@ import Ember from 'ember';
 
 var MeController = Ember.Controller.extend({
 
-    actions: {
-        updatePerson:function() {
-            var app = this.controllerFor('application')
-            this.model.get('isisObj').then(function(isisObj){
+	actions: {
+		updatePerson:function() {
+			var app = this.controllerFor('application')
+			this.model.get('isisObj').then(function(isisObj){
 				console.log(isisObj);
-                isisObj.updatePerson.invoke({
-                    firstName:this.model.get('firstName'),
-                    middleName:this.model.get('middleName'),
-                    lastName:this.model.get('lastName'),
-                    dateOfBirth:this.model.get('birthDay'),
-                }).then(function(result){
-                    app.send('changeView', 'page-left', 0)
-                });
-            }.bind(this));
+				isisObj.updatePerson.invoke({
+					firstName:this.model.get('firstName'),
+					middleName:this.model.get('middleName'),
+					lastName:this.model.get('lastName'),
+					dateOfBirth:this.model.get('birthDay'),
+				}).then(function(result){
+					app.send('changeView', 'page-left', 0)
+				});
+			}.bind(this));
 
-        },
-    }
+		},
+
+		enterEditMode:function(){
+			$("body").addClass('editmode');
+			this.set("editmode", true);
+		},
+
+		exitEditMode:function(){
+			$("body").removeClass('editmode');
+			this.set("editmode", false);
+			console.log(this.model.save());
+		},
+	}
 
 });
 

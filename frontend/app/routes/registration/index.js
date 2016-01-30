@@ -20,7 +20,6 @@ export default Ember.Route.extend({
 			console.log(formdata);
 
 			var params = {
-
 				firstName: formdata.firstName,
 				middleName: formdata.middleName,
 				lastName: formdata.lastName,

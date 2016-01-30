@@ -4,6 +4,8 @@ import ENV from '../config/environment';
 
 var ApplicationController = Ember.Controller.extend({
 
+	editmode:false,
+
 	findPerson:function(){
 		this.set('globalSearchResults', null);
 		var searchQuery = this.get('globalSearchQuery');

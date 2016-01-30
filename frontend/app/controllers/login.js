@@ -17,8 +17,7 @@ var LoginController = Ember.Controller.extend({
 					location.reload();
 				},
 				function(errors){
-					console.log(errors.responseJSON);
-
+					//console.log(errors.responseJSON);
 					var errors = errors.responseJSON.errors;
 
 					_this.set('errors', errors);
@@ -26,6 +25,7 @@ var LoginController = Ember.Controller.extend({
 			);
 		},
 	},
+
 });
 
 export default LoginController;

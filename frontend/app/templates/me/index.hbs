@@ -3,23 +3,46 @@
 
 		<section class='profile-picture' style="background-image:url('{{model.picture}}')"></section>
 		<h2 class='username'>{{model.fullName}}<label>{{model.entity}}</label></h2>
-		<h4>{{model.education.education}}</h4>
+		<h4>{{model.education.name}}</h4>
 		<p>{{model.education.institute}}, {{model.education.location.city}}</p>
 	</section>
-	<button class='edit'>Bewerken <i class="fa fa-pencil"></i></button>
+
+	{{#if editmode}}
+	<button class='edit' {{action "exitEditMode"}}>opslaan <i class="fa fa-pencil"></i></button>
+	{{else}}
+	<button class='edit' {{action "enterEditMode"}}>Bewerken <i class="fa fa-pencil"></i></button>
+	{{/if}}
+
+	{{log this}}
 </header>
 
 <section id='page-content'>
-	<header><h3>Pagina opzet</h3></header>
-	<p>{{model.story}}</p>
+	<header><h3>{{model.firstName}}, aangenaam</h3></header>
+
+	{{#editable-group active=editmode}}
+	<p>{{editable-item type="textarea" value=model.story active=editmode}}</p>
+	{{/editable-group}}
+
+	{{#if model.entityZper }}
+
+	<header><h3>Over {{model.companies.0.name}}</h3></header>
+
+	{{#editable-group active=editmode}}
+	<p>{{editable-item type="textarea" value=model.companies.0.description active=editmode}}</p>
+	{{/editable-group}}
+
+	{{/if}}
+
+	{{#editable-group active=editmode}}
 	<header><h3>Kwaliteiten</h3></header>
 	<section id="qualities" class="labels">
 
 		{{#each quality in model.qualities }}
-		<label>{{quality}}</label>
+		{{editable-item type="label" value=quality active=editmode}}
 		{{/each}}
 
 	</section>
+	{{/editable-group}}
 </section>
 
 <aside id='page-sidebar' >
@@ -28,7 +51,20 @@
 		<ul class='extended'>
 
 			{{#each interest in model.interests }}
-			<li><h4>{{interest.name}}</h4><p>{{interest.period.from}} - {{interest.period.till}}</p></li>
+			{{#editable-group active=editmode}}
+
+			<li>
+				<h4>
+					{{interest.name}}
+				</h4>
+				<p>
+					{{editable-item type="date" value=interest.period.from active=editmode}}
+					t/m
+					{{editable-item type="date" value=interest.period.till active=editmode}}
+				</p>
+			</li>
+
+			{{/editable-group}}
 			{{/each}}
 
 		</ul>

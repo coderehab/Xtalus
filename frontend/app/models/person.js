@@ -37,6 +37,10 @@ export default DS.Model.extend({
     city: DS.attr({defaultValue: 'Enschede'}), // mappen naar: city: DS.attr(),
     qualities: DS.attr({defaultValue: ['vingerverf','action painting','grafisch vormgeving','out of the box thinking']}),
 
+	entityZper: function(){
+		return this.get('entity') == "zp'er";
+	}.property('entity'),
+
 	fullName: function(e) {
 		var fullname = ''
 		var firstname = this.get('firstName');

@@ -42,6 +42,13 @@ export default Ember.Route.extend({
 	},
 
 	actions: {
+		toRoute:function(routename=false, id=false){
+			if(!routename) console.error('routename is required');
+			if(id)
+				this.transitionTo(routename, id);
+			else
+				this.transitionTo(routename);
+		},
 
 		getProject:function(id){
 			this.transitionTo('project', id);
@@ -99,19 +106,6 @@ export default Ember.Route.extend({
 					});
 				})
 			})
-		},
-
-		enterEditMode:function(){
-			$("body").addClass('editmode');
-			this.set("editmode", true);
-		},
-
-		exitEditMode:function(){
-
-			//save data!
-
-			$("body").removeClass('editmode');
-			this.set("editmode", false);
 		},
 
 		deletePersonalContact: function(){

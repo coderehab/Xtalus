@@ -16,10 +16,10 @@ module.exports = function(environment) {
 		contentSecurityPolicy: {
 			'default-src': "'none' ",
 			'script-src': "'self' 'unsafe-inline' 'unsafe-eval' use.typekit.net connect.facebook.net maps.googleapis.com maps.gstatic.com",
-			'font-src': "'self' data: use.typekit.net http://fonts.gstatic.com/",
-			'connect-src': "'self' http://acc.xtalus.gedge.nl http://localhost:8000 http//dev.xtalus.nl",
+			'font-src': "'self' data: use.typekit.net https://fonts.gstatic.com/ https://maxcdn.bootstrapcdn.com/ http://localhost:8000 http//dev.xtalus.nl ",
+			'connect-src': "'self' http://test.xtalus.gedge.nl http://acc.xtalus.gedge.nl",
 			'img-src': "'self' www.facebook.com p.typekit.net data: http://www.gravatar.com/",
-			'style-src': "'self' 'unsafe-inline' use.typekit.net http://fonts.googleapis.com/",
+			'style-src': "'self' 'unsafe-inline' use.typekit.net https://fonts.googleapis.com/ https://fonts.gstatic.com/ https://maxcdn.bootstrapcdn.com/",
 			'frame-src': "s-static.ak.facebook.com static.ak.facebook.com www.facebook.com",
 		},
 

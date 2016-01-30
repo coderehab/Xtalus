@@ -1,0 +1,33 @@
+{{#if isEditing}}
+
+{{#if isTextarea}}
+{{textarea value=value}}
+<span style="opacity:0;">{{value}}</span>
+{{/if}}
+
+{{#if isText}}
+{{input value=value}}
+{{/if}}
+
+{{#if isLabel}}
+<label>{{value}}<span class="delete">x</span></label>
+{{/if}}
+
+{{#if isDate}}
+
+{{input value=val1}}
+{{input value=val2}}
+{{input value=val3}}
+
+{{/if}}
+
+{{else}}
+
+{{#if isLabel}}
+	<label>{{value}}</label>
+	{{else}}
+	{{value}}
+{{/if}}
+
+
+{{/if}}
