@@ -8,6 +8,7 @@ export default Ember.Route.extend({
 
 	globalSearchQuery:"",
 	authDisabled: false,
+	activeImgParam:false,
 
 	beforeModel: function(transition){
 		if(
@@ -48,6 +49,22 @@ export default Ember.Route.extend({
 				this.transitionTo(routename, id);
 			else
 				this.transitionTo(routename);
+		},
+
+		saveImage: function(params){
+			console.log(params);
+			return new Promise(function(resolve, reject) {
+				Ember.$.ajax({
+					type: "POST",
+					contentType: "application/json; charset=utf-8",
+					url: ENV.APP.API_PHP_HOST+'/images',
+					data: JSON.stringify(params)
+				}).done(function(response){
+					resolve(response);
+				}).fail(function(error) {
+					reject(error);
+				});
+			});
 		},
 
 		getProject:function(id){

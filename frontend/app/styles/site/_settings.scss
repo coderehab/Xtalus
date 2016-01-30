@@ -71,6 +71,7 @@ $link_hover_color: $color1;
 $paragraph_margin_mobile: 0 0 30px 0;
 $paragraph_margin_tablet: 0px 0 30px 0;
 $paragraph_margin_desktop: 0px 0 30px 0;
+p:last-child{margin-bottom: 0;}
 
 $max-page-width: 1260px;
 $screen-size-mobile: 0px;
@@ -300,8 +301,16 @@ ul.extended{
 }
 
 .dark-theme {
+	color:#fff !important;
 	h1, h2,h3,h4,h5,h6,p, i{
 		color:#fff !important;
 	}
 	p, .icon{color: #b0bec5 !important;}
+	input, textarea{
+		color:#fff !important;
+	}
+}
+
+.hidden{
+	display: none !important;
 }

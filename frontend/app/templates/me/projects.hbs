@@ -1,6 +1,10 @@
 <section id="me-projects" class="page">
-    <header id="page-header" class="small" style="background-image:url('{{model.pictureBackground}}')">
-
+    <header id="page-header" class="small" >
+			<section class="user-info dark-theme">
+				<h2 class='username'>Mijn projecten</h2>
+				<h4>{{model.education.name}}</h4>
+				<p>{{model.education.institute}}, {{model.education.location.city}}</p>
+			</section>
     </header>
 
     <section id='page-content'>

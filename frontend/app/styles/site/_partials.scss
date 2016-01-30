@@ -44,10 +44,11 @@
 }
 
 .editable-group {
-	border:2px dashed #fff;
+	margin-top:-10px;
+	border:2px dashed transparent;
 	margin-bottom: 30px;
 	position: relative;
-	display: inline-block;
+	display: block;
 	max-width: 100%;
 	box-sizing: border-box;
 
@@ -76,9 +77,13 @@
 
 body.editmode{
 	.editable-group{
+
 		border:2px dashed #ccc;
 		width: 100%;
 		padding:20px;
+		text-align: left;
+
+		.hidden{display: inline-block;}
 
 		p:last-child{margin-bottom: 0;}
 
@@ -88,7 +93,6 @@ body.editmode{
 		}
 
 	}
-
 }
 
 .editable{
@@ -103,6 +107,7 @@ body.editmode{
 		font-family: "GothamRounded",sans-serif;
 		font-size: 15px;
 		margin:0 4px;
+		background-color:transparent;
 	}
 
 	&.type-textarea{
@@ -127,7 +132,12 @@ body.editmode{
 	&.type-date{
 		input{
 			width:40px;
+		}
+	}
 
+	&.type-text{
+		input{
+			width:100%;
 		}
 	}
 

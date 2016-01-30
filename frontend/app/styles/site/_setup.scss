@@ -1,99 +1,101 @@
 header#main {
-    background:#ccc;
-    background-image: url('images/header-bg.jpg');
-    background-size:cover;
-    background-position: center;
-    width: 100%;
-    min-height:100px;
-    box-sizing: border-box;
-    color:#fff;
-    h1,h2 {
-        color:#fff;
-    }
+	background:#ccc;
+	background-image: url('images/header-bg.jpg');
+	background-size:cover;
+	background-position: center;
+	width: 100%;
+	min-height:100px;
+	box-sizing: border-box;
+	color:#fff;
+	h1,h2 {
+		color:#fff;
+	}
 
-    h2{
-        font-size:24px;
-        font-family: $font1;
-    }
+	h2{
+		font-size:24px;
+		font-family: $font1;
+	}
 
-    nav{
-        padding:30px 0 ;
-        margin-left:30px;
-        ul{list-style: none; padding:0;}
-        .menu-item{
-            float:left;
-            text-transform: uppercase;
-            padding:0;
-            margin:0 30px 0 0;
-            font-weight: bold;
-            cursor: pointer;
-            a{color:#fff; border:none;}
-            &.active{
-                border-bottom: 2px solid $color3;
-            }
-            &:hover{
-                border-bottom: 2px solid $gray4;
-                a{text-decoration: none;}
-            }
-            &:before{
-                content:none;
-            }
-            &:last-child{
-                margin:0;
-            }
-        }
-    }
+	nav{
+		padding:30px 0 ;
+		margin-left:30px;
+		ul{list-style: none; padding:0;}
+		.menu-item{
+			float:left;
+			text-transform: uppercase;
+			padding:0;
+			margin:0 30px 0 0;
+			font-weight: bold;
+			cursor: pointer;
+			a{color:#fff; border:none;}
 
-    #logo{float:left; margin-right: 10%; a{color:#fff; text-decoration: none !important; border:none;}}
-    nav.left {float:left}
-    nav.right {float:right}
+			border-bottom: 2px solid transparent;
+			&.active{
+				border-bottom: 2px solid $color3;
+			}
+			&:hover{
+				border-bottom: 2px solid $gray4;
+				a{text-decoration: none;}
+			}
+			&:before{
+				content:none;
+			}
+			&:last-child{
+				margin:0;
+			}
+		}
+	}
+
+	#logo{float:left; margin-right: 10%; a{color:#fff; text-decoration: none !important; border:none;}}
+	nav.left {float:left}
+	nav.right {float:right}
 }
 
 #template-login {
-    header#main {
-        height:500px;
-        text-align: center;
-        padding: 70px;
-        margin-bottom:-190px;
-    }
+	header#main {
+		height:500px;
+		text-align: center;
+		padding: 70px;
+		margin-bottom:-190px;
+	}
 
 }
 
 #template-default {
-    header#main {
-        background-image: url('images/header-bg-small.jpg');
-    }
+	header#main {
+		background-image: url('images/header-bg-small.jpg');
+	}
 
-    h1#logo{
-        font-size:36px;
-    }
+	h1#logo{
+		font-size:36px;
+	}
 }
 
 #login.panel {
-    max-width:500px;
-    margin: 0 auto 120px auto;
+	max-width:500px;
+	margin: 0 auto 120px auto;
 
 
-    form label{
-        margin:10px 0 15px 0;
-    }
+	form label{
+		margin:10px 0 15px 0;
+	}
 
-    button{
-        margin-top:30px;
-        float:right;
-    }
+	button{
+		margin-top:30px;
+		float:right;
+	}
 }
 
 #registration.panel {
-    max-width:760px;
-    margin: 0 auto 120px auto;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.2);
-    button{
-        clear:both;
-        margin-top:0;
-        float:right;
+	max-width:760px;
+	margin: 0 auto 120px auto;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.2);
+	button{
+		clear:both;
+		margin-top:0;
+		float:right;
 
-    }
+	}
 }
 
 //form fields
@@ -169,248 +171,313 @@ form{
 	.required{
 		color:$color1;
 	}
-//>>>>>>> origin/develop
+	//>>>>>>> origin/develop
 }
 
 
 
 #page-header{
-    position: relative;
-    padding: 22% 50%;
-    background: #ccc;
-    margin: -60px -60px 60px -60px;
-    background:#ccc;
-    background-image: url('images/profile-header-placeholder.png');
-    background-size:cover;
-    background-position: center;
-    .user-info{
-        text-align: center;
-        @include centerElement('both');
-        .profile-picture {
-            display: inline-block;
-            width: 150px;
-            height:150px;
-            border:4px solid #fff;
-            border-radius: 100%;
-            background:#ccc;
-            background-image: url('images/profile-image-placeholder.png');
-            background-size:cover;
-            background-position: center;
-        }
-        .username{
-            position: relative;
-            margin-bottom: 30px;
-        }
-        label{
-            position: absolute;
-            left: 100%;
-            bottom: 100%;
-            margin-bottom: -7px;
-            font-size: 13px;
-            height: auto;
-            background: $color3;
-            padding: 10px 14px;
-            border-radius: 8px 8px 8px 0px;
-            color: $gray1;
-            line-height: 100%;
-            font-family: $font1;
-        }
-    }
-    &.small{
-        padding: 17% 50%;
-    }
+	position: relative;
+	padding: 21% 50%;
+	background: #ccc;
+	margin: -60px -60px 60px -60px;
+	background:#ccc;
+	background-image: url('images/profile-header-placeholder.png');
+	background-size:cover;
+	background-position: center;
 
-    &:before{
-        content: " ";
-        position: absolute;
-        top:0;
-        left:0;
-        right:0;
-        bottom:0;
-        background-color: #263238;
-        background-image: linear-gradient(225deg, #78909c 0%, #263238 100%);
-        opacity: 0.8;
-    }
+	i#edit-header{
+		@include single-transition(background-color, 0.3s);
+		cursor:pointer;
+		position: absolute;
+		right: 20px;
+		top: 20px;
+		background-color: rgba(38, 50, 56, 0.8);
+		border-radius: 100%;
+		padding: 30px;
+		color: #fff;
+		font-size: 20px;
+		&:hover{
+			background-color: rgba(38, 50, 56, 1);
+		}
+	}
 
-    button.edit{
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        margin:40px;
-    }
+	.editable-group{
+		margin:0;
+	}
+	h4{
+		margin-bottom:8px;
+		margin-top:0;
+	}
+
+	.user-info{
+		text-align: center;
+		@include centerElement('both');
+
+		.profile-picture {
+			position: relative;
+			display: inline-block;
+			width: 150px;
+			height:150px;
+			border:4px solid #fff;
+			border-radius: 100%;
+			background:#ccc;
+			background-image: url('images/profile-image-placeholder.png');
+			background-size:cover;
+			background-position: center;
+			overflow: hidden;
+
+			i#edit-profilepicture{
+				@include single-transition(background-color, 0.3s);
+				cursor:pointer;
+				position: absolute;
+				left:-10px;
+				top:-10px;
+				background-color: rgba(38, 50, 56, 0.8);
+				border-radius: 100%;
+				padding: 50%;
+				color: #fff;
+				font-size: 20px;
+				&:hover{
+					background-color: rgba(38, 50, 56, 1);
+				}
+			}
+		}
+		.username{
+			position: relative;
+			display: inline-block;
+			margin-bottom: 25px;
+		}
+		label{
+			position: absolute;
+			left: 100%;
+			bottom: 100%;
+			margin-bottom: -7px;
+			font-size: 13px;
+			height: auto;
+			background: $color3;
+			padding: 10px 14px;
+			border-radius: 8px 8px 8px 0px;
+			color: $gray1;
+			line-height: 100%;
+			font-family: $font1;
+		}
+	}
+	&.small{
+		padding: 17% 50%;
+	}
+
+	&:before{
+		content: " ";
+		position: absolute;
+		top:0;
+		left:0;
+		right:0;
+		bottom:0;
+		background-color: #263238;
+		background-image: linear-gradient(225deg, #78909c 0%, #263238 100%);
+		opacity: 0.8;
+	}
+
+	button.edit{
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		margin:40px;
+	}
 }
 
 #page-container{
-    padding-bottom: 100px;
+	padding-bottom: 100px;
 }
 
 #page-sidebar{
-    section{
-        margin-bottom:75px;
-    }
+	section{
+		margin-bottom:75px;
+		&:last-child{
+			margin-bottom:0px;
+		}
+	}
 }
 
 .labels {
-    margin:10px 0 10px 0;
-    label{
-        display: inline-block;
-        background:$color3;
-        color:#fff;
-        margin:0 16px 20px 0;
-        padding:10px 20px 8px 20px;
-        border-radius: 4px;
-        color:#000;
-        font-weight: bold;
-    }
+	margin:10px 0 10px 0;
+	label{
+		display: inline-block;
+		background:$color3;
+		color:#fff;
+		margin:0 16px 20px 0;
+		padding:10px 20px 8px 20px;
+		border-radius: 4px;
+		color:#000;
+		font-weight: bold;
+	}
 }
 
 .messagebox {
-    background-color: $color5;
-    padding: 16px 20px;
-    margin:30px 0;
-    border-radius: 2px;
+	background-color: $color5;
+	padding: 16px 20px;
+	margin:30px 0;
+	border-radius: 2px;
 }
 
 // Meter
 .meter-canvas{
-    margin-top: 10px;
+	margin-top: 10px;
 
-    .meter {
-        height: 8px;  /* Can be anything */
-        position: relative;
-        margin: 20px 0;
-        background: $gray5;
-        -moz-border-radius: 8px;
-        -webkit-border-radius: 8px;
-        border-radius: 8px;
-        float: left;
-        width: 65%;
+	.meter {
+		height: 8px;  /* Can be anything */
+		position: relative;
+		margin: 20px 0;
+		background: $gray5;
+		-moz-border-radius: 8px;
+		-webkit-border-radius: 8px;
+		border-radius: 8px;
+		float: left;
+		width: 65%;
 
-        span {
-            display: block;
-            height: 100%;
-            border-top-right-radius: 20px;
-            border-bottom-right-radius: 20px;
-            border-top-left-radius: 20px;
-            border-bottom-left-radius: 20px;
-            background-color: $color3;
-            position: relative;
-            overflow: hidden;
-        }
-    }// eind meter
+		span {
+			display: block;
+			height: 100%;
+			border-top-right-radius: 20px;
+			border-bottom-right-radius: 20px;
+			border-top-left-radius: 20px;
+			border-bottom-left-radius: 20px;
+			background-color: $color3;
+			position: relative;
+			overflow: hidden;
+		}
+	}// eind meter
 
-    .meter-count{
-        display: inline-block;
-        margin-top: 15px;
-        padding-left: 20px;
-    }
+	.meter-count{
+		display: inline-block;
+		margin-top: 15px;
+		padding-left: 20px;
+	}
 }
 
 // Toggle
 .toggle {
-    height: 4px;  /* Can be anything */
-    position: relative;
-    margin: 20px 0;
-    background: $gray4;
-    width: 50px;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    border-radius: 8px;
+	height: 4px;  /* Can be anything */
+	position: relative;
+	margin: 20px 0;
+	background: $gray4;
+	width: 50px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
 
-    button{
-        width: 20px;
-        height: 20px;
-        border-radius: 100%;
-        margin-top: -8px;
-        position: relative;
-        float: right;
-        padding: 0;
-        box-shadow: 0 5px 7px rgba(0,0,0,0.3),0 1px 2px rgba(0,0,0,0.2)
+	button{
+		width: 20px;
+		height: 20px;
+		border-radius: 100%;
+		margin-top: -8px;
+		position: relative;
+		float: right;
+		padding: 0;
+		box-shadow: 0 5px 7px rgba(0,0,0,0.3),0 1px 2px rgba(0,0,0,0.2)
 
-    }
+	}
 }// eind meter
 
-//#me-projects{
-//    #page-content{
-//        @include span(7 of 12);
-//    }
-//    #page-sidebar{
-//        @include span(5 of 12 last);
-//    }
-//}
+#me-projects.page{
+	header#page-header {
+		background-image:url(images/myprojects-header.jpg);
+	}
+}
 
 .my-project{
-    margin-bottom: 35px;
-    border: 2px solid $gray4;
-    border-radius: 8px;
-    float: left;
-    width: 100%;
-    padding: 30px;
-    position: relative;
-    @include box-sizing('border-box');
+	margin-bottom: 35px;
+	border: 2px solid $gray4;
+	border-radius: 8px;
+	float: left;
+	width: 100%;
+	padding: 30px;
+	position: relative;
+	@include box-sizing('border-box');
 
-    .content{
-        @include span(8 of 12);
-        h4{
-            margin: 0 0 5px 0;
-        }
+	.content{
+		@include span(8 of 12);
+		h4{
+			margin: 0 0 5px 0;
+		}
 
-        .sub-head{
-            font-size: 13px;
-            margin: 0 0 20px 0;
-        }
+		.sub-head{
+			font-size: 13px;
+			margin: 0 0 20px 0;
+		}
 
-        .name, .beschikbaarheid{
-            font-weight: 300;
-            color: $gray3;
-            font-size: 15px;
-            line-height: 22px;
-            font-family: $font3;
-            margin: 0;
-        }
+		.name, .beschikbaarheid{
+			font-weight: 300;
+			color: $gray3;
+			font-size: 15px;
+			line-height: 22px;
+			font-family: $font3;
+			margin: 0;
+		}
 
-        .beschikbaarheid{
-            font-size: 13px;
-            padding-right: 10px;
-        }
+		.beschikbaarheid{
+			font-size: 13px;
+			padding-right: 10px;
+		}
 
-        .description{
-            font-family: $font3;
-            letter-spacing: 0.01em;
-            margin: 20px 0 30px 0;
-        }
+		.description{
+			font-family: $font3;
+			letter-spacing: 0.01em;
+			margin: 20px 0 30px 0;
+		}
 
-        .expertise{
-            @include span(7 of 12);
-        }
+		.expertise{
+			@include span(7 of 12);
+		}
 
-        .interest{
-            @include span(5 of 12 last);
-        }
-    }
-    .image{
-        @include span(4 of 12 last);
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        height: 347px;
+		.interest{
+			@include span(5 of 12 last);
+		}
+	}
+	.image{
+		@include span(4 of 12 last);
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		height: 347px;
 
-        .banner{
-            background: $gray2;
-            border-bottom-right-radius: 7px;
-            border-top-left-radius: 35px;
-            height: 100%;
-        }
+		.banner{
+			background: $gray2;
+			border-bottom-right-radius: 7px;
+			border-top-left-radius: 35px;
+			height: 100%;
+		}
 
-        .avatar{
-            background: $gray3;
-            width: 100px;
-            height: 100px;
-            position: absolute;
-            top: -45px;
-            border: 4px solid white;
-            border-radius: 100%;
-            left: 25%;
-        }
-    }
+		.avatar{
+			background: $gray3;
+			width: 100px;
+			height: 100px;
+			position: absolute;
+			top: -45px;
+			border: 4px solid white;
+			border-radius: 100%;
+			left: 25%;
+		}
+	}
+}
+
+body.editmode{
+	#page-header{
+		h4{display: inline}
+		.editable {
+			width:49%;
+		}
+		.editable-group{
+			display: inline-block;
+			max-width:400px;
+			margin:0;
+			padding:7px;
+		}
+	}
+
+	.is-editing{
+		display: inline-block !important;
+	}
+
 }

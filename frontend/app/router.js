@@ -31,7 +31,7 @@ export default Router.map(function() {
 		this.route('references');
 	});
 
-	this.resource('project', function(){
+	this.resource('project', {path:"projects"}, function(){
 		this.route('single',{path:"project/:project_id"});
 
 		this.route('matching');

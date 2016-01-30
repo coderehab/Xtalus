@@ -3,6 +3,26 @@ import Ember from 'ember';
 var MeController = Ember.Controller.extend({
 
 	actions: {
+
+		saveProfileHeaderImage:function(params){
+			var _this = this;
+			this.controllerFor('application').saveImage(params).then(function(response){
+
+				_this.model.set('pictureBackground', response.image.url);
+			},function(){
+				alert("Uploading image failed");
+			})
+		},
+
+		saveProfileImage:function(params){
+			var _this = this;
+			this.controllerFor('application').saveImage(params).then(function(response){
+				_this.model.set('picture', response.image.url);
+			},function(){
+				alert("Uploading image failed");
+			})
+		},
+
 		updatePerson:function() {
 			var app = this.controllerFor('application')
 			this.model.get('isisObj').then(function(isisObj){

@@ -41,17 +41,18 @@ var ApplicationController = Ember.Controller.extend({
 
 	},
 
-	saveImage: function(params){
+	saveImage: function(file){
+		//console.log(file)
 		return new Promise(function(resolve, reject) {
 			Ember.$.ajax({
 				type: "POST",
 				contentType: "application/json; charset=utf-8",
 				url: ENV.APP.API_PHP_HOST+'/images',
-				data: JSON.stringify(params)
+				data: JSON.stringify({image:file})
 			}).done(function(response){
-				resolve(response);
+				resolve(JSON.parse(response));
 			}).fail(function(error) {
-				reject(error);
+				reject(JSON.parse(error));
 			});
 		});
 	},

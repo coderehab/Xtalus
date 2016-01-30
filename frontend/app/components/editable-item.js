@@ -6,9 +6,12 @@ export default Ember.Component.extend({
 	classNames: 'editable',
 	active:false,
 	selected:false,
+	hidden:false,
 	classNameBindings: [
 		'isEditing',
+		'hidden',
 		'isTextarea:type-textarea',
+		'isText:type-text',
 		'isDate:type-date',
 		'isLabel:type-label',
 	],
@@ -16,20 +19,6 @@ export default Ember.Component.extend({
 	init:function(){
 		this._super();
 		var _this = this;
-
-		/*Ember.$('body').on('click', function(e){
-			var tag = $(e.target).prop("tagName");
-
-			if(
-				tag == "INPUT" ||
-				tag == "TEXTAREA"
-			){
-				return;
-			}
-
-			$("#" + _this.elementId).closest('.editable-group').removeClass('is-editing');
-			_this.set('selected', false);
-		});*/
 	},
 
 	isEditing: function (){
@@ -38,12 +27,6 @@ export default Ember.Component.extend({
 
 	isTextarea:function(){
 		var type = this.get('type');
-
-		$(function(){
-		$("textarea").css('width', '100%')
-		$("textarea").css('height', '400px')
-		})
-
 		return (type == "textarea")
 	}.property('type'),
 
@@ -62,10 +45,12 @@ export default Ember.Component.extend({
 		var type = this.get('type');
 		var divider = this.get("divider")
 
-		var fields = value.split('-');
-		this.set('val1', fields[0])
-		this.set('val2', fields[1])
-		this.set('val3', fields[2])
+		if(value){
+			var fields = value.split('-');
+			this.set('val1', fields[0])
+			this.set('val2', fields[1])
+			this.set('val3', fields[2])
+		}
 
 		return (type == "date")
 	}.property('type'),
@@ -80,11 +65,5 @@ export default Ember.Component.extend({
 		}
 
 	}.observes('active', 'selected'),
-
-	/*mouseUp: function(){
-		$("#" + this.elementId).closest('.editable-group').addClass('is-editing');
-		this.set('selected', true);
-	},*/
-
 
 });

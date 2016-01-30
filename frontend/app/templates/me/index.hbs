@@ -1,10 +1,38 @@
 <header id="page-header" style="background-image:url('{{model.pictureBackground}}')">
+	{{#if editmode }}
+	{{#file-picker fileLoaded="saveProfileHeaderImage" preview=false readAs="readAsDataURL"}}
+	<i id="edit-header" class='fa fa-camera'></i>
+	{{/file-picker}}
+{{/if}}
 	<section class="user-info dark-theme">
-
-		<section class='profile-picture' style="background-image:url('{{model.picture}}')"></section>
+		<section class='profile-picture' style="background-image:url('{{model.picture}}')">
+			{{#if editmode }}
+			{{#file-picker fileLoaded="saveProfileImage" preview=false readAs="readAsDataURL"}}
+			<i id="edit-profilepicture" class='fa fa-camera'></i>
+			{{/file-picker}}
+			{{/if}}
+		</section>
+		<br />
 		<h2 class='username'>{{model.fullName}}<label>{{model.entity}}</label></h2>
-		<h4>{{model.education.name}}</h4>
-		<p>{{model.education.institute}}, {{model.education.location.city}}</p>
+
+		{{#unless model.entityMkb }}
+		{{#editable-group active=editmode}}
+		<h4>{{editable-item type="text" value=model.education.name active=editmode placeholder="Opleiding"}}</h4>
+		{{editable-item type="text" value=model.education.institute active=editmode placeholder="Schoonnaam"}}
+		{{editable-item type="text" value=model.education.location.city active=editmode placeholder="Stad opleiding"}}
+		{{editable-item hidden="hidden" type="text" value=model.education.location.postal active=editmode placeholder="Postcode opleiding"}}
+		{{/editable-group}}
+
+		{{else}}
+
+		{{#editable-group active=editmode}}
+		<h4>{{editable-item type="text" value=model.companies.0.branche active=editmode placeholder="Branche naam"}}</h4>
+		{{editable-item type="text" value=model.companies.0.name active=editmode placeholder="Bedrijfsnaam"}}
+		{{editable-item type="text" value=model.companies.0.location.city active=editmode placeholder="Vestiging stad"}}
+		{{editable-item hidden="hidden" type="text" value=model.companies.0.location.postal active=editmode placeholder="Vestiging postcode"}}
+		{{/editable-group}}
+		{{/unless}}
+
 	</section>
 
 	{{#if editmode}}
@@ -17,22 +45,22 @@
 </header>
 
 <section id='page-content'>
-	<header><h3>{{model.firstName}}, aangenaam</h3></header>
 
-	{{#editable-group active=editmode}}
-	<p>{{editable-item type="textarea" value=model.story active=editmode}}</p>
-	{{/editable-group}}
+	{{#unless model.entityMkb }}
+		<header><h3>{{model.firstName}}, aangenaam</h3></header>
+		{{#editable-group active=editmode}}
+		<p>{{editable-item type="textarea" value=model.story active=editmode}}</p>
+		{{/editable-group}}
+	{{/unless}}
 
-	{{#if model.entityZper }}
+	{{#unless model.entityStudent }}
+		<header><h3>Over {{model.companies.0.name}}</h3></header>
+		{{#editable-group active=editmode}}
+		<p>{{editable-item type="textarea" value=model.companies.0.description active=editmode}}</p>
+		{{/editable-group}}
+	{{/unless}}
 
-	<header><h3>Over {{model.companies.0.name}}</h3></header>
-
-	{{#editable-group active=editmode}}
-	<p>{{editable-item type="textarea" value=model.companies.0.description active=editmode}}</p>
-	{{/editable-group}}
-
-	{{/if}}
-
+	{{#unless model.entityMkb }}
 	{{#editable-group active=editmode}}
 	<header><h3>Kwaliteiten</h3></header>
 	<section id="qualities" class="labels">
@@ -43,9 +71,13 @@
 
 	</section>
 	{{/editable-group}}
+	{{/unless}}
 </section>
 
 <aside id='page-sidebar' >
+
+	{{#if model.interests}}
+
 	<section>
 		<header><h3>Interesses</h3></header>
 		<ul class='extended'>
@@ -66,18 +98,33 @@
 
 			{{/editable-group}}
 			{{/each}}
-
 		</ul>
 	</section>
+	{{/if}}
+
 	<section>
 		<header><h3>Overige informatie</h3></header>
 		<ul class='extended'>
 
-			{{#if model.education.honoursProgram}}
-			<li><h4>Honoursprogramma</h4><p>{{model.education.honoursProgram}}</p></li>
+			{{#editable-group active=editmode}}
+
+			{{#if entityStudent }}
+			<li>
+				<h4>Honoursprogramma</h4>
+				<p>{{editable-item type="text" value=model.education.honoursProgram active=editmode placeholder="Programma naam"}}</p>
+			</li>
 			{{/if}}
 
-			<li><h4>Woonplaats</h4><p>Enschede</p></li>
+			<li>
+				<h4>Woonplaats</h4>
+				<p>
+					{{editable-item type="text" value=model.city active=editmode placeholder="Plaatsnaam"}}
+					{{editable-item hidden="hidden" type="text" value=model.postal active=editmode placeholder="Postcode"}}
+				</p>
+
+			</li>
+
+			{{/editable-group}}
 		</ul>
 	</section>
 </aside>
